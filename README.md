@@ -10,9 +10,21 @@
 > Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
 
 ### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+- Patients Story:
+
+As a patient I can easily view my medical profile and the last investigations by doctors,diagnosis,medicines details, and insurance replies, by dates. So that i will have a full and clear knowledge about my health situation. 
+
+- Doctors Story:
+
+As a doctor, i can create a patients profile easily and add to it all the needed medical records, diagnosis, prescriptions, and insurance approval form, so that i will have a full knowledge about my patients health and financial situation.
+
+- Pharmacist Story:
+
+As a Pharmacist, I will receive the patients prescription and give him the needed medicines, after checking the insurance approval, so I can assure that the patient will take his drug regardless of his financial situation.
+
+- Insurance Sector:
+
+As an insurance sector, I will control the diagnosis through AI, and give acceptance and rejection according to it for all the 3 parties, so i can control any cheating from any party.
 
 <br><br>
 
