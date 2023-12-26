@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->string('first_name');
             $table->string('last_name');
             $table->string('specialty');
             $table->integer('age');
             $table->integer('phone_number');
             $table->integer('license_id');
             $table->timestamps();
+            $table-> unsignedBigInteger('user_id');
+            $table-> foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 
