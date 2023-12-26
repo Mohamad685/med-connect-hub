@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Insurance_Company extends Model
+class InsuranceCompany extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        "user_id",
+        'name',
+        'description',
+        'phone_number',
+        'email',
+        'address'];
+
+    public function user()
+    {
+        return $this->morphOne(User::class, 'userable');
+    }
 }
