@@ -210,11 +210,37 @@ class AuthController extends Controller
 }
 
 
+public function deleteDoctor($id)
+{
+    try {
+        // Retrieve the doctor and associated user.
+        $doctor = Doctor::findOrFail($id);
+        $user = User::findOrFail($doctor->user_id);
+
+        // Delete the doctor record. Consider if you also want to delete the user.
+        $doctor->delete();
+        $user->delete();
+
+        // Return a success response.
+        return response()->json(['message' => 'Doctor deleted successfully!']);
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        // If doctor or user isn't found
+        return response()->json(['message' => 'Doctor not found'], 404);
+    } catch (\Exception $e) {
+        // For any other exceptions, log the error and return a generic error message.
+        \Log::error('Delete Doctor Error:', ['error' => $e->getMessage()]);
+        return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+    }
+}
+
+
 
     // Update Patient Details
-    // public function updatePatient(Request $request, $patientId)
+    // public function updatePatient(Request $request, $id)
     // {
-    //     // Similar structure to updateDoctor...
+    //     $patientData=$request-> validate([
+
+    //     ])
     // }
 
     // // Update Insurance Company Details
@@ -224,19 +250,6 @@ class AuthController extends Controller
     // }
 }
 
-
-// public function deleteUser($id)
-// {
-//     $this->authorizeAdmin();
-
-//     $user = User::findOrFail($id);
-//     $user->delete();
-
-//     return response()->json([
-//         'status' => 'success',
-//         'message' => 'User deleted successfully',
-//     ]);
-// }
 
 // private function authorizeAdmin()
 // {
