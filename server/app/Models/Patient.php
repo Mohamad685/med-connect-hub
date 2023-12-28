@@ -22,5 +22,10 @@ class Patient extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
+    public function insuranceCompany()
+{
+    return $this->belongsTo(InsuranceCompany::class);
+}
+
 }
 

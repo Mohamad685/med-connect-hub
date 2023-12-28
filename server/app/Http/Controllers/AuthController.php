@@ -57,7 +57,7 @@ class AuthController extends Controller
         try {
             // Common Validation
             $validatedData = $request->validate([
-                'email' => 'required|email|unique:users',
+                'email' => 'required|email|unique',
                 'password' => 'required|min:6',
                 'role' => 'required|in:doctor,patient,insurance',
                 'user_name' => 'required|string|unique:users',
@@ -82,7 +82,7 @@ class AuthController extends Controller
                         'last_name' => 'required|string',
                         'specialty' => 'required|string',
                         'age' => 'required|integer',
-                        'phone_number' => 'required|integer',
+                        'phone_number' => 'required|integer|unique',
                         'license_id' => 'required|integer|unique:doctors',
                         'gender' => 'required|string',
 
@@ -111,8 +111,8 @@ class AuthController extends Controller
                         'last_name' => 'required|string',
                         'address' => 'required|string',
                         'date_of_birth' => 'required|date',
-                        'phone_number' => 'required|integer',
-                        'gender'=> 'required|string'
+                        'phone_number' => 'required|integer|unique',
+                        'gender' => 'required|string'
                     ]);
 
                     // Create Patient Profile
@@ -128,24 +128,26 @@ class AuthController extends Controller
                     $patient->save();
 
                     break;
-                case 'insurance_approval':
+                case 'insurance':
                     // Validate insurance-specific data
                     $insuranceData = $request->validate([
-                        'name' => 'required|string',
+                        'name' => 'required|string|unique:insurance_companies',
                         'description' => 'required|string',
-                        'phone_number' => 'required|integer',
-                        'email' => 'required|string',
+                        'phone_number' => 'required|integer|unique',
                         'address' => 'required|string',
+                        'coverage_details' => 'required|string',
+                        'email' => 'required|string|unique'
                     ]);
 
                     // Create InsuranceApproval
                     $insurance_companies = new InsuranceCompany;
                     $insurance_companies->user_id = $user->id;
                     $insurance_companies->name = $insuranceData['name'];
-                    $insurance_companies->decription = $insuranceData['decription'];
-                    $insurance_companies->phone_number = $insuranceData['phone_number'];
                     $insurance_companies->email = $insuranceData['email'];
+                    $insurance_companies->description = $insuranceData['description'];
+                    $insurance_companies->phone_number = $insuranceData['phone_number'];
                     $insurance_companies->address = $insuranceData['address'];
+                    $insurance_companies->coverage_details = $insuranceData['coverage_details'];
                     $insurance_companies->save();
 
                     break;

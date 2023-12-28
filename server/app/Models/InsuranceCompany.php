@@ -12,10 +12,17 @@ class InsuranceCompany extends Model
         'description',
         'phone_number',
         'email',
-        'address'];
+        'address',
+        'coverage_details'
+    ];
 
     public function user()
     {
         return $this->morphOne(User::class, 'userable');
     }
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
 }

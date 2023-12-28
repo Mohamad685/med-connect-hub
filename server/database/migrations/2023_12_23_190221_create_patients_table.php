@@ -16,9 +16,10 @@ return new class extends Migration {
         $table->string('last_name');
         $table->date('date_of_birth'); 
         $table->string('gender'); 
-        $table->string('phone_number')->nullable(); 
+        $table->string('phone_number')->unique()->nullable(); 
         $table->text('address')->nullable(); 
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('insurance_company_id')->nullable()->constrained('insurance_companies')->onDelete('set null');
         $table->timestamps(); 
     });
 }

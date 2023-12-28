@@ -9,11 +9,12 @@ return new class extends Migration {
     {
         Schema::create('insurance_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('phone_number')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('address')->nullable();
+            $table->text('coverage_details')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
