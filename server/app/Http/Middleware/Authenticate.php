@@ -14,17 +14,20 @@ class Authenticate extends Middleware
      */
     public function handle($request, \Closure $next, ...$guards)
     {
-        if ($this->auth->guard($guards)->guest()) {
+        // If no guard is specified, use the default 'api' guard.
+        $guard = $guards[0] ?? 'api';
+
+        if ($this->auth->guard($guard)->guest()) {
             try {
                 $user = JWTAuth::parseToken()->authenticate();
                 if (!$user) {
                     throw new JWTException('User not found');
                 }
             } catch (JWTException $e) {
-                return $this->unauthenticated($request, $guards);
+                return $this->unauthenticated($request, [$guard]);
             }
         }
-        
+
         return $next($request);
     }
 
