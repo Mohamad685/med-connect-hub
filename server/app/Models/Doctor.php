@@ -12,7 +12,8 @@ class Doctor extends Model
         'specialty',
         'age',
         'phone_number',
-        'license_id'];
+        'license_id',
+        'gender'];
 
     public function user()
     {
