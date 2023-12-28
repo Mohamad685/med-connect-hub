@@ -232,12 +232,51 @@ class AuthController extends Controller
 
 
     // Update Patient Details
-    // public function updatePatient(Request $request, $id)
-    // {
-    //     $patientData=$request-> validate([
+    public function updatePatient(Request $request, $id)
+    {
+        try {
 
-    //     ])
-    // }
+            // Validate request data for Doctor and User details.
+            $patientData = $request->validate([
+                'email' => 'sometimes|nullable|email',
+                'password' => 'sometimes|nullable|string|min:6',
+                'user_name' => 'sometimes|nullable|string',
+                'address' => 'sometimes|nullable|string|max:5000',
+                'phone_number' => 'sometimes|nullable|integer',
+            ]);
+
+            // Retrieve the patient and associated user.
+            $patient = Patient::findOrFail($id);
+            $user = User::findOrFail($patient->user_id);
+
+            // Update User related data if present.
+            if (isset($patientData['email'])) {
+                $user->email = $patientData['email'];
+            }
+            if (isset($patientData['password'])) {
+                $user->password = Hash::make($patientData['password']);
+            }
+            if (isset($patientData['user_name'])) {
+                $user->user_name = $patientData['user_name'];
+            }
+            $user->save();
+
+            // Update patient specific data.
+            $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
+            $patient->address = $patientData['address'] ?? $patient->address;
+
+            $patient->save();
+
+            return response()->json(['message' => 'patient updated successfully!']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'patient not found'], 404);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+        }
+    }
+
 
     // // Update Insurance Company Details
     // public function updateInsuranceCompany(Request $request, $companyId)
