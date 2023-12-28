@@ -109,9 +109,10 @@ class AuthController extends Controller
                     $patientData = $request->validate([
                         'first_name' => 'required|string',
                         'last_name' => 'required|string',
-                        'adress' => 'required|string',
-                        'age' => 'required|integer',
+                        'address' => 'required|string',
+                        'date_of_birth' => 'required|date',
                         'phone_number' => 'required|integer',
+                        'gender'=> 'required|string'
                     ]);
 
                     // Create Patient Profile
@@ -119,8 +120,9 @@ class AuthController extends Controller
                     $patient->user_id = $user->id;
                     $patient->first_name = $patientData['first_name'];
                     $patient->last_name = $patientData['last_name'];
-                    $patient->adress = $patientData['adress'];
-                    $patient->age = $patientData['age'];
+                    $patient->address = $patientData['address'];
+                    $patient->date_of_birth = $patientData['date_of_birth'];
+                    $patient->gender = $patientData['gender'];
                     $patient->phone_number = $patientData['phone_number'];
                     // ... set other patient-specific fields
                     $patient->save();
@@ -161,77 +163,71 @@ class AuthController extends Controller
 
     // Update Doctor Details
     public function updateDoctor(Request $request, $id)
-{
-    try {
-      
-        // Validate request data for Doctor and User details.
-        $doctorData = $request->validate([
-            'email' => 'sometimes|nullable|email',
-            'password' => 'sometimes|nullable|string|min:6',
-            'user_name' => 'sometimes|nullable|string',
-            'specialty' => 'sometimes|nullable|string',
-            'age' => 'sometimes|nullable|integer',
-            'phone_number' => 'sometimes|nullable|integer',
-            'license_id' => 'sometimes|nullable|integer'
-        ]);
+    {
+        try {
 
-        // Retrieve the doctor and associated user.
-        $doctor = Doctor::findOrFail($id);
-        $user = User::findOrFail($doctor->user_id);
+            // Validate request data for Doctor and User details.
+            $doctorData = $request->validate([
+                'email' => 'sometimes|nullable|email',
+                'password' => 'sometimes|nullable|string|min:6',
+                'user_name' => 'sometimes|nullable|string',
+                'specialty' => 'sometimes|nullable|string',
+                'age' => 'sometimes|nullable|integer',
+                'phone_number' => 'sometimes|nullable|integer',
+                'license_id' => 'sometimes|nullable|integer'
+            ]);
 
-        // Update User related data if present.
-        if (isset($doctorData['email'])) {
-            $user->email = $doctorData['email'];
+            // Retrieve the doctor and associated user.
+            $doctor = Doctor::findOrFail($id);
+            $user = User::findOrFail($doctor->user_id);
+
+            // Update User related data if present.
+            if (isset($doctorData['email'])) {
+                $user->email = $doctorData['email'];
+            }
+            if (isset($doctorData['password'])) {
+                $user->password = Hash::make($doctorData['password']);
+            }
+            if (isset($doctorData['user_name'])) {
+                $user->user_name = $doctorData['user_name'];
+            }
+            $user->save();
+
+            // Update Doctor specific data.
+            $doctor->specialty = $doctorData['specialty'] ?? $doctor->specialty;
+            $doctor->age = $doctorData['age'] ?? $doctor->age;
+            $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
+            $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
+            $doctor->save();
+
+            return response()->json(['message' => 'Doctor updated successfully!']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
         }
-        if (isset($doctorData['password'])) {
-            $user->password = Hash::make($doctorData['password']);
-        }
-        if (isset($doctorData['user_name'])) {
-            $user->user_name = $doctorData['user_name'];
-        }
-        $user->save();
-
-        // Update Doctor specific data.
-        $doctor->specialty = $doctorData['specialty'] ?? $doctor->specialty;
-        $doctor->age = $doctorData['age'] ?? $doctor->age;
-        $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
-        $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
-        $doctor->save();
-
-        // Return a success response.
-        return response()->json(['message' => 'Doctor updated successfully!']);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        return response()->json(['message' => 'Doctor not found'], 404);
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
-    } catch (\Exception $e) {
-        return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
     }
-}
 
 
-public function deleteDoctor($id)
-{
-    try {
-        // Retrieve the doctor and associated user.
-        $doctor = Doctor::findOrFail($id);
-        $user = User::findOrFail($doctor->user_id);
+    public function deleteDoctor($id)
+    {
+        try {
+            $doctor = Doctor::findOrFail($id);
+            $user = User::findOrFail($doctor->user_id);
 
-        // Delete the doctor record. Consider if you also want to delete the user.
-        $doctor->delete();
-        $user->delete();
+            // Delete the doctor record.
+            $doctor->delete();
+            $user->delete();
 
-        // Return a success response.
-        return response()->json(['message' => 'Doctor deleted successfully!']);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        // If doctor or user isn't found
-        return response()->json(['message' => 'Doctor not found'], 404);
-    } catch (\Exception $e) {
-        // For any other exceptions, log the error and return a generic error message.
-        \Log::error('Delete Doctor Error:', ['error' => $e->getMessage()]);
-        return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Doctor deleted successfully!']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+        }
     }
-}
 
 
 

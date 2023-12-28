@@ -9,19 +9,20 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('adress');
-            $table->integer('age');
-            $table->integer('phone_number');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('patients', function (Blueprint $table) {
+        $table->id();
+        $table->string('first_name');
+        $table->string('last_name');
+        $table->date('date_of_birth'); 
+        $table->string('gender'); 
+        $table->string('phone_number')->nullable(); 
+        $table->text('address')->nullable(); 
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->timestamps(); 
+    });
+}
+
 
     /**
      * Reverse the migrations.
