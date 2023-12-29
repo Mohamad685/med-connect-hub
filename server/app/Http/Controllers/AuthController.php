@@ -280,6 +280,23 @@ class AuthController extends Controller
     }
 
 
+    public function deletePatient($id)
+    {
+        try {
+            $patient = Patient::findOrFail($id);
+            $user = User::findOrFail($patient->user_id);
+
+            // Delete the patient record.
+            $patient->delete();
+            $user->delete();
+
+            return response()->json(['message' => 'Patient deleted successfully!']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Patient not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+        }
+    }
     // // Update Insurance Company Details
     // public function updateInsuranceCompany(Request $request, $companyId)
     // {
