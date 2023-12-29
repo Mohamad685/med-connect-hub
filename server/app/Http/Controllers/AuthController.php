@@ -353,4 +353,23 @@ class AuthController extends Controller
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
         }
     }
+
+
+    public function deleteInsuranceCompany($id)
+{
+    try {
+        $insurance = InsuranceCompany::findOrFail($id);
+        $user = User::findOrFail($insurance->user_id);
+
+        // Delete the insu$insurance record.
+        $insurance->delete();
+        $user->delete();
+
+        return response()->json(['message' => 'Insurance company deleted successfully!']);
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        return response()->json(['message' => 'Insurance company not found'], 404);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+    }
+}
 }

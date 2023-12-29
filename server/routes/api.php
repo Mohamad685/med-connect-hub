@@ -8,6 +8,9 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::put('/doctor/{id}', [AuthController::class, 'updateDoctor']);
     Route::delete('/doctor/{id}', [AuthController::class, 'deleteDoctor']);
     Route::put('/patient/{id}', [AuthController::class, 'updatePatient']);
+    Route::delete('/patient/{id}', [AuthController::class, 'deletePatient']);
     Route::put('/insurance/{id}', [AuthController::class, 'updateInsuranceCompany']);
+    Route::delete('/insurance/{id}', [AuthController::class, 'deleteInsuranceCompany']);
+
 
 });
