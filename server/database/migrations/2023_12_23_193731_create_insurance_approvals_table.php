@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('insurance_company_id');
             $table->boolean('approved');
             $table->timestamps();
-
             $table->foreign('medical_record_id')->references('id')->on('medical_records')->onDelete('cascade');
             $table->foreign('insurance_company_id')->references('id')->on('insurance_companies')->onDelete('cascade');
         });
