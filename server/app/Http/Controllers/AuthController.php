@@ -57,7 +57,7 @@ class AuthController extends Controller
         try {
             // Common Validation
             $validatedData = $request->validate([
-                'email' => 'required|email|unique',
+                'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
                 'role' => 'required|in:doctor,patient,insurance',
                 'user_name' => 'required|string|unique:users',
@@ -82,7 +82,7 @@ class AuthController extends Controller
                         'last_name' => 'required|string',
                         'specialty' => 'required|string',
                         'age' => 'required|integer',
-                        'phone_number' => 'required|integer|unique',
+                        'phone_number' => 'required|integer|unique:doctors',
                         'license_id' => 'required|integer|unique:doctors',
                         'gender' => 'required|string',
 
@@ -133,10 +133,10 @@ class AuthController extends Controller
                     $insuranceData = $request->validate([
                         'name' => 'required|string|unique:insurance_companies',
                         'description' => 'required|string',
-                        'phone_number' => 'required|integer|unique',
+                        'phone_number' => 'required|integer|unique:insurance_companies',
                         'address' => 'required|string',
                         'coverage_details' => 'required|string',
-                        'email' => 'required|string|unique'
+                        'email' => 'required|string|unique:insurance_companies'
                     ]);
 
                     // Create InsuranceApproval
@@ -200,6 +200,8 @@ class AuthController extends Controller
             $doctor->age = $doctorData['age'] ?? $doctor->age;
             $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
             $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
+            $doctor->email = $doctorData['email'] ?? $doctor->email;
+
             $doctor->save();
 
             return response()->json(['message' => 'Doctor updated successfully!']);
@@ -266,6 +268,7 @@ class AuthController extends Controller
             // Update patient specific data.
             $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
             $patient->address = $patientData['address'] ?? $patient->address;
+            $patient->email = $patientData['email'] ?? $patient->email;
 
             $patient->save();
 
@@ -297,21 +300,57 @@ class AuthController extends Controller
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
         }
     }
-    // // Update Insurance Company Details
-    // public function updateInsuranceCompany(Request $request, $companyId)
-    // {
-    //     // Similar structure to updateDoctor...
-    // }
+
+
+    // Update Insurance Company Details
+    public function updateInsuranceCompany(Request $request, $id)
+    {
+        try {
+
+            // Validate request data for Doctor and User details.
+            $insuranceData = $request->validate([
+                'name' => 'sometimes|nullable|string',
+                'description' => 'sometimes|string',
+                'email' => 'sometimes|nullable|email',
+                'password' => 'sometimes|nullable|string|min:6',
+                'user_name' => 'sometimes|nullable|string',
+                'address' => 'sometimes|nullable|string|max:5000',
+                'phone_number' => 'sometimes|nullable|integer',
+                'coverage_details' => 'sometimes|string'
+            ]);
+
+            // Retrieve the insurance and associated user.
+            $insurance = InsuranceCompany::findOrFail($id);
+            $user = User::findOrFail($insurance->user_id);
+
+            // Update User related data if present.
+            if (isset($insuranceData['email'])) {
+                $user->email = $insuranceData['email'];
+            }
+            if (isset($insuranceData['password'])) {
+                $user->password = Hash::make($insuranceData['password']);
+            }
+            if (isset($insuranceData['user_name'])) {
+                $user->user_name = $insuranceData['user_name'];
+            }
+            $user->save();
+
+            // Update insurance specific data.
+            $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
+            $insurance->address = $insuranceData['address'] ?? $insurance->address;
+            $insurance->description = $insuranceData['description'] ?? $insurance->description;
+            $insurance->coverage_details = $insuranceData['coverage_details'] ?? $insurance->coverage_details;
+            $insurance->email = $insuranceData['email'] ?? $insurance->email;
+
+            $insurance->save();
+
+            return response()->json(['message' => 'insurance updated successfully!']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'insurance not found'], 404);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+        }
+    }
 }
-
-
-// private function authorizeAdmin()
-// {
-//     if (!Auth::check() || Auth::user()->role !== 'admin') {
-//         abort(response()->json([
-//             'status' => 'error',
-//             'message' => 'Unauthorized - Only admins can perform this action',
-//         ], 403));
-//     }
-// }
-// }
