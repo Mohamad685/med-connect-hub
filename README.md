@@ -5,9 +5,7 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
->
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> At the heart of Med-Connect Hub, our mission is to streamline and enhance the healthcare experience by fostering a seamless connection between doctors, pharmacies, patients, and insurance companies. We believe that everyone deserves access to efficient, transparent, and comprehensive healthcare services. Our website is designed to be the bridge that links these critical components of the healthcare ecosystem.
 
 ### User Stories
 - Patients Story:
@@ -31,7 +29,7 @@ As an insurance sector, I will control the diagnosis through AI, and give accept
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Med-Connect Hub using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 | Login screen  | Register screen |  Landing screen |
@@ -48,7 +46,7 @@ As an insurance sector, I will control the diagnosis through AI, and give accept
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the Med-Connect Hub app with the following features:
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
@@ -69,7 +67,7 @@ As an insurance sector, I will control the diagnosis through AI, and give accept
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-###  Coffee Express is built using the following technologies:
+###  Med-Connect Hub is built using the following technologies:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
@@ -82,7 +80,7 @@ As an insurance sector, I will control the diagnosis through AI, and give accept
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Med-Connect Hub locally, follow these steps:
 
 ### Prerequisites
 
@@ -110,4 +108,4 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Med-Connect Hub locally and explore its features.

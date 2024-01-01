@@ -70,7 +70,6 @@ class AuthController extends Controller
             $user->password = Hash::make($validatedData['password']);
             $user->role = $validatedData['role']; // Set the role
             $user->user_name = $validatedData['user_name'];
-            // ... set any other common fields here
             $user->save();
 
             // Handle specific roles
@@ -85,8 +84,6 @@ class AuthController extends Controller
                         'phone_number' => 'required|integer|unique:doctors',
                         'license_id' => 'required|integer|unique:doctors',
                         'gender' => 'required|string',
-
-                        // ... add other doctor-specific fields
                     ]);
 
                     // Create Doctor Profile or equivalent for storing doctor's details
@@ -99,8 +96,6 @@ class AuthController extends Controller
                     $doctor->phone_number = $doctorData['phone_number'];
                     $doctor->license_id = $doctorData['license_id'];
                     $doctor->gender = $doctorData['gender'];
-
-                    // ... set other doctor-specific fields
                     $doctor->save();
 
                     break;
@@ -124,7 +119,6 @@ class AuthController extends Controller
                     $patient->date_of_birth = $patientData['date_of_birth'];
                     $patient->gender = $patientData['gender'];
                     $patient->phone_number = $patientData['phone_number'];
-                    // ... set other patient-specific fields
                     $patient->save();
 
                     break;
