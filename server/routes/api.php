@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PatientRegistrationController;
 
 Route::post('/login', [AuthController::class, 'login']);
+
 Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::put('/doctor/{id}', [AuthController::class, 'updateDoctor']);
@@ -13,6 +15,7 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::delete('/insurance/{id}', [AuthController::class, 'deleteInsuranceCompany']);
 });
 
-Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
-    Route::post('/register', [AuthController::class, 'register']);
+
+Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
+    Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
 });

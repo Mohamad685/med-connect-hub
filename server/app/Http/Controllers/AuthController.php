@@ -33,10 +33,9 @@ class AuthController extends Controller
         $user = Auth::user();
         return response()->json([
             'status' => 'success',
-            // 'user' => $user,
+            'user' => $user,
             'authorisation' => [
                 'token' => $token,
-                // 'type' => 'bearer',
             ]
         ]);
 
@@ -75,7 +74,6 @@ class AuthController extends Controller
             // Handle specific roles
             switch ($validatedData['role']) {
                 case 'doctor':
-                    // Validate additional doctor-specific data
                     $doctorData = $request->validate([
                         'first_name' => 'required|string',
                         'last_name' => 'required|string',
@@ -133,7 +131,7 @@ class AuthController extends Controller
                         'email' => 'required|string|unique:insurance_companies'
                     ]);
 
-                    // Create InsuranceApproval
+                    // Create InsuranceCompany
                     $insurance_companies = new InsuranceCompany;
                     $insurance_companies->user_id = $user->id;
                     $insurance_companies->name = $insuranceData['name'];
