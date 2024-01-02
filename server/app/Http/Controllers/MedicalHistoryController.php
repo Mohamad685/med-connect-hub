@@ -35,7 +35,7 @@ class MedicalHistoryController extends Controller
         'patient_id' => $validatedData['patient_id'],
         'description' => $validatedData['description'],
         'date_recorded' => $validatedData['date_recorded'],
-        'doctor_id' => $doctor->id,  // Use the doctor's ID from the doctors table
+        'doctor_id' => $doctor->id,
     ]);
     $medicalHistory->save();
 
