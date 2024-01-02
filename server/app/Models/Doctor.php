@@ -15,8 +15,13 @@ class Doctor extends Model
         'license_id',
         'gender'];
 
+    // public function user()
+    // {
+    //     return $this->morphOne(User::class, 'userable');
+    // }
+
     public function user()
     {
-        return $this->morphOne(User::class, 'userable');
+        return $this->hasMany(User::class);
     }
 }

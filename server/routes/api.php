@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientRegistrationController;
+use App\Http\Controllers\MedicalHistoryController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -18,4 +19,8 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
 
 Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
     Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
+});
+
+Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
+    Route::post('/medical-history/create', [MedicalHistoryController::class, 'createMedicalHistory']);
 });

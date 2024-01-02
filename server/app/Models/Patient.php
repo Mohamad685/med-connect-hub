@@ -27,5 +27,11 @@ class Patient extends Model
     return $this->belongsTo(InsuranceCompany::class);
 }
 
+public function medicalHistories()
+{
+    return $this->hasMany(MedicalHistory::class);
+}
+
+
 }
 
