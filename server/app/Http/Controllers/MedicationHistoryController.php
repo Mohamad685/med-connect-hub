@@ -1,24 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Symptom;
+
 use Illuminate\Support\Facades\Auth;
+use App\Models\MedicationHistory;
+use Illuminate\Http\Request;
 
-class SymptomController extends Controller
+class MedicationHistoryController extends Controller
 {
-
     public function __construct()
     {
         // Ensure the user is an authenticated doctor
         $this->middleware(['auth:api', 'role:doctor']);
     }
 
-    public function createSymptom(Request $request)
+    public function createMedication(Request $request)
     {
         $validatedData = $request->validate([
             'patient_id' => 'required|exists:patients,id',
-            'symptom_description' => 'required|string',
+            'medication_name' => 'required|string',
         ]);
 
         // Retrieve the currently authenticated user's ID
@@ -31,18 +31,17 @@ class SymptomController extends Controller
         }
 
         try {
-            $symptom = new Symptom([
+            $medication = new MedicationHistory([
                 'patient_id' => $validatedData['patient_id'],
-                'symptom_description' => $validatedData['symptom_description'],
+                'medication_name' => $validatedData['medication_name'],
                 'doctor_id' => $doctor->id,
             ]);
-            $symptom->save();
+            $medication->save();
 
-            return response()->json(['message' => 'symptom recorded successfully', 'symptom' => $symptom]);
+            return response()->json(['message' => 'Medication recorded successfully', 'medication' => $medication]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
 
     }
 }
