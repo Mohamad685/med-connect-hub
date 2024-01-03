@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade'); 
             $table->text('diagnosis_description');
-            $table->date('date_diagnosed');
             $table->timestamps();
         });
         

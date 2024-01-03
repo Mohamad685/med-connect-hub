@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Diagnosis;
+use App\Models\Symptom;
 use Illuminate\Support\Facades\Auth;
 
-class DiagnosisController extends Controller
+class SymptomController extends Controller
 {
+
     public function __construct()
     {
         // Ensure the user is an authenticated doctor
         $this->middleware(['auth:api', 'role:doctor']);
     }
 
-    public function createDiagnosis(Request $request)
+    public function createSymptom(Request $request)
     {
         $validatedData = $request->validate([
             'patient_id' => 'required|exists:patients,id',
-            'diagnosis_description' => 'required|string',
+            'symptom_description' => 'required|string',
         ]);
 
         // Retrieve the currently authenticated user's ID
@@ -31,17 +32,18 @@ class DiagnosisController extends Controller
         }
 
         try {
-            $diagnosis = new Diagnosis([
+            $symptom = new Symptom([
                 'patient_id' => $validatedData['patient_id'],
-                'diagnosis_description' => $validatedData['diagnosis_description'],
+                'symptom_description' => $validatedData['symptom_description'],
                 'doctor_id' => $doctor->id,
             ]);
-            $diagnosis->save();
+            $symptom->save();
 
-            return response()->json(['message' => 'Diagnosis recorded successfully', 'diagnosis' => $diagnosis]);
+            return response()->json(['message' => 'symptom recorded successfully', 'symptom' => $symptom]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        
+
+
     }
 }

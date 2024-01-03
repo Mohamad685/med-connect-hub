@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('medication_name');
             $table->string('dosage');
             $table->string('frequency');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
             $table->timestamps();
         });
         

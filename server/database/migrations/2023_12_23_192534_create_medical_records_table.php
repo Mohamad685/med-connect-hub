@@ -13,20 +13,14 @@ return new class extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
-
-            // Foreign key to the doctors table
             $table->unsignedBigInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
-
-            // Foreign key to the patients table
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-
-            // Columns for details about the medical interaction
             $table->date('date_of_visit'); 
             $table->text('diagnosis')->nullable(); 
             $table->text('treatment')->nullable(); 
-            $table->timestamps(); // Created at and updated at timestamps
+            $table->timestamps(); 
         });
     }
 

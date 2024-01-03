@@ -19,7 +19,6 @@ class MedicalHistoryController extends Controller
     $validatedData = $request->validate([
         'patient_id' => 'required|exists:patients,id',
         'description' => 'required|string',
-        'date_recorded' => 'required|date',
     ]);
 
     // Retrieve the currently authenticated user's ID
@@ -34,7 +33,6 @@ class MedicalHistoryController extends Controller
     $medicalHistory = new MedicalHistory([
         'patient_id' => $validatedData['patient_id'],
         'description' => $validatedData['description'],
-        'date_recorded' => $validatedData['date_recorded'],
         'doctor_id' => $doctor->id,
     ]);
     $medicalHistory->save();

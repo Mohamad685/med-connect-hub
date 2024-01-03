@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\MedicalHistoryController;
+use App\Http\Controllers\SymptomController;
+
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -26,5 +28,7 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
 Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
     Route::post('/medical-history/create', [MedicalHistoryController::class, 'createMedicalHistory']);
     Route::post('/diagnosis/create', [DiagnosisController::class, 'createDiagnosis']);
+    Route::post('/symptom/create', [SymptomController::class, 'createSymptom']);
+
 
 });
