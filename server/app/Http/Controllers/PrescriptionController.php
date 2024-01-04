@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Prescription;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class PrescriptionController extends Controller
         }
 
         try {
-            $medication = new Medication([
+            $medication = new Prescription([
                 'patient_id' => $validatedData['patient_id'],
                 'medication_description' => $validatedData['medication_description'],
                 'doctor_id' => $doctor->id,
