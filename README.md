@@ -16,10 +16,6 @@ As a patient I can easily view my medical profile and the last investigations by
 
 As a doctor, i can create a patients profile easily and add to it all the needed medical records, diagnosis, prescriptions, and insurance approval form, so that i will have a full knowledge about my patients health and financial situation.
 
-- Pharmacist Story:
-
-As a Pharmacist, I will receive the patients prescription and give him the needed medicines, after checking the insurance approval, so I can assure that the patient will take his drug regardless of his financial situation.
-
 - Insurance Sector:
 
 As an insurance sector, I will control the diagnosis through AI, and give acceptance and rejection according to it for all the 3 parties, so i can control any cheating from any party.
