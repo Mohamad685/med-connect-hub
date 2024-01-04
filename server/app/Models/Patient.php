@@ -18,10 +18,10 @@ class Patient extends Model
         'gender',
         'phone_number'];
 
-    public function user()
-    {
-        return $this->morphOne(User::class, 'userable');
-    }
+    // public function user()
+    // {
+    //     return $this->morphOne(User::class, 'userable');
+    // }
     public function insuranceCompany()
 {
     return $this->belongsTo(InsuranceCompany::class);

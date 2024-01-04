@@ -16,10 +16,10 @@ class InsuranceCompany extends Model
         'coverage_details'
     ];
 
-    public function user()
-    {
-        return $this->morphOne(User::class, 'userable');
-    }
+    // public function user()
+    // {
+    //     return $this->morphOne(User::class, 'userable');
+    // }
     public function patients()
     {
         return $this->hasMany(Patient::class);
