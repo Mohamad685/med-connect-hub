@@ -2,13 +2,22 @@
 	display: flex;
 	flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background: rgb(237,237,237);
     background: linear-gradient(100deg, rgba(237,237,237,1) 0%, rgb(210, 210, 210) 100%);	width: 100%;
 	height: 5rem;
 }
 
-/* .navbar-slogan{
-} */
+.navbar-pic{
+    width:10rem;
+    height: 7.5rem;
+}
+.navbar-slogan{
+    width:14rem;
+    height: 4rem;
+    margin-left: -32rem;
+    margin-top: 0.5rem;
+}
 
 .navbar-list {
 	display: flex;
