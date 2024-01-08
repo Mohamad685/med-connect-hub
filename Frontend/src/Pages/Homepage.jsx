@@ -1,8 +1,11 @@
-import react from React;
+import React from 'react';
 
-function heroPic(){
+function HomePage(){
     return(
         <>
+        <img src="../../src/assets/pics/hero.png" alt="hero"></img>
         </>
     )
 }
+
+export default HomePage;
