@@ -37,8 +37,9 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
     Route::post('/medication/create', [MedicationHistoryController::class, 'createMedication']);
     Route::post('/results/create', [LabResultsController::class, 'createResult']);
     Route::post('/prescription/create', [PrescriptionController::class, 'createPrescription']);
+});
 
 
-
-
+Route::group(['middleware'=> ['jwt.verify','patient']],function(){
+    
 });

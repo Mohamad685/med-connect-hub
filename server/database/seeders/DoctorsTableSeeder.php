@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;  // Import the User model
-use App\Models\Doctor;  // Import the Doctor model
+use App\Models\User; 
+use App\Models\Doctor; 
 
 class DoctorsTableSeeder extends Seeder
 {
@@ -16,13 +16,13 @@ class DoctorsTableSeeder extends Seeder
         $user = User::create([
             'user_name' => 'John123',
             'email' => 'john@example.com',
-            'password' => Hash::make('password'), // Use a hashed password
+            'password' => Hash::make('password'),
             'role' => 'doctor'
         ]);
 
         // Insert the doctor details in the doctors table
         Doctor::create([
-            'user_id' => $user->id,  // Associate the doctor with the user
+            'user_id' => $user->id,  
             'first_name'=>'John',
             'last_name'=> 'Doe',
             'specialty' => 'Cardiology',
