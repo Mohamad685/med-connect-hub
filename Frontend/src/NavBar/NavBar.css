@@ -2,13 +2,13 @@
 	display: flex;
 	flex-direction: row;
     justify-content: space-between;
-    background-color: aquamarine;
-	width: 100%;
+    background: rgb(237,237,237);
+    background: linear-gradient(100deg, rgba(237,237,237,1) 0%, rgb(210, 210, 210) 100%);	width: 100%;
 	height: 5rem;
 }
 
 .navbar-logo {
-	left: auto;
+	/* left: auto; */
 }
 
 .navbar-list {
@@ -18,4 +18,13 @@
     gap: 2rem;
     list-style: none;
     margin-right: 2rem;
+}
+
+.navbar-link{
+    text-decoration: none;
+}
+
+.navbar-option{
+    cursor: pointer;
+    font-size: 15px;
 }

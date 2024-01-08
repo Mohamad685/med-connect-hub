@@ -12,13 +12,13 @@ function NavBar(){
         <div className="navbar">
             <img src='../../src/assets/pics/logo.png' className="navbar-pic" alt="logo"></img>
             <ul className="navbar-list">
-                <li className="navbar-home">
-                <Link to="/" className="nav-link">Home</Link>
+                <li className="navbar-option">
+                <Link to="/" className="navbar-link">Home</Link>
                 </li>
-                <li className="navbar-about" onClick={()=> scrollTo('aboutus')}>About Us</li>
-                <li className="navbar-services"onClick={()=> scrollTo('services')}>Services</li>
-                <li className="navbar-contact" onClick={()=> scrollTo('Contact')}>Contact Us</li>
-                <li className="login">Login</li>
+                <li className="navbar-option" onClick={()=> scrollTo('aboutus')}>About Us</li>
+                <li className="navbar-option"onClick={()=> scrollTo('services')}>Services</li>
+                <li className="navbar-option" onClick={()=> scrollTo('Contact')}>Contact Us</li>
+                <li className="navbar-option">Login</li>
             </ul>
         </div>
         
