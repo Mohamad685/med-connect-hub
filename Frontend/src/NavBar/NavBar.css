@@ -1,0 +1,11 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    background-color: aquamarine;
+    width: 100%;
+    height: 10rem;
+}
+
+.navbar-logo{
+    left: auto;
+}
