@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import {Link} from "react-router-dom";
-import "../NavBar/NavBar.css";
+import "./NavBar.css";
 
 function NavBar(){
     const scrollTo = (sectionId) => {
