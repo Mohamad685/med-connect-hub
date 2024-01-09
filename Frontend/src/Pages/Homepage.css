@@ -34,3 +34,8 @@
     grid-template-columns: repeat(3,1fr);
     grid-gap: 2rem;
 }
+
+.services-pics img{
+    height: 26vw;
+    border-radius: 20px;
+}
