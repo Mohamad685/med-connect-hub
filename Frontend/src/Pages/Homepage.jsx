@@ -9,7 +9,8 @@ function HomePage() {
 					<img
 						src="../../src/assets/pics/hero.png"
 						alt="hero"
-						className="hero-pic"/>
+						className="hero-pic"
+					/>
 				</div>
 				<span className="title-start">
 					What We <span className="title-start title-end">Do</span>
@@ -31,13 +32,16 @@ function HomePage() {
 				<div className="services-pics">
 					<img
 						src="../../src/assets/pics/patient.png"
-						alt="patient"/>
+						alt="patient"
+					/>
 					<img
 						src="../../src/assets/pics/doctor.png"
-						alt="doctor"/>
+						alt="doctor"
+					/>
 					<img
 						src="../../src/assets/pics/insurance.png"
-						alt="insurance"/>
+						alt="insurance"
+					/>
 					<p>
 						Patients gain instant access to healthcare professionals and
 						insurance management, along with personalized care, secure
@@ -60,42 +64,79 @@ function HomePage() {
 				<img
 					src="../../src/assets/pics/hero2.jpg"
 					alt="hero2"
-					className="hero-section"/>
+					className="hero-section hero2-pic"
+				/>
 
-                <div className="all-options">
-                    <div className="option">
-                        <img src="../../src/assets/pics/calendar.svg" alt="calender-icon"/>
-                        <span>Schedule with Ease</span>
-                        <p>Efficiently manage and book your appointments with just a few clicks.</p>
-                    </div>
-                    <div className="option">
-                        <img src="../../src/assets/pics/alert.svg" alt="alert-icon"/>
-                        <span>Stay Informed</span>
-                        <p>Get real-time updates and notifications about your health and appointments.</p>
-                    </div>
-                    <div className="option">
-                        <img src="../../src/assets/pics/privacy.svg" alt="privacy-icon"/>
-                        <span>Your Privacy Matters</span>
-                        <p>Experience secure messaging and confidentiality with every interaction.</p>
-                    </div>
-                </div>
-                <div className="all-options">
-                    <div className="option">
-                        <img src="../../src/assets/pics/daily.svg" alt="daily-icon"/>
-                        <span>24/7 Accessibility</span>
-                        <p> Access healthcare services and information anytime, anywhere.</p>
-                    </div>
-                    <div className="option">
-                        <img src="../../src/assets/pics/network.svg" alt="network-icon"/>
-                        <span>Seamless Coordination</span>
-                        <p>Connect effortlessly with doctors and insurance providers for integrated care.</p>
-                    </div>
-                    <div className="option">
-                        <img src="../../src/assets/pics/users.svg" alt="users-icon"/>
-                        <span>Tailored for You</span>
-                        <p>Enjoy a personalized healthcare journey suited to your unique needs.</p>
-                    </div>
-                </div>
+				<div className="all-options">
+					<div className="option">
+						<img
+							src="../../src/assets/pics/calendar.svg"
+							alt="calender-icon"
+						/>
+						<span>Schedule with Ease</span>
+						<p>
+							Efficiently manage and book your appointments with just a few
+							clicks.
+						</p>
+					</div>
+					<div className="option">
+						<img
+							src="../../src/assets/pics/alert.svg"
+							alt="alert-icon"
+						/>
+						<span>Stay Informed</span>
+						<p>
+							Get real-time updates and notifications about your health and
+							appointments.
+						</p>
+					</div>
+					<div className="option">
+						<img
+							src="../../src/assets/pics/privacy.svg"
+							alt="privacy-icon"
+						/>
+						<span>Your Privacy Matters</span>
+						<p>
+							Experience secure messaging and confidentiality with every
+							interaction.
+						</p>
+					</div>
+				</div>
+				<div className="all-options">
+					<div className="option">
+						<img
+							src="../../src/assets/pics/daily.svg"
+							alt="daily-icon"
+						/>
+						<span>24/7 Accessibility</span>
+						<p>
+							{" "}
+							Access healthcare services and information anytime, anywhere.
+						</p>
+					</div>
+					<div className="option">
+						<img
+							src="../../src/assets/pics/network.svg"
+							alt="network-icon"
+						/>
+						<span>Seamless Coordination</span>
+						<p>
+							Connect effortlessly with doctors and insurance providers for
+							integrated care.
+						</p>
+					</div>
+					<div className="option">
+						<img
+							src="../../src/assets/pics/users.svg"
+							alt="users-icon"
+						/>
+						<span>Tailored for You</span>
+						<p>
+							Enjoy a personalized healthcare journey suited to your unique
+							needs.
+						</p>
+					</div>
+				</div>
 			</div>
 		</>
 	);

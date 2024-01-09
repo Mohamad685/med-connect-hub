@@ -48,6 +48,11 @@
     width: 16.5rem;
 }
 
+.hero2-pic{
+    height: 30rem;
+    object-fit: cover;
+}
+
 .all-options{
     display: flex;
     flex-direction: row;
