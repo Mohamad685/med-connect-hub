@@ -91,7 +91,7 @@ function HomePage() {
                         <p>Connect effortlessly with doctors and insurance providers for integrated care.</p>
                     </div>
                     <div className="option">
-                        <img src="../../src/assets/pics/privacy.svg" alt="calender-icon"/>
+                        <img src="../../src/assets/pics/users.svg" alt="users-icon"/>
                         <span>Your Privacy Matters</span>
                         <p>Experience secure messaging and confidentiality with every interaction.</p>
                     </div>

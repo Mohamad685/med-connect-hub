@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 12rem;
+    gap: 10rem;
 }
 .option {
     display:flex;
@@ -73,5 +73,5 @@
     width: 10rem;
     text-align: center;
     font-size: smaller;
-    margin-top: -0.5rem;
+    margin-top: -0.65rem;
 }
