@@ -69,7 +69,7 @@ function HomePage() {
                         <p>Efficiently manage and book your appointments with just a few clicks.</p>
                     </div>
                     <div className="schedule">
-                        <img src="../../src/assets/pics/calendar.svg" alt="calender-icon"/>
+                        <img src="../../src/assets/pics/alert.svg" alt="calender-icon"/>
                         <span>Stay Informed</span>
                         <p>Get real-time updates and notifications about your health and appointments.</p>
                     </div>
