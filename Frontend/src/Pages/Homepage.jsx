@@ -9,7 +9,7 @@ function HomePage() {
 					<img
 						src="../../src/assets/pics/hero.png"
 						alt="hero"
-						className="hero-pic"></img>
+						className="hero-pic"/>
 				</div>
 				<span className="title-start">
 					What We <span className="title-start title-end">Do</span>
@@ -31,13 +31,13 @@ function HomePage() {
 				<div className="services-pics">
 					<img
 						src="../../src/assets/pics/patient.png"
-						alt="patient"></img>
+						alt="patient"/>
 					<img
 						src="../../src/assets/pics/doctor.png"
-						alt="doctor"></img>
+						alt="doctor"/>
 					<img
 						src="../../src/assets/pics/insurance.png"
-						alt="insurance"></img>
+						alt="insurance"/>
 					<p>
 						Patients gain instant access to healthcare professionals and
 						insurance management, along with personalized care, secure
@@ -60,11 +60,11 @@ function HomePage() {
 				<img
 					src="../../src/assets/pics/hero2.jpg"
 					alt="hero2"
-					className="hero-section"></img>
+					className="hero-section"/>
 
                 <div>
-                    <div>
-                        <img src="" alt="calender-icon"></img>
+                    <div className="schedule">
+                        <img src="../../src/assets/pics/calenda.svg" alt="calender-icon"/>
                         <p>Schedule with Ease</p>
                         <p>Efficiently manage and book your appointments with just a few clicks.</p>
                     </div>
