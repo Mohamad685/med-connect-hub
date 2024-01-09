@@ -32,10 +32,18 @@
 .services-pics{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-gap: 2rem;
+    place-items: center;
+    grid-gap: 1rem;
+
 }
 
 .services-pics img{
     height: 26vw;
-    border-radius: 20px;
+    border-radius: 15px;
+}
+
+.services-pics p{
+    text-align: center;
+    font-size: smaller;
+    width: 16.5rem;
 }
