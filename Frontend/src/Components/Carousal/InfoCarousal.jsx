@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './InfoCarousal.css';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 export default function Carousel() {
   return (
@@ -12,7 +12,12 @@ export default function Carousel() {
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        autoplay={{
+          delay: 2500,  // Set the delay in milliseconds
+          disableOnInteraction: false,  // Continue autoplay after user interaction
+        }}
+        speed={2500}
+        modules={[Pagination, Autoplay]}  // Add the Autoplay module here
         className="mySwiper"
       >
         <SwiperSlide>Slide 1</SwiperSlide>
