@@ -138,9 +138,9 @@ function HomePage() {
 						</p>
 					</div>
 				</div>
-                <div>
-                <Carousel/>
-                </div>
+				<div>
+					<Carousel />
+				</div>
 			</div>
 		</>
 	);

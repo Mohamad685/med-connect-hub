@@ -1,0 +1,21 @@
+.swiper {
+	width: 98.7vw;
+	height: 40vh;
+}
+
+.swiper-slide {
+	text-align: center;
+	background-color: #41597b ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    color: aliceblue;
+
+}
+
+.swiper-slide img {
+	display: block;
+	width: 98.7vw;
+	height: 98.7vh;
+	object-fit: cover;
+}
