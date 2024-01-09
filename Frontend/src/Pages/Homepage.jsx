@@ -25,17 +25,42 @@ function HomePage() {
 					seamless information exchange, and comprehensive support every step of
 					the way.
 				</span>
-                <span className="title-start title-end">Our<span className="title-start">Services</span></span>
-                <div className="services-pics">
-                    <img src="../../src/assets/pics/patient.png" alt="patient"></img>
-                    <img src="../../src/assets/pics/doctor.png" alt="doctor"></img>
-                    <img src="../../src/assets/pics/insurance.png" alt="insurance"></img>
-                    <p>Patients gain instant access to healthcare professionals and insurance management, along with personalized care, secure messaging, and convenient management of appointments, records, and claims in one place.</p>
-                    <p>Doctors can broaden their reach and streamline their practice, engage with patients securely, manage appointments efficiently, and coordinate effortlessly with insurance providers for hassle-free patient care.</p>
-                    <p>Insurance companies can connect directly with patients and providers, simplify claim processing, reduce costs, and improve satisfaction through a centralized hub for policy management and inquiries.</p>
-                </div>
-                <img src="../../src/assets/pics/hero2.jpg" alt="hero2" className="hero-section hero-section2"></img>
-
+				<span className="title-start title-end">
+					Our<span className="title-start">Services</span>
+				</span>
+				<div className="services-pics">
+					<img
+						src="../../src/assets/pics/patient.png"
+						alt="patient"></img>
+					<img
+						src="../../src/assets/pics/doctor.png"
+						alt="doctor"></img>
+					<img
+						src="../../src/assets/pics/insurance.png"
+						alt="insurance"></img>
+					<p>
+						Patients gain instant access to healthcare professionals and
+						insurance management, along with personalized care, secure
+						messaging, and convenient management of appointments, records, and
+						claims in one place.
+					</p>
+					<p>
+						Doctors can broaden their reach and streamline their practice,
+						engage with patients securely, manage appointments efficiently, and
+						coordinate effortlessly with insurance providers for hassle-free
+						patient care.
+					</p>
+					<p>
+						Insurance companies can connect directly with patients and
+						providers, simplify claim processing, reduce costs, and improve
+						satisfaction through a centralized hub for policy management and
+						inquiries.
+					</p>
+				</div>
+				<img
+					src="../../src/assets/pics/hero2.jpg"
+					alt="hero2"
+					className="hero-section"></img>
 			</div>
 		</>
 	);
