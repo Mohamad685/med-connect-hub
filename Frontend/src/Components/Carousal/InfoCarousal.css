@@ -5,12 +5,11 @@
 
 .swiper-slide {
 	text-align: center;
-	background-color: #41597b ;
+	background-color: #41597b;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    color: aliceblue;
-
+	color: aliceblue;
 }
 
 .swiper-slide img {
@@ -21,5 +20,12 @@
 }
 
 .swiper-pagination-bullet {
-    background-color: #ffffff;
-  }
+	background-color: #ffffff;
+}
+
+.info-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    justify-content: space-between;
+}

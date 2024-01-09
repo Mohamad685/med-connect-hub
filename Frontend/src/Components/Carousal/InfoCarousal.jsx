@@ -27,7 +27,7 @@ export default function Carousel() {
 				className="mySwiper">
 				<SwiperSlide>
 					{" "}
-					<div>
+					<div className="info-box">
 						<img
 							src="../../src/assets/pics/DNA.png"
 							alt="DNA pic"
