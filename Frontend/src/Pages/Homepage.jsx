@@ -87,8 +87,8 @@ function HomePage() {
                     </div>
                     <div className="option">
                         <img src="../../src/assets/pics/network.svg" alt="network-icon"/>
-                        <span>Stay Informed</span>
-                        <p>Get real-time updates and notifications about your health and appointments.</p>
+                        <span>Seamless Coordination</span>
+                        <p>Connect effortlessly with doctors and insurance providers for integrated care.</p>
                     </div>
                     <div className="option">
                         <img src="../../src/assets/pics/privacy.svg" alt="calender-icon"/>
