@@ -62,3 +62,7 @@
 .option img{
     height: 4rem;
 }
+
+.option span{
+    font-weight: 700;
+}
