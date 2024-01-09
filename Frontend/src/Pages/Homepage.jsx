@@ -1,5 +1,6 @@
 import React from "react";
 import "./HomePage.css";
+import Carousel from "../Components/Carousal/InfoCarousal";
 
 function HomePage() {
 	return (
@@ -137,6 +138,9 @@ function HomePage() {
 						</p>
 					</div>
 				</div>
+                <div>
+                <Carousel/>
+                </div>
 			</div>
 		</>
 	);
