@@ -48,3 +48,17 @@
     width: 16.5rem;
 }
 
+.all-options{
+    display: flex;
+    flex-direction: row;
+}
+.option {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+}
+
+.option img{
+    height: 4rem;
+}

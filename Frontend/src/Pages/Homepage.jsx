@@ -62,7 +62,7 @@ function HomePage() {
 					alt="hero2"
 					className="hero-section"/>
 
-                <div>
+                <div className="all-options">
                     <div className="option">
                         <img src="../../src/assets/pics/calendar.svg" alt="calender-icon"/>
                         <span>Schedule with Ease</span>
