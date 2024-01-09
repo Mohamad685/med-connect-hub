@@ -19,3 +19,7 @@
 	height: 98.7vh;
 	object-fit: cover;
 }
+
+.swiper-pagination-bullet {
+    background-color: #ffffff;
+  }
