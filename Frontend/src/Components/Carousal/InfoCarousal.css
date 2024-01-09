@@ -7,25 +7,23 @@
 	text-align: center;
 	background-color: #41597b;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: aliceblue;
-}
+	align-items:center;
+    justify-content:space-evenly;
+	color:#ffffff;
 
-.swiper-slide img {
-	display: block;
-	width: 98.7vw;
-	height: 98.7vh;
-	object-fit: cover;
 }
 
 .swiper-pagination-bullet {
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
-.info-box {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-    justify-content: space-between;
+.swiper-slide img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
+
+.swiper-slide span{
+    color: #ffffff;
+    width: 30rem;
 }
