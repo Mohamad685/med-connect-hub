@@ -64,7 +64,7 @@ function HomePage() {
 
                 <div>
                     <div className="schedule">
-                        <img src="../../src/assets/pics/calenda.svg" alt="calender-icon"/>
+                        <img src="../../src/assets/pics/calendar.svg" alt="calender-icon"/>
                         <p>Schedule with Ease</p>
                         <p>Efficiently manage and book your appointments with just a few clicks.</p>
                     </div>
