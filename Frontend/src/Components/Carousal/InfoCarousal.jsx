@@ -25,16 +25,26 @@ export default function Carousel() {
 				onReachEnd={handleSwiperEnd}
 				modules={[Pagination, Autoplay]}
 				className="mySwiper">
-                    
-				<SwiperSlide>Slide 1</SwiperSlide>
-				<SwiperSlide>Slide 2</SwiperSlide>
-				<SwiperSlide>Slide 3</SwiperSlide>
-				<SwiperSlide>Slide 4</SwiperSlide>
-				<SwiperSlide>Slide 5</SwiperSlide>
-				<SwiperSlide>Slide 6</SwiperSlide>
-				<SwiperSlide>Slide 7</SwiperSlide>
-				<SwiperSlide>Slide 8</SwiperSlide>
-				<SwiperSlide>Slide 9</SwiperSlide>
+				<SwiperSlide>
+					{" "}
+					<div>
+						<img
+							src="../../src/assets/pics/DNA.png"
+							alt="DNA pic"
+							className="DNA-info"
+						/>
+					</div>
+				</SwiperSlide>
+				<SwiperSlide>
+					{" "}
+					<div>
+						<img
+							src=""
+							alt="DNA pic"
+							className="DNA-info"
+						/>
+					</div>
+				</SwiperSlide>
 			</Swiper>
 		</>
 	);
