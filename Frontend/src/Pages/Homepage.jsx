@@ -34,6 +34,7 @@ function HomePage() {
                     <p>Doctors can broaden their reach and streamline their practice, engage with patients securely, manage appointments efficiently, and coordinate effortlessly with insurance providers for hassle-free patient care.</p>
                     <p>Insurance companies can connect directly with patients and providers, simplify claim processing, reduce costs, and improve satisfaction through a centralized hub for policy management and inquiries.</p>
                 </div>
+                <img src="../../src/assets/pics/hero2.jpg" alt="hero2" className="hero-section hero-section2"></img>
 
 			</div>
 		</>
