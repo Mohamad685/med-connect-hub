@@ -82,11 +82,11 @@ function HomePage() {
                 <div className="all-options">
                     <div className="option">
                         <img src="../../src/assets/pics/daily.svg" alt="daily-icon"/>
-                        <span>Schedule with Ease</span>
-                        <p>Efficiently manage and book your appointments with just a few clicks.</p>
+                        <span>24/7 Accessibility</span>
+                        <p> Access healthcare services and information anytime, anywhere.</p>
                     </div>
                     <div className="option">
-                        <img src="../../src/assets/pics/alert.svg" alt="calender-icon"/>
+                        <img src="../../src/assets/pics/network.svg" alt="network-icon"/>
                         <span>Stay Informed</span>
                         <p>Get real-time updates and notifications about your health and appointments.</p>
                     </div>
