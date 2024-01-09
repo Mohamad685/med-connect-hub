@@ -51,6 +51,8 @@
 .all-options{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    gap: 12rem;
 }
 .option {
     display:flex;
@@ -65,4 +67,10 @@
 
 .option span{
     font-weight: 700;
+}
+
+.option p{
+    width: 10rem;
+    text-align: center;
+    font-size: smaller;
 }
