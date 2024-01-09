@@ -25,7 +25,12 @@ function HomePage() {
 					seamless information exchange, and comprehensive support every step of
 					the way.
 				</span>
-                <span>Our<span>Services</span></span>
+                <span className="title-start title-end">Our<span className="title-start">Services</span></span>
+                <div className="services-pics">
+                    <img src="../../src/assets/pics/patient.png" alt="patient"></img>
+                    <img src="../../src/assets/pics/doctor.png" alt="doctor"></img>
+                    <img src="../../src/assets/pics/insurance.png" alt="insurance"></img>
+                </div>
 			</div>
 		</>
 	);
