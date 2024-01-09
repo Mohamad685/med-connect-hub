@@ -92,8 +92,8 @@ function HomePage() {
                     </div>
                     <div className="option">
                         <img src="../../src/assets/pics/users.svg" alt="users-icon"/>
-                        <span>Your Privacy Matters</span>
-                        <p>Experience secure messaging and confidentiality with every interaction.</p>
+                        <span>Tailored for You</span>
+                        <p>Enjoy a personalized healthcare journey suited to your unique needs.</p>
                     </div>
                 </div>
 			</div>
