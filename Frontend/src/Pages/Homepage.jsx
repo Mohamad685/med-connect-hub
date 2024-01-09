@@ -63,15 +63,20 @@ function HomePage() {
 					className="hero-section"/>
 
                 <div>
-                    <div className="schedule">
+                    <div className="option">
                         <img src="../../src/assets/pics/calendar.svg" alt="calender-icon"/>
                         <span>Schedule with Ease</span>
                         <p>Efficiently manage and book your appointments with just a few clicks.</p>
                     </div>
-                    <div className="schedule">
+                    <div className="option">
                         <img src="../../src/assets/pics/alert.svg" alt="calender-icon"/>
                         <span>Stay Informed</span>
                         <p>Get real-time updates and notifications about your health and appointments.</p>
+                    </div>
+                    <div className="option">
+                        <img src="../../src/assets/pics/alert.svg" alt="calender-icon"/>
+                        <span>Your Privacy Matters</span>
+                        <p>Experience secure messaging and confidentiality with every interaction.</p>
                     </div>
                 </div>
 			</div>
