@@ -61,6 +61,14 @@ function HomePage() {
 					src="../../src/assets/pics/hero2.jpg"
 					alt="hero2"
 					className="hero-section"></img>
+
+                <div>
+                    <div>
+                        <img src="" alt="calender-icon"></img>
+                        <p>Schedule with Ease</p>
+                        <p>Efficiently manage and book your appointments with just a few clicks.</p>
+                    </div>
+                </div>
 			</div>
 		</>
 	);
