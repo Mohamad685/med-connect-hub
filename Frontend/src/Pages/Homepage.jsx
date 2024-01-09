@@ -74,7 +74,7 @@ function HomePage() {
                         <p>Get real-time updates and notifications about your health and appointments.</p>
                     </div>
                     <div className="option">
-                        <img src="../../src/assets/pics/alert.svg" alt="calender-icon"/>
+                        <img src="../../src/assets/pics/privacy.svg" alt="calender-icon"/>
                         <span>Your Privacy Matters</span>
                         <p>Experience secure messaging and confidentiality with every interaction.</p>
                     </div>
