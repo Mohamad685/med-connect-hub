@@ -25,6 +25,20 @@ function Footer() {
 						<p>Airport Street</p>
 						<p>mohammad.fakih685@gmail.com</p>
 					</div>
+					<div className="contact-icons social-media">
+						<img
+							src="../../src/assets/pics/facebook.png"
+							alt="facebook"
+						/>
+						<img
+							src="../../src/assets/pics/google.png"
+							alt="gmail"
+						/>
+						<img
+							src="../../src/assets/pics/linkedin.png"
+							alt="linkedin"
+						/>
+					</div>
 				</div>
 			</div>
 			<div className="copyright">
