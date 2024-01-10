@@ -44,7 +44,9 @@ public function medicationHistories(){
     return $this-> hasMany(MedicationHistory::class);
 }
 
-
+public function prescriptions(){
+    return $this-> hasMany(Prescription::class);
+}
 
 }
 
