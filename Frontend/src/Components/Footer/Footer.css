@@ -50,3 +50,10 @@
     cursor: pointer;
 }
 
+.social-media{
+    margin-left: 15rem;
+}
+
+.contact-info a{
+    text-decoration: none;
+}

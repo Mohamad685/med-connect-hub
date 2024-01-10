@@ -39,6 +39,11 @@ function Footer() {
 							alt="linkedin"
 						/>
 					</div>
+					<div className="contact-icons contact-info">
+						<a href="https://www.facebook.com">Med-Hub Platform</a>
+						<a href="https://gmail.com">Mohammad Fakih</a>
+						<a href="https://linkedin.com">Mohammad Fakih</a>
+					</div>
 				</div>
 			</div>
 			<div className="copyright">
