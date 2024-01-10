@@ -36,6 +36,14 @@ public function symptoms(){
     return $this-> hasMany(Symptom::class);
 }
 
+public function labResults(){
+    return $this-> hasMany(LabResult::class);
+}
+
+public function medicationHistories(){
+    return $this-> hasMany(MedicationHistory::class);
+}
+
 
 
 }
