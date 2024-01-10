@@ -11,6 +11,11 @@ function Footer() {
 						<img src="../../src/assets/pics/location.png" alt="location"/>
 						<img src="../../src/assets/pics/mail.png" alt="mail"/>
 					</div>
+					<div className="contact-info">
+						<p>70-685425</p>
+						<p>Airport Street</p>
+						<p>mohammad.fakih685@gmail.com</p>
+					</div>
 				</div>
 			</div>
 			<div className="copyright">
