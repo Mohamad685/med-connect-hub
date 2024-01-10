@@ -1,0 +1,16 @@
+.footer{
+    background-color: #6A7782;
+    width: 98.7vw;
+    height: 40vh;
+}
+
+.footer-in{
+    background-color: whitesmoke;
+    width: 90vw;
+    height: 34.5vh;
+    top: 1rem;
+    margin:auto;
+    border-radius: 5px;
+    position: relative;
+
+}
