@@ -7,7 +7,7 @@ function Footer() {
 				<div className="footer-in"></div>
 			</div>
 			<div className="copyright">
-				<p>© 2024 Med-Connect Hub. All rights reserved.</p>
+				<p>© 2024 Med-Hub. All rights reserved.</p>
 			</div>
 		</>
 	);

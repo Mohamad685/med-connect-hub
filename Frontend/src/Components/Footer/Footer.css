@@ -1,22 +1,26 @@
-.footer{
-    background-color: #6A7782;
-    width: 98.7vw;
-    height: 40vh;
+.footer {
+	background-color: #6a7782;
+	width: 98.7vw;
+	height: 40vh;
 }
 
-.footer-in{
-    background-color: rgb(255, 255, 255);
-    width: 75vw;
-    height: 34.5vh;
-    top: 1rem;
-    margin:auto;
-    border-radius: 5px;
-    position: relative;
-    box-shadow: #e5e7e8;
-
+.footer-in {
+	background-color: rgb(255, 255, 255);
+	width: 75vw;
+	height: 34.5vh;
+	top: 1rem;
+	margin: auto;
+	border-radius: 5px;
+	position: relative;
+	box-shadow: #e5e7e8;
 }
 
-.copyright{
-height:10vh ;
-background-color:#6A7782 ;
+.copyright {
+	height: 6vh;
+	background-color: #6a7782;
+}
+
+.copyright p {
+	color: #e5e7e8;
+	text-align: center;
 }
