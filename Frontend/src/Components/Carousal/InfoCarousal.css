@@ -4,7 +4,6 @@
 }
 
 .swiper-slide {
-	text-align: center;
 	background-color: #41597b;
 	display: flex;
 	align-items:center;
@@ -18,12 +17,24 @@
 }
 
 .swiper-slide img{
-    width: 10rem;
-    height: 10rem;
+    width: 11rem;
+    height: 11rem;
     border-radius: 50%;
 }
 
-.swiper-slide span{
+.info-title{
     color: #ffffff;
     width: 30rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    
+}
+
+.info-text{
+    color: #ffffff;
+    margin-top: 1.5rem;
+    font-weight: normal;
+    word-spacing: 0.75rem;
+    font-size: 1.1rem;
+
 }

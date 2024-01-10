@@ -27,10 +27,9 @@ export default function Carousel() {
 				className="mySwiper">
 				<SwiperSlide>
 					{" "}
-					{/* <div className="info-box"> */}
-						<span>
+						<span className="info-title">
 							New Information
-							<p>
+							<p className="info-text">
 								Smoking causes significant DNA damage through mutations,
 								oxidative stress, and epi-genetic changes, leading to disrupted
 								cell functions and an increased risk of cancers and other
@@ -43,18 +42,9 @@ export default function Carousel() {
 							alt="DNA pic"
 							className="DNA-info"
 						/>
-					{/* </div> */}
 				</SwiperSlide>
-				{/* <SwiperSlide>
-					{" "}
-					<div>
-						<img
-							src=""
-							alt="DNA pic"
-							className="DNA-info"
-						/>
-					</div>
-				</SwiperSlide> */}
+				
+				
 			</Swiper>
 		</>
 	);
