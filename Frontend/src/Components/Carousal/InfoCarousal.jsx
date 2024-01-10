@@ -10,7 +10,7 @@ export default function Carousel() {
 
 	const handleSwiperEnd = (swiper) => {
 		if (swiper.isEnd) {
-			setReverse(!reverse); // Toggle the direction
+			setReverse(!reverse);
 		}
 	};
 	return (
@@ -40,7 +40,7 @@ export default function Carousel() {
 						</p>
 					</span>
 					<img
-						src="../../src/assets/pics/DNA.png"
+						src="../../src/assets/pics/diabetes.jpg"
 						alt="DNA pic"
 						className="DNA-info"
 					/>
