@@ -7,11 +7,20 @@ function Footer() {
 			<div className="footer">
 				<div className="footer-in">
 					<div className="contact-icons">
-						<img src="../../src/assets/pics/phone.png" alt="phone"/>
-						<img src="../../src/assets/pics/location.png" alt="location"/>
-						<img src="../../src/assets/pics/mail.png" alt="mail"/>
+						<img
+							src="../../src/assets/pics/phone.png"
+							alt="phone"
+						/>
+						<img
+							src="../../src/assets/pics/location.png"
+							alt="location"
+						/>
+						<img
+							src="../../src/assets/pics/mail.png"
+							alt="mail"
+						/>
 					</div>
-					<div className="contact-info">
+					<div className="contact-icons contact-info">
 						<p>70-685425</p>
 						<p>Airport Street</p>
 						<p>mohammad.fakih685@gmail.com</p>
