@@ -48,5 +48,8 @@ public function prescriptions(){
     return $this-> hasMany(Prescription::class);
 }
 
+public function diagnosis(){
+    return $this-> hasMany(Diagnosis::class);
+}
 }
 
