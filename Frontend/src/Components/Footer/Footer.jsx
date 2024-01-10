@@ -9,7 +9,7 @@ function Footer() {
 				</div>
 
             </div>
-			<div className="copyrights">
+			<div className="copyright">
 
 			</div>
 		</>
