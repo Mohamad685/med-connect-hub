@@ -4,7 +4,6 @@
 }
 
 .swiper-slide {
-	background-color: #41597b;
 	display: flex;
 	align-items:center;
     justify-content:space-evenly;
@@ -14,6 +13,18 @@
 
 .swiper-pagination-bullet {
     background-color: #ffffff;
+}
+
+.slide1{
+    background-color: #7bb3df;
+}
+
+.slide2{
+    background-color: #5677a0;
+}
+
+.slide3{
+    background-color: #41597b;
 }
 
 .swiper-slide img{

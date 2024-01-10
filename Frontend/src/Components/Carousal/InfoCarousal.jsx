@@ -26,7 +26,7 @@ export default function Carousel() {
 				speed={2500}
 				modules={[Pagination, Autoplay]}
 				className="mySwiper">
-				<SwiperSlide>
+				<SwiperSlide className="slide1">
 					{" "}
 					<span className="info-title">
 						New Information
@@ -41,11 +41,11 @@ export default function Carousel() {
 					</span>
 					<img
 						src="../../src/assets/pics/diabetes.jpg"
-						alt="DNA pic"
-						className="DNA-info"
+						alt="diabetes pic"
+						className="diabete-info"
 					/>
 				</SwiperSlide>
-				<SwiperSlide>
+				<SwiperSlide className="slide2">
 					{" "}
 					<span className="info-title">
 						New Information
@@ -63,7 +63,7 @@ export default function Carousel() {
 						className="DNA-info"
 					/>
 				</SwiperSlide>
-				<SwiperSlide>
+				<SwiperSlide className="slide3">
 					{" "}
 					<span className="info-title">
 						New Information
