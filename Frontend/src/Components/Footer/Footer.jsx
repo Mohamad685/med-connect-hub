@@ -5,10 +5,13 @@ function Footer() {
 		<>
 			<div className="footer">
 				<div className="footer-in">
-					
+
 				</div>
 
             </div>
+			<div className="copyrights">
+
+			</div>
 		</>
 	);
 }

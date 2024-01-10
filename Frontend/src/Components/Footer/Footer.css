@@ -5,12 +5,13 @@
 }
 
 .footer-in{
-    background-color: whitesmoke;
-    width: 90vw;
+    background-color: rgb(255, 255, 255);
+    width: 75vw;
     height: 34.5vh;
     top: 1rem;
     margin:auto;
     border-radius: 5px;
     position: relative;
+    box-shadow: #e5e7e8;
 
 }
