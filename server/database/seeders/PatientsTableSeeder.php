@@ -16,13 +16,13 @@ class PatientsTableSeeder extends Seeder
         $user = User::create([
             'user_name' => 'ali123',
             'email' => 'ali@example.com',
-            'password' => Hash::make('password'), // Use a hashed password
-            'role' => 'Patient'
+            'password' => Hash::make('password'), 
+            'role' => 'patient'
         ]);
 
         // Insert the Patient details in the Patients table
         Patient::create([
-            'user_id' => $user->id,  // Associate the Patient with the user
+            'user_id' => $user->id, 
             'first_name'=>'ali',
             'last_name'=> 'fakih',
             'gender'=> 'male',

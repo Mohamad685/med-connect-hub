@@ -32,6 +32,11 @@ public function medicalHistories()
     return $this->hasMany(MedicalHistory::class);
 }
 
+public function symptoms(){
+    return $this-> hasMany(Symptom::class);
+}
+
+
 
 }
 
