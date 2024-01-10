@@ -7,9 +7,9 @@ function Footer() {
 			<div className="footer">
 				<div className="footer-in">
 					<div className="contact-icons">
-						<img src="" alt="phone"/>
-						<img src="" alt="location"/>
-						<img src="" alt="mail"/>
+						<img src="../../src/assets/pics/phone.png" alt="phone"/>
+						<img src="../../src/assets/pics/location.png" alt="location"/>
+						<img src="../../src/assets/pics/mail.png" alt="mail"/>
 					</div>
 				</div>
 			</div>
