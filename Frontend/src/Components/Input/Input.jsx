@@ -9,7 +9,6 @@ function InputForm({ width, length, placeholder }) {
 	return (
 		<>
 			<input
-				type="text"
 				style={inputStyle}
 				placeholder={placeholder}
 				className="input-box"
