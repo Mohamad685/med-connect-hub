@@ -62,11 +62,11 @@ function HomePage() {
 						inquiries.
 					</p>
 				</div>
-				<img
+				{/* <img
 					src="../../src/assets/pics/hero2.jpg"
 					alt="hero2"
 					className="hero-section hero2-pic"
-				/>
+				/> */}
 
 				<div className="all-options">
 					<div className="option">
