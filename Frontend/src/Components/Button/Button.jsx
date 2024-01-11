@@ -1,12 +1,12 @@
 import React from "react";
 import "./Button.css";
 
-function Button({background, color, width, length}){
+function Button({background, color, width, height}){
     const buttonStyle={
         backgroundColor: background,
         color: color,
         width:width,
-        height:length,
+        height:height,
     }
     return(
         <>

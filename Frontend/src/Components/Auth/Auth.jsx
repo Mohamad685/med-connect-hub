@@ -26,7 +26,7 @@ function Login() {
 					background={"#7bb3df"}
 					color={"white"}
 					width={"15rem"}
-					height={"3rem"}
+					height={"5rem"}
 					className="login-button">
 					Submit
 				</Button>
