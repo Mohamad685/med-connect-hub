@@ -13,7 +13,13 @@ function Login() {
 					placeholder={"Enter your email"}
 					className="email-input"
 				/>
-
+                <InputForm
+					type="text"
+					width={"25rem"}
+					length={"2rem"}
+					placeholder={"Enter your password"}
+					className="password-input"
+				/>
 				
 			</div>
 		</>
