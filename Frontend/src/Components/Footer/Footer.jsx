@@ -8,15 +8,15 @@ function Footer() {
 				<div className="footer-in">
 					<div className="contact-icons">
 						<img
-							src="../../src/assets/pics/phone.png"
+							src="../../../public/pics/phone.png"
 							alt="phone"
 						/>
 						<img
-							src="../../src/assets/pics/location.png"
+							src="../../../public/pics/location.png"
 							alt="location"
 						/>
 						<img
-							src="../../src/assets/pics/mail.png"
+							src="../../../public/pics/mail.png"
 							alt="mail"
 						/>
 					</div>
@@ -27,15 +27,15 @@ function Footer() {
 					</div>
 					<div className="contact-icons social-media">
 						<img
-							src="../../src/assets/pics/facebook.png"
+							src="../../../public/pics/facebook.png"
 							alt="facebook"
 						/>
 						<img
-							src="../../src/assets/pics/google.png"
+							src="../../../public/pics/google.png"
 							alt="gmail"
 						/>
 						<img
-							src="../../src/assets/pics/linkedin.png"
+							src="../../../public/pics/linkedin.png"
 							alt="linkedin"
 						/>
 					</div>
