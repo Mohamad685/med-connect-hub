@@ -8,7 +8,7 @@ function HomePage() {
 			<div className="home-page">
 				<div className="hero-section">
 					<img
-						src="../../src/assets/pics/hero.png"
+						src="../../../public/pics/hero.png"
 						alt="hero"
 						className="hero-pic"
 					/>
@@ -32,15 +32,15 @@ function HomePage() {
 				</span>
 				<div className="services-pics">
 					<img
-						src="../../src/assets/pics/patient.png"
+						src="../../../public/pics/patient.png"
 						alt="patient"
 					/>
 					<img
-						src="../../src/assets/pics/doctor.png"
+						src="../../../public/pics/doctor.png"
 						alt="doctor"
 					/>
 					<img
-						src="../../src/assets/pics/insurance.png"
+						src="../../../public/pics/insurance.png"
 						alt="insurance"
 					/>
 					<p>
@@ -63,7 +63,7 @@ function HomePage() {
 					</p>
 				</div>
 				{/* <img
-					src="../../src/assets/pics/hero2.jpg"
+					src="../../../public/pics/hero2.jpg"
 					alt="hero2"
 					className="hero-section hero2-pic"
 				/> */}
@@ -71,7 +71,7 @@ function HomePage() {
 				<div className="all-options">
 					<div className="option">
 						<img
-							src="../../src/assets/pics/calendar.svg"
+							src="../../../public/pics/calendar.svg"
 							alt="calender-icon"
 						/>
 						<span>Schedule with Ease</span>
@@ -82,7 +82,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../src/assets/pics/alert.svg"
+							src="../../../public/pics/alert.svg"
 							alt="alert-icon"
 						/>
 						<span>Stay Informed</span>
@@ -93,7 +93,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../src/assets/pics/privacy.svg"
+							src="../../../public/pics/privacy.svg"
 							alt="privacy-icon"
 						/>
 						<span>Your Privacy Matters</span>
@@ -106,7 +106,7 @@ function HomePage() {
 				<div className="all-options">
 					<div className="option">
 						<img
-							src="../../src/assets/pics/daily.svg"
+							src="../../../public/pics/daily.svg"
 							alt="daily-icon"
 						/>
 						<span>24/7 Accessibility</span>
@@ -117,7 +117,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../src/assets/pics/network.svg"
+							src="../../../public/pics/network.svg"
 							alt="network-icon"
 						/>
 						<span>Seamless Coordination</span>
@@ -128,7 +128,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../src/assets/pics/users.svg"
+							src="../../../public/pics/users.svg"
 							alt="users-icon"
 						/>
 						<span>Tailored for You</span>
