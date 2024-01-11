@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "./InfoCarousal.css";
 import { Pagination, Autoplay } from "swiper/modules";
 
-export default function Carousel() {
+function Carousel() {
 	const [reverse, setReverse] = useState(false);
 
 	const handleSwiperEnd = (swiper) => {
@@ -85,3 +85,5 @@ export default function Carousel() {
 		</>
 	);
 }
+
+export default Carousel;
