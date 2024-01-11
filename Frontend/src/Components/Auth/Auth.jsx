@@ -6,18 +6,20 @@ function Login() {
 	return (
 		<>
 			<div className="login-form">
-				<InputForm
+				
+                <h1>Log In To Your Account:</h1>
+                <InputForm
 					type="text"
 					width={"25rem"}
 					length={"2rem"}
-					placeholder={"Enter your email"}
+					placeholder={"Enter your email:"}
 					className="email-input"
 				/>
                 <InputForm
 					type="text"
 					width={"25rem"}
 					length={"2rem"}
-					placeholder={"Enter your password"}
+					placeholder={"Enter your password:"}
 					className="password-input"
 				/>
 				
