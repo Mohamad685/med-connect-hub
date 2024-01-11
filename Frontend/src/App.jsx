@@ -6,19 +6,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 	return (
 		<BrowserRouter>
-			{/* <NavBar />
+			<NavBar />
 			<Routes>
 				<Route
 					path="/"
 					element={<HomePage />}
 				/>
 			</Routes>
-			<Footer /> */}
-			<InputForm
+			<Footer />
+			{/* <InputForm
 				width= "50rem"
 				length= "2rem"
 				placeholder="Enter"
-			/>
+			/> */}
 		</BrowserRouter>
 	);
 }

@@ -40,7 +40,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="../../src/assets/pics/diabetes.jpg"
+						src="../../../public/pics/diabetes.jpg"
 						alt="diabetes pic"
 						className="diabete-info"
 					/>
@@ -58,7 +58,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="../../src/assets/pics/DNA.png"
+						src="../../../public/pics/DNA.png"
 						alt="DNA pic"
 						className="DNA-info"
 					/>
@@ -76,7 +76,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="../../src/assets/pics/DNA.png"
+						src="../../../public/pics/DNA.png"
 						alt="DNA pic"
 						className="DNA-info"
 					/>
