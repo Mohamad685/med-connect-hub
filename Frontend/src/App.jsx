@@ -3,22 +3,19 @@ import HomePage from "./Pages/HomePage/Homepage";
 import Footer from "./Components/Footer/Footer";
 import InputForm from "./Components/Input/Input";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Components/Auth/Auth";
 function App() {
 	return (
 		<BrowserRouter>
-			<NavBar />
+			{/* <NavBar />
 			<Routes>
 				<Route
 					path="/"
 					element={<HomePage />}
 				/>
 			</Routes>
-			<Footer />
-			{/* <InputForm
-				width= "50rem"
-				length= "2rem"
-				placeholder="Enter"
-			/> */}
+			<Footer /> */}
+			<Login/>
 		</BrowserRouter>
 	);
 }
