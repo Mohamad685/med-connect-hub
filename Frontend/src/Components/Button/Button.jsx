@@ -9,7 +9,7 @@ function Button({background, color, width, length}){
     }
     return(
         <>
-        <button style={buttonStyle}>Button</button>
+        <button style={buttonStyle} >Button</button>
         </>
     )
 }

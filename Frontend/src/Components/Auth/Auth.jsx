@@ -23,7 +23,7 @@ function Login() {
 					className="password-input"
 				/>
 				<Button
-					background={""}
+					background={"#7bb3df"}
 					color={"white"}
 					width={"15rem"}
 					height={"3rem"}
