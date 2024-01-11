@@ -10,8 +10,8 @@ function NavBar(){
     return(
         <>
         <div className="navbar">
-            <img src='../../src/assets/pics/logo.png' className="navbar-pic" alt="logo"></img>
-            <img src='../../src/assets/pics/slogan.png' className="navbar-slogan" alt="logo"></img>
+            <img src='../../../public/pics/logo.png' className="navbar-pic" alt="logo"></img>
+            <img src='../../../public/pics/slogan.png' className="navbar-slogan" alt="logo"></img>
             <ul className="navbar-list">
                 <li className="navbar-option">
                 <Link to="/" className="navbar-link">Home</Link>
