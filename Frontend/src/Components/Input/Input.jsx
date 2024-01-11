@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Input.css';
 function InputForm({ width, length, placeholder }) {
 	const inputStyle = {
 		width: width,
@@ -12,6 +12,7 @@ function InputForm({ width, length, placeholder }) {
 				type="text"
 				style={inputStyle}
 				placeholder={placeholder}
+				className="input-box"
 			/>
 		</>
 	);
