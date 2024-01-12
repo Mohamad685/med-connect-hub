@@ -15,7 +15,7 @@ function App() {
 					element={<HomePage />}
 				/>
 				<Route
-					path="/doctor"
+					path="/patient-registration"
 					element={<PatientRegister />}
 				/>
 			</Routes>
