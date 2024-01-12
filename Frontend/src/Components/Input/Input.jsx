@@ -1,6 +1,6 @@
 import React from "react";
 import './Input.css';
-function InputForm({ width, length, placeholder }) {
+function InputForm({ type, width, length, placeholder }) {
 	const inputStyle = {
 		width: width,
         height: length,
@@ -9,6 +9,7 @@ function InputForm({ width, length, placeholder }) {
 	return (
 		<>
 			<input
+				type={type}
 				style={inputStyle}
 				placeholder={placeholder}
 				className="input-box"
