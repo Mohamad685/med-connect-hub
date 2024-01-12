@@ -25,32 +25,51 @@ function PatientRegister() {
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Username"}
+								placeholder={"Username:"}
 							/>
 							<InputForm
 								type="password"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Password"}
+								placeholder={"Password:"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"First Name"}
+								placeholder={"First Name:"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Last Name"}
+								placeholder={"Last Name:"}
 							/>
 							<InputForm
 								className="email-input"
 								type="email"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Email"}
+								placeholder={"Email:"}
+							/>
+							<InputForm
+								className="phone-input"
+								type="text"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Phone Number:"}
+							/>
+							<InputForm
+								type="text"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Gender:"}
+							/>
+							<InputForm
+								type="date"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Date Of Birth:"}
 							/>
 						</div>
 						<div className="address-input-div">

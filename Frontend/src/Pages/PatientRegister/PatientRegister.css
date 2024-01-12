@@ -26,7 +26,7 @@
 .patient-reg-input {
 	display: grid;
 	grid-template-columns: repeat(2,1fr);
-    grid-template-rows:repeat(3,1fr); 
+    grid-template-rows:repeat(4,1fr); 
     margin-left: 2rem;
     grid-column-gap: 1.5rem ;
     grid-row-gap: 1.25rem;
