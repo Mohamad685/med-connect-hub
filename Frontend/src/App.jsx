@@ -5,10 +5,11 @@ import InputForm from "./Components/Input/Input";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
+import OptionsBox from "./Components/Options/Options";
 function App() {
 	return (
 		<BrowserRouter>
-			<NavBar />
+			{/* <NavBar />
 			<Routes>
 				<Route
 					path="/"
@@ -19,8 +20,9 @@ function App() {
 					element={<PatientRegister />}
 				/>
 			</Routes>
-			<Footer />
+			<Footer /> */}
 			{/* <Login/> */}
+			<OptionsBox/>
 		</BrowserRouter>
 	);
 }
