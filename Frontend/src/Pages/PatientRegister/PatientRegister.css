@@ -1,0 +1,7 @@
+.patient-reg-page{
+    background-color: rgb(245, 245, 245);
+    width: 98.7vw;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: row;
+}
