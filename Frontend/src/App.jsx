@@ -7,15 +7,16 @@ import Login from "./Components/Auth/Auth";
 function App() {
 	return (
 		<BrowserRouter>
-			{/* <NavBar />
+			<NavBar />
 			<Routes>
 				<Route
 					path="/"
 					element={<HomePage />}
 				/>
+				<Route path="/doctor" element=
 			</Routes>
-			<Footer /> */}
-			<Login/>
+			<Footer />
+			{/* <Login/> */}
 		</BrowserRouter>
 	);
 }
