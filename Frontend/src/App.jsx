@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
 import OptionsBox from "./Components/Options/Options";
+import ProfilePic from "./Components/ProfilePic/ProfilePic";
 function App() {
 	return (
 		<BrowserRouter>
@@ -22,6 +23,8 @@ function App() {
 			</Routes>
 			<Footer />
 			<Login/>
+			<ProfilePic
+				src={""}/>
 		</BrowserRouter>
 	);
 }

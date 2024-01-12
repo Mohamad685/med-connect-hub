@@ -1,4 +1,11 @@
-.profile-pic-style{
-    width: 100px;
-    height: 100px;
+.profile-pic-style {
+	width: 9rem;
+	height: 9rem;
+}
+
+.profile-pic-container{
+    height: 9rem;
+    background-color: aqua;
+    width: 9rem;
+    border-radius: 5%;	
 }

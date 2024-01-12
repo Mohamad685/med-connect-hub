@@ -1,6 +1,7 @@
 import React from "react";
 import OptionsBox from "../../Components/Options/Options";
 import "./PatientRegister.css";
+import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 
 function PatientRegister() {
 	return (
@@ -10,10 +11,11 @@ function PatientRegister() {
 				className="options-style"
 			/>
             <p>Create Patient Profile</p>
-            <div>
-				
+            {/* <div>
+				<ProfilePic
+				src=""/>
                 
-            </div>
+            </div> */}
 		</div>
 	);
 }
