@@ -22,7 +22,9 @@ function App() {
 			</Routes>
 			<Footer /> */}
 			{/* <Login/> */}
-			<OptionsBox/>
+			<OptionsBox
+			margin={'2rem'}
+			/>
 		</BrowserRouter>
 	);
 }
