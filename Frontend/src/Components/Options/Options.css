@@ -1,6 +1,6 @@
 .options-box{
     width:13rem;
-    height: auto;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 2rem;

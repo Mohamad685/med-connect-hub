@@ -19,38 +19,49 @@ function PatientRegister() {
 						src={""}
 						className="patient-reg-pic"
 					/>
-					<div className="patient-reg-input">
-						<InputForm
-							type="text"
-							width={"23rem"}
-							length={"1rem"}
-							placeholder={"Username"}
-						/>
-						<InputForm
-							type="password"
-							width={"23rem"}
-							length={"1rem"}
-							placeholder={"Password"}
-						/>
-						<InputForm
-							type="text"
-							width={"23rem"}
-							length={"1rem"}
-							placeholder={"First Name"}
-						/>
-						<InputForm
-							type="text"
-							width={"23rem"}
-							length={"1rem"}
-							placeholder={"Last Name"}
-						/>
-						<InputForm
-							className="email-input"
-							type="email"
-							width={"23rem"}
-							length={"1rem"}
-							placeholder={"Email"}
-						/>
+					<div className="patient-form-input">
+						<div className="patient-reg-input">
+							<InputForm
+								type="text"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Username"}
+							/>
+							<InputForm
+								type="password"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Password"}
+							/>
+							<InputForm
+								type="text"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"First Name"}
+							/>
+							<InputForm
+								type="text"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Last Name"}
+							/>
+							<InputForm
+								className="email-input"
+								type="email"
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Email"}
+							/>
+						</div>
+						<div className="address-input-div">
+							<InputForm
+								className="address-input"
+								type="text"
+								width={"48rem"}
+								length={"8rem"}
+								placeholder={"Address"}
+							/>
+						</div>
 					</div>
 				</div>
 			</form>
