@@ -9,7 +9,7 @@ import OptionsBox from "./Components/Options/Options";
 function App() {
 	return (
 		<BrowserRouter>
-			{/* <NavBar />
+			<NavBar />
 			<Routes>
 				<Route
 					path="/"
@@ -20,11 +20,11 @@ function App() {
 					element={<PatientRegister />}
 				/>
 			</Routes>
-			<Footer /> */}
+			<Footer />
 			{/* <Login/> */}
-			<OptionsBox
+			{/* <OptionsBox
 			margin={'2rem'}
-			/>
+			/> */}
 		</BrowserRouter>
 	);
 }
