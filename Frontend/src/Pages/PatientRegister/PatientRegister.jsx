@@ -10,12 +10,13 @@ function PatientRegister() {
 				margin={"4rem 2rem 2rem 2rem"}
 				className="options-style"
 			/>
-            <p>Create Patient Profile</p>
-            {/* <div>
-				<ProfilePic
-				src=""/>
-                
-            </div> */}
+
+			<form className="patient-reg-form">
+				<p className="patient-reg-title">Create Patient Profile</p>
+
+				<ProfilePic src={""} 
+				className="patient-reg-pic"/>
+			</form>
 		</div>
 	);
 }
