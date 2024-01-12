@@ -10,6 +10,10 @@ function PatientRegister() {
 				className="options-style"
 			/>
             <p>Create Patient Profile</p>
+            <div>
+				
+                
+            </div>
 		</div>
 	);
 }

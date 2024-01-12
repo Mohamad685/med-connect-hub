@@ -45,6 +45,7 @@ function Login() {
 					color={"white"}
 					width={"15rem"}
 					height={"2rem"}
+					hoverColorClass='login-button:hover'
 					className="login-button">
 					Submit
 				</Button>
