@@ -3,3 +3,7 @@ border: none;
 border-radius: 5px;
 cursor: pointer;
 }
+
+.button-style:hover{
+    background-color:white;
+}
