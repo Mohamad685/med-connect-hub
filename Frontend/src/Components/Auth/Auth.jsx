@@ -9,13 +9,18 @@ function Login() {
 	const handleEmailChange = (e) => setEmail(e.target.value);
 	const handlePasswordChange = (e) => setPassword(e.target.value);
 	const handleSubmit = () => {
+		e.preventDefault();
 		setEmail("");
 		setPassword("");
 	};
 	return (
 		<>
-			<div className="login-form" >
-				<h1>Log In To Your Account:</h1>
+			<div className="login-form">
+				<form
+					onSubmit={handleSubmit}
+					className="login-form">
+					<h1>Log In To Your Account:</h1>
+
 					<InputForm
 						type="email"
 						width={"25rem"}
@@ -33,7 +38,6 @@ function Login() {
 						className="password-input"
 						value="password"
 						onChange={handlePasswordChange}
-                        
 					/>
 					<Button
 						background={"#7bb3df"}
@@ -43,7 +47,8 @@ function Login() {
 						className="login-button">
 						Submit
 					</Button>
-				</div>
+				</form>
+			</div>
 		</>
 	);
 }
