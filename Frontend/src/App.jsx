@@ -25,7 +25,7 @@ function App() {
 				/>
 			</Routes>
 			<Footer />
-			<Login/>
+			{/* <Login/> */}
 		</BrowserRouter>
 	);
 }
