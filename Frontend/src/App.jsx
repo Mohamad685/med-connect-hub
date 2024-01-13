@@ -4,6 +4,7 @@ import Footer from "./Components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
+import Diagnosis from "./Pages/Diagnosis/Diagnosis";
 
 function App() {
 	return (
@@ -17,6 +18,10 @@ function App() {
 				<Route
 					path="/patient-registration"
 					element={<PatientRegister />}
+				/>
+				<Route
+					path="/diagnosis"
+					element={<Diagnosis />}
 				/>
 			</Routes>
 			<Footer />
