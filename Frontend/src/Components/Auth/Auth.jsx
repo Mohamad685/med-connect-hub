@@ -41,7 +41,6 @@ function Login() {
 					onChange={handlePasswordChange}
 				/>
 				<Button
-					background={"#7bb3df"}
 					color={"white"}
 					width={"15rem"}
 					height={"2rem"}

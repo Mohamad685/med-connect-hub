@@ -6,8 +6,8 @@ const ProfilePic = () => {
 	const [preview, setPreview] = useState(null);
 	const fileInputRef = useRef(null);
 
-	const handleFileChange = (event) => {
-		const file = event.target.files[0];
+	const handleFileChange = (e) => {
+		const file = e.target.files[0];
 		if (file && file.type.startsWith("image/")) {
 			setPreview(URL.createObjectURL(file));
 		}
@@ -25,7 +25,7 @@ const ProfilePic = () => {
 		formData.append("image", file);
 
 		try {
-			const response= await axios.post("/upload", formData, {
+			const response = await axios.post("/upload", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 				},
@@ -37,8 +37,7 @@ const ProfilePic = () => {
 		<div>
 			<div
 				onClick={handleBoxClick}
-                className="pic-box"
-				>
+				className="pic-box">
 				{!preview && <span>Add Profile Pic</span>}
 				{preview && (
 					<img

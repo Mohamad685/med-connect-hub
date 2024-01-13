@@ -18,8 +18,6 @@ function PatientRegister() {
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
 					<ProfilePic
-						// src={""}
-						// className="patient-reg-pic"
 					/>
 					<div className="patient-form-input">
 						<div className="patient-reg-input">
@@ -93,7 +91,6 @@ function PatientRegister() {
 								width={"48rem"}
 								height={"3rem"}
 								color={"white"}
-								background={"#7bb3df"}
 								fontSize='1.15rem'
 								text={'Submit'}/>
 						</div>
