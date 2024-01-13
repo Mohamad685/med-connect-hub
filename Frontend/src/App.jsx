@@ -6,6 +6,7 @@ import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
 import Diagnosis from "./Pages/Diagnosis/Diagnosis";
 import Patientpreview from "./Pages/PatientPage/PatientPage";
+import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 
 function App() {
 	return (
@@ -28,6 +29,8 @@ function App() {
 					path="/patient-file"
 					element={<Patientpreview />}
 				/>
+				<Route path="/insurance-page"
+				element={<InsurancePage />}/>
 			</Routes>
 			<Footer />
 			{/* <Login/> */}
