@@ -2,6 +2,7 @@ import React from "react";
 import OptionsBox from '../../Components/Options/Options';
 import ProfilePic from '../../Components/ProfilePic/ProfilePic';
 import './PatientPage.css';
+import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 
 function PatientPreview() {
     const patientData = {
@@ -22,6 +23,7 @@ function PatientPreview() {
                     <div className="">
                         <ProfilePic/>
                         <div className="">
+							<PreviewBox/>
                             <p><strong>Lab Results:</strong> {patientData.labResults}</p>
                             <p><strong>Symptoms:</strong> {patientData.symptoms}</p>
                             <p><strong>Diagnosis:</strong> {patientData.diagnosis}</p>
