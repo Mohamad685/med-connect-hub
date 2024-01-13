@@ -5,7 +5,7 @@
 
 .profile-pic-container{
     height: 9rem;
-    background-color: aqua;
+    background-color: rgb(193, 193, 193);
     width: 9rem;
     border-radius: 5%;	
 }

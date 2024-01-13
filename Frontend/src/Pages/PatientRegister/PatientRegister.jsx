@@ -81,6 +81,12 @@ function PatientRegister() {
 								type="text"
 								width={"48rem"}
 								length={"18rem"}
+								placeholder={"Medical History"}
+							/>
+							<InputForm
+								type="text"
+								width={"48rem"}
+								length={"18rem"}
 								placeholder={"Medication History"}
 							/>
 						</div>
