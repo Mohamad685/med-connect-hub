@@ -3,6 +3,7 @@ import OptionsBox from "../../Components/Options/Options";
 import "./PatientRegister.css";
 import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import InputForm from "../../Components/Input/Input";
+import Button from "../../Components/Button/Button";
 
 function PatientRegister() {
 	return (
@@ -89,6 +90,12 @@ function PatientRegister() {
 								length={"18rem"}
 								placeholder={"Medication History"}
 							/>
+							<Button
+								width={"48rem"}
+								height={"3rem"}
+								color={"white"}
+								background={"#7bb3df"}
+								text={'Submit'}/>
 						</div>
 					</div>
 				</div>
