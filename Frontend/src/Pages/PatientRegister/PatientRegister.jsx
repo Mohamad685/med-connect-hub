@@ -4,6 +4,7 @@ import "./PatientRegister.css";
 import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import InputForm from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
+import TextArea from "../../Components/TextArea/TextArea";
 
 function PatientRegister() {
 	return (
@@ -72,21 +73,18 @@ function PatientRegister() {
 							/>
 						</div>
 						<div className="address-input-div">
-							<InputForm
-								type="text-area"
+							<TextArea
 								width={"48rem"}
 								length={"8rem"}
 								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
-							<InputForm
-								type="text"
+							<TextArea
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
-							<InputForm
-								type="text"
+							<TextArea
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medication History"}
