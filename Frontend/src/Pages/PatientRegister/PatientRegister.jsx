@@ -46,14 +46,12 @@ function PatientRegister() {
 								placeholder={"Last Name:"}
 							/>
 							<InputForm
-								className="email-input"
 								type="email"
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Email:"}
 							/>
 							<InputForm
-								className="phone-input"
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
@@ -74,11 +72,16 @@ function PatientRegister() {
 						</div>
 						<div className="address-input-div">
 							<InputForm
-								className="address-input"
 								type="text"
 								width={"48rem"}
 								length={"8rem"}
 								placeholder={"Address"}
+							/>
+							<InputForm
+								type="text"
+								width={"48rem"}
+								length={"18rem"}
+								placeholder={"Medication History"}
 							/>
 						</div>
 					</div>
