@@ -95,6 +95,7 @@ function PatientRegister() {
 								height={"3rem"}
 								color={"white"}
 								background={"#7bb3df"}
+								fontSize='1.15rem'
 								text={'Submit'}/>
 						</div>
 					</div>
