@@ -12,7 +12,7 @@ function Diagnosis() {
 				<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
 
 				<form className="patient-reg-form">
-					<p className="patient-reg-title">Create Patient Profile</p>
+					<p className="patient-reg-title">Patient Full Name</p>
 					<div className="patient-reg-section1">
 						<ProfilePic />
 						<div className="patient-form-input">
@@ -21,17 +21,22 @@ function Diagnosis() {
 									width={"48rem"}
 									length={"8rem"}
 									textAlign={"text-top"}
-									placeholder={"Address"}
+									placeholder={"Lab Results"}
 								/>
 								<TextArea
 									width={"48rem"}
 									length={"18rem"}
-									placeholder={"Medical History"}
+									placeholder={"Symptoms"}
 								/>
 								<TextArea
 									width={"48rem"}
 									length={"18rem"}
-									placeholder={"Medication History"}
+									placeholder={"Diagnosis"}
+								/>
+                                <TextArea
+									width={"48rem"}
+									length={"18rem"}
+									placeholder={"Prescription"}
 								/>
 								<Button
 									width={"48rem"}
