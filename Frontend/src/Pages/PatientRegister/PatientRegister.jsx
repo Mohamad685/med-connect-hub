@@ -18,8 +18,8 @@ function PatientRegister() {
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
 					<ProfilePic
-						src={""}
-						className="patient-reg-pic"
+						// src={""}
+						// className="patient-reg-pic"
 					/>
 					<div className="patient-form-input">
 						<div className="patient-reg-input">

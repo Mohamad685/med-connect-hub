@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import Button from "../Button/Button";
-
+import "./ProfilePic.css";
 const ProfilePic = () => {
 	const [preview, setPreview] = useState(null);
 	const fileInputRef = useRef(null);
@@ -25,7 +25,7 @@ const ProfilePic = () => {
 		formData.append("image", file);
 
 		try {
-			const response = await axios.post("/upload", formData, {
+			const response= await axios.post("/upload", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 				},
@@ -37,23 +37,14 @@ const ProfilePic = () => {
 		<div>
 			<div
 				onClick={handleBoxClick}
-				style={{
-					width: "200px",
-					height: "200px",
-					border: "1px solid black",
-					cursor: "pointer",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					position: "relative",
-					fontSize: "16px",
-				}}>
+                className="pic-box"
+				>
 				{!preview && <span>Add Profile Pic</span>}
 				{preview && (
 					<img
 						src={preview}
 						alt="Preview"
-						style={{ width: "100%", height: "100%", objectFit: "cover" }}
+						className="profile-pic"
 					/>
 				)}
 				<input
