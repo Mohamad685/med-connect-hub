@@ -1,9 +1,8 @@
 import React from "react";
 import OptionsBox from "../../Components/Options/Options";
-import "./Diagnosis.css";
+import "./PatientPage.css";
 import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import TextArea from "../../Components/TextArea/TextArea";
-import Button from "../../Components/Button/Button";
 
 function Patientpreview() {
 	return (
@@ -37,13 +36,6 @@ function Patientpreview() {
 									width={"48rem"}
 									length={"18rem"}
 									placeholder={"Prescription"}
-								/>
-								<Button
-									width={"48rem"}
-									height={"3rem"}
-									color={"white"}
-									fontSize="1.15rem"
-									text={"Submit"}
 								/>
 							</div>
 						</div>
