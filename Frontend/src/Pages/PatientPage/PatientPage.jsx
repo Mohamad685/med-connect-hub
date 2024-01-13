@@ -1,49 +1,37 @@
 import React from "react";
-import OptionsBox from "../../Components/Options/Options";
-import "./PatientPage.css";
-import ProfilePic from "../../Components/ProfilePic/ProfilePic";
-import TextArea from "../../Components/TextArea/TextArea";
+import OptionsBox from '../../Components/Options/Options';
+import ProfilePic from '../../Components/ProfilePic/ProfilePic';
+import './PatientPage.css';
 
-function Patientpreview() {
-	return (
-		<>
-			<div className="patient-reg-page">
-				<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
+function PatientPreview() {
+    const patientData = {
+        fullName: "John Doe",
+        labResults: "Lab result data here...",
+        symptoms: "Symptoms data here...",
+        diagnosis: "Diagnosis data here...",
+        prescription: "Prescription data here..."
+    };
 
-				<form className="patient-reg-form">
-					<p className="patient-reg-title">Patient Full Name</p>
-					<div className="patient-reg-section1">
-						<ProfilePic />
-						<div className="patient-form-input">
-							<div className="address-input-div">
-								<TextArea
-									width={"48rem"}
-									length={"8rem"}
-									textAlign={"text-top"}
-									placeholder={"Lab Results"}
-								/>
-								<TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Symptoms"}
-								/>
-								<TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Patientpreview"}
-								/>
-                                <TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Prescription"}
-								/>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</>
-	);
+    return (
+        <>
+            <div className="patient-page">
+                <OptionsBox margin={"4rem 2rem 2rem 2rem"} />
+
+                <div className="patient-data">
+                    <p className="patient-name">{patientData.fullName}</p>
+                    <div className="">
+                        <ProfilePic/>
+                        <div className="">
+                            <p><strong>Lab Results:</strong> {patientData.labResults}</p>
+                            <p><strong>Symptoms:</strong> {patientData.symptoms}</p>
+                            <p><strong>Diagnosis:</strong> {patientData.diagnosis}</p>
+                            <p><strong>Prescription:</strong> {patientData.prescription}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default Patientpreview;
+export default PatientPreview;
