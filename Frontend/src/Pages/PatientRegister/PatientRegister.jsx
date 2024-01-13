@@ -73,9 +73,10 @@ function PatientRegister() {
 						</div>
 						<div className="address-input-div">
 							<InputForm
-								type="text"
+								type="text-area"
 								width={"48rem"}
 								length={"8rem"}
+								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
 							<InputForm
