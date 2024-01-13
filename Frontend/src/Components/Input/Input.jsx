@@ -1,10 +1,9 @@
 import React from "react";
 import './Input.css';
-function InputForm({ type, width, length, placeholder,textAlign }) {
+function InputForm({ type, width, length, placeholder }) {
 	const inputStyle = {
 		width: width,
         height: length,
-		verticalAlign:textAlign
 	};
 
 	return (

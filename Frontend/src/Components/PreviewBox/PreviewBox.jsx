@@ -1,5 +1,5 @@
 import React from "react";
-
+import './PreviewBox.css';
 function PreviewBox({height,width,title,text}) {
 
     const PreviewStyles={
@@ -10,7 +10,7 @@ function PreviewBox({height,width,title,text}) {
     }
 	return (
 		
-			<div >
+			<div className="preview-style">
 				<p>
 					<strong>Lab Results:</strong> hello
 				</p>
