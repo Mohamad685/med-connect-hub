@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
 import Diagnosis from "./Pages/Diagnosis/Diagnosis";
+import Patientpreview from "./Pages/PatientPage/PatientPage";
 
 function App() {
 	return (
@@ -22,6 +23,10 @@ function App() {
 				<Route
 					path="/diagnosis"
 					element={<Diagnosis />}
+				/>
+				<Route
+					path="/patient-file"
+					element={<Patientpreview />}
 				/>
 			</Routes>
 			<Footer />
