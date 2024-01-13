@@ -1,36 +1,41 @@
-import React from "react";
-import OptionsBox from "./Components/Options/Options";
-import ProfilePic from "./Components/ProfilePic/ProfilePic";
+import NavBar from "./Components/NavBar/NavBar";
+import HomePage from "./Pages/HomePage/Homepage";
+import Footer from "./Components/Footer/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Components/Auth/Auth";
+import PatientRegister from "./Pages/PatientRegister/PatientRegister";
+import Diagnosis from "./Pages/Diagnosis/Diagnosis";
+import Patientpreview from "./Pages/PatientPage/PatientPage";
+import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 
-function PatientPreview() {
-    const patientData = {
-        fullName: "John Doe",
-        labResults: "Lab result data here...",
-        symptoms: "Symptoms data here...",
-        diagnosis: "Diagnosis data here...",
-        prescription: "Prescription data here..."
-    };
-
-    return (
-        <>
-            <div className="patient-reg-page">
-                <OptionsBox margin={"4rem 2rem 2rem 2rem"} />
-
-                <div className="patient-reg-section">
-                    <p className="patient-reg-title">{patientData.fullName}</p>
-                    <div className="patient-info-display">
-                        <ProfilePic/>
-                        <div className="patient-data-display">
-                            <p><strong>Lab Results:</strong> {patientData.labResults}</p>
-                            <p><strong>Symptoms:</strong> {patientData.symptoms}</p>
-                            <p><strong>Diagnosis:</strong> {patientData.diagnosis}</p>
-                            <p><strong>Prescription:</strong> {patientData.prescription}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+function App() {
+	return (
+		<BrowserRouter>
+			<NavBar />
+			<Routes>
+				<Route
+					path="/"
+					element={<HomePage />}
+				/>
+				<Route
+					path="/patient-registration"
+					element={<PatientRegister />}
+				/>
+				<Route
+					path="/diagnosis"
+					element={<Diagnosis />}
+				/>
+				<Route
+					path="/patient-file"
+					element={<Patientpreview />}
+				/>
+				<Route path="/insurance-page"
+				element={<InsurancePage />}/>
+			</Routes>
+			<Footer />
+			{/* <Login/> */}
+		</BrowserRouter>
+	);
 }
 
-export default PatientPreview;
+export default App;
