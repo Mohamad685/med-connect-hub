@@ -34,7 +34,7 @@ const ProfilePic = () => {
 	};
 
 	return (
-		<div>
+		<div className="profile-pic-form">
 			<div
 				onClick={handleBoxClick}
 				className="pic-box">
@@ -53,7 +53,12 @@ const ProfilePic = () => {
 					ref={fileInputRef}
 				/>
 			</div>
-			{preview && <Button onClick={handleUpload}>Upload Image</Button>}
+			{preview && <Button
+								width={"10rem"}
+								height={"1.5rem"}
+								color={"white"}
+								fontSize='0.8rem'
+								text={'Upload Pic'}onClick={handleUpload}>Upload Image</Button>}
 		</div>
 	);
 };
