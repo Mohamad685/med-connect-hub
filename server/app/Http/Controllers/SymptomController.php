@@ -11,7 +11,6 @@ class SymptomController extends Controller
 
     public function __construct()
     {
-        // Ensure the user is an authenticated doctor
         $this->middleware(['auth:api', 'role:doctor']);
     }
 
@@ -22,10 +21,9 @@ class SymptomController extends Controller
             'symptom_description' => 'required|string',
         ]);
 
-        // Retrieve the currently authenticated user's ID
         $userId = Auth::id();
 
-        // Check if the authenticated user is a doctor and exists in the doctors table
+
         $doctor = Doctor::where('user_id', $userId)->first();
         if (!$doctor) {
             return response()->json(['error' => 'Doctor not found or not authenticated'], 404);

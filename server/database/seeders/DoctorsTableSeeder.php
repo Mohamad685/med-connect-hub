@@ -12,7 +12,6 @@ class DoctorsTableSeeder extends Seeder
 {
     public function run()
     {
-        // Insert a new user for the doctor
         $user = User::create([
             'user_name' => 'John123',
             'email' => 'john@example.com',
@@ -20,7 +19,6 @@ class DoctorsTableSeeder extends Seeder
             'role' => 'doctor'
         ]);
 
-        // Insert the doctor details in the doctors table
         Doctor::create([
             'user_id' => $user->id,  
             'first_name'=>'John',
