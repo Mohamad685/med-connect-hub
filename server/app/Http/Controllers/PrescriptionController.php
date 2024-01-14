@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Doctor;
 use App\Models\Prescription;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +22,8 @@ class PrescriptionController extends Controller
             'medication_description' => 'required|string',
         ]);
 
-        // Retrieve the currently authenticated user's ID
         $userId = Auth::id();
-
-        // Check if the authenticated user is a doctor and exists in the doctors table
-        $doctor = \App\Models\Doctor::where('user_id', $userId)->first();
+        $doctor =Doctor::where('user_id', $userId)->first();
         if (!$doctor) {
             return response()->json(['error' => 'Doctor not found or not authenticated'], 404);
         }
