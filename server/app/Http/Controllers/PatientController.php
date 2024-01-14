@@ -12,7 +12,7 @@ class PatientController extends Controller
         if(auth()->user()->id !== $patient -> id){
             return response()->json(["error"=> 'Unauthorized'],403);
         }
-        $medicalHistory = $patient->medicalHistories; // Assuming a one-to-many relationship
-        return response()->json($medicalHistory);
+        $lab_result = $patient->lab_results; // Assuming a one-to-many relationship
+        return response()->json($lab_result);
     }
     }
