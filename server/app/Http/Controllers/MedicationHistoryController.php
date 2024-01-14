@@ -31,7 +31,7 @@ class MedicationHistoryController extends Controller
         try {
             $medication = new MedicationHistory([
                 'patient_id' => $validatedData['patient_id'],
-                'medication_name' => $validatedData['medication_name'],
+                'medication_description' => $validatedData['medication_description'],
                 'doctor_id' => $doctor->id,
             ]);
             $medication->save();

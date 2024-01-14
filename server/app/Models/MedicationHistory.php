@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MedicationHistory extends Model
 {
-    protected $fillable = ['patient_id', 'doctor_id', 'medication_name' ];
+    protected $fillable = ['patient_id', 'doctor_id', 'medication_description' ];
 
 public function patient()
 {
