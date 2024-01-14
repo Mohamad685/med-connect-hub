@@ -11,7 +11,7 @@ function PatientPreview() {
 			<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
 
 			<div className="patient-data-form">
-				<h2 className="patient-name">Mohammad Fakih</h2>
+				<p className="patient-name">Mohammad Fakih</p>
 				<div className="patient-preview-section1">
 					<ProfilePic />
 					<div className="patient-preview-boxes">
