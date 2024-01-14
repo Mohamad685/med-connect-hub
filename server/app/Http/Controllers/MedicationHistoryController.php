@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MedicationHistory;
 use Illuminate\Http\Request;
@@ -20,12 +21,9 @@ class MedicationHistoryController extends Controller
             'patient_id' => 'required|exists:patients,id',
             'medication_name' => 'required|string',
         ]);
-
-        // Retrieve the currently authenticated user's ID
         $userId = Auth::id();
 
-        // Check if the authenticated user is a doctor and exists in the doctors table
-        $doctor = \App\Models\Doctor::where('user_id', $userId)->first();
+        $doctor =Doctor::where('user_id', $userId)->first();
         if (!$doctor) {
             return response()->json(['error' => 'Doctor not found or not authenticated'], 404);
         }
