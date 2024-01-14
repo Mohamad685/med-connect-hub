@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\MedicalHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,6 @@ class MedicalHistoryController extends Controller
 {
     public function __construct()
     {
-        // Ensure the user is an authenticated doctor
         $this->middleware(['auth:api', 'role:doctor']);
     }
 
@@ -21,11 +21,9 @@ class MedicalHistoryController extends Controller
         'description' => 'required|string',
     ]);
 
-    // Retrieve the currently authenticated user's ID
     $userId = Auth::id();
 
-    // Check if the authenticated user is a doctor and exists in the doctors table
-    $doctor = \App\Models\Doctor::where('user_id', $userId)->first();
+    $doctor =Doctor::where('user_id', $userId)->first();
     if (!$doctor) {
         return response()->json(['error' => 'Doctor not found or not authenticated'], 404);
     }
