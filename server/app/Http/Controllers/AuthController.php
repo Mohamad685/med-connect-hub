@@ -19,7 +19,6 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        // Validate the incoming request data
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
@@ -54,7 +53,6 @@ class AuthController extends Controller
     {
 
         try {
-            // Common Validation
             $validatedData = $request->validate([
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
@@ -63,7 +61,6 @@ class AuthController extends Controller
 
             ]);
 
-            // Create the User
             $user = new User;
             $user->email = $validatedData['email'];
             $user->password = Hash::make($validatedData['password']);
@@ -71,7 +68,6 @@ class AuthController extends Controller
             $user->user_name = $validatedData['user_name'];
             $user->save();
 
-            // Handle specific roles
             switch ($validatedData['role']) {
                 case 'doctor':
                     $doctorData = $request->validate([
@@ -84,9 +80,8 @@ class AuthController extends Controller
                         'gender' => 'required|string',
                     ]);
 
-                    // Create Doctor Profile or equivalent for storing doctor's details
                     $doctor = new Doctor;
-                    $doctor->user_id = $user->id; // Associate with the user
+                    $doctor->user_id = $user->id; 
                     $doctor->first_name = $doctorData['first_name'];
                     $doctor->last_name = $doctorData['last_name'];
                     $doctor->specialty = $doctorData['specialty'];
@@ -98,7 +93,6 @@ class AuthController extends Controller
 
                     break;
                 case 'patient':
-                    // Validate additional patient-specific data
                     $patientData = $request->validate([
                         'first_name' => 'required|string',
                         'last_name' => 'required|string',
@@ -108,7 +102,6 @@ class AuthController extends Controller
                         'gender' => 'required|string'
                     ]);
 
-                    // Create Patient Profile
                     $patient = new Patient;
                     $patient->user_id = $user->id;
                     $patient->first_name = $patientData['first_name'];
@@ -121,7 +114,6 @@ class AuthController extends Controller
 
                     break;
                 case 'insurance':
-                    // Validate insurance-specific data
                     $insuranceData = $request->validate([
                         'name' => 'required|string|unique:insurance_companies',
                         'description' => 'required|string',
@@ -131,7 +123,6 @@ class AuthController extends Controller
                         'email' => 'required|string|unique:insurance_companies'
                     ]);
 
-                    // Create InsuranceCompany
                     $insurance_companies = new InsuranceCompany;
                     $insurance_companies->user_id = $user->id;
                     $insurance_companies->name = $insuranceData['name'];
@@ -147,7 +138,6 @@ class AuthController extends Controller
                     return response()->json(['error' => 'Unrecognized role or action'], 400);
             }
 
-            // Return a response or redirect
             return response()->json(['message' => 'User registered successfully!']);
         } catch (\Exception $error) {
             return response()->json(['message' => $error->getMessage()]);
@@ -155,12 +145,10 @@ class AuthController extends Controller
     }
 
 
-    // Update Doctor Details
     public function updateDoctor(Request $request, $id)
     {
         try {
 
-            // Validate request data for Doctor and User details.
             $doctorData = $request->validate([
                 'email' => 'sometimes|nullable|email',
                 'password' => 'sometimes|nullable|string|min:6',
@@ -171,11 +159,9 @@ class AuthController extends Controller
                 'license_id' => 'sometimes|nullable|integer'
             ]);
 
-            // Retrieve the doctor and associated user.
             $doctor = Doctor::findOrFail($id);
             $user = User::findOrFail($doctor->user_id);
 
-            // Update User related data if present.
             if (isset($doctorData['email'])) {
                 $user->email = $doctorData['email'];
             }
@@ -187,7 +173,6 @@ class AuthController extends Controller
             }
             $user->save();
 
-            // Update Doctor specific data.
             $doctor->specialty = $doctorData['specialty'] ?? $doctor->specialty;
             $doctor->age = $doctorData['age'] ?? $doctor->age;
             $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
@@ -213,7 +198,6 @@ class AuthController extends Controller
             $doctor = Doctor::findOrFail($id);
             $user = User::findOrFail($doctor->user_id);
 
-            // Delete the doctor record.
             $doctor->delete();
             $user->delete();
 
@@ -227,12 +211,10 @@ class AuthController extends Controller
 
 
 
-    // Update Patient Details
     public function updatePatient(Request $request, $id)
     {
         try {
 
-            // Validate request data for Doctor and User details.
             $patientData = $request->validate([
                 'email' => 'sometimes|nullable|email',
                 'password' => 'sometimes|nullable|string|min:6',
@@ -241,11 +223,9 @@ class AuthController extends Controller
                 'phone_number' => 'sometimes|nullable|integer',
             ]);
 
-            // Retrieve the patient and associated user.
             $patient = Patient::findOrFail($id);
             $user = User::findOrFail($patient->user_id);
 
-            // Update User related data if present.
             if (isset($patientData['email'])) {
                 $user->email = $patientData['email'];
             }
@@ -257,7 +237,6 @@ class AuthController extends Controller
             }
             $user->save();
 
-            // Update patient specific data.
             $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
             $patient->address = $patientData['address'] ?? $patient->address;
             $patient->email = $patientData['email'] ?? $patient->email;
@@ -281,7 +260,6 @@ class AuthController extends Controller
             $patient = Patient::findOrFail($id);
             $user = User::findOrFail($patient->user_id);
 
-            // Delete the patient record.
             $patient->delete();
             $user->delete();
 
@@ -299,7 +277,6 @@ class AuthController extends Controller
     {
         try {
 
-            // Validate request data for Doctor and User details.
             $insuranceData = $request->validate([
                 'name' => 'sometimes|nullable|string',
                 'description' => 'sometimes|string',
@@ -311,11 +288,9 @@ class AuthController extends Controller
                 'coverage_details' => 'sometimes|string'
             ]);
 
-            // Retrieve the insurance and associated user.
             $insurance = InsuranceCompany::findOrFail($id);
             $user = User::findOrFail($insurance->user_id);
 
-            // Update User related data if present.
             if (isset($insuranceData['email'])) {
                 $user->email = $insuranceData['email'];
             }
@@ -327,7 +302,6 @@ class AuthController extends Controller
             }
             $user->save();
 
-            // Update insurance specific data.
             $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
             $insurance->address = $insuranceData['address'] ?? $insurance->address;
             $insurance->description = $insuranceData['description'] ?? $insurance->description;
@@ -353,7 +327,6 @@ class AuthController extends Controller
         $insurance = InsuranceCompany::findOrFail($id);
         $user = User::findOrFail($insurance->user_id);
 
-        // Delete the insu$insurance record.
         $insurance->delete();
         $user->delete();
 
