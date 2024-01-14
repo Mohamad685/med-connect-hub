@@ -1,6 +1,5 @@
 import React from "react";
 import OptionsBox from "../../Components/Options/Options";
-import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import "./Diagnosis.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import TextArea from "../../Components/TextArea/TextArea";
@@ -48,6 +47,7 @@ function Diagnosis() {
 								length={"18rem"}
 								placeholder={"Prescriptions:"}
 							/>
+							<Button/>
 					</div>
 				</div>
 			</div>
