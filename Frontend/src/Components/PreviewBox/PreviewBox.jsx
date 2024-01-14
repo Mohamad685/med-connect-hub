@@ -1,21 +1,19 @@
 import React from "react";
 import './PreviewBox.css';
-function PreviewBox({height,width,title,text}) {
 
-    const PreviewStyles={
+function PreviewBox({ height, width, title, text }) {
+    const previewStyles = {
         height: height,
-        width:  width,
-        title:`${title}`,
-        text:`${text}`,
+        width: width,
     }
-	return (
-		
-			<div className="preview-style">
-				<p>
-					<strong>Lab Results:</strong> hello
-				</p>
-			</div>
-	);
+
+    return (
+        <div style={previewStyles} className="preview-style">
+            {title && <h2>{title}</h2>}
+            {text && <p>{text}</p>}     
+        </div>
+    );
 }
 
 export default PreviewBox;
+

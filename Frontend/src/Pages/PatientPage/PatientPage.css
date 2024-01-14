@@ -28,3 +28,8 @@
     flex-direction: row;
 	gap: 2rem;
 }
+.patient-preview-boxes{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}

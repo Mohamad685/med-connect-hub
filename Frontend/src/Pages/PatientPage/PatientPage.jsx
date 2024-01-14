@@ -5,24 +5,40 @@ import "./PatientPage.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 
 function PatientPreview() {
-	const patientData = {
-		fullName: "John Doe",
-		labResults: "Lab result data here...",
-		symptoms: "Symptoms data here...",
-		diagnosis: "Diagnosis data here...",
-		prescription: "Prescription data here...",
-	};
 
 	return (
 		<div className="patient-page">
 			<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
 
 			<div className="patient-data-form">
-				<p className="patient-name">{patientData.fullName}</p>
+				<h2 className="patient-name">Mohammad Fakih</h2>
 				<div className="patient-preview-section1">
 					<ProfilePic />
-					<div className="">
-						<PreviewBox />
+					<div className="patient-preview-boxes">
+						<PreviewBox
+							width={"48rem"}
+							height={"auto"}
+                            title={"Lab Results:"}
+                            text={"Hello word"}
+						/>
+						<PreviewBox
+							width={"48rem"}
+							height={"auto"}
+                            title={"Symptoms:"}
+                            text={"Hello word"}
+						/>
+                        <PreviewBox
+							width={"48rem"}
+							height={"auto"}
+                            title={"Diagnosis:"}
+                            text={"Hello word"}
+						/>
+                        <PreviewBox
+							width={"48rem"}
+							height={"auto"}
+                            title={"Prescription:"}
+                            text={"Hello word"}
+						/>
 					</div>
 				</div>
 			</div>
