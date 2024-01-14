@@ -15,10 +15,10 @@ class SymptomsSeeder extends Seeder
         $patients = DB::table('patients')->take(4)->get();
         $doctors = DB::table('doctors')->take(4)->get();
         $symptom_description = [
-            'Panadol',
-            'Nexium',
-            'Normix',
-            'Augmentin'
+            'headache',
+            'reflux',
+            'diarrhea',
+            'bladder pain'
         ];
 
         foreach ($patients as $index => $patient) {
