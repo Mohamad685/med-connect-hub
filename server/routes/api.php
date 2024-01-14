@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiagnosisController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\PrescriptionController;
@@ -41,5 +42,6 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
 
 
 Route::group(['middleware'=> ['jwt.verify','patient']],function(){
+    Route::get('/patient/{id}/lab-results', [PatientController::class, 'getLabResults']);
     
 });
