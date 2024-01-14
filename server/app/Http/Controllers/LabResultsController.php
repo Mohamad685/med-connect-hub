@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\LabResult;
@@ -23,7 +24,7 @@ class LabResultsController extends Controller
 
         $userId = Auth::id();
 
-        $doctor = \App\Models\Doctor::where('user_id', $userId)->first();
+        $doctor = Doctor::where('user_id', $userId)->first();
         if (!$doctor) {
             return response()->json(['error' => 'Doctor not found or not Authorized'], 404);
 
