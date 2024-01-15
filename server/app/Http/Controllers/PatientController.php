@@ -10,12 +10,10 @@ class PatientController extends Controller
 {
     public function getLabResults($user_name)
 {
-    $user =User::where('user_name', $user_name)->first();
-    
+    $user =User::where('user_name', $user_name)->first(); 
     if (!$user) {
         return response()->json(["error" => "User not found"], 404);
     }
-
     $patient = $user->patient;
 
     if (!$patient) {
@@ -30,6 +28,27 @@ class PatientController extends Controller
     return response()->json($lab_results);
 }
 
+public function getMedicalHistory($user_name)
+{
+    $user =User::where('user_name', $user_name)->first(); 
+    if (!$user) {
+        return response()->json(["error" => "User not found"], 404);
+    }
+    $patient = $user->patient;
+
+    if (!$patient) {
+        return response()->json(["error" => "Patient not found"], 404);
+    }
+
+    if (auth()->user()->id !== $user->id) {
+        return response()->json(["error" => 'Unauthorized'], 403);
+    }
+
+    $medical_history = $patient->medical_histories; 
+    return response()->json($medical_history);
+}
+
     
 }
+
 
