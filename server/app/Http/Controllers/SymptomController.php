@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SymptomController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
     public function createSymptom(Request $request)
     {
         $validatedData = $request->validate([

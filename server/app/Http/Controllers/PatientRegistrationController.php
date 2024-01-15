@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class PatientRegistrationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
+  
     public function registerPatient(Request $request)
     {
         $doctor = Auth::user();

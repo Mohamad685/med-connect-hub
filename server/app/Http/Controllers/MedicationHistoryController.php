@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class MedicationHistoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
+  
     public function createMedication(Request $request)
     {
         $validatedData = $request->validate([

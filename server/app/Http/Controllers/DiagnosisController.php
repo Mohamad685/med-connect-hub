@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DiagnosisController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
+  
     public function createDiagnosis(Request $request)
     {
         $validatedData = $request->validate([

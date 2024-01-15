@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
-    public function __construct()
-    {
-        // Ensure the user is an authenticated doctor
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
 
     public function createPrescription(Request $request)
     {

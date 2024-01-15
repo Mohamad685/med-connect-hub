@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class LabResultsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
     public function createResult(Request $request)
     {
         $validationData = $request->validate([

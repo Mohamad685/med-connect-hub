@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MedicalHistoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:api', 'role:doctor']);
-    }
-
+ 
     public function createMedicalHistory(Request $request)
 {
     $validatedData = $request->validate([

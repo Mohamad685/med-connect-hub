@@ -27,11 +27,11 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
 });
 
 
-Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
+Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
 });
 
-Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
+Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/medical-history/create', [MedicalHistoryController::class, 'createMedicalHistory']);
     Route::post('/diagnosis/create', [DiagnosisController::class, 'createDiagnosis']);
     Route::post('/symptom/create', [SymptomController::class, 'createSymptom']);
@@ -41,12 +41,11 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function() {
 });
 
 
-Route::group(['middleware'=> ['jwt.verify','patient']],function(){
+Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/lab-results/{username}', [PatientController::class, 'getLabResults']);
-    Route::get('/patient/medical-history/{username}',[PatientController::class, 'getMedicalHistory']);
-    Route::get('/patient/medication-history/{username}',[PatientController::class,'getMedicationHistory']);
-    Route::get('/patient/diagnosis/{username}',[PatientController::class,'getDiagnosis']);
-    Route::get('/patient/symptoms/{username}',[PatientController::class,'getSymptoms']);
-    Route::get('/patient/prescription/{username}',[PatientController::class,'getPrescription']);
-
+    Route::get('/patient/medical-history/{username}', [PatientController::class, 'getMedicalHistory']);
+    Route::get('/patient/medication-history/{username}', [PatientController::class, 'getMedicationHistory']);
+    Route::get('/patient/diagnosis/{username}', [PatientController::class, 'getDiagnosis']);
+    Route::get('/patient/symptoms/{username}', [PatientController::class, 'getSymptoms']);
+    Route::get('/patient/prescription/{username}', [PatientController::class, 'getPrescription']);
 });
