@@ -32,7 +32,7 @@ function HomePage() {
 				<hr className="custom-line"/>
 
 				<span className="title-start title-end">
-					Our<span className="title-start">Services</span>
+					Our <span className="title-start">Services</span>
 				</span>
 				<div className="services-pics">
 					<img
@@ -66,12 +66,6 @@ function HomePage() {
 						inquiries.
 					</p>
 				</div>
-				{/* <img
-					src="../../../public/pics/hero2.jpg"
-					alt="hero2"
-					className="hero-section hero2-pic"
-				/> */}
-
 				<div className="all-options">
 					<div className="option">
 						<img
