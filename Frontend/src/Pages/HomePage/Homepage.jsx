@@ -25,8 +25,12 @@ function HomePage() {
 					promoting informed health decisions. We're committed to delivering a
 					user-friendly experience that facilitates real-time conversations,
 					seamless information exchange, and comprehensive support every step of
-					the way.
+					the way. To further empower this vision, we are integrating advanced
+					analytics and AI-driven insights to personalize healthcare experiences
+					and optimize treatment outcomes for each individual.
 				</span>
+				<hr className="custom-line"/>
+
 				<span className="title-start title-end">
 					Our<span className="title-start">Services</span>
 				</span>
