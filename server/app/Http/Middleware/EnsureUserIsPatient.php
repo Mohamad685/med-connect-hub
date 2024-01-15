@@ -13,8 +13,13 @@ class EnsureUserIsPatient
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (auth()->user() && auth()->user()->role == 'patient') {
+            return $next($request);
+        }
+
+        return response()->json(['message' => 'Unauthorized'], 403);
     }
+
 }
