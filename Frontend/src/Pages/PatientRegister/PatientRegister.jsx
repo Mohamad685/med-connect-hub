@@ -88,7 +88,7 @@ function PatientRegister() {
 								placeholder={"Medication History"}
 							/>
 							<Button
-								width={"48rem"}
+								width={"14rem"}
 								height={"3rem"}
 								color={"white"}
 								fontSize='1.15rem'

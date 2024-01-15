@@ -17,6 +17,8 @@
 
 .button-style{
     background-color:#7bb3df;
+    font-weight: 700;
+    font-size: medium;
 }
 
 .button-style:hover{

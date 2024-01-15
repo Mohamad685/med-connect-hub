@@ -20,12 +20,12 @@ function Login() {
 			<form
 				onSubmit={handleSubmit}
 				className="login-form">
-				<h1>Log In To Your Account:</h1>
+				<h1>Log In</h1>
 
 				<InputForm
 					type="email"
 					width={"25rem"}
-					length={"2rem"}
+					length={"2.5rem"}
 					placeholder={"Enter your email:"}
 					className="email-input"
 					value={email}
@@ -34,7 +34,7 @@ function Login() {
 				<InputForm
 					type="password"
 					width={"25rem"}
-					length={"2rem"}
+					length={"2.5rem"}
 					placeholder={"Enter your password:"}
 					className="password-input"
 					value={password}
@@ -42,9 +42,9 @@ function Login() {
 				/>
 				<Button
 					color={"white"}
-					width={"15rem"}
-					height={"2rem"}
-					text={'Submit'}
+					width={"14rem"}
+					height={"2.5rem"}
+					text={'Login'}
 					classNames={["button-style"]}
 					/>
 			</form>
