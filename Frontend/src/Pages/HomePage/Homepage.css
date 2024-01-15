@@ -34,7 +34,7 @@
     height: 1px;
     margin: 1rem 0;
     background-color: #41597b;;
-    width: 70%;
+    width: 85%;
 }
 .services-pics{
     display: grid;
@@ -70,7 +70,7 @@
 }
 
 .option img{
-    height: 3rem;
+    height: 2rem;
 }
 
 .option span{
@@ -80,6 +80,6 @@
 .option p{
     width: 18rem;
     text-align: center;
-    font-size: smaller;
+    font-size: 0.8rem;
     margin-top: -0.65rem;
 }

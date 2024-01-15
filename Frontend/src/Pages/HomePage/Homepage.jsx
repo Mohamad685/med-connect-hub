@@ -66,6 +66,8 @@ function HomePage() {
 						inquiries.
 					</p>
 				</div>
+				<hr className="custom-line"/>
+
 				<div className="all-options">
 					<div className="option">
 						<img
