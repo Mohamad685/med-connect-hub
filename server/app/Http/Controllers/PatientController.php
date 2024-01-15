@@ -44,7 +44,7 @@ public function getMedicalHistory($user_name)
         return response()->json(["error" => 'Unauthorized'], 403);
     }
 
-    $medical_history = $patient->medical_histories; 
+    $medical_history = $patient->medicalHistories; 
     return response()->json($medical_history);
 }
 
