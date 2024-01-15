@@ -104,7 +104,7 @@ public function getSymptoms($user_name)
         return response()->json(["error" => 'Unauthorized'], 403);
     }
 
-    $symptoms= $patient->Symptom; 
+    $symptoms= $patient->Symptoms; 
     return response()->json($symptoms);
 }
     

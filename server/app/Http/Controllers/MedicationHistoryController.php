@@ -11,7 +11,6 @@ class MedicationHistoryController extends Controller
 {
     public function __construct()
     {
-        // Ensure the user is an authenticated doctor
         $this->middleware(['auth:api', 'role:doctor']);
     }
 
