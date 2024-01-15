@@ -67,6 +67,26 @@ public function getMedicationHistory($user_name)
     $medication_history = $patient->medicationHistories; 
     return response()->json($medication_history);
 }
+
+public function getDiagnosis($user_name)
+{
+    $user =User::where('user_name', $user_name)->first(); 
+    if (!$user) {
+        return response()->json(["error" => "User not found"], 404);
+    }
+    $patient = $user->patient;
+
+    if (!$patient) {
+        return response()->json(["error" => "Patient not found"], 404);
+    }
+
+    if (auth()->user()->id !== $user->id) {
+        return response()->json(["error" => 'Unauthorized'], 403);
+    }
+
+    $diagnosis = $patient->Diagnosis; 
+    return response()->json($diagnosis);
+}
     
 }
 
