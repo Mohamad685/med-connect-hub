@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiagnosisController;
-use App\Http\Controllers\InsuranceApprovalController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\MedicalHistoryController;
