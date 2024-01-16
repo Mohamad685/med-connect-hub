@@ -2,7 +2,7 @@ import React from "react";
 import "./HomePage.css";
 import Carousel from "../../Components/Carousal/InfoCarousal";
 
-function HomePage() {
+function HomePage() { 
 	return (
 		<>
 			<div className="home-page">

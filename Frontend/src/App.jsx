@@ -33,7 +33,6 @@ function App() {
 				element={<InsurancePage />}/>
 			</Routes>
 			<Footer />
-			{/* <Login/> */}
 		</BrowserRouter>
 	);
 }
