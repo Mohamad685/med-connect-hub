@@ -9,6 +9,7 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SymptomController;
 use App\Http\Controllers\MedicationHistoryController;
 use App\Http\Controllers\LabResultsController;
+use App\Models\InsuranceApproval;
 
 
 
@@ -48,4 +49,8 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/diagnosis/{username}', [PatientController::class, 'getDiagnosis']);
     Route::get('/patient/symptoms/{username}', [PatientController::class, 'getSymptoms']);
     Route::get('/patient/prescription/{username}', [PatientController::class, 'getPrescription']);
+});
+
+Route::group(['middleware'=>['jwt.verify','insurance']], function(){
+    Route::post('/insurance-approvals',[]);
 });
