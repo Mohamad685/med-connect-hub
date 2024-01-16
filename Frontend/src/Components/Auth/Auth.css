@@ -24,3 +24,14 @@
 .button-style:hover{
     background-color:#558db9;
 }
+
+.close-button{
+    margin-left: 22rem;
+    margin-bottom: -2rem;
+}
+
+.error{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -1.5rem;
+}

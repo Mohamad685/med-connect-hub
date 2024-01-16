@@ -2,7 +2,6 @@ import NavBar from "./Components/NavBar/NavBar";
 import HomePage from "./Pages/HomePage/Homepage";
 import Footer from "./Components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Components/Auth/Auth";
 import PatientRegister from "./Pages/PatientRegister/PatientRegister";
 import Diagnosis from "./Pages/Diagnosis/Diagnosis";
 import Patientpreview from "./Pages/PatientPage/PatientPage";
