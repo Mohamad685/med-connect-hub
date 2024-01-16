@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiagnosisController;
+use App\Http\Controllers\InsuranceApprovalController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\MedicalHistoryController;
@@ -52,5 +53,5 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
 });
 
 Route::group(['middleware'=>['jwt.verify','insurance']], function(){
-    Route::post('/insurance-approvals',[]);
+    Route::post('/insurance-approvals',[InsuranceApprovalController::class]);
 });
