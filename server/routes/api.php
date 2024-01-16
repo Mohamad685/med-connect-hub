@@ -10,7 +10,6 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SymptomController;
 use App\Http\Controllers\MedicationHistoryController;
 use App\Http\Controllers\LabResultsController;
-use App\Models\InsuranceApproval;
 
 
 
@@ -53,5 +52,5 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
 });
 
 Route::group(['middleware'=>['jwt.verify','insurance']], function(){
-    Route::post('/insurance-approvals',[InsuranceApprovalController::class]);
+    Route::post('/insurance-approvals',[InsuranceApprovalController::class, 'createRequest']);
 });
