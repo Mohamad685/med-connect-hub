@@ -21,6 +21,16 @@ export  const fetchHelper={
         }
     },
 
+    put: async (url, data = {}) => {
+        try {
+            const response = await axiosInstance.put(url, { data });
+            return response.data;
+        } catch (error) {
+            console.error('API call error: ', error);
+            throw error;
+        }
+    },
+
 
 }
 export default apiService;
