@@ -30,7 +30,7 @@ function Login({ onClose }) {
 		return re.test(email);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let valid = true;
 
@@ -45,68 +45,70 @@ function Login({ onClose }) {
 		}
 
 		if (valid) {
-			axios
-				.post("http://localhost:8000/login", { email, password })
-				.then((response) => {
-					if (response.data.user.role === "admin") navigate.push("/admin");
-					else if (response.data.user.role === "doctor")
-						navigate.push("/patient-registration");
-					else if (response.data.user.role === "patient")
-						navigate.push("/patient-file");
-					else if (response.data.user.role === "insuracne")
-						navigate.push("/insurance-page");
-				})
-				.catch((error) => {
-					console.error(error);
+			try {
+				const response = await axios.post("http://localhost:8000/login", {
+					email,
+					password,
 				});
-		}
+				localStorage.setItem("token", response.data.token);
 
-		setEmail("");
-		setPassword("");
+				if (response.data.user.role === "admin") navigate("/admin");
+				else if (response.data.user.role === "doctor")
+					navigate("/patient-registration");
+				else if (response.data.user.role === "patient")
+					navigate("/patient-file");
+				else if (response.data.user.role === "insurance")
+					navigate("/insurance-page");
+
+				setEmail("");
+				setPassword("");
+			} catch (error) {
+				console.error(error);
+			}
+		}
 	};
 
+	return (
+		<>
+			<form
+				className="login-form"
+				onSubmit={handleSubmit}>
+				<button
+					onClick={handleClose}
+					className="close-button">
+					X
+				</button>
+				<h1>Log In</h1>
+				<InputForm
+					type="email"
+					width={"25rem"}
+					length={"2.5rem"}
+					placeholder={"Enter your email:"}
+					value={email}
+					onChange={handleEmailChange}
+				/>
+				{emailError && <div className="error">{emailError}</div>}
 
-return (
-	<>
-		<form
-			className="login-form"
-			onSubmit={handleSubmit}>
-			<button
-				onClick={handleClose}
-				className="close-button">
-				X
-			</button>
-			<h1>Log In</h1>
-			<InputForm
-				type="email"
-				width={"25rem"}
-				length={"2.5rem"}
-				placeholder={"Enter your email:"}
-				value={email}
-				onChange={handleEmailChange}
-			/>
-			{emailError && <div className="error">{emailError}</div>}
+				<InputForm
+					type="password"
+					width={"25rem"}
+					length={"2.5rem"}
+					placeholder={"Enter your password:"}
+					value={password}
+					onChange={handlePasswordChange}
+				/>
+				{passwordError && <div className="error">{passwordError}</div>}
 
-			<InputForm
-				type="password"
-				width={"25rem"}
-				length={"2.5rem"}
-				placeholder={"Enter your password:"}
-				value={password}
-				onChange={handlePasswordChange}
-			/>
-			{passwordError && <div className="error">{passwordError}</div>}
-
-			<Button
-				color={"white"}
-				width={"14rem"}
-				height={"2.5rem"}
-				text={"Login"}
-				classNames={["button-style"]}
-			/>
-		</form>
-	</>
-);
+				<Button
+					color={"white"}
+					width={"14rem"}
+					height={"2.5rem"}
+					text={"Login"}
+					classNames={["button-style"]}
+				/>
+			</form>
+		</>
+	);
 }
 
 export default Login;
