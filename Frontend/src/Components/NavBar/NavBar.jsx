@@ -39,7 +39,7 @@ function NavBar() {
 					className="navbar-slogan"
 					alt="logo"></img>
 				<ul className="navbar-list">
-					<li className="navbar-option">
+					<li className="navbar-option" onClick={() => scrollTo("home")}>
 						<Link
 							to="/"
 							className="navbar-link">

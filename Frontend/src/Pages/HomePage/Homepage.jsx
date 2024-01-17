@@ -5,7 +5,7 @@ import Carousel from "../../Components/Carousal/InfoCarousal";
 function HomePage() { 
 	return (
 		<>
-			<div className="home-page">
+			<div className="home-page" id="home">
 				<div className="hero-section">
 					<img
 						src="../../../public/pics/hero.png"
