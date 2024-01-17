@@ -17,7 +17,7 @@ function NavBar() {
 		}
 	};
 
-	const navbarHeight = 70;
+	const navbarHeight = 75;
 	const scrollTo = (id) => {
 		const element = document.getElementById(id);
 		if (element) {
