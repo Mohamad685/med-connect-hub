@@ -16,8 +16,8 @@ function NavBar() {
 		}
 	};
 
-	const scrollTo = (sectionId) => {
-		document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+	const scrollTo = (className) => {
+		document.getElementsByClassName(className).scrollIntoView({ behavior: "smooth" });
 	};
 
 	useEffect(() => {
