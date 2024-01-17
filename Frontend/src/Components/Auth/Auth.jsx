@@ -3,82 +3,90 @@ import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 
-function Login({ onClose }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
+function Login() {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [isVisible, setIsVisible] = useState(true);
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-        setEmailError(""); 
-    };
+	const handleClose = () => {
+		setIsVisible(false);
+	};
+	if (!isVisible) return null;
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-        setPasswordError(""); 
-    };
+	const handleEmailChange = (e) => {
+		setEmail(e.target.value);
+		setEmailError("");
+	};
 
-    const validateEmail = (email) => {
-        const re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    };
+	const handlePasswordChange = (e) => {
+		setPassword(e.target.value);
+		setPasswordError("");
+	};
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let valid = true;
+	const validateEmail = (email) => {
+		const re = /\S+@\S+\.\S+/;
+		return re.test(email);
+	};
 
-        if (!email || !validateEmail(email)) {
-            setEmailError("Please enter a valid email.");
-            valid = false;
-        }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let valid = true;
 
-        if (!password) {
-            setPasswordError("Please enter your password.");
-            valid = false;
-        }
+		if (!email || !validateEmail(email)) {
+			setEmailError("Please enter a valid email.");
+			valid = false;
+		}
 
-        if (valid) {
-            setEmail("");
-            setPassword("");
-        }
-    };
+		if (!password) {
+			setPasswordError("Please enter your password.");
+			valid = false;
+		}
 
-    return (
-        <>
-            <form onSubmit={handleSubmit} className="login-form">
-                <h1>Log In</h1>
+		if (valid) {
+			setEmail("");
+			setPassword("");
+		}
+	};
 
-                <InputForm
-                    type="email"
-                    width={"25rem"}
-                    length={"2.5rem"}
-                    placeholder={"Enter your email:"}
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-                {emailError && <div className="error">{emailError}</div>}
+	return (
+		<>
+			<form
+				className="login-form"
+				onSubmit={handleSubmit}>
+				<button onClick={handleClose} className="close-button">X</button>
+				<h1>Log In</h1>
+				<InputForm
+					type="email"
+					width={"25rem"}
+					length={"2.5rem"}
+					placeholder={"Enter your email:"}
+					value={email}
+					onChange={handleEmailChange}
+				/>
+				{emailError && <div className="error">{emailError}</div>}
 
-                <InputForm
-                    type="password"
-                    width={"25rem"}
-                    length={"2.5rem"}
-                    placeholder={"Enter your password:"}
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
-                {passwordError && <div className="error">{passwordError}</div>}
+				<InputForm
+					type="password"
+					width={"25rem"}
+					length={"2.5rem"}
+					placeholder={"Enter your password:"}
+					value={password}
+					onChange={handlePasswordChange}
+				/>
+				{passwordError && <div className="error">{passwordError}</div>}
 
-                <Button
-                    color={"white"}
-                    width={"14rem"}
-                    height={"2.5rem"}
-                    text={"Login"}
-                    classNames={["button-style"]}
-                />
-            </form>
-        </>
-    );
+				<Button
+					color={"white"}
+					width={"14rem"}
+					height={"2.5rem"}
+					text={"Login"}
+					classNames={["button-style"]}
+				/>
+			</form>
+		</>
+	);
 }
 
 export default Login;

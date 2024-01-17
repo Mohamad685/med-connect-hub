@@ -5,7 +5,7 @@ import "./NavBar.css";
 import Login from '../Auth/Auth'
 
 function NavBar() {
-	const [showLogin, setShowLogin] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
 	const toggleLogin = () => setShowLogin(!showLogin);
 	const scrollTo = (sectionId) => {
 		document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
