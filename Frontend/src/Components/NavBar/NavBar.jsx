@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import Login from "../Auth/Auth";
 
@@ -8,7 +8,7 @@ function NavBar() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
 	const navigate = useNavigate();
-	
+
 	const toggleLogin = () => {
 		setShowLogin(!showLogin);
 		const mainContent = document.getElementById("main-content");
@@ -17,9 +17,20 @@ function NavBar() {
 		}
 	};
 
+	const navbarHeight = 70; 
 	const scrollTo = (id) => {
-		document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-	  };
+		const element = document.getElementById(id);
+		if (element) {
+			const elementPosition = element.getBoundingClientRect().top;
+			const offsetPosition =
+				elementPosition + window.pageYOffset - navbarHeight;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: "smooth",
+			});
+		}
+	};
 
 	useEffect(() => {
 		return () => {
@@ -39,7 +50,9 @@ function NavBar() {
 					className="navbar-slogan"
 					alt="logo"></img>
 				<ul className="navbar-list">
-					<li className="navbar-option" onClick={() => scrollTo("home")}>
+					<li
+						className="navbar-option"
+						onClick={() => scrollTo("home")}>
 						<Link
 							to="/"
 							className="navbar-link">
