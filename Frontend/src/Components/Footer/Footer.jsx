@@ -23,7 +23,7 @@ function Footer() {
 					<div className="contact-icons contact-info">
 						<a href="tel:+70685425">70-685425</a>
 						<a href="https://www.google.com/maps?q=33.839189687166126, 35.49682043061652" target="_blank">Airport Street</a>
-						<p>mohammad.fakih685@gmail.com</p>
+						<a href="mailto:mohammad.fakih685@gmail.com">mohammad.fakih685@gmail.com</a>
 					</div>
 					<div className="contact-icons social-media">
 						<img
@@ -31,7 +31,7 @@ function Footer() {
 							alt="facebook"
 						/>
 						<img
-							src="../../../public/pics/google.png"
+							src="../../../public/pics/github-mark.png"
 							alt="gmail"
 						/>
 						<img
@@ -41,7 +41,7 @@ function Footer() {
 					</div>
 					<div className="contact-icons contact-info">
 						<a href="https://www.facebook.com">Med-Hub Platform</a>
-						<a href="https://gmail.com">Mohammad Fakih</a>
+						<a href="https://github.com/Mohamad685">Mohammad Fakih</a>
 						<a href="https://linkedin.com">Mohammad Fakih</a>
 					</div>
 				</div>
