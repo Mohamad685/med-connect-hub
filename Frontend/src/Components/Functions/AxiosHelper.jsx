@@ -4,8 +4,6 @@ import axios from "axios";
         baseURL: 'http://localhost:8000/api/', 
         headers: {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
-
         },
     });
 

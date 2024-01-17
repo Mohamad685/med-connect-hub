@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
+import fetchHelper from "../Functions/FetchFunction";
 
 function Login({ onClose }) {
 	const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ function Login({ onClose }) {
 	};
 
 	const handleSubmit = async (e) => {
-		// e.preventDefault();
+		e.preventDefault();
 		let valid = true;
 
 		if (!email || !validateEmail(email)) {
@@ -46,30 +47,23 @@ function Login({ onClose }) {
 
 		if (valid) {
 			try {
-
-				const response = await axios.post("http://localhost:8000/api/login", {
+				const response = await fetchHelper.post('login', {
 					email,
 					password,
 				});
-				
 
-				localStorage.setItem("token", response.data.token);
 
-				switch (response.data.user.role) {
-					case "admin":
-						navigate("/admin");
-						break;
-					case "doctor":
-						navigate("/patient-registration");
-						break;
-					case "patient":
-						navigate("/patient-file");
-						break;
-					case "insurance":
-						navigate("/insurance-page");
-						break;
-					default:
-						break;
+				localStorage.setItem("token", response.token);
+
+				const userRole = response.user.role;
+				if (userRole === "admin") {
+					navigate("/admin");
+				} else if (userRole === "doctor") {
+					navigate("/patient-registration");
+				} else if (userRole === "patient") {
+					navigate("/patient-file");
+				} else if (userRole === "insurance") {
+					navigate("/insurance-page");
 				}
 
 				setEmail("");
