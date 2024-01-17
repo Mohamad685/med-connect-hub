@@ -8,7 +8,6 @@ function Login({onClose}) {
 	const [password, setPassword] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
-	const [isVisible, setIsVisible] = useState(true);
 
 	const handleClose = () => {
         onClose();
