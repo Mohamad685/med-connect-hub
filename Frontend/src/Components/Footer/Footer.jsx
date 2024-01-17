@@ -22,7 +22,7 @@ function Footer() {
 					</div>
 					<div className="contact-icons contact-info">
 						<a href="tel:+70685425">70-685425</a>
-						<p>Airport Street</p>
+						<a href="https://www.google.com/maps?q=33.839189687166126, 35.49682043061652" target="_blank">Airport Street</a>
 						<p>mohammad.fakih685@gmail.com</p>
 					</div>
 					<div className="contact-icons social-media">
