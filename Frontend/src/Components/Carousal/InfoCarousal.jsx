@@ -42,7 +42,6 @@ function Carousel() {
 					<img
 						src="../../../public/pics/diabetes.jpg"
 						alt="diabetes pic"
-						className="diabete-info"
 					/>
 				</SwiperSlide>
 				<SwiperSlide className="slide2">
@@ -60,7 +59,6 @@ function Carousel() {
 					<img
 						src="../../../public/pics/DNA.png"
 						alt="DNA pic"
-						className="DNA-info"
 					/>
 				</SwiperSlide>
 				<SwiperSlide className="slide3">
@@ -68,17 +66,17 @@ function Carousel() {
 					<span className="info-title">
 						New Information
 						<p className="info-text">
-							Smoking causes significant DNA damage through mutations, oxidative
-							stress, and epi-genetic changes, leading to disrupted cell
-							functions and an increased risk of cancers and other diseases.
-							These molecular alterations highlight the severe health impacts of
-							smoking.
+							In the medical field, face masks are critical for reducing the
+							transmission of infectious diseases, protecting both healthcare
+							workers and vulnerable patients. They are especially important in
+							maintaining sterile conditions during medical procedures, thus
+							playing a key role in overall patient safety and care
+							effectiveness.
 						</p>
 					</span>
 					<img
-						src="../../../public/pics/DNA.png"
-						alt="DNA pic"
-						className="DNA-info"
+						src="../../../public/pics/mask.png"
+						alt="mask pic"
 					/>
 				</SwiperSlide>
 			</Swiper>
