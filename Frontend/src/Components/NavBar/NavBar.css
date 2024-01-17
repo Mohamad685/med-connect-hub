@@ -1,7 +1,6 @@
 .navbar {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
 	background: rgb(237, 237, 237);
 	background: linear-gradient(
@@ -23,6 +22,7 @@
 .navbar-slogan {
 	width: 14rem;
 	height: 4rem;
+    margin-right: 30%;
 }
 
 .navbar-list {
