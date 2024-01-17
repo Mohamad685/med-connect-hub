@@ -4,7 +4,9 @@ import "./Footer.css";
 function Footer() {
 	return (
 		<>
-			<div className="footer" id="Contact">
+			<div
+				className="footer"
+				id="Contact">
 				<div className="footer-in">
 					<div className="contact-icons">
 						<img
@@ -22,8 +24,14 @@ function Footer() {
 					</div>
 					<div className="contact-icons contact-info">
 						<a href="tel:+70685425">70-685425</a>
-						<a href="https://www.google.com/maps?q=33.839189687166126, 35.49682043061652" target="_blank">Airport Street</a>
-						<a href="mailto:mohammad.fakih685@gmail.com">mohammad.fakih685@gmail.com</a>
+						<a
+							href="https://www.google.com/maps?q=33.839189687166126, 35.49682043061652"
+							target="_blank">
+							Airport Street
+						</a>
+						<a href="mailto:mohammad.fakih685@gmail.com">
+							mohammad.fakih685@gmail.com
+						</a>
 					</div>
 					<div className="contact-icons social-media">
 						<img
@@ -40,9 +48,10 @@ function Footer() {
 						/>
 					</div>
 					<div className="contact-icons contact-info">
-						<a href="https://www.facebook.com">Med-Hub Platform</a>
-						<a href="https://github.com/Mohamad685">Mohammad Fakih</a>
-						<a href="https://linkedin.com">Mohammad Fakih</a>
+						<a href="https://www.facebook.com" target="_blank" >Med-Hub Platform</a>
+						<a href="https://github.com/Mohamad685" target="_blank">Mohammad Fakih</a>
+						<a href="https://www.linkedin.com/in/fakih-mohamad" target="_blank"> Mohammad Fakih
+						</a>
 					</div>
 				</div>
 			</div>
