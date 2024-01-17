@@ -31,7 +31,7 @@ function Login({ onClose }) {
 	};
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		let valid = true;
 
 		if (!email || !validateEmail(email)) {
@@ -46,10 +46,12 @@ function Login({ onClose }) {
 
 		if (valid) {
 			try {
-				const response = await axios.post("http://localhost:8000/login", {
+
+				const response = await axios.post("http://localhost:8000/api/login", {
 					email,
 					password,
 				});
+				
 
 				localStorage.setItem("token", response.data.token);
 
