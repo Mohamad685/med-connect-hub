@@ -7,15 +7,18 @@
 }
 .hero-section{
     width: 98.7vw;
+
 }
 
 
 .hero-pic{
     width:98.7vw;
+    height: 100vh;
 }
 
 .title-start{
     font-size: 3rem;
+
 }
 
 .title-end{

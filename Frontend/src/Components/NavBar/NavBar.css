@@ -1,44 +1,51 @@
 .navbar {
 	display: flex;
 	flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: rgb(237,237,237);
-    background: linear-gradient(100deg, rgba(237,237,237,1) 0%, rgb(210, 210, 210) 100%);	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	background: rgb(237, 237, 237);
+	background: linear-gradient(
+		100deg,
+		rgba(237, 237, 237, 1) 0%,
+		rgb(210, 210, 210) 100%
+	);
+	width: 100%;
 	height: 5rem;
-    width: 98.7vw;
-    position:fixed;
+	width: 98.7vw;
+	position: fixed;
 }
 
-.navbar-pic{
-    width:10rem;
-    height: 7.5rem;
+.navbar-pic {
+	width: 10rem;
+	height: 7.5rem;
+    
 }
-.navbar-slogan{
-    width:14rem;
-    height: 4rem;
-    margin-left: -27rem;
-    margin-top: 0.5rem;
+.navbar-slogan {
+	width: 14rem;
+	height: 4rem;
 }
 
 .navbar-list {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-    gap: 2rem;
-    list-style: none;
-    margin-right: 2rem;
+	gap: 2rem;
+	list-style: none;
+	margin-right: 2rem;
 }
 
-.navbar-link{
-    text-decoration: none;
+.navbar-link {
+	text-decoration: none;
 }
 
-.navbar-option{
-    cursor: pointer;
-    font-size: 15px;
+.navbar-option {
+	cursor: pointer;
+	font-size: 15px;
 }
 
 .blurred {
-    filter: blur(50px);
+	filter: blur(50px);
+}
+
+@media (max-width: 768px) {
 }
