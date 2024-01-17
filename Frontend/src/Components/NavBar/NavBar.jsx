@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import Login from "../Auth/Auth";
 
 function NavBar() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
-
+	const navigate = useNavigate();
+	
 	const toggleLogin = () => {
 		setShowLogin(!showLogin);
 		const mainContent = document.getElementById("main-content");
@@ -16,9 +17,9 @@ function NavBar() {
 		}
 	};
 
-	const scrollTo = (className) => {
-		document.getElementsByClassName(className).scrollIntoView({ behavior: "smooth" });
-	};
+	const scrollTo = (id) => {
+		document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+	  };
 
 	useEffect(() => {
 		return () => {
@@ -47,7 +48,7 @@ function NavBar() {
 					</li>
 					<li
 						className="navbar-option"
-						onClick={() => scrollTo("aboutus")}>
+						onClick={() => scrollTo("about-us")}>
 						About Us
 					</li>
 					<li
@@ -70,9 +71,7 @@ function NavBar() {
 			{showLogin &&
 				!authenticated &&
 				ReactDOM.createPortal(
-					<Login
-						onClose={toggleLogin}
-					/>,
+					<Login onClose={toggleLogin} />,
 					document.getElementById("modal-root")
 				)}
 		</>

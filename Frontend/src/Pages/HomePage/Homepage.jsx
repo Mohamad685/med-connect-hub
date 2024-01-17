@@ -13,7 +13,7 @@ function HomePage() {
 						className="hero-pic"
 					/>
 				</div>
-				<span className="title-start">
+				<span className="title-start" id='about-us'>
 					What We <span className="title-start title-end">Do</span>
 				</span>
 				<span className="mission-text">
@@ -31,7 +31,7 @@ function HomePage() {
 				</span>
 				<hr className="custom-line"/>
 
-				<span className="title-start title-end">
+				<span className="title-start title-end" id="services">
 					Our <span className="title-start">Services</span>
 				</span>
 				<div className="services-pics">
