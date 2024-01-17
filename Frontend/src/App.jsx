@@ -7,9 +7,13 @@ import Diagnosis from "./Pages/Diagnosis/Diagnosis";
 import Patientpreview from "./Pages/PatientPage/PatientPage";
 import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 
+
+
 function App() {
 	return (
 		<BrowserRouter>
+			
+			<div id="main-content">
 			<NavBar />
 			<Routes>
 				<Route
@@ -32,6 +36,8 @@ function App() {
 				element={<InsurancePage />}/>
 			</Routes>
 			<Footer />
+			</div>
+
 		</BrowserRouter>
 	);
 }

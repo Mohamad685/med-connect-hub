@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
@@ -6,10 +6,24 @@ import Login from '../Auth/Auth'
 
 function NavBar() {
     const [showLogin, setShowLogin] = useState(false);
-	const toggleLogin = () => setShowLogin(!showLogin);
+	const toggleLogin = () => {
+		setShowLogin(!showLogin);
+		const mainContent = document.getElementById("main-content");
+		if (mainContent) {
+			mainContent.classList.toggle("blurred");
+		}
+	};
+	
+	
 	const scrollTo = (sectionId) => {
 		document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
 	};
+	useEffect(() => {
+		return () => {
+			document.body.classList.remove("blurred");
+		};
+	}, []);
+	
 	return (
 		<>
 			<div className="navbar">

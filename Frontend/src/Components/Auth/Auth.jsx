@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 
-function Login() {
+function Login({onClose}) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [emailError, setEmailError] = useState("");
@@ -11,10 +11,9 @@ function Login() {
 	const [isVisible, setIsVisible] = useState(true);
 
 	const handleClose = () => {
-		setIsVisible(false);
-	};
-	if (!isVisible) return null;
-
+        onClose();
+    };
+	
 	const handleEmailChange = (e) => {
 		setEmail(e.target.value);
 		setEmailError("");
