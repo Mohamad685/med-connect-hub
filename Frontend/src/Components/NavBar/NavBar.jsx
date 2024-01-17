@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-import Login from '../Auth/Auth'
+import Login from "../Auth/Auth";
 
 function NavBar() {
-    const [showLogin, setShowLogin] = useState(false);
+	const [showLogin, setShowLogin] = useState(false);
+	const [authenticated, setAuthenticated] = useState(false);
+
 	const toggleLogin = () => {
 		setShowLogin(!showLogin);
 		const mainContent = document.getElementById("main-content");
@@ -13,26 +15,26 @@ function NavBar() {
 			mainContent.classList.toggle("blurred");
 		}
 	};
-	
-	
+
 	const scrollTo = (sectionId) => {
 		document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
 	};
+
 	useEffect(() => {
 		return () => {
 			document.body.classList.remove("blurred");
 		};
 	}, []);
-	
+
 	return (
 		<>
 			<div className="navbar">
 				<img
-					src="../../../public/pics/logo.png"
+					src="/pics/logo.png"
 					className="navbar-pic"
 					alt="logo"></img>
 				<img
-					src="../../../public/pics/slogan.png"
+					src="/pics/slogan.png"
 					className="navbar-slogan"
 					alt="logo"></img>
 				<ul className="navbar-list">
@@ -66,8 +68,11 @@ function NavBar() {
 				</ul>
 			</div>
 			{showLogin &&
+				!authenticated &&
 				ReactDOM.createPortal(
-					<Login onClose={toggleLogin} />,
+					<Login
+						onClose={toggleLogin}
+					/>,
 					document.getElementById("modal-root")
 				)}
 		</>

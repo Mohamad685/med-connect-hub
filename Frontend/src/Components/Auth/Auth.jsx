@@ -47,15 +47,15 @@ function Login({ onClose }) {
 
 		if (valid) {
 			try {
-				const response = await fetchHelper.post('login', {
+				const response = await fetchHelper.post("login", {
 					email,
 					password,
 				});
 
-
 				localStorage.setItem("token", response.token);
 
 				const userRole = response.user.role;
+				console.log("hello")
 				if (userRole === "admin") {
 					navigate("/admin");
 				} else if (userRole === "doctor") {
@@ -64,13 +64,17 @@ function Login({ onClose }) {
 					navigate("/patient-file");
 				} else if (userRole === "insurance") {
 					navigate("/insurance-page");
+				}else {
+					console.log("Unknown user role:", userRole);
 				}
 
-				setEmail("");
-				setPassword("");
 			} catch (error) {
 				console.error(error);
 			}
+
+			setEmail("");
+			setPassword("");
+			handleClose();
 		}
 	};
 
