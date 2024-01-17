@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
@@ -10,7 +10,7 @@ function Login({ onClose }) {
 	const [password, setPassword] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
-	const history = useHistory();
+	const navigate = useNavigate();
 	const handleClose = () => {
 		onClose();
 	};
@@ -48,13 +48,13 @@ function Login({ onClose }) {
 			axios
 				.post("http://localhost:8000/login", { email, password })
 				.then((response) => {
-					if (response.data.user.role === "admin") history.push("/admin");
+					if (response.data.user.role === "admin") navigate.push("/admin");
 					else if (response.data.user.role === "doctor")
-						history.push("/patient-registration");
+						navigate.push("/patient-registration");
 					else if (response.data.user.role === "patient")
-						history.push("/patient-file");
+						navigate.push("/patient-file");
 					else if (response.data.user.role === "insuracne")
-						history.push("/insurance-page");
+						navigate.push("/insurance-page");
 				})
 				.catch((error) => {
 					console.error(error);
@@ -64,7 +64,7 @@ function Login({ onClose }) {
 		setEmail("");
 		setPassword("");
 	};
-}
+
 
 return (
 	<>
@@ -107,5 +107,6 @@ return (
 		</form>
 	</>
 );
+}
 
 export default Login;
