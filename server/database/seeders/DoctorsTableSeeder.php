@@ -13,8 +13,8 @@ class DoctorsTableSeeder extends Seeder
     public function run()
     {
         $user1 = User::create([
-            'user_name' => 'John123',
-            'email' => 'john@example.com',
+            'user_name' => 'mohamad123',
+            'email' => 'mohamad@example.com',
             'password' => Hash::make('password'),
             'role' => 'doctor'
         ]);

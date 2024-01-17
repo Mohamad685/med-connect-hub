@@ -50,15 +50,25 @@ function Login({ onClose }) {
 					email,
 					password,
 				});
+
 				localStorage.setItem("token", response.data.token);
 
-				if (response.data.user.role === "admin") navigate("/admin");
-				else if (response.data.user.role === "doctor")
-					navigate("/patient-registration");
-				else if (response.data.user.role === "patient")
-					navigate("/patient-file");
-				else if (response.data.user.role === "insurance")
-					navigate("/insurance-page");
+				switch (response.data.user.role) {
+					case "admin":
+						navigate("/admin");
+						break;
+					case "doctor":
+						navigate("/patient-registration");
+						break;
+					case "patient":
+						navigate("/patient-file");
+						break;
+					case "insurance":
+						navigate("/insurance-page");
+						break;
+					default:
+						break;
+				}
 
 				setEmail("");
 				setPassword("");
@@ -70,9 +80,7 @@ function Login({ onClose }) {
 
 	return (
 		<>
-			<form
-				className="login-form"
-				onSubmit={handleSubmit}>
+			<div className="login-form">
 				<button
 					onClick={handleClose}
 					className="close-button">
@@ -105,8 +113,9 @@ function Login({ onClose }) {
 					height={"2.5rem"}
 					text={"Login"}
 					classNames={["button-style"]}
+					onClick={handleSubmit}
 				/>
-			</form>
+			</div>
 		</>
 	);
 }
