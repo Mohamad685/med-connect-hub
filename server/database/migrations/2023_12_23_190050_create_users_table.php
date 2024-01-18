@@ -13,6 +13,8 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role'); //doctor, patient, insurance
+            $table->string('profile_picture')->nullable();
+
             // $table->string('userable_type')->nullable();
             // $table->unsignedBigInteger('userable_id')->nullable();
 
