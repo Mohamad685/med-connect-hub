@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services; // Changed namespace
+namespace App\Services;
 
 use App\Models\Doctor;
 use App\Models\InsuranceCompany;
@@ -8,9 +8,8 @@ use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
-class RegistrationService // Removed extends ServiceProvider
+class RegistrationService 
 {
 
     public function registerUser($data)
@@ -21,7 +20,7 @@ class RegistrationService // Removed extends ServiceProvider
             'role' => 'required|in:doctor,patient,insurance',
             'user_name' => 'required|string|unique:users',
             'profile_pic' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ])->validate(); // Changed to auto-throw on failure
+        ])->validate(); 
 
         $user = new User;
         $user->email = $validatedData['email'];
@@ -60,48 +59,48 @@ class RegistrationService // Removed extends ServiceProvider
                 $doctor->save();
 
                 break;
-            // case 'patient':
-            //     $patientData = $request->validate([
-            //         'first_name' => 'required|string',
-            //         'last_name' => 'required|string',
-            //         'address' => 'required|string',
-            //         'date_of_birth' => 'required|date',
-            //         'phone_number' => 'required|integer|unique',
-            //         'gender' => 'required|string'
-            //     ]);
+            case 'patient':
+                $patientData = Validator::make($data, [
+                    'first_name' => 'required|string',
+                    'last_name' => 'required|string',
+                    'address' => 'required|string',
+                    'date_of_birth' => 'required|date',
+                    'phone_number' => 'required|integer|unique',
+                    'gender' => 'required|string'
+                ])->validate();
 
-            //     $patient = new Patient;
-            //     $patient->user_id = $user->id;
-            //     $patient->first_name = $patientData['first_name'];
-            //     $patient->last_name = $patientData['last_name'];
-            //     $patient->address = $patientData['address'];
-            //     $patient->date_of_birth = $patientData['date_of_birth'];
-            //     $patient->gender = $patientData['gender'];
-            //     $patient->phone_number = $patientData['phone_number'];
-            //     $patient->save();
+                $patient = new Patient;
+                $patient->user_id = $user->id;
+                $patient->first_name = $patientData['first_name'];
+                $patient->last_name = $patientData['last_name'];
+                $patient->address = $patientData['address'];
+                $patient->date_of_birth = $patientData['date_of_birth'];
+                $patient->gender = $patientData['gender'];
+                $patient->phone_number = $patientData['phone_number'];
+                $patient->save();
 
-            //     break;
-            // case 'insurance':
-            //     $insuranceData = $request->validate([
-            //         'name' => 'required|string|unique:insurance_companies',
-            //         'description' => 'required|string',
-            //         'phone_number' => 'required|integer|unique:insurance_companies',
-            //         'address' => 'required|string',
-            //         'coverage_details' => 'required|string',
-            //         'email' => 'required|string|unique:insurance_companies'
-            //     ]);
+                break;
+            case 'insurance':
+                $insuranceData = Validator::make($data, [
+                    'name' => 'required|string|unique:insurance_companies',
+                    'description' => 'required|string',
+                    'phone_number' => 'required|integer|unique:insurance_companies',
+                    'address' => 'required|string',
+                    'coverage_details' => 'required|string',
+                    'email' => 'required|string|unique:insurance_companies'
+                ])->validate();
 
-            //     $insurance_companies = new InsuranceCompany;
-            //     $insurance_companies->user_id = $user->id;
-            //     $insurance_companies->name = $insuranceData['name'];
-            //     $insurance_companies->email = $insuranceData['email'];
-            //     $insurance_companies->description = $insuranceData['description'];
-            //     $insurance_companies->phone_number = $insuranceData['phone_number'];
-            //     $insurance_companies->address = $insuranceData['address'];
-            //     $insurance_companies->coverage_details = $insuranceData['coverage_details'];
-            //     $insurance_companies->save();
+                $insurance_companies = new InsuranceCompany;
+                $insurance_companies->user_id = $user->id;
+                $insurance_companies->name = $insuranceData['name'];
+                $insurance_companies->email = $insuranceData['email'];
+                $insurance_companies->description = $insuranceData['description'];
+                $insurance_companies->phone_number = $insuranceData['phone_number'];
+                $insurance_companies->address = $insuranceData['address'];
+                $insurance_companies->coverage_details = $insuranceData['coverage_details'];
+                $insurance_companies->save();
 
-            //     break;
+                break;
             default:
                 return response()->json(['error' => 'Unrecognized role or action'], 400);
         }
