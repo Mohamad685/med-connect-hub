@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\User;
-
 use App\Models\MedicationHistory;
 use App\Models\MedicalHistory;
 use Illuminate\Support\Facades\Auth;
@@ -87,6 +87,4 @@ class PatientRegistrationService
         ]);
         $medicalHistory->save();
     }
-
-
 }
