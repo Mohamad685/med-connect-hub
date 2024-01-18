@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\InsuranceCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Services\RegistrationService;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -44,6 +45,7 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
 
     public function register(Request $request)
     {
