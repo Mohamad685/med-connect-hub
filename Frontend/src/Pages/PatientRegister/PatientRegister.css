@@ -4,6 +4,7 @@
 	display: flex;
 	flex-direction: row;
     padding-bottom: 2rem;
+	margin: auto;
 }
 
 .patient-reg-title {
@@ -13,7 +14,7 @@
 	border-radius: 10px;
 	text-align: center;
 	padding-top: 0.7rem;
-	margin-top: 4rem;
+	margin-top: 7rem;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
 

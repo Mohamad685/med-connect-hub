@@ -1,16 +1,24 @@
-import React from "react";
+import {React,useState} from "react";
 import OptionsBox from "../../Components/Options/Options";
 import "./PatientRegister.css";
 import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import InputForm from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import TextArea from "../../Components/TextArea/TextArea";
+import axios from "axios";
 
 function PatientRegister() {
+	const[username,setUsername]=useState("");
+	const[password,setpassword]=useState("");
+	const[FirstName,setFirstName]=useState("");
+	const[username,setUsername]=useState("");
+	const[username,setUsername]=useState("");
+	const[username,setUsername]=useState("");
+
 	return (
 		<div className="patient-reg-page">
 			<OptionsBox
-				margin={"4rem 2rem 2rem 2rem"}
+				margin={"7rem 2rem 2rem 2rem"}
 				className="options-style"
 			/>
 
@@ -25,49 +33,49 @@ function PatientRegister() {
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Username:"}
+								placeholder={"Username"}
 							/>
 							<InputForm
 								type="password"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Password:"}
+								placeholder={"Password"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"First Name:"}
+								placeholder={"First Name"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Last Name:"}
+								placeholder={"Last Name"}
 							/>
 							<InputForm
 								type="email"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Email:"}
+								placeholder={"Email"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Phone Number:"}
+								placeholder={"Phone Number"}
 							/>
 							<InputForm
 								type="text"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Gender:"}
+								placeholder={"Gender"}
 							/>
 							<InputForm
 								type="date"
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Date Of Birth:"}
+								placeholder={"Date Of Birth"}
 							/>
 						</div>
 						<div className="address-input-div">
