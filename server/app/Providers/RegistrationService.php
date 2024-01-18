@@ -3,14 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\RegistrationService;
 
-class RegistrationService extends ServiceProvider
+class RegistrationServiceProvider extends ServiceProvider
 {
-  
-    public function registerUser($data): void
+    public function register()
     {
-        
+        $this->app->bind('RegistrationService', function ($app) {
+            return new RegistrationService();
+        });
     }
-
- 
 }
