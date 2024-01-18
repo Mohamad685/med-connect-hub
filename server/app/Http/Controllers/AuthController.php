@@ -58,12 +58,21 @@ class AuthController extends Controller
 
             ]);
 
+           
+            
+
             $user = new User;
             $user->email = $validatedData['email'];
             $user->password = Hash::make($validatedData['password']);
             $user->role = $validatedData['role']; // Set the role
             $user->user_name = $validatedData['user_name'];
             $user->save();
+
+            if ($request->hasFile('profile_picture')) {
+                $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+                $user->profile_picture = $path;
+                $user->save();
+            }
 
             switch ($validatedData['role']) {
                 case 'doctor':
@@ -135,7 +144,7 @@ class AuthController extends Controller
                     return response()->json(['error' => 'Unrecognized role or action'], 400);
             }
 
-            return response()->json(['message' => 'User registered successfully!']);
+            return response()->json(['message' => 'User registered successfully!' ,'profile_picture' => $user->profile_picture]);
         } catch (\Exception $error) {
             return response()->json(['message' => $error->getMessage()]);
         }
