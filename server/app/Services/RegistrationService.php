@@ -65,7 +65,7 @@ class RegistrationService
                     'last_name' => 'required|string',
                     'address' => 'required|string',
                     'date_of_birth' => 'required|date',
-                    'phone_number' => 'required|integer|unique',
+                    'phone_number' => 'required|integer|unique:patients',
                     'gender' => 'required|string'
                 ])->validate();
 
