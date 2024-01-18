@@ -11,14 +11,11 @@ function NavBar() {
 
 	const toggleLogin = () => {
 		setShowLogin(!showLogin);
-		const mainContent = document.getElementById("main-content");
-		if (mainContent) {
-			mainContent.classList.toggle("blurred");
-		}
 	};
 
-	const navbarHeight = 75;
+	
 	const scrollTo = (id) => {
+		const navbarHeight = 75;
 		const element = document.getElementById(id);
 		if (element) {
 			const elementPosition = element.getBoundingClientRect().top;
@@ -31,12 +28,6 @@ function NavBar() {
 			});
 		}
 	};
-
-	useEffect(() => {
-		return () => {
-			document.body.classList.remove("blurred");
-		};
-	}, []);
 
 	return (
 		<>
@@ -84,7 +75,9 @@ function NavBar() {
 			{showLogin &&
 				!authenticated &&
 				ReactDOM.createPortal(
-					<Login onClose={toggleLogin} />,
+					<div className="modal-overlay">
+						<Login onClose={toggleLogin} />
+					</div>,
 					document.getElementById("modal-root")
 				)}
 		</>

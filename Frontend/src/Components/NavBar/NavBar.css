@@ -42,9 +42,19 @@
 	font-size: 15px;
 }
 
-.blurred {
-	filter: blur(50px);
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(112, 112, 112, 0.813); /* Semi-transparent black */
+    z-index: 100;
+    padding-top: 4rem;
+
 }
+
+
 
 @media (min-width: 601px) and (max-width: 1024px) {
     .navbar-pic {
