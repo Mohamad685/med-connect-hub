@@ -41,17 +41,17 @@ function PatientRegister() {
 		}catch (error) {
 			console.error(error);
 		}
-		// setUsername("");
-		// setpassword("");
-		// setFirstName("");
-		// setLastname("");
-		// setEmail("");
-		// setPhoneNumber("");
-		// setGender("");
-		// setBirthdate("");
-		// setAddress("");
-		// setMedicalHistory("");
-		// setMedicationHistory("");
+		setUsername("");
+		setpassword("");
+		setFirstName("");
+		setLastname("");
+		setEmail("");
+		setPhoneNumber("");
+		setGender("");
+		setBirthdate("");
+		setAddress("");
+		setMedicalHistory("");
+		setMedicationHistory("");
 
 	};
 
