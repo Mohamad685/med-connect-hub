@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         try {
             $user = $this->registrationService->registerUser($request->all());
-            return response()->json(['message' => 'User registered successfully!', 'profile_picture' => $user->profile_picture], 200);
+            return response()->json(['message' => 'User registered successfully!'], 200);
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->validator->errors()], 422);
         } catch (\Exception $e) {
