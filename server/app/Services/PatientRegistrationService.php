@@ -75,18 +75,18 @@ class PatientRegistrationService
     }
     private function createMedicalHistory($data, $patientId)
     {
-$userId=Auth::id();
-$doctor=Doctor::where('user_id',$userId)->first();
-if (!$doctor){
-    throw new \Exception("Doctor is not found or not authenticated");
-}
-$medicalHistory = new MedicalHistory([
-'patient_id'=>$patientId,
-'description'=>$data['description'],
-'doctor_id'=>$doctor->id,
-]);
-$medicalHistory->save();
-}
+        $userId = Auth::id();
+        $doctor = Doctor::where('user_id', $userId)->first();
+        if (!$doctor) {
+            throw new \Exception("Doctor is not found or not authenticated");
+        }
+        $medicalHistory = new MedicalHistory([
+            'patient_id' => $patientId,
+            'description' => $data['description'],
+            'doctor_id' => $doctor->id,
+        ]);
+        $medicalHistory->save();
+    }
 
 
 }

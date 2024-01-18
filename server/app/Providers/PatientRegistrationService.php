@@ -3,22 +3,19 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\PatientRegistrationService;
 
-class PatientRegistrationService extends ServiceProvider
+class PatientRegistrationServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->singleton(PatientRegistrationService::class, function ($app) {
+            return new PatientRegistrationService();
+        });
     }
 
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
+    public function boot()
     {
-        //
+        // Bootstrapping code here, if necessary
     }
 }
