@@ -169,7 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        App\Providers\PatientRegistrationService::class,
+        App\Providers\PatientRegistrationServiceProvider::class,
         App\Providers\RegistrationServiceProvider::class,
 
 
