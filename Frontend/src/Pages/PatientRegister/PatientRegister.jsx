@@ -10,10 +10,17 @@ import axios from "axios";
 function PatientRegister() {
 	const[username,setUsername]=useState("");
 	const[password,setpassword]=useState("");
-	const[FirstName,setFirstName]=useState("");
-	const[username,setUsername]=useState("");
-	const[username,setUsername]=useState("");
-	const[username,setUsername]=useState("");
+	const[firstName,setFirstName]=useState("");
+	const[lastname,setLastname]=useState("");
+	const[email,setEmail]=useState("");
+	const[phoneNumber,setPhoneNumber]=useState("");
+	const[gender,setGender]=useState("");
+	const[birthDate,setBirthdate]=useState("");
+	const[address,setAddress]=useState("");
+	const[medicalHistory,setMedicalHistory]=useState("");
+	const[medicationHistory,setMedicationHistory]=useState("");
+
+
 
 	return (
 		<div className="patient-reg-page">
