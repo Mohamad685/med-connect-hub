@@ -5,7 +5,7 @@ import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import InputForm from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import TextArea from "../../Components/TextArea/TextArea";
-import axios from "axios";
+import fetchHelper from "../../Components/Functions/FetchFunction";
 
 function PatientRegister() {
 	const [username, setUsername] = useState("");
@@ -35,6 +35,24 @@ function PatientRegister() {
 			medicalHistory,
 			medicationHistory,
 		};
+		try{
+			const response= await fetchHelper.post('register-patient',formData)
+			console.log(response.data);
+		}catch (error) {
+			console.error(error);
+		}
+		// setUsername("");
+		// setpassword("");
+		// setFirstName("");
+		// setLastname("");
+		// setEmail("");
+		// setPhoneNumber("");
+		// setGender("");
+		// setBirthdate("");
+		// setAddress("");
+		// setMedicalHistory("");
+		// setMedicationHistory("");
+
 	};
 
 	return (
@@ -60,6 +78,7 @@ function PatientRegister() {
 							/>
 							<InputForm
 								type="password"
+								onChange={(e)=>setpassword(e.target.value)}
 								value={password}
 								width={"23rem"}
 								length={"2rem"}
@@ -68,6 +87,7 @@ function PatientRegister() {
 							<InputForm
 								type="text"
 								value={firstName}
+								onChange={(e)=>setFirstName(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"First Name"}
@@ -75,6 +95,7 @@ function PatientRegister() {
 							<InputForm
 								type="text"
 								value={lastname}
+								onChange={(e)=>setLastname(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Last Name"}
@@ -82,6 +103,7 @@ function PatientRegister() {
 							<InputForm
 								type="email"
 								value={email}
+								onChange={(e)=>setEmail(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Email"}
@@ -89,6 +111,7 @@ function PatientRegister() {
 							<InputForm
 								type="text"
 								value={phoneNumber}
+								onChange={(e)=>setPhoneNumber(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Phone Number"}
@@ -96,6 +119,7 @@ function PatientRegister() {
 							<InputForm
 								type="text"
 								value={gender}
+								onChange={(e)=>setGender(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Gender"}
@@ -103,6 +127,7 @@ function PatientRegister() {
 							<InputForm
 								type="date"
 								value={birthDate}
+								onChange={(e)=>setBirthdate(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Date Of Birth"}
@@ -111,6 +136,7 @@ function PatientRegister() {
 						<div className="address-input-div">
 							<TextArea
 								value={address}
+								onChange={(e)=>setAddress(e.target.value)}
 								width={"48rem"}
 								length={"8rem"}
 								textAlign={"text-top"}
@@ -118,12 +144,14 @@ function PatientRegister() {
 							/>
 							<TextArea
 								value={medicalHistory}
+								onChange={(e)=>setMedicalHistory(e.target.value)}
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
 							<TextArea
 								value={medicationHistory}
+								onChange={(e)=>setMedicationHistory(e.target.value)}
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medication History"}
