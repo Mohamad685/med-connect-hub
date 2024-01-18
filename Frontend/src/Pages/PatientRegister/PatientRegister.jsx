@@ -162,6 +162,7 @@ function PatientRegister() {
 								color={"white"}
 								fontSize="1.15rem"
 								text={"Submit"}
+								onClick={handleSubmit}
 							/>
 						</div>
 					</div>
