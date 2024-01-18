@@ -8,7 +8,7 @@ function HomePage() {
 			<div className="home-page" id="home">
 				<div className="hero-section">
 					<img
-						src="../../../public/pics/hero.png"
+						src="/pics/hero.png"
 						alt="hero"
 						className="hero-pic"
 					/>
@@ -36,15 +36,15 @@ function HomePage() {
 				</span>
 				<div className="services-pics">
 					<img
-						src="../../../public/pics/patient.png"
+						src="/pics/patient.png"
 						alt="patient"
 					/>
 					<img
-						src="../../../public/pics/doctor.png"
+						src="/pics/doctor.png"
 						alt="doctor"
 					/>
 					<img
-						src="../../../public/pics/insurance.png"
+						src="/pics/insurance.png"
 						alt="insurance"
 					/>
 					<p>
@@ -71,7 +71,7 @@ function HomePage() {
 				<div className="all-options">
 					<div className="option">
 						<img
-							src="../../../public/pics/calendar.svg"
+							src="/pics/calendar.svg"
 							alt="calender-icon"
 						/>
 						<span>Schedule with Ease</span>
@@ -82,7 +82,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../../public/pics/alert.svg"
+							src="/pics/alert.svg"
 							alt="alert-icon"
 						/>
 						<span>Stay Informed</span>
@@ -93,7 +93,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../../public/pics/privacy.svg"
+							src="/pics/privacy.svg"
 							alt="privacy-icon"
 						/>
 						<span>Your Privacy Matters</span>
@@ -106,7 +106,7 @@ function HomePage() {
 				<div className="all-options">
 					<div className="option">
 						<img
-							src="../../../public/pics/daily.svg"
+							src="/pics/daily.svg"
 							alt="daily-icon"
 						/>
 						<span>24/7 Accessibility</span>
@@ -117,7 +117,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../../public/pics/network.svg"
+							src="/pics/network.svg"
 							alt="network-icon"
 						/>
 						<span>Seamless Coordination</span>
@@ -128,7 +128,7 @@ function HomePage() {
 					</div>
 					<div className="option">
 						<img
-							src="../../../public/pics/users.svg"
+							src="/pics/users.svg"
 							alt="users-icon"
 						/>
 						<span>Tailored for You</span>
