@@ -6,19 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class RegistrationService extends ServiceProvider
 {
-    /**
-     * Register services.
-     */
-    public function register(): void
+  
+    public function registerUser($data): void
     {
-        //
+        
     }
 
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
-    {
-        //
-    }
+ 
 }
