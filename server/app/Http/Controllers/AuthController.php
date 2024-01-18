@@ -54,6 +54,7 @@ class AuthController extends Controller
                 'password' => 'required|min:6',
                 'role' => 'required|in:doctor,patient,insurance',
                 'user_name' => 'required|string|unique:users',
+                'profile_pic'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
             ]);
 

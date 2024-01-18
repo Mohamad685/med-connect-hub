@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    protected $fillable = ["user_name", "email", "password"];
+    protected $fillable = ["user_name", "email", "password","profile_pic"];
 
     /**
      * The attributes that should be hidden for serialization.
