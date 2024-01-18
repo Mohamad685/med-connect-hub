@@ -1,4 +1,4 @@
-import {React,useState} from "react";
+import { React, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
 import "./PatientRegister.css";
 import ProfilePic from "../../Components/ProfilePic/ProfilePic";
@@ -8,19 +8,34 @@ import TextArea from "../../Components/TextArea/TextArea";
 import axios from "axios";
 
 function PatientRegister() {
-	const[username,setUsername]=useState("");
-	const[password,setpassword]=useState("");
-	const[firstName,setFirstName]=useState("");
-	const[lastname,setLastname]=useState("");
-	const[email,setEmail]=useState("");
-	const[phoneNumber,setPhoneNumber]=useState("");
-	const[gender,setGender]=useState("");
-	const[birthDate,setBirthdate]=useState("");
-	const[address,setAddress]=useState("");
-	const[medicalHistory,setMedicalHistory]=useState("");
-	const[medicationHistory,setMedicationHistory]=useState("");
+	const [username, setUsername] = useState("");
+	const [password, setpassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastname, setLastname] = useState("");
+	const [email, setEmail] = useState("");
+	const [phoneNumber, setPhoneNumber] = useState("");
+	const [gender, setGender] = useState("");
+	const [birthDate, setBirthdate] = useState("");
+	const [address, setAddress] = useState("");
+	const [medicalHistory, setMedicalHistory] = useState("");
+	const [medicationHistory, setMedicationHistory] = useState("");
 
-
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const formData = {
+			username,
+			password,
+			firstName,
+			lastname,
+			email,
+			phoneNumber,
+			gender,
+			birthDate,
+			address,
+			medicalHistory,
+			medicationHistory,
+		};
+	};
 
 	return (
 		<div className="patient-reg-page">
@@ -32,12 +47,13 @@ function PatientRegister() {
 			<form className="patient-reg-form">
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
-					<ProfilePic
-					/>
+					<ProfilePic />
 					<div className="patient-form-input">
 						<div className="patient-reg-input">
 							<InputForm
 								type="text"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Username"}
@@ -106,8 +122,9 @@ function PatientRegister() {
 								width={"14rem"}
 								height={"3rem"}
 								color={"white"}
-								fontSize='1.15rem'
-								text={'Submit'}/>
+								fontSize="1.15rem"
+								text={"Submit"}
+							/>
 						</div>
 					</div>
 				</div>

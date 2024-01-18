@@ -1,6 +1,6 @@
 import React from "react";
 import './TextArea.css';
-function TextArea({  width, length, placeholder}) {
+function TextArea({  width, length, placeholder, onChange}) {
 	const textStyle = {
 		width: width,
         height: length,
@@ -12,6 +12,7 @@ function TextArea({  width, length, placeholder}) {
 				style={textStyle}
 				placeholder={placeholder}
 				className="text-box"
+				onChange={onChange}
 			/>
 		</>
 	);
