@@ -60,49 +60,49 @@ function PatientRegister() {
 							/>
 							<InputForm
 								type="password"
-								value={username}
+								value={password}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Password"}
 							/>
 							<InputForm
 								type="text"
-								value={username}
+								value={firstName}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"First Name"}
 							/>
 							<InputForm
 								type="text"
-								value={username}
+								value={lastname}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Last Name"}
 							/>
 							<InputForm
 								type="email"
-								value={username}
+								value={email}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Email"}
 							/>
 							<InputForm
 								type="text"
-								value={username}
+								value={phoneNumber}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Phone Number"}
 							/>
 							<InputForm
 								type="text"
-								value={username}
+								value={gender}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Gender"}
 							/>
 							<InputForm
 								type="date"
-								value={username}
+								value={birthDate}
 								width={"23rem"}
 								length={"2rem"}
 								placeholder={"Date Of Birth"}
@@ -110,20 +110,20 @@ function PatientRegister() {
 						</div>
 						<div className="address-input-div">
 							<TextArea
-								value={username}
+								value={address}
 								width={"48rem"}
 								length={"8rem"}
 								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
 							<TextArea
-								value={username}
+								value={medicalHistory}
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
 							<TextArea
-								value={username}
+								value={medicationHistory}
 								width={"48rem"}
 								length={"18rem"}
 								placeholder={"Medication History"}
