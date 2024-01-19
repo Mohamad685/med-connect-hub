@@ -51,31 +51,34 @@ function Login({ onClose }) {
 					email,
 					password,
 				});
+				console.log(response);
 
-				localStorage.setItem("token", response.token);
+				const token = response.authorisation && response.authorisation.token;
+				if (token) {
+					localStorage.setItem("token", token);
 
-				const userRole = response.user.role;
-				console.log("hello")
-				if (userRole === "admin") {
-					navigate("/admin");
-				} else if (userRole === "doctor") {
-					navigate("/patient-registration");
-				} else if (userRole === "patient") {
-					navigate("/patient-file");
-				} else if (userRole === "insurance") {
-					navigate("/insurance-page");
-				}else {
-					console.log("Unknown user role:", userRole);
+					const userRole = response.user.role;
+					if (userRole === "admin") {
+						navigate("/admin");
+					} else if (userRole === "doctor") {
+						navigate("/patient-registration");
+					} else if (userRole === "patient") {
+						navigate("/patient-file");
+					} else if (userRole === "insurance") {
+						navigate("/insurance-page");
+					} else {
+						console.log("Unknown user role:", userRole);
+					}
+				} else {
+					console.log("Token not found in the response");
 				}
-
 			} catch (error) {
 				console.error(error);
 			}
-
-			setEmail("");
-			setPassword("");
-			handleClose();
 		}
+		setEmail("");
+		setPassword("");
+		handleClose();
 	};
 
 	return (
