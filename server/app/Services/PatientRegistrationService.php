@@ -9,6 +9,7 @@ use App\Models\MedicationHistory;
 use App\Models\MedicalHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class PatientRegistrationService
@@ -18,7 +19,6 @@ class PatientRegistrationService
         $validatedData = Validator::make($data, [
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required|in:doctor,patient,insurance',
             'user_name' => 'required|string|unique:users',
             'profile_pic' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ])->validate();
@@ -85,6 +85,8 @@ class PatientRegistrationService
             'description' => $data['description'],
             'doctor_id' => $doctor->id,
         ]);
-        $medicalHistory->save();
+        $medicalHistory->save();        
+
     }
+
 }

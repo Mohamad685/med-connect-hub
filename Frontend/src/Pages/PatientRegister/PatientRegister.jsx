@@ -36,7 +36,7 @@ function PatientRegister() {
 			medicationHistory,
 		};
 		try{
-			const response= await fetchHelper.post('register-patient',formData)
+			const response= await fetchHelper.post('/register-patient',formData)
 			console.log(response.data);
 		}catch (error) {
 			console.error(error);

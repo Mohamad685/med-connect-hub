@@ -2,26 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PatientRegistrationService;
 use Illuminate\Http\Request;
-use App\Models\Patient;
-use App\Models\User; 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Services\PatientRegistrationService;
+use Illuminate\Support\Facades\Log;
 
 class PatientRegistrationController extends Controller
 {
-  
     protected $patientRegistrationService;
 
-public function __construct(PatientRegistrationService $service)
-{
-    $this->patientRegistrationService = $service;
-}
+    public function __construct(PatientRegistrationService $patientRegistrationService)
+    {
+        $this->patientRegistrationService = $patientRegistrationService;
+    }
 
-public function registerPatient(Request $request)
-{
-    // Use the service to handle registration
-    return $this->patientRegistrationService->handleRegistration($request->all());
-}
+    public function registerPatient(Request $request)
+    {
+        try {
+            // Call the service to handle the registration
+            $response = $this->patientRegistrationService->handleRegistration($request->all());
+
+            return $response;
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Registration Error: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'Registration failed.'], 500);
+        }
+    }
 }
