@@ -8,7 +8,7 @@ use App\Models\Diagnosis;
 use App\Models\Prescription;
 use Illuminate\Support\Facades\Auth;
 
-class HealthcareService
+class DiagnosisService
 {
     public function createSymptom($patientId, $symptomDescription)
     {
