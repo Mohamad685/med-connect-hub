@@ -6,6 +6,7 @@ import InputForm from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import TextArea from "../../Components/TextArea/TextArea";
 import fetchHelper from "../../Components/Functions/FetchFunction";
+import { useNavigate } from "react-router-dom";
 
 function PatientRegister() {
 	const [user_name, setUsername] = useState("");
@@ -19,12 +20,13 @@ function PatientRegister() {
 	const [address, setAddress] = useState("");
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
-	const [emptyError, setEmptyError] = useState("");
+	// const [emptyError, setEmptyError] = useState("");
 	const [userNameError, setUserNameError] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [phoneNumberError, setPhoneNumberError] = useState("");
 	const [formMessage, setFormMessage] = useState("");
 
+	const navigate = useNavigate();
 
 	const clearFields = () => {
 		setUsername("");
@@ -87,6 +89,7 @@ function PatientRegister() {
             console.log("Registration successful:", response); 
 			clearFields();
             setFormMessage(response.message);
+			navigate('/diagnosis');
         } else {
             console.log("Non-200 response:", response);
             setFormMessage("An error occurred during registration.");
