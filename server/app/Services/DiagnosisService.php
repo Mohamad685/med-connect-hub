@@ -67,10 +67,23 @@ class HealthcareService
         return $diagnosis;
     }
 
-    public function createPrescription($validatedData)
+    public function createPrescription($patientId,$medication_description)
     {
-        // Logic from PrescriptionController's createPrescription method
+        $userId = Auth::id();
+        $doctor = Doctor::where('user_id', $userId)->first();
+
+        if (!$doctor) {
+            throw new \Exception('Doctor not found or not authenticated');
+        }
+
+        $medication = new Prescription([
+            'patient_id' => $patientId,
+            'medication_description' => $medication_description,
+            'doctor_id' => $doctor->id,
+        ]);
+        $medication->save();
+
+        return $medication;
     }
 
-    // Common methods used by all functionalities, like handling doctor lookup, can be added here as well.
 }
