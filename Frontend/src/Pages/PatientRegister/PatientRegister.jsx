@@ -57,9 +57,11 @@ function PatientRegister() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+	
 		if (!validateInput()) {
 			return;
 		}
+	
 		const formData = {
 			user_name,
 			password,
@@ -73,24 +75,29 @@ function PatientRegister() {
 			description,
 			medication_description,
 		};
+	
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
-
+	
 			if (response.status === 200) {
 				console.log("Registration successful", response.data);
-				clearFields(); // Clear fields on successful submission
+				clearFields();
+				setEmptyError(""); 
 			} else if (response.status === 422) {
-				// ... handle validation errors ...
+				// Handle validation errors from the server
+				const errors = response.data.errors;
+				let errorMessages = [];
+				for (const key in errors) {
+					errorMessages.push(`${key}: ${errors[key].join(", ")}`);
+				}
+				setEmptyError(errorMessages.join(". "));
 			} else {
-				setEmptyError(
-					response.data || "An error occurred during registration."
-				);
+				// Handle other types of errors
+				setEmptyError(response.data.message || "An error occurred during registration.");
 			}
 		} catch (error) {
 			console.error("Error during registration:", error);
-			setEmptyError(
-				error.response?.data || "An error occurred during registration."
-			);
+			setEmptyError(error.response?.data?.message || "An error occurred during registration.");
 		}
 	};
 	return (
@@ -105,11 +112,11 @@ function PatientRegister() {
 				<div className="patient-reg-section1">
 					<ProfilePic />
 					<div className="patient-form-input">
-						{emptyError && (
-							<div className="error">
-								{Array.isArray(emptyError) ? emptyError.join(". ") : emptyError}
-							</div>
-						)}
+					{emptyError && (
+    <p className="error">
+        {emptyError}
+    </p>
+)}
 						<div className="patient-reg-input">
 							<InputForm
 								type="text"
