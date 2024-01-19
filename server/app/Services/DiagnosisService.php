@@ -8,8 +8,10 @@ use App\Models\Diagnosis;
 use App\Models\Prescription;
 use Illuminate\Support\Facades\Auth;
 
-class HealthcareService {
-    public function createSymptom($patientId, $symptomDescription) {
+class HealthcareService
+{
+    public function createSymptom($patientId, $symptomDescription)
+    {
         $userId = Auth::id();
         $doctor = Doctor::where('user_id', $userId)->first();
 
@@ -25,17 +27,48 @@ class HealthcareService {
         $symptom->save();
 
         return $symptom;
-    }    
-
-    public function createLabResult($validatedData) {
-        // Logic from LabResultsController's createResult method
     }
 
-    public function createDiagnosis($validatedData) {
-        // Logic from DiagnosisController's createDiagnosis method
+    public function createLabResult($patientId, $test_type)
+    {
+        $userId = Auth::id();
+        $doctor = Doctor::where('user_id', $userId)->first();
+
+        if (!$doctor) {
+            throw new \Exception('Doctor not found or not authenticated');
+        }
+
+        $results = new LabResult([
+            'patient_id' => $patientId,
+            'test_type' => $test_type,
+            'doctor_id' => $doctor->id,
+        ]);
+        $results->save();
+
+        return $results;
     }
 
-    public function createPrescription($validatedData) {
+    public function createDiagnosis($patientId,)
+    {
+        $userId = Auth::id();
+        $doctor = Doctor::where('user_id', $userId)->first();
+
+        if (!$doctor) {
+            throw new \Exception('Doctor not found or not authenticated');
+        }
+
+        $results = new Diagnosis([
+            'patient_id' => $patientId,
+            'test_type' => $test_type,
+            'doctor_id' => $doctor->id,
+        ]);
+        $results->save();
+
+        return $results;
+    }
+
+    public function createPrescription($validatedData)
+    {
         // Logic from PrescriptionController's createPrescription method
     }
 
