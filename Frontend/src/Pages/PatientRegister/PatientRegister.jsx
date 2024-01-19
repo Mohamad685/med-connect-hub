@@ -20,6 +20,92 @@ function PatientRegister() {
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
 
+	const [userNameError, setUserNameError] = useState("");
+const [passwordError, setPasswordError] = useState("");
+const [firstNameError, setFirstNameError] = useState("");
+const [lastNameError, setLastNameError] = useState("");
+const [emailError, setEmailError] = useState("");
+const [phoneNumberError, setPhoneNumberError] = useState("");
+const [genderError, setGenderError] = useState("");
+const [birthDateError, setBirthdateError] = useState("");
+const [addressError, setAddressError] = useState("");
+const [medicalHistoryError, setMedicalHistoryError] = useState("");
+const [medicationHistoryError, setMedicationHistoryError] = useState("");
+
+const validateInput = () =>{
+	let isValid=true;
+
+	if(!user_name){
+		setUserNameError('Username is required')
+		isValid=false;
+	}else{
+		setUserNameError("");
+	}
+
+	if(!password){
+		setPasswordError('Password is required')
+		isValid=false;
+	}else{
+		setPasswordError("");
+	}
+	
+	if(!email){
+		setEmailError('Email is required')
+		isValid=false;
+	}else{
+		setEmailError("");
+	}
+	if(!first_name){
+		setFirstNameError('Firstname is required')
+		isValid=false;
+	}else{
+		setFirstNameError("");
+	}
+	if(!last_name){
+		setLastNameError('Lastname is required')
+		isValid=false;
+	}else{
+		setLastNameError("");
+	}
+	if(!phone_number){
+		setPhoneNumberError('Phonenumber is required')
+		isValid=false;
+	}else{
+		setPhoneNumberError("");
+	}
+	if(!gender){
+		setGenderError('Gender is required')
+		isValid=false;
+	}else{
+		setGenderError("");
+	}
+	if(!date_of_birth){
+		setBirthdateError('Birthdate is required')
+		isValid=false;
+	}else{
+		setBirthdateError("");
+	}
+	if(!address){
+		setAddressError('Address is required')
+		isValid=false;
+	}else{
+		setAddressError("");
+	}
+	if(!description){
+		setMedicalHistoryError('Medical History is required')
+		isValid=false;
+	}else{
+		setMedicalHistoryError("");
+	}
+	if(!medication_description){
+		setMedicationHistoryError('Medication History is required')
+		isValid=false;
+	}else{
+		setMedicationHistoryError("");
+	}
+
+}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = {
@@ -38,20 +124,26 @@ function PatientRegister() {
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
 			console.log(response);
+			clearFields();
+
+			
 		} catch (error) {
 			console.error(error);
 		}
-		setUsername("");
-		setpassword("");
-		setFirstName("");
-		setLastname("");
-		setEmail("");
-		setPhoneNumber("");
-		setGender("");
-		setBirthdate("");
-		setAddress("");
-		setMedicalHistory("");
-		setMedicationHistory("");
+		
+		// const clearFields= () =>{
+		// 	setUsername("");
+		// 	setpassword("");
+		// 	setFirstName("");
+		// 	setLastname("");
+		// 	setEmail("");
+		// 	setPhoneNumber("");
+		// 	setGender("");
+		// 	setBirthdate("");
+		// 	setAddress("");
+		// 	setMedicalHistory("");
+		// 	setMedicationHistory("");
+		// }
 	};
 
 	return (
