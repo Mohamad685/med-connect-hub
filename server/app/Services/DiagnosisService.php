@@ -48,7 +48,7 @@ class HealthcareService
         return $results;
     }
 
-    public function createDiagnosis($patientId,)
+    public function createDiagnosis($patientId,$diagnosis_description)
     {
         $userId = Auth::id();
         $doctor = Doctor::where('user_id', $userId)->first();
@@ -57,14 +57,14 @@ class HealthcareService
             throw new \Exception('Doctor not found or not authenticated');
         }
 
-        $results = new Diagnosis([
+        $diagnosis = new Diagnosis([
             'patient_id' => $patientId,
-            'test_type' => $test_type,
+            'diagnosis_description' => $diagnosis_description,
             'doctor_id' => $doctor->id,
         ]);
-        $results->save();
+        $diagnosis->save();
 
-        return $results;
+        return $diagnosis;
     }
 
     public function createPrescription($validatedData)
