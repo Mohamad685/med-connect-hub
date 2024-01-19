@@ -9,9 +9,9 @@ function Diagnosis() {
 
 	return (
 		<div className="patient-page">
-			<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
+			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
-			<div className="patient-data-form">
+			<div className="diagnosis-data-form">
 				<p className="patient-name">Mohammad Fakih</p>
 				<div className="patient-preview-section1">
 					<div className="patient-preview-boxes">
@@ -47,7 +47,13 @@ function Diagnosis() {
 								length={"18rem"}
 								placeholder={"Prescriptions:"}
 							/>
-							<Button/>
+							<Button
+								width={"14rem"}
+								height={"3rem"}
+								color={"white"}
+								fontSize="1.15rem"
+								text={"Submit"}
+							/>
 					</div>
 				</div>
 			</div>
