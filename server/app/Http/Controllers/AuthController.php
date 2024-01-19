@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Services\RegistrationService;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthController extends Controller
 {
@@ -84,9 +85,9 @@ class AuthController extends Controller
             $doctor->save();
 
             return response()->json(['message' => 'Doctor updated successfully!']);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Doctor not found'], 404);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
@@ -104,7 +105,7 @@ class AuthController extends Controller
             $user->delete();
 
             return response()->json(['message' => 'Doctor deleted successfully!']);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Doctor not found'], 404);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
@@ -146,9 +147,9 @@ class AuthController extends Controller
             $patient->save();
 
             return response()->json(['message' => 'patient updated successfully!']);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'patient not found'], 404);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
@@ -166,7 +167,7 @@ class AuthController extends Controller
             $user->delete();
 
             return response()->json(['message' => 'Patient deleted successfully!']);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Patient not found'], 404);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
@@ -213,9 +214,9 @@ class AuthController extends Controller
             $insurance->save();
 
             return response()->json(['message' => 'insurance updated successfully!']);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'insurance not found'], 404);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
@@ -233,7 +234,7 @@ class AuthController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'Insurance company deleted successfully!']);
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    } catch (ModelNotFoundException $e) {
         return response()->json(['message' => 'Insurance company not found'], 404);
     } catch (\Exception $e) {
         return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
