@@ -21,90 +21,89 @@ function PatientRegister() {
 	const [medication_description, setMedicationHistory] = useState("");
 
 	const [userNameError, setUserNameError] = useState("");
-const [passwordError, setPasswordError] = useState("");
-const [firstNameError, setFirstNameError] = useState("");
-const [lastNameError, setLastNameError] = useState("");
-const [emailError, setEmailError] = useState("");
-const [phoneNumberError, setPhoneNumberError] = useState("");
-const [genderError, setGenderError] = useState("");
-const [birthDateError, setBirthdateError] = useState("");
-const [addressError, setAddressError] = useState("");
-const [medicalHistoryError, setMedicalHistoryError] = useState("");
-const [medicationHistoryError, setMedicationHistoryError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const [firstNameError, setFirstNameError] = useState("");
+	const [lastNameError, setLastNameError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [phoneNumberError, setPhoneNumberError] = useState("");
+	const [genderError, setGenderError] = useState("");
+	const [birthDateError, setBirthdateError] = useState("");
+	const [addressError, setAddressError] = useState("");
+	const [medicalHistoryError, setMedicalHistoryError] = useState("");
+	const [medicationHistoryError, setMedicationHistoryError] = useState("");
 
-const validateInput = () =>{
-	let isValid=true;
+	const validateInput = () => {
+		let isValid = true;
 
-	if(!user_name){
-		setUserNameError('Username is required')
-		isValid=false;
-	}else{
-		setUserNameError("");
-	}
+		if (!user_name) {
+			setUserNameError("Username is required");
+			isValid = false;
+		} else {
+			setUserNameError("");
+		}
 
-	if(!password){
-		setPasswordError('Password is required')
-		isValid=false;
-	}else{
-		setPasswordError("");
-	}
-	
-	if(!email){
-		setEmailError('Email is required')
-		isValid=false;
-	}else{
-		setEmailError("");
-	}
-	if(!first_name){
-		setFirstNameError('Firstname is required')
-		isValid=false;
-	}else{
-		setFirstNameError("");
-	}
-	if(!last_name){
-		setLastNameError('Lastname is required')
-		isValid=false;
-	}else{
-		setLastNameError("");
-	}
-	if(!phone_number){
-		setPhoneNumberError('Phonenumber is required')
-		isValid=false;
-	}else{
-		setPhoneNumberError("");
-	}
-	if(!gender){
-		setGenderError('Gender is required')
-		isValid=false;
-	}else{
-		setGenderError("");
-	}
-	if(!date_of_birth){
-		setBirthdateError('Birthdate is required')
-		isValid=false;
-	}else{
-		setBirthdateError("");
-	}
-	if(!address){
-		setAddressError('Address is required')
-		isValid=false;
-	}else{
-		setAddressError("");
-	}
-	if(!description){
-		setMedicalHistoryError('Medical History is required')
-		isValid=false;
-	}else{
-		setMedicalHistoryError("");
-	}
-	if(!medication_description){
-		setMedicationHistoryError('Medication History is required')
-		isValid=false;
-	}else{
-		setMedicationHistoryError("");
-	}
+		if (!password) {
+			setPasswordError("Password is required");
+			isValid = false;
+		} else {
+			setPasswordError("");
+		}
 
-}
+		if (!email) {
+			setEmailError("Email is required");
+			isValid = false;
+		} else {
+			setEmailError("");
+		}
+		if (!first_name) {
+			setFirstNameError("Firstname is required");
+			isValid = false;
+		} else {
+			setFirstNameError("");
+		}
+		if (!last_name) {
+			setLastNameError("Lastname is required");
+			isValid = false;
+		} else {
+			setLastNameError("");
+		}
+		if (!phone_number) {
+			setPhoneNumberError("Phonenumber is required");
+			isValid = false;
+		} else {
+			setPhoneNumberError("");
+		}
+		if (!gender) {
+			setGenderError("Gender is required");
+			isValid = false;
+		} else {
+			setGenderError("");
+		}
+		if (!date_of_birth) {
+			setBirthdateError("Birthdate is required");
+			isValid = false;
+		} else {
+			setBirthdateError("");
+		}
+		if (!address) {
+			setAddressError("Address is required");
+			isValid = false;
+		} else {
+			setAddressError("");
+		}
+		if (!description) {
+			setMedicalHistoryError("Medical History is required");
+			isValid = false;
+		} else {
+			setMedicalHistoryError("");
+		}
+		if (!medication_description) {
+			setMedicationHistoryError("Medication History is required");
+			isValid = false;
+		} else {
+			setMedicationHistoryError("");
+		}
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -125,20 +124,18 @@ const validateInput = () =>{
 			const response = await fetchHelper.post("/register-patient", formData);
 			console.log(response);
 			clearFields();
-
-			
 		} catch (error) {
 			console.error(error);
 			// Handle unique field error messages from the backend
-            if (error.response && error.response.data) {
-                const errors = error.response.data.errors;
-                setUserNameError(errors.user_name ? errors.user_name[0] : "");
-                setEmailError(errors.email ? errors.email[0] : "");
-                setPhoneNumberError(errors.phone_number ? errors.phone_number[0] : "");
-            }
+			if (error.response && error.response.data) {
+				const errors = error.response.data.errors;
+				setUserNameError(errors.user_name ? errors.user_name[0] : "");
+				setEmailError(errors.email ? errors.email[0] : "");
+				setPhoneNumberError(errors.phone_number ? errors.phone_number[0] : "");
+			}
 		}
-		
-		const clearFields= () =>{
+
+		const clearFields = () => {
 			setUsername("");
 			setpassword("");
 			setFirstName("");
@@ -150,7 +147,7 @@ const validateInput = () =>{
 			setAddress("");
 			setMedicalHistory("");
 			setMedicationHistory("");
-		}
+		};
 	};
 
 	return (
@@ -174,6 +171,7 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Username"}
 							/>
+							{userNameError && <div className="error">{userNameError}</div>}
 							<InputForm
 								type="password"
 								onChange={(e) => setpassword(e.target.value)}
@@ -182,6 +180,8 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Password"}
 							/>
+							{passwordError && <div className="error">{passwordError}</div>}
+
 							<InputForm
 								type="text"
 								value={first_name}
@@ -190,6 +190,8 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"First Name"}
 							/>
+							{firstNameError && <div className="error">{firstNameError}</div>}
+
 							<InputForm
 								type="text"
 								value={last_name}
@@ -198,6 +200,8 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Last Name"}
 							/>
+							{lastNameError && <div className="error">{lastNameError}</div>}
+
 							<InputForm
 								type="email"
 								value={email}
@@ -206,6 +210,8 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Email"}
 							/>
+							{emailError && <div className="error">{emailError}</div>}
+
 							<InputForm
 								type="number"
 								value={phone_number}
@@ -214,6 +220,10 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Phone Number"}
 							/>
+							{phoneNumberError && (
+								<div className="error">{phoneNumberError}</div>
+							)}
+
 							<InputForm
 								type="text"
 								value={gender}
@@ -222,6 +232,8 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Gender"}
 							/>
+							{genderError && <div className="error">{genderError}</div>}
+
 							<InputForm
 								type="date"
 								value={date_of_birth}
@@ -230,6 +242,7 @@ const validateInput = () =>{
 								length={"2rem"}
 								placeholder={"Date Of Birth"}
 							/>
+							{birthDateError && <div className="error">{birthDateError}</div>}
 						</div>
 						<div className="address-input-div">
 							<TextArea
@@ -240,6 +253,8 @@ const validateInput = () =>{
 								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
+							{addressError && <div className="error">{addressError}</div>}
+
 							<TextArea
 								value={description}
 								onChange={(e) => setMedicalHistory(e.target.value)}
@@ -247,6 +262,10 @@ const validateInput = () =>{
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
+							{medicalHistoryError && (
+								<div className="error">{medicalHistoryError}</div>
+							)}
+
 							<TextArea
 								value={medication_description}
 								onChange={(e) => setMedicationHistory(e.target.value)}
@@ -254,6 +273,10 @@ const validateInput = () =>{
 								length={"18rem"}
 								placeholder={"Medication History"}
 							/>
+							{medicationHistoryError && (
+								<div className="error">{medicationHistoryError}</div>
+							)}
+
 							<Button
 								width={"14rem"}
 								height={"3rem"}
