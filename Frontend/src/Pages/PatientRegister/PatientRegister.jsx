@@ -129,6 +129,13 @@ const validateInput = () =>{
 			
 		} catch (error) {
 			console.error(error);
+			// Handle unique field error messages from the backend
+            if (error.response && error.response.data) {
+                const errors = error.response.data.errors;
+                setUserNameError(errors.user_name ? errors.user_name[0] : "");
+                setEmailError(errors.email ? errors.email[0] : "");
+                setPhoneNumberError(errors.phone_number ? errors.phone_number[0] : "");
+            }
 		}
 		
 		const clearFields= () =>{
