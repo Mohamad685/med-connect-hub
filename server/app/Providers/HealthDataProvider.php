@@ -7,16 +7,12 @@ use Illuminate\Support\ServiceProvider;
 
 class HealthDataProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     */
-
-        public function register()
-        {
-            $this->app->bind(DiagnosisService::class, function ($app) {
-                return new DiagnosisService();
-            });
-        }    
+    public function register()
+    {
+        $this->app->bind(DiagnosisService::class, function ($app) {
+            return new DiagnosisService();
+        });
+    }
 
     /**
      * Bootstrap services.

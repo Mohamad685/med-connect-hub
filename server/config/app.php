@@ -171,6 +171,8 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         App\Providers\PatientRegistrationServiceProvider::class,
         App\Providers\RegistrationServiceProvider::class,
+        App\Providers\HealthDataProvider::class,
+
 
 
     ])->toArray(),
