@@ -81,14 +81,14 @@ function PatientRegister() {
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
 
-        console.log("Response received:", response); // Diagnostic log
+        console.log("Response received:", response);
 
         if (response.message === 'Patient registered successfully') {
-            console.log("Registration successful:", response); // Diagnostic log
+            console.log("Registration successful:", response); 
 			clearFields();
             setFormMessage(response.message);
         } else {
-            console.log("Non-200 response:", response); // Diagnostic log
+            console.log("Non-200 response:", response);
             setFormMessage("An error occurred during registration.");
         }
         } catch (error) {

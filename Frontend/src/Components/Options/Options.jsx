@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./Options.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function OptionsBox({ margin }) {
 	const location = useLocation();
-	
+
 	const optionStyle = {
 		margin: margin,
 	};
@@ -13,15 +13,15 @@ function OptionsBox({ margin }) {
 			style={optionStyle}
 			className="options-box">
 			{(location.pathname === "/patient-registration" ||
-				location.pathname === "/diagnosis" )&& (
-					<>
-						<a href="">Create Patient Profile</a>
-						<a href="">Patients List</a>
-					</>
-				)}
-			<a href="">Live Chat</a>
-			<a href="">Send Email</a>
-			<a href="">Notifications</a>
+				location.pathname === "/diagnosis") && (
+				<>
+					<Link to='/patient-registration'>Create Patient Profile</Link>
+					<Link to="/patients-list">Patients List</Link>
+				</>
+			)}
+			<Link to="/live-chat">Live Chat</Link>
+			<Link to="/send-email">Send Email</Link>
+			<Link to="/notifications">Notifications</Link>
 		</div>
 	);
 }
