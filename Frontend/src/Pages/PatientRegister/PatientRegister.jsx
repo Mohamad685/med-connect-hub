@@ -20,6 +20,11 @@ function PatientRegister() {
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
 	const [emptyError, setEmptyError] = useState("");
+	const [userNameError, setUserNameError] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [phoneNumberError, setPhoneNumberError] = useState("");
+	const [formMessage, setFormMessage] = useState("");
+
 
 	const clearFields = () => {
 		setUsername("");
@@ -35,33 +40,30 @@ function PatientRegister() {
 		setMedicationHistory("");
 	};
 
-	const validateInput = () => {
-		if (
-			!user_name ||
-			!password ||
-			!first_name ||
-			!last_name ||
-			!email ||
-			!phone_number ||
-			!gender ||
-			!date_of_birth ||
-			!medication_description ||
-			!description
-		) {
-			setEmptyError("All fields are required.");
-			return false;
-		}
-		setEmptyError("");
-		return true;
-	};
+	// const validateInput = () => {
+	// 	if (
+	// 		!user_name ||
+	// 		!password ||
+	// 		!first_name ||
+	// 		!last_name ||
+	// 		!email ||
+	// 		!phone_number ||
+	// 		!gender ||
+	// 		!date_of_birth ||
+	// 		!medication_description ||
+	// 		!description
+	// 	) {
+	// 		setEmptyError("All fields are required.");
+	// 		return false;
+	// 	}
+	// 	setEmptyError("");
+	// 	return true;
+	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-	
-		if (!validateInput()) {
-			return;
-		}
-	
+
+
 		const formData = {
 			user_name,
 			password,
@@ -75,31 +77,37 @@ function PatientRegister() {
 			description,
 			medication_description,
 		};
-	
+
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
-	
-			if (response.status === 200) {
-				console.log("Registration successful", response.data);
-				clearFields();
-				setEmptyError(""); 
-			} else if (response.status === 422) {
-				// Handle validation errors from the server
-				const errors = response.data.errors;
-				let errorMessages = [];
-				for (const key in errors) {
-					errorMessages.push(`${key}: ${errors[key].join(", ")}`);
-				}
-				setEmptyError(errorMessages.join(". "));
-			} else {
-				// Handle other types of errors
-				setEmptyError(response.data.message || "An error occurred during registration.");
-			}
-		} catch (error) {
-			console.error("Error during registration:", error);
-			setEmptyError(error.response?.data?.message || "An error occurred during registration.");
-		}
-	};
+
+        console.log("Response received:", response); // Diagnostic log
+
+        if (response.message === 'Patient registered successfully') {
+            console.log("Registration successful:", response); // Diagnostic log
+			clearFields();
+            setFormMessage(response.message);
+        } else {
+            console.log("Non-200 response:", response); // Diagnostic log
+            setFormMessage("An error occurred during registration.");
+        }
+        } catch (error) {
+            console.error("Error during registration:", error);
+            const errors = error.response?.data?.errors;
+            if (errors) {
+                const errorList = (
+                    <ul>
+                        {Object.values(errors).flat().map((msg, index) => (
+                            <li key={index} style={{color:"red"}} >{msg}</li>
+                        ))}
+                    </ul>
+                );
+                setFormMessage(errorList);
+            } else {
+                setFormMessage("An error occurred during registration.");
+            }
+        }
+    };
 	return (
 		<div className="patient-reg-page">
 			<OptionsBox
@@ -107,16 +115,14 @@ function PatientRegister() {
 				className="options-style"
 			/>
 
-			<form className="patient-reg-form">
+			<div className="patient-reg-form">
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
 					<ProfilePic />
 					<div className="patient-form-input">
-					{emptyError && (
-    <p className="error">
-        {emptyError}
-    </p>
-)}
+						{/* {emptyError && <p className="error">{emptyError}</p>} */}
+						{formMessage && <p className="error">{formMessage}</p>}
+
 						<div className="patient-reg-input">
 							<InputForm
 								type="text"
@@ -126,6 +132,8 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Username"}
 							/>
+							{userNameError && <p className="error">{userNameError}</p>}
+
 							<InputForm
 								type="password"
 								onChange={(e) => setpassword(e.target.value)}
@@ -161,6 +169,7 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Email"}
 							/>
+							{emailError && <p className="error">{emailError}</p>}
 
 							<InputForm
 								type="number"
@@ -170,6 +179,7 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Phone Number"}
 							/>
+							{phoneNumberError && <p className="error">{phoneNumberError}</p>}
 
 							<InputForm
 								type="text"
@@ -226,7 +236,7 @@ function PatientRegister() {
 						</div>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 }
