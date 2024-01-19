@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiagnosisController;
+use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\MedicalHistoryController;
@@ -33,10 +34,12 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
 });
 
 Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
-    Route::post('/diagnosis/create', [DiagnosisController::class, 'createDiagnosis']);
-    Route::post('/symptom/create', [SymptomController::class, 'createSymptom']);
-    Route::post('/results/create', [LabResultsController::class, 'createResult']);
-    Route::post('/prescription/create', [PrescriptionController::class, 'createPrescription']);
+    // Route::post('/diagnosis/create', [DiagnosisController::class, 'createDiagnosis']);
+    // Route::post('/symptom/create', [SymptomController::class, 'createSymptom']);
+    // Route::post('/results/create', [LabResultsController::class, 'createResult']);
+    // Route::post('/prescription/create', [PrescriptionController::class, 'createPrescription']);
+    Route::post('/diagnosis', [HealthDataController::class, 'handleCompositeRequest']);
+
 });
 
 
