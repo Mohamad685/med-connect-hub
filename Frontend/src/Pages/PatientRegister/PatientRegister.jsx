@@ -20,89 +20,24 @@ function PatientRegister() {
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
 
-	const [userNameError, setUserNameError] = useState("");
-	const [passwordError, setPasswordError] = useState("");
-	const [firstNameError, setFirstNameError] = useState("");
-	const [lastNameError, setLastNameError] = useState("");
-	const [emailError, setEmailError] = useState("");
-	const [phoneNumberError, setPhoneNumberError] = useState("");
-	const [genderError, setGenderError] = useState("");
-	const [birthDateError, setBirthdateError] = useState("");
-	const [addressError, setAddressError] = useState("");
-	const [medicalHistoryError, setMedicalHistoryError] = useState("");
-	const [medicationHistoryError, setMedicationHistoryError] = useState("");
+	const [emptyError, setEmptyError] = useState("");
 
 	const validateInput = () => {
-		let isValid = true;
-
-		if (!user_name) {
-			setUserNameError("Username is required");
-			isValid = false;
-		} else {
-			setUserNameError("");
+		if (
+			!user_name ||
+			!password ||
+			!first_name ||
+			!last_name ||
+			!email ||
+			!phone_number ||
+			!gender ||
+			!date_of_birth
+		) {
+			setEmptyError("All fields are required.");
+			return false;
 		}
-
-		if (!password) {
-			setPasswordError("Password is required");
-			isValid = false;
-		} else {
-			setPasswordError("");
-		}
-
-		if (!email) {
-			setEmailError("Email is required");
-			isValid = false;
-		} else {
-			setEmailError("");
-		}
-		if (!first_name) {
-			setFirstNameError("Firstname is required");
-			isValid = false;
-		} else {
-			setFirstNameError("");
-		}
-		if (!last_name) {
-			setLastNameError("Lastname is required");
-			isValid = false;
-		} else {
-			setLastNameError("");
-		}
-		if (!phone_number) {
-			setPhoneNumberError("Phonenumber is required");
-			isValid = false;
-		} else {
-			setPhoneNumberError("");
-		}
-		if (!gender) {
-			setGenderError("Gender is required");
-			isValid = false;
-		} else {
-			setGenderError("");
-		}
-		if (!date_of_birth) {
-			setBirthdateError("Birthdate is required");
-			isValid = false;
-		} else {
-			setBirthdateError("");
-		}
-		if (!address) {
-			setAddressError("Address is required");
-			isValid = false;
-		} else {
-			setAddressError("");
-		}
-		if (!description) {
-			setMedicalHistoryError("Medical History is required");
-			isValid = false;
-		} else {
-			setMedicalHistoryError("");
-		}
-		if (!medication_description) {
-			setMedicationHistoryError("Medication History is required");
-			isValid = false;
-		} else {
-			setMedicationHistoryError("");
-		}
+		setEmptyError("");
+		return true;
 	};
 
 	const handleSubmit = async (e) => {
@@ -120,36 +55,30 @@ function PatientRegister() {
 			description,
 			medication_description,
 		};
-		try {
-			const response = await fetchHelper.post("/register-patient", formData);
-			console.log(response);
-			clearFields();
-		} catch (error) {
-			console.error(error);
-			// Handle unique field error messages from the backend
-			if (error.response && error.response.data) {
-				const errors = error.response.data.errors;
-				setUserNameError(errors.user_name ? errors.user_name[0] : "");
-				setEmailError(errors.email ? errors.email[0] : "");
-				setPhoneNumberError(errors.phone_number ? errors.phone_number[0] : "");
+		if (validateInput()) {
+			try {
+				const response = await fetchHelper.post("/register-patient", formData);
+				console.log(response);
+				clearFields();
+			} catch (error) {
+				console.error(error);
 			}
+
+			const clearFields = () => {
+				setUsername("");
+				setpassword("");
+				setFirstName("");
+				setLastname("");
+				setEmail("");
+				setPhoneNumber("");
+				setGender("");
+				setBirthdate("");
+				setAddress("");
+				setMedicalHistory("");
+				setMedicationHistory("");
+			};
 		}
-
-		const clearFields = () => {
-			setUsername("");
-			setpassword("");
-			setFirstName("");
-			setLastname("");
-			setEmail("");
-			setPhoneNumber("");
-			setGender("");
-			setBirthdate("");
-			setAddress("");
-			setMedicalHistory("");
-			setMedicationHistory("");
-		};
 	};
-
 	return (
 		<div className="patient-reg-page">
 			<OptionsBox
@@ -162,6 +91,8 @@ function PatientRegister() {
 				<div className="patient-reg-section1">
 					<ProfilePic />
 					<div className="patient-form-input">
+						{emptyError && <div className="error">{emptyError}</div>}
+
 						<div className="patient-reg-input">
 							<InputForm
 								type="text"
@@ -171,7 +102,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Username"}
 							/>
-							{userNameError && <div className="error">{userNameError}</div>}
 							<InputForm
 								type="password"
 								onChange={(e) => setpassword(e.target.value)}
@@ -180,7 +110,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Password"}
 							/>
-							{passwordError && <div className="error">{passwordError}</div>}
 
 							<InputForm
 								type="text"
@@ -190,7 +119,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"First Name"}
 							/>
-							{firstNameError && <div className="error">{firstNameError}</div>}
 
 							<InputForm
 								type="text"
@@ -200,7 +128,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Last Name"}
 							/>
-							{lastNameError && <div className="error">{lastNameError}</div>}
 
 							<InputForm
 								type="email"
@@ -210,7 +137,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Email"}
 							/>
-							{emailError && <div className="error">{emailError}</div>}
 
 							<InputForm
 								type="number"
@@ -220,9 +146,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Phone Number"}
 							/>
-							{phoneNumberError && (
-								<div className="error">{phoneNumberError}</div>
-							)}
 
 							<InputForm
 								type="text"
@@ -232,7 +155,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Gender"}
 							/>
-							{genderError && <div className="error">{genderError}</div>}
 
 							<InputForm
 								type="date"
@@ -242,7 +164,6 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Date Of Birth"}
 							/>
-							{birthDateError && <div className="error">{birthDateError}</div>}
 						</div>
 						<div className="address-input-div">
 							<TextArea
@@ -253,7 +174,6 @@ function PatientRegister() {
 								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
-							{addressError && <div className="error">{addressError}</div>}
 
 							<TextArea
 								value={description}
@@ -262,10 +182,7 @@ function PatientRegister() {
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
-							{medicalHistoryError && (
-								<div className="error">{medicalHistoryError}</div>
-							)}
-
+						
 							<TextArea
 								value={medication_description}
 								onChange={(e) => setMedicationHistory(e.target.value)}
@@ -273,9 +190,7 @@ function PatientRegister() {
 								length={"18rem"}
 								placeholder={"Medication History"}
 							/>
-							{medicationHistoryError && (
-								<div className="error">{medicationHistoryError}</div>
-							)}
+							
 
 							<Button
 								width={"14rem"}
