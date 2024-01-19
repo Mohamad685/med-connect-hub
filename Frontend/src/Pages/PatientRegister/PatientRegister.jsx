@@ -131,19 +131,19 @@ const validateInput = () =>{
 			console.error(error);
 		}
 		
-		// const clearFields= () =>{
-		// 	setUsername("");
-		// 	setpassword("");
-		// 	setFirstName("");
-		// 	setLastname("");
-		// 	setEmail("");
-		// 	setPhoneNumber("");
-		// 	setGender("");
-		// 	setBirthdate("");
-		// 	setAddress("");
-		// 	setMedicalHistory("");
-		// 	setMedicationHistory("");
-		// }
+		const clearFields= () =>{
+			setUsername("");
+			setpassword("");
+			setFirstName("");
+			setLastname("");
+			setEmail("");
+			setPhoneNumber("");
+			setGender("");
+			setBirthdate("");
+			setAddress("");
+			setMedicalHistory("");
+			setMedicationHistory("");
+		}
 	};
 
 	return (
