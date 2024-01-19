@@ -29,7 +29,7 @@ class DiagnosisService
         return $symptom;
     }
 
-    public function createLabResult($patientId, $test_type)
+    public function createLabResult($patientId, $result)
     {
         $userId = Auth::id();
         $doctor = Doctor::where('user_id', $userId)->first();
@@ -40,7 +40,7 @@ class DiagnosisService
 
         $results = new LabResult([
             'patient_id' => $patientId,
-            'test_type' => $test_type,
+            'result' => $result,
             'doctor_id' => $doctor->id,
         ]);
         $results->save();

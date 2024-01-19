@@ -20,7 +20,7 @@ protected $diagnosisService;
         $validator = Validator::make($request->all(), [
             'patient_id' => 'required|integer',
             'symptom_description' => 'required|string|max:255',
-            'test_type' => 'required|string|max:255',
+            'result' => 'required|string|max:255',
             'diagnosis_description' => 'required|string|max:255',
             'medication_description' => 'required|string|max:255',
         ]);
@@ -32,7 +32,7 @@ protected $diagnosisService;
         try {
             $patientId = $request->input('patient_id');
             $symptomDescription = $request->input('symptom_description');
-            $testType = $request->input('test_type');
+            $testType = $request->input('result');
             $diagnosisDescription = $request->input('diagnosis_description');
             $medicationDescription = $request->input('medication_description');
 
@@ -43,7 +43,7 @@ protected $diagnosisService;
 
             return response()->json([
                 'symptom' => $symptom,
-                'lab_result' => $labResult,
+                'result' => $labResult,
                 'diagnosis' => $diagnosis,
                 'prescription' => $prescription
             ], 201);

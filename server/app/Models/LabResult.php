@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LabResult extends Model
 {
     use HasFactory;
-    protected $fillable = ['patient_id', 'doctor_id', 'test_type', 'result'];
+    protected $fillable = ['patient_id', 'doctor_id', 'result'];
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id');
