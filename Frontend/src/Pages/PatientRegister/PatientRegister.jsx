@@ -19,8 +19,21 @@ function PatientRegister() {
 	const [address, setAddress] = useState("");
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
-
 	const [emptyError, setEmptyError] = useState("");
+
+	const clearFields = () => {
+		setUsername("");
+		setpassword("");
+		setFirstName("");
+		setLastname("");
+		setEmail("");
+		setPhoneNumber("");
+		setGender("");
+		setBirthdate("");
+		setAddress("");
+		setMedicalHistory("");
+		setMedicationHistory("");
+	};
 
 	const validateInput = () => {
 		if (
@@ -31,8 +44,8 @@ function PatientRegister() {
 			!email ||
 			!phone_number ||
 			!gender ||
-			!date_of_birth||
-			!medication_description||
+			!date_of_birth ||
+			!medication_description ||
 			!description
 		) {
 			setEmptyError("All fields are required.");
@@ -44,6 +57,9 @@ function PatientRegister() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (!validateInput()) {
+			return;
+		}
 		const formData = {
 			user_name,
 			password,
@@ -57,29 +73,24 @@ function PatientRegister() {
 			description,
 			medication_description,
 		};
-		if (validateInput()) {
-			try {
-				const response = await fetchHelper.post("/register-patient", formData);
-				console.log(response);
-				clearFields();
-			} catch (error) {
-				console.error(error);
+		try {
+			const response = await fetchHelper.post("/register-patient", formData);
 
+			if (response.status === 200) {
+				console.log("Registration successful", response.data);
+				clearFields(); // Clear fields on successful submission
+			} else if (response.status === 422) {
+				// ... handle validation errors ...
+			} else {
+				setEmptyError(
+					response.data || "An error occurred during registration."
+				);
 			}
-
-			const clearFields = () => {
-				setUsername("");
-				setpassword("");
-				setFirstName("");
-				setLastname("");
-				setEmail("");
-				setPhoneNumber("");
-				setGender("");
-				setBirthdate("");
-				setAddress("");
-				setMedicalHistory("");
-				setMedicationHistory("");
-			};
+		} catch (error) {
+			console.error("Error during registration:", error);
+			setEmptyError(
+				error.response?.data || "An error occurred during registration."
+			);
 		}
 	};
 	return (
@@ -94,8 +105,11 @@ function PatientRegister() {
 				<div className="patient-reg-section1">
 					<ProfilePic />
 					<div className="patient-form-input">
-						{emptyError && <div className="error">{emptyError}</div>}
-
+						{emptyError && (
+							<div className="error">
+								{Array.isArray(emptyError) ? emptyError.join(". ") : emptyError}
+							</div>
+						)}
 						<div className="patient-reg-input">
 							<InputForm
 								type="text"
@@ -185,7 +199,7 @@ function PatientRegister() {
 								length={"18rem"}
 								placeholder={"Medical History"}
 							/>
-						
+
 							<TextArea
 								value={medication_description}
 								onChange={(e) => setMedicationHistory(e.target.value)}
@@ -193,7 +207,6 @@ function PatientRegister() {
 								length={"18rem"}
 								placeholder={"Medication History"}
 							/>
-							
 
 							<Button
 								width={"14rem"}
