@@ -31,7 +31,9 @@ function PatientRegister() {
 			!email ||
 			!phone_number ||
 			!gender ||
-			!date_of_birth
+			!date_of_birth||
+			!medication_description||
+			!description
 		) {
 			setEmptyError("All fields are required.");
 			return false;
@@ -62,6 +64,7 @@ function PatientRegister() {
 				clearFields();
 			} catch (error) {
 				console.error(error);
+
 			}
 
 			const clearFields = () => {
