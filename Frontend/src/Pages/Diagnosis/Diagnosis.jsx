@@ -10,7 +10,11 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 function Diagnosis() {
 	const location = useLocation();
 	const patientData = location.state?.patientData;
+	//Extract data passed from patient registration
 	const patientId = patientData ? patientData.id : null;
+    const patientFirstName = patientData ? patientData.firstName : '';
+    const patientLastName = patientData ? patientData.lastName : '';
+
 	const navigate = useNavigate();
 
 	const [symptomDescription, setSymptomDescription] = useState("");
@@ -44,7 +48,7 @@ function Diagnosis() {
 			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 			<div className="diagnosis-data-form">
-				<p className="patient-name">Mohammad Fakih</p>
+                <p className="patient-name">{`${patientFirstName} ${patientLastName}`}</p>
 				<div className="patient-preview-section1">
 					<div className="patient-preview-boxes">
 						<PreviewBox
