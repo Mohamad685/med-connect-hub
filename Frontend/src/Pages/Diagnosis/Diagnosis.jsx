@@ -10,6 +10,7 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 function Diagnosis() {
 	const location = useLocation();
 	const patientData = location.state?.patientData;
+
 	//Extract data passed from patient registration
 	const patientId = patientData ? patientData.id : null;
 	const patientFirstName = patientData ? patientData.firstName : "";
@@ -55,9 +56,9 @@ function Diagnosis() {
 			prescription
 		) {
 			try {
-				const response = await fetchHelper.post("/diagnosis", {
+				const response = await fetchHelper.post("/diagnosis", 
 					formData
-				});
+				);
 				console.log("Data submitted successfully:", response);
 				navigate("/patient-registration");
 			} catch (error) {
@@ -89,6 +90,7 @@ function Diagnosis() {
 							width={"60rem"}
 							length={"18rem"}
 							placeholder={"Symptoms"}
+							value={symptomDescription}
 							onChange={(e) => setSymptomDescription(e.target.value)}
 						/>
 						{symptomError && <p className="error-message">Symptoms are required.</p>}
@@ -97,6 +99,7 @@ function Diagnosis() {
 							width={"60rem"}
 							length={"18rem"}
 							placeholder={"Lab Results"}
+							value={labResult}
 							onChange={(e) => setLabResult(e.target.value)}
 						/>
 						{labResultError && <p className="error-message">Lab results are required.</p>}
@@ -105,6 +108,7 @@ function Diagnosis() {
 							width={"60rem"}
 							length={"18rem"}
 							placeholder={"Diagnosis"}
+							value={diagnosisDescription}
 							onChange={(e) => setDiagnosisDescription(e.target.value)}
 						/>
 						{diagnosisError && <p className="error-message">Diagnosis is required.</p>}
@@ -113,6 +117,7 @@ function Diagnosis() {
 							width={"60rem"}
 							length={"18rem"}
 							placeholder={"Prescriptions"}
+							value={prescription}
 							onChange={(e) => setPrescription(e.target.value)}
 						/>
 						{prescriptionError && <p className="error-message">Prescription is required.</p>}

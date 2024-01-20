@@ -61,6 +61,7 @@ function PatientRegister() {
 		formData.append("address", address);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
+		
 		if (profile_pic) {
 			formData.append("profile_pic", profile_pic);
 		}
