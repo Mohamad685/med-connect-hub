@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->foreign('prescription_id')->references('id')->on('prescriptions')->onDelete('cascade');
             $table->unsignedBigInteger('diagnosis_id');
             $table->foreign('diagnosis_id')->references('id')->on('diagnoses')->onDelete('cascade');
-            $table->boolean('approved');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
