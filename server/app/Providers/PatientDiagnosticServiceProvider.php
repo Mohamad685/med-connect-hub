@@ -2,21 +2,19 @@
 
 namespace App\Providers;
 
+use App\Services\LabResultService;
 use Illuminate\Support\ServiceProvider;
 
 class PatientDiagnosticServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     */
+ 
     public function register(): void
     {
-        //
+        $this->app->bind(LabResultService::class, function ($app) {
+            return new LabResultService();
+        });
     }
 
-    /**
-     * Bootstrap services.
-     */
     public function boot(): void
     {
         //
