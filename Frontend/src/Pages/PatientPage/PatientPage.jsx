@@ -12,7 +12,6 @@ function PatientPreview() {
 	const [prescriptions, setPrescriptions] = useState("");
 	useEffect(() => {
 		const patientId = localStorage.getItem("patientId");
-		console.log("localstorage", patientId);
 		const fetchData = async () => {
 			try {
 				const labResultsData = await fetchHelper.get(
@@ -36,17 +35,28 @@ function PatientPreview() {
 				setPrescriptions(prescriptionsData);
 			} catch (error) {
 				console.error("Error fetching data:", error);
-				console.log(error.response);
 			}
 		};
 
 		fetchData();
 	}, []);
 
+	function formatDate(isoString) {
+		const date = new Date(isoString);
+		return date.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit'
+		});
+	}
+
 	function formatLabResults(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.result}, At: {item.created_at}</li>
+				<li key={index}>{item.result}, At: {formatDate(item.created_at)}</li>
 			));
 		}
 		return <li>No lab results available</li>;
@@ -55,7 +65,7 @@ function PatientPreview() {
 	function formatDiagnosis(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.diagnosis_description}, At: {item.created_at}</li>
+				<li key={index}>{item.diagnosis_description}, At: {formatDate(item.created_at)}</li>
 			));
 		}
 		return <li>No lab results available</li>;
@@ -63,7 +73,7 @@ function PatientPreview() {
 	function formatPrescription(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.medication_description}, At: {item.created_at}</li>
+				<li key={index}>{item.medication_description}, At: {formatDate(item.created_at)}</li>
 			));
 		}
 		return <li>No lab results available</li>;
@@ -71,7 +81,7 @@ function PatientPreview() {
 	function formatSymptom(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.symptom_description}, At: {item.created_at}</li>
+				<li key={index}>{item.symptom_description}, At: {formatDate(item.created_at)}</li>
 			));
 		}
 		return <li>No lab results available</li>;
