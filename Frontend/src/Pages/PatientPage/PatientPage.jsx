@@ -8,7 +8,7 @@ function PatientPreview() {
 
 	return (
 		<div className="patient-page">
-			<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
+			<OptionsBox margin={"8rem 2rem 2rem 2rem"} />
 
 			<div className="patient-data-form">
 				<p className="patient-name">Mohammad Fakih</p>
