@@ -10,9 +10,9 @@ return new class extends Migration {
         Schema::create('insurance_approvals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('medical_histories_id');
-            $table->foreign('medical_histories_id')->references('id')->on('medical_historiess')->onDelete('cascade');
+            $table->foreign('medical_histories_id')->references('id')->on('medical_histories')->onDelete('cascade');
             $table->unsignedBigInteger('medication_histories_id');
-            $table->foreign('medication_histories_id')->references('id')->on('medication_historiess')->onDelete('cascade');
+            $table->foreign('medication_histories_id')->references('id')->on('medication_histories')->onDelete('cascade');
             $table->unsignedBigInteger('insurance_company_id');
             $table->foreign('insurance_company_id')->references('id')->on('insurance_companies')->onDelete('cascade');
             $table->unsignedBigInteger('lab_result_id');
