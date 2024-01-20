@@ -19,9 +19,13 @@ const fetchHelper = {
 		}
 	},
 
-	post: async (url, data = {}) => {
+	post: async (url, data = {}, headers = {}) => {
 		try {
-			const response = await axiosHelper.post(url, data);
+			if (data instanceof FormData) {
+				headers["Content-Type"] = "multipart/form-data";
+			}
+
+			const response = await axiosHelper.post(url, data, { headers });
 
 			if (response.status === 200) {
 				console.log("POST Success:", response.data);

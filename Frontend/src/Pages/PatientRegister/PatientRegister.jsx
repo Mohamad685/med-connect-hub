@@ -65,19 +65,21 @@ function PatientRegister() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const formData = {
-			user_name,
-			password,
-			first_name,
-			last_name,
-			email,
-			phone_number,
-			gender,
-			date_of_birth,
-			address,
-			description,
-			medication_description,
-		};
+		const formData = new FormData();
+		formData.append("user_name", user_name);
+		formData.append("password", password);
+		formData.append("first_name", first_name);
+		formData.append("last_name", last_name);
+		formData.append("email", email);
+		formData.append("phone_number", phone_number);
+		formData.append("gender", gender);
+		formData.append("date_of_birth", date_of_birth);
+		formData.append("address", address);
+		formData.append("description", description);
+		formData.append("medication_description", medication_description);
+		if (profilePic) {
+			formData.append("profile_pic", profilePic);
+		}
 
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
