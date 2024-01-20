@@ -1,42 +1,52 @@
 import React from "react";
 import OptionsBox from "../../Components/Options/Options";
-import "./InsurancePage.css";
-import ProfilePic from "../../Components/ProfilePic/ProfilePic";
 import TextArea from "../../Components/TextArea/TextArea";
-
+import './InsurancePage.css';
+import PreviewBox from "../../Components/PreviewBox/PreviewBox";
+import Button from "../../Components/Button/Button";
+import fetchHelper from "../../Components/Functions/FetchFunction";
 function InsurancePage() {
 	return (
 		<>
-			<div className="patient-reg-page">
-				<OptionsBox margin={"4rem 2rem 2rem 2rem"} />
+			<div className="insurance-reg-page">
+				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
-				<form className="patient-reg-form">
-					<p className="patient-reg-title">Patient Full Name</p>
-					<div className="patient-reg-section1">
-						<ProfilePic />
-						<div className="patient-form-input">
+				<form className="insurance-reg-form">
+					<p className="insurance-reg-title">insurance Full Name</p>
+					<div className="insurance-reg-section1">
+						<div className="insurance-form-input">
 							<div className="address-input-div">
-								<TextArea
-									width={"48rem"}
-									length={"8rem"}
-									textAlign={"text-top"}
-									placeholder={"Lab Results"}
+								<PreviewBox
+									width={"56rem"}
+									height={"8rem"}
+									text={"text-top"}
+									title={"Lab Results"}
 								/>
-								<TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Symptoms"}
+								
+								<PreviewBox
+									width={"56rem"}
+									height={"8rem"}
+									text={"text-top"}
+									title={"Symptoms"}
 								/>
-								<TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Patientpreview"}
+								<PreviewBox
+									width={"56rem"}
+									height={"8rem"}
+									text={"text-top"}
+									title={"Diagnosis"}
 								/>
-                                <TextArea
-									width={"48rem"}
-									length={"18rem"}
-									placeholder={"Prescription"}
+								<Button/>
+								<Button/>
+							
+                                <PreviewBox
+									width={"56rem"}
+									height={"8rem"}
+									text={"text-top"}
+									title={"Prescription"}
 								/>
+								<Button/>
+								<Button/>
+							
 							</div>
 						</div>
 					</div>
