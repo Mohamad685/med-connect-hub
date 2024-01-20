@@ -25,4 +25,8 @@ class InsuranceCompany extends Model
         return $this->hasMany(Patient::class);
     }
 
+    public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 }
