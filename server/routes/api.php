@@ -31,15 +31,7 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
 
 Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
-});
-
-Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
-    // Route::post('/diagnosis/create', [DiagnosisController::class, 'createDiagnosis']);
-    // Route::post('/symptom/create', [SymptomController::class, 'createSymptom']);
-    // Route::post('/results/create', [LabResultsController::class, 'createResult']);
-    // Route::post('/prescription/create', [PrescriptionController::class, 'createPrescription']);
     Route::post('/diagnosis', [HealthDataController::class, 'handleCompositeRequest']);
-
 });
 
 
