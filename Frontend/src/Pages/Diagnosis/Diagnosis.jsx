@@ -13,7 +13,7 @@ function Diagnosis() {
 
 	//Extract data passed from patient registration
 	const patientId = patientData ? patientData.id : null;
-	const patientFirstName = patientData ? patientData.firstName : "";
+	const patientFirstName = patientData ? patientData.firstName : ""||"No User";
 	const patientLastName = patientData ? patientData.lastName : "";
 	const medicalHistory = location.state?.description;
 	const medicationHistory = location.state?.medication_description;
