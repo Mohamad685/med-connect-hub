@@ -8,7 +8,7 @@ use App\Services\PrescriptionService;
 use App\Services\SymptomService;
 use Illuminate\Http\Request;
 
-class PatientDiagnosticController extends Controller
+class PatientController extends Controller
 {
     protected $labResultService;
     protected $patientDiagnosisService;
