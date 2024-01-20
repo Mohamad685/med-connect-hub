@@ -6,8 +6,8 @@ use App\Models\Prescription;
 
 class PrescriptionService
 {
-    public function getPrescriptions($userId)
+    public function getPrescriptions($patientId)
     {
-        return Prescription::where('user_id', $userId)->get();
+        return Prescription::where('patient_id', $patientId)->get();
     }
 }

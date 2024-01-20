@@ -6,8 +6,8 @@ use App\Models\LabResult;
 
 class LabResultService
 {
-    public function getLabResults($userId)
+    public function getLabResults($patientId)
     {
-        return LabResult::where('user_id', $userId)->get();
+        return LabResult::where('patient_id', $patientId)->get();
     }
 }

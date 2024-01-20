@@ -6,8 +6,8 @@ use App\Models\Symptom;
 
 class SymptomService
 {
-    public function Symptoms($userId)
+    public function Symptoms($patientId)
     {
-        return Symptom::where('user_id', $userId)->get();
+        return Symptom::where('patient_id', $patientId)->get();
     }
 }

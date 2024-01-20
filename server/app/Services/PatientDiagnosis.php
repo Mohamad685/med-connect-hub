@@ -6,8 +6,8 @@ use App\Models\Diagnosis;
 
 class PatientDiagnosisService
 {
-    public function getDiagnosis($userId)
+    public function getDiagnosis($patientId)
     {
-        return Diagnosis::where('user_id', $userId)->get();
+        return Diagnosis::where('patient_id', $patientId)->get();
     }
 }
