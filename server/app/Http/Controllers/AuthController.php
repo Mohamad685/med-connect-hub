@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -16,33 +17,41 @@ class AuthController extends Controller
 {
 
     public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    $token = Auth::attempt($credentials);
-    if (!$token) {
+        $token = Auth::attempt($credentials);
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        $user = Auth::user();
+        $patient_id = null;
+        $first_name = null;
+        $last_name = null;
+        if ($user->role === 'patient') {
+            $patient = $user->patient;
+            if ($patient) {
+                $patient_id = $patient->id;
+                $first_name = $patient->first_name;
+                $last_name = $patient->last_name;
+            }
+        }
+
         return response()->json([
-            'status' => 'error',
-            'message' => 'Unauthorized',
-        ], 401);
+            'status' => 'success',
+            'user' => $user,
+            'patient_id' => $patient_id,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'authorisation' => [
+                'token' => $token,
+            ]
+        ]);
     }
-
-    $user = Auth::user();
-    $patient_id = null;
-    if ($user->role === 'patient') { 
-        $patient = $user->patient; 
-        $patient_id = $patient ? $patient->id : null;
-    }
-
-    return response()->json([
-        'status' => 'success',
-        'user' => $user,
-        'patient_id' => $patient_id, 
-        'authorisation' => [
-            'token' => $token,
-        ]
-    ]);
-}
 
 
     protected function respondWithToken($token)
@@ -232,19 +241,19 @@ class AuthController extends Controller
 
 
     public function deleteInsuranceCompany($id)
-{
-    try {
-        $insurance = InsuranceCompany::findOrFail($id);
-        $user = User::findOrFail($insurance->user_id);
+    {
+        try {
+            $insurance = InsuranceCompany::findOrFail($id);
+            $user = User::findOrFail($insurance->user_id);
 
-        $insurance->delete();
-        $user->delete();
+            $insurance->delete();
+            $user->delete();
 
-        return response()->json(['message' => 'Insurance company deleted successfully!']);
-    } catch (ModelNotFoundException $e) {
-        return response()->json(['message' => 'Insurance company not found'], 404);
-    } catch (\Exception $e) {
-        return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Insurance company deleted successfully!']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Insurance company not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
+        }
     }
-}
 }
