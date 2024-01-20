@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import OptionsBox from "../../Components/Options/Options";
 import "./Diagnosis.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
@@ -11,7 +11,8 @@ function Diagnosis() {
 	const location = useLocation();
 	const patientData = location.state?.patientData;
 	const patientId = patientData ? patientData.id : null;
-	
+	const navigate = useNavigate();
+
 	const [symptomDescription, setSymptomDescription] = useState("");
 	const [labResult, setLabResult] = useState("");
 	const [diagnosisDescription, setDiagnosisDescription] = useState("");
@@ -33,6 +34,7 @@ function Diagnosis() {
 				formData
 			);
 			console.log("Data submitted successfully:", response);
+			navigate("/patient-registration");
 		} catch (error) {
 			console.error("Error during data submission:", error);
 		}
