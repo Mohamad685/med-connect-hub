@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\LabResult;
 
-class LabResultService
+class PatientLabResultsService
 {
     public function getLabResults($patientId)
     {

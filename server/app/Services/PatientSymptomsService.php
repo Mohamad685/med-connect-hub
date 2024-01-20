@@ -4,9 +4,9 @@ namespace App\Services;
 use App\Models\Symptom;
 
 
-class SymptomService
+class PatientSymptomsService
 {
-    public function Symptoms($patientId)
+    public function getSymptoms($patientId)
     {
         return Symptom::where('patient_id', $patientId)->get();
     }

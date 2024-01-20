@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\LabResultService;
 use App\Services\PatientDiagnosisService;
-use App\Services\PrescriptionService;
-use App\Services\SymptomService;
+use App\Services\PatientLabResultsService;
+use App\Services\PatientPrescriptionsService;
+use App\Services\PatientSymptomsService;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -16,10 +16,10 @@ class PatientController extends Controller
     protected $symptomService;
 
     public function __construct(
-        LabResultService $labResultService,
+        PatientLabResultsService $labResultService,
         PatientDiagnosisService $patientDiagnosisService,
-        PrescriptionService $prescriptionService,
-        SymptomService $symptomService
+        PatientPrescriptionsService $prescriptionService,
+        PatientSymptomsService $symptomService
     ) {
         $this->labResultService = $labResultService;
         $this->patientDiagnosisService = $patientDiagnosisService;
@@ -27,27 +27,27 @@ class PatientController extends Controller
         $this->symptomService = $symptomService;
     }
 
-    public function getLabResults($patientId)
+    public function getPatientLabResults($patientId)
     {
         $labResults = $this->labResultService->getLabResults($patientId);
         return response()->json($labResults);
     }
 
-    public function getDiagnosis($patientId)
+    public function getPatientDiagnosis($patientId)
     {
         $diagnosis = $this->patientDiagnosisService->getDiagnosis($patientId);
         return response()->json($diagnosis);
     }
 
-    public function getPrescriptions($patientId)
+    public function getPatientPrescriptions($patientId)
     {
         $prescriptions = $this->prescriptionService->getPrescriptions($patientId);
         return response()->json($prescriptions);
     }
 
-    public function getSymptoms($patientId)
+    public function getPatientSymptoms($patientId)
     {
-        $symptoms = $this->symptomService->Symptoms($patientId);
+        $symptoms = $this->symptomService->getSymptoms($patientId);
         return response()->json($symptoms);
     }
 }
