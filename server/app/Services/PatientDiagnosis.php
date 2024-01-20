@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Diagnosis;
 
-class DiagnosisService
+class PatientDiagnosisService
 {
     public function getDiagnosis($userId)
     {
