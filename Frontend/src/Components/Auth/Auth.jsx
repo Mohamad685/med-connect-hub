@@ -57,7 +57,7 @@ function Login({ onClose }) {
 				if (token) {
 					localStorage.setItem("token", token);
 
-					const patientId= response.authorisation.patient_id;
+					const patientId= response.patient_id;
 					if(patientId){
 						localStorage.setItem('patientId',patientId)
 					}

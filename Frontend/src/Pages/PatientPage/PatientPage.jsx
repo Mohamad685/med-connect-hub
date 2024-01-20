@@ -12,12 +12,12 @@ function PatientPreview() {
 	const [prescriptions, setPrescriptions] = useState("");
 	useEffect(() => {
 		const patientId = localStorage.getItem("patientId");
+		console.log("localstorage", patientId);
 		const fetchData = async () => {
 			try {
 				const labResultsData = await fetchHelper.get(
 					`/patient/${patientId}/lab-results`
 				);
-				console.log('results:',labResultsData)
 				setLabResults(labResultsData);
 
 				const symptomsData = await fetchHelper.get(
@@ -36,12 +36,46 @@ function PatientPreview() {
 				setPrescriptions(prescriptionsData);
 			} catch (error) {
 				console.error("Error fetching data:", error);
-				console.log(error.response)
+				console.log(error.response);
 			}
 		};
 
 		fetchData();
 	}, []);
+
+	function formatLabResults(data) {
+		if (Array.isArray(data)) {
+			return data.map((item, index) => (
+				<li key={index}>{item.result}, At: {item.created_at}</li>
+			));
+		}
+		return <li>No lab results available</li>;
+	}
+
+	function formatDiagnosis(data) {
+		if (Array.isArray(data)) {
+			return data.map((item, index) => (
+				<li key={index}>{item.diagnosis_description}, At: {item.created_at}</li>
+			));
+		}
+		return <li>No lab results available</li>;
+	}
+	function formatPrescription(data) {
+		if (Array.isArray(data)) {
+			return data.map((item, index) => (
+				<li key={index}>{item.medication_description}, At: {item.created_at}</li>
+			));
+		}
+		return <li>No lab results available</li>;
+	}
+	function formatSymptom(data) {
+		if (Array.isArray(data)) {
+			return data.map((item, index) => (
+				<li key={index}>{item.symptom_description}, At: {item.created_at}</li>
+			));
+		}
+		return <li>No lab results available</li>;
+	}
 	return (
 		<div className="patient-page">
 			<OptionsBox margin={"8rem 2rem 2rem 2rem"} />
@@ -55,25 +89,25 @@ function PatientPreview() {
 							width={"48rem"}
 							height={"auto"}
 							title={"Lab Results:"}
-							text={labResults}
+							text={formatLabResults(labResults)}
 						/>
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
 							title={"Symptoms:"}
-							text={symptoms}
+							text={formatSymptom(symptoms)}
 						/>
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
 							title={"Diagnosis:"}
-							text={diagnosis}
+							text={formatDiagnosis(diagnosis)}
 						/>
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
 							title={"Prescription:"}
-							text={prescriptions}
+							text={formatPrescription(prescriptions)}
 						/>
 					</div>
 				</div>
