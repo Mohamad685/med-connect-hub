@@ -52,7 +52,12 @@
     gap: 2rem;
 }
 
-.error{
-	margin-left: 5rem;
-	color: red;
+
+
+.insurance-button-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6rem;
+
 }

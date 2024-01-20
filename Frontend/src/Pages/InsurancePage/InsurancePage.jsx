@@ -1,7 +1,7 @@
 import React from "react";
 import OptionsBox from "../../Components/Options/Options";
 import TextArea from "../../Components/TextArea/TextArea";
-import './InsurancePage.css';
+import "./InsurancePage.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
@@ -22,7 +22,7 @@ function InsurancePage() {
 									text={"text-top"}
 									title={"Lab Results"}
 								/>
-								
+
 								<PreviewBox
 									width={"56rem"}
 									height={"8rem"}
@@ -35,18 +35,45 @@ function InsurancePage() {
 									text={"text-top"}
 									title={"Diagnosis"}
 								/>
-								<Button/>
-								<Button/>
-							
-                                <PreviewBox
+								<div className="insurance-button-div">
+									<Button
+										width={"20rem"}
+										height={"2rem"}
+										color={"white"}
+										text={"Accept"}
+									/>
+									<Button
+										className="insurance-button"
+										width={"20rem"}
+										height={"2rem"}
+										color={"white"}
+										text={"Reject"}
+										backgroundColor={"#E34242"}
+									/>
+								</div>
+
+								<PreviewBox
 									width={"56rem"}
 									height={"8rem"}
 									text={"text-top"}
 									title={"Prescription"}
 								/>
-								<Button/>
-								<Button/>
-							
+								<div className="insurance-button-div">
+									<Button
+										width={"20rem"}
+										height={"2rem"}
+										color={"white"}
+										text={"Accept"}
+									/>
+									<Button
+										className="insurance-button"
+										width={"20rem"}
+										height={"2rem"}
+										color={"white"}
+										text={"Reject"}
+										backgroundColor={"#E34242"}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
