@@ -20,11 +20,14 @@ function PatientRegister() {
 	const [address, setAddress] = useState("");
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
+	const [profile_pic, setProfilePic] = useState(null);
+
 	// const [emptyError, setEmptyError] = useState("");
 	const [userNameError, setUserNameError] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [phoneNumberError, setPhoneNumberError] = useState("");
 	const [formMessage, setFormMessage] = useState("");
+
 
 	const navigate = useNavigate();
 
@@ -41,7 +44,9 @@ function PatientRegister() {
 		setMedicalHistory("");
 		setMedicationHistory("");
 	};
-
+	const handleProfilePicSelect = (file) => {
+        setProfilePic(file);
+    };
 	// const validateInput = () => {
 	// 	if (
 	// 		!user_name ||
@@ -77,8 +82,8 @@ function PatientRegister() {
 		formData.append("address", address);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
-		if (profilePic) {
-			formData.append("profile_pic", profilePic);
+		if (profile_pic) {
+			formData.append("profile_pic", profile_pic);
 		}
 
 		try {
@@ -92,7 +97,7 @@ function PatientRegister() {
 				id: response.patient.id,
 				firstName: response.patient.first_name,
 				lastName: response.patient.last_name,
-				// profilePic: response.patient.profile_pic // Uncomment or remove based on your requirement
+				profilePic: response.patient.profile_pic
 			};
 
 			navigate("/diagnosis", { state: { patientData } });
@@ -129,7 +134,7 @@ function PatientRegister() {
 			<div className="patient-reg-form">
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
-					<ProfilePic />
+					<ProfilePic onFileSelect={handleProfilePicSelect}/>
 					<div className="patient-form-input">
 						{/* {emptyError && <p className="error">{emptyError}</p>} */}
 						{formMessage && <p className="error">{formMessage}</p>}
