@@ -36,20 +36,17 @@ function InsurancePage() {
 									title={"Diagnosis"}
 								/>
 								<div className="insurance-button-div">
-									<Button
+								<Button
 										width={"20rem"}
-										height={"2rem"}
+										height={"2.5rem"}
 										color={"white"}
 										text={"Accept"}
+										fontSize="1.15rem"
 									/>
-									<Button
-										className="insurance-button"
-										width={"20rem"}
-										height={"2rem"}
-										color={"white"}
-										text={"Reject"}
-										backgroundColor={"#E34242"}
-									/>
+									<button
+									className="insurance-button"
+									>Reject</button>
+									
 								</div>
 
 								<PreviewBox
@@ -61,18 +58,14 @@ function InsurancePage() {
 								<div className="insurance-button-div">
 									<Button
 										width={"20rem"}
-										height={"2rem"}
+										height={"2.5rem"}
 										color={"white"}
 										text={"Accept"}
+										fontSize="1.15rem"
 									/>
-									<Button
-										className="insurance-button"
-										width={"20rem"}
-										height={"2rem"}
-										color={"white"}
-										text={"Reject"}
-										backgroundColor={"#E34242"}
-									/>
+									<button
+									className="insurance-button"
+									>Reject</button>
 								</div>
 							</div>
 						</div>
