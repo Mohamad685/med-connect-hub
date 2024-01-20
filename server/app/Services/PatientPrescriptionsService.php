@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Prescription;
 
-class PrescriptionsService
+class PrescriptionService
 {
     public function getPrescriptions($userId)
     {
