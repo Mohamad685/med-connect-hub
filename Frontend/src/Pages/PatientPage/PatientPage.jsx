@@ -80,7 +80,7 @@ function PatientPreview() {
 				</li>
 			));
 		}
-		return <li>No lab results available</li>;
+		return <li>No Diagnosis available</li>;
 	}
 
 	function formatPrescription(data) {
@@ -91,7 +91,7 @@ function PatientPreview() {
 				</li>
 			));
 		}
-		return <li>No lab results available</li>;
+		return <li>No Prescriptions available</li>;
 	}
 
 	function formatSymptom(data) {
@@ -102,7 +102,7 @@ function PatientPreview() {
 				</li>
 			));
 		}
-		return <li>No lab results available</li>;
+		return <li>No Symptoms Found</li>;
 	}
 
 	return (
