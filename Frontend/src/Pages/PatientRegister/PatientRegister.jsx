@@ -21,8 +21,6 @@ function PatientRegister() {
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
 	const [profile_pic, setProfilePic] = useState(null);
-
-	// const [emptyError, setEmptyError] = useState("");
 	const [userNameError, setUserNameError] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [phoneNumberError, setPhoneNumberError] = useState("");
@@ -47,25 +45,6 @@ function PatientRegister() {
 	const handleProfilePicSelect = (file) => {
         setProfilePic(file);
     };
-	// const validateInput = () => {
-	// 	if (
-	// 		!user_name ||
-	// 		!password ||
-	// 		!first_name ||
-	// 		!last_name ||
-	// 		!email ||
-	// 		!phone_number ||
-	// 		!gender ||
-	// 		!date_of_birth ||
-	// 		!medication_description ||
-	// 		!description
-	// 	) {
-	// 		setEmptyError("All fields are required.");
-	// 		return false;
-	// 	}
-	// 	setEmptyError("");
-	// 	return true;
-	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -136,7 +115,6 @@ function PatientRegister() {
 				<div className="patient-reg-section1">
 					<ProfilePic onFileSelect={handleProfilePicSelect}/>
 					<div className="patient-form-input">
-						{/* {emptyError && <p className="error">{emptyError}</p>} */}
 						{formMessage && <p className="error">{formMessage}</p>}
 
 						<div className="patient-reg-input">
