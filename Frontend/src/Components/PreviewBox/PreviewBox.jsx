@@ -9,7 +9,7 @@ function PreviewBox({ height, width, title, text }) {
 
     return (
         <div style={previewStyles} className="preview-style">
-            {title && <h2>{title}</h2>}
+            {title && <h3>{title}</h3>}
             {text && <p>{text}</p>}     
         </div>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import OptionsBox from "../../Components/Options/Options";
 import "./Diagnosis.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
@@ -12,8 +12,10 @@ function Diagnosis() {
 	const patientData = location.state?.patientData;
 	//Extract data passed from patient registration
 	const patientId = patientData ? patientData.id : null;
-    const patientFirstName = patientData ? patientData.firstName : '';
-    const patientLastName = patientData ? patientData.lastName : '';
+	const patientFirstName = patientData ? patientData.firstName : "";
+	const patientLastName = patientData ? patientData.lastName : "";
+	const medicalHistory = location.state?.description;
+	const medicationHistory = location.state?.medication_description;
 
 	const navigate = useNavigate();
 
@@ -33,10 +35,7 @@ function Diagnosis() {
 			medication_description: prescription,
 		};
 		try {
-			const response = await fetchHelper.post(
-				"/diagnosis",
-				formData
-			);
+			const response = await fetchHelper.post("/diagnosis", formData);
 			console.log("Data submitted successfully:", response);
 			navigate("/patient-registration");
 		} catch (error) {
@@ -48,20 +47,20 @@ function Diagnosis() {
 			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 			<div className="diagnosis-data-form">
-                <p className="patient-name">{`${patientFirstName} ${patientLastName}`}</p>
+				<p className="patient-name">{`${patientFirstName} ${patientLastName}`}</p>
 				<div className="patient-preview-section1">
 					<div className="patient-preview-boxes">
 						<PreviewBox
 							width={"60rem"}
 							height={"auto"}
 							title={"Medical History:"}
-							text={"Hello word"}
+							text={medicalHistory || "No medical history available"}
 						/>
 						<PreviewBox
 							width={"60rem"}
 							height={"auto"}
 							title={"Medication History:"}
-							text={"Hello word"}
+							text={medicationHistory || "No medical history available"}
 						/>
 						<TextArea
 							width={"60rem"}
