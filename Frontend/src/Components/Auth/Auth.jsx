@@ -57,6 +57,11 @@ function Login({ onClose }) {
 				if (token) {
 					localStorage.setItem("token", token);
 
+					const patientId= response.authorisation.patient_id;
+					if(patientId){
+						localStorage.setItem('patientId',patientId)
+					}
+
 					const userRole = response.user.role;
 					if (userRole === "admin") {
 						navigate("/admin");
