@@ -1,6 +1,13 @@
-.diagnosis-data-form{
-    margin-top: 3rem;
+.diagnosis-data-form {
+	margin-top: 3rem;
 }
-.patient-preview-section1{
-    margin-top: 2rem;
+.patient-preview-section1 {
+	margin-top: 2rem;
+}
+
+.error-message {
+	color: red;
+	font-size: smaller;
+	margin-left: 0.5rem;
+    margin-top: -1.5rem;
 }

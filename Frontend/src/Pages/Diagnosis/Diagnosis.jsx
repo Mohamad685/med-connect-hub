@@ -18,6 +18,10 @@ function Diagnosis() {
 	const medicationHistory = location.state?.medication_description;
 
 	const navigate = useNavigate();
+	const [symptomError, setSymptomError] = useState(false);
+	const [labResultError, setLabResultError] = useState(false);
+	const [diagnosisError, setDiagnosisError] = useState(false);
+	const [prescriptionError, setPrescriptionError] = useState(false);
 
 	const [symptomDescription, setSymptomDescription] = useState("");
 	const [labResult, setLabResult] = useState("");
@@ -27,6 +31,16 @@ function Diagnosis() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		setSymptomError(false);
+		setLabResultError(false);
+		setDiagnosisError(false);
+		setPrescriptionError(false);
+
+		if (!symptomDescription) setSymptomError(true);
+		if (!labResult) setLabResultError(true);
+		if (!diagnosisDescription) setDiagnosisError(true);
+		if (!prescription) setPrescriptionError(true);
+		
 		const formData = {
 			patient_id: patientId,
 			symptom_description: symptomDescription,
@@ -34,12 +48,21 @@ function Diagnosis() {
 			diagnosis_description: diagnosisDescription,
 			medication_description: prescription,
 		};
-		try {
-			const response = await fetchHelper.post("/diagnosis", formData);
-			console.log("Data submitted successfully:", response);
-			navigate("/patient-registration");
-		} catch (error) {
-			console.error("Error during data submission:", error);
+		if (
+			symptomDescription &&
+			labResult &&
+			diagnosisDescription &&
+			prescription
+		) {
+			try {
+				const response = await fetchHelper.post("/diagnosis", {
+					formData
+				});
+				console.log("Data submitted successfully:", response);
+				navigate("/patient-registration");
+			} catch (error) {
+				console.error("Error during data submission:", error);
+			}
 		}
 	};
 	return (
@@ -53,39 +76,47 @@ function Diagnosis() {
 						<PreviewBox
 							width={"60rem"}
 							height={"auto"}
-							title={"Medical History:"}
+							title={"Medical History"}
 							text={medicalHistory || "No medical history available"}
 						/>
 						<PreviewBox
 							width={"60rem"}
 							height={"auto"}
-							title={"Medication History:"}
+							title={"Medication History"}
 							text={medicationHistory || "No medical history available"}
 						/>
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}
-							placeholder={"Symptoms:"}
+							placeholder={"Symptoms"}
 							onChange={(e) => setSymptomDescription(e.target.value)}
 						/>
+						{symptomError && <p className="error-message">Symptoms are required.</p>}
+
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}
-							placeholder={"Lab Results:"}
+							placeholder={"Lab Results"}
 							onChange={(e) => setLabResult(e.target.value)}
 						/>
+						{labResultError && <p className="error-message">Lab results are required.</p>}
+
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}
-							placeholder={"Diagnosis:"}
+							placeholder={"Diagnosis"}
 							onChange={(e) => setDiagnosisDescription(e.target.value)}
 						/>
+						{diagnosisError && <p className="error-message">Diagnosis is required.</p>}
+
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}
-							placeholder={"Prescriptions:"}
+							placeholder={"Prescriptions"}
 							onChange={(e) => setPrescription(e.target.value)}
 						/>
+						{prescriptionError && <p className="error-message">Prescription is required.</p>}
+
 						<Button
 							width={"14rem"}
 							height={"3rem"}
