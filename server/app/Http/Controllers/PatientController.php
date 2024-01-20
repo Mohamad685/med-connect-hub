@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
-use App\Models\User;
 use App\Services\LabResultService;
 use App\Services\PatientDiagnosisService;
 use App\Services\PrescriptionService;
 use App\Services\SymptomService;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class PatientDiagnosticController extends Controller
 {
-    protected $LabResultService;
-    protected $PatientDiagnosisService;
-    protected $PrescriptionService;
-    protected $SymptomService;
+    protected $labResultService;
+    protected $patientDiagnosisService;
+    protected $prescriptionService;
+    protected $symptomService;
 
     public function __construct(
         LabResultService $labResultService,
         PatientDiagnosisService $patientDiagnosisService,
         PrescriptionService $prescriptionService,
-        SymptomService $symptomService,
+        SymptomService $symptomService
     ) {
         $this->labResultService = $labResultService;
         $this->patientDiagnosisService = $patientDiagnosisService;
@@ -29,13 +27,27 @@ class PatientController extends Controller
         $this->symptomService = $symptomService;
     }
 
-    public function getLabResults($user_name)
+    public function getLabResults($patientId)
     {
-        $labResults = $this->LabResultService->getLabResults($user);
-
+        $labResults = $this->labResultService->getLabResults($patientId);
         return response()->json($labResults);
     }
 
+    public function getDiagnosis($patientId)
+    {
+        $diagnosis = $this->patientDiagnosisService->getDiagnosis($patientId);
+        return response()->json($diagnosis);
+    }
+
+    public function getPrescriptions($patientId)
+    {
+        $prescriptions = $this->prescriptionService->getPrescriptions($patientId);
+        return response()->json($prescriptions);
+    }
+
+    public function getSymptoms($patientId)
+    {
+        $symptoms = $this->symptomService->Symptoms($patientId);
+        return response()->json($symptoms);
+    }
 }
-
-
