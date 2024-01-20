@@ -57,9 +57,14 @@ function Login({ onClose }) {
 				if (token) {
 					localStorage.setItem("token", token);
 
-					const patientId= response.patient_id;
-					if(patientId){
-						localStorage.setItem('patientId',patientId)
+					const patientId = response.patient_id;
+					const firstName = response.first_name; 
+					const lastName = response.last_name; 
+
+					if (patientId) {
+						localStorage.setItem("patientId", patientId.toString());
+						localStorage.setItem("firstName", firstName);
+						localStorage.setItem("lastName", lastName);
 					}
 
 					const userRole = response.user.role;

@@ -10,8 +10,16 @@ function PatientPreview() {
 	const [symptoms, setSymptoms] = useState("");
 	const [diagnosis, setDiagnosis] = useState("");
 	const [prescriptions, setPrescriptions] = useState("");
+	const [firstName, setFirstName] = useState(""); 
+    const [lastName, setLastName] = useState("");  
+
 	useEffect(() => {
+        const fName = localStorage.getItem('firstName');
+        const lName = localStorage.getItem('lastName');
 		const patientId = localStorage.getItem("patientId");
+		setFirstName(fName);
+        setLastName(lName);
+
 		const fetchData = async () => {
 			try {
 				const labResultsData = await fetchHelper.get(
@@ -43,20 +51,22 @@ function PatientPreview() {
 
 	function formatDate(isoString) {
 		const date = new Date(isoString);
-		return date.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
-			second: '2-digit'
+		return date.toLocaleDateString("en-US", {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+			hour12: true,
 		});
 	}
 
 	function formatLabResults(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.result}, At: {formatDate(item.created_at)}</li>
+				<li key={index}>
+					{item.result}, In: {formatDate(item.created_at)}
+				</li>
 			));
 		}
 		return <li>No lab results available</li>;
@@ -65,33 +75,42 @@ function PatientPreview() {
 	function formatDiagnosis(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.diagnosis_description}, At: {formatDate(item.created_at)}</li>
+				<li key={index}>
+					{item.diagnosis_description}, In: {formatDate(item.created_at)}
+				</li>
 			));
 		}
 		return <li>No lab results available</li>;
 	}
+
 	function formatPrescription(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.medication_description}, At: {formatDate(item.created_at)}</li>
+				<li key={index}>
+					{item.medication_description}, In: {formatDate(item.created_at)}
+				</li>
 			));
 		}
 		return <li>No lab results available</li>;
 	}
+
 	function formatSymptom(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>{item.symptom_description}, At: {formatDate(item.created_at)}</li>
+				<li key={index}>
+					{item.symptom_description}, In: {formatDate(item.created_at)}
+				</li>
 			));
 		}
 		return <li>No lab results available</li>;
 	}
+
 	return (
 		<div className="patient-page">
 			<OptionsBox margin={"8rem 2rem 2rem 2rem"} />
 
 			<div className="patient-data-form">
-				<p className="patient-name">Mohammad Fakih</p>
+				<p className="patient-name">{firstName} {lastName}</p>
 				<div className="patient-preview-section1">
 					<ProfilePic />
 					<div className="patient-preview-boxes">
