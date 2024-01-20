@@ -16,27 +16,34 @@ class AuthController extends Controller
 {
 
     public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
+{
+    $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
-        }
-
-        $user = Auth::user();
+    $token = Auth::attempt($credentials);
+    if (!$token) {
         return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-            ]
-        ]);
-
+            'status' => 'error',
+            'message' => 'Unauthorized',
+        ], 401);
     }
+
+    $user = Auth::user();
+    $patient_id = null;
+    if ($user->role === 'patient') { 
+        $patient = $user->patient; 
+        $patient_id = $patient ? $patient->id : null;
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'user' => $user,
+        'patient_id' => $patient_id, 
+        'authorisation' => [
+            'token' => $token,
+        ]
+    ]);
+}
+
 
     protected function respondWithToken($token)
     {
