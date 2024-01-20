@@ -18,15 +18,12 @@ class PatientRegistrationController extends Controller
     public function registerPatient(Request $request)
     {
         try {
-            // Call the service to handle the registration
             $response = $this->patientRegistrationService->handleRegistration($request->all());
 
             return $response;
         } catch (\Exception $e) {
-            // Log the error for debugging
             Log::error('Registration Error: ' . $e->getMessage());
 
-            // Return an error response
             return response()->json(['error' => 'Registration failed.'], 500);
         }
     }

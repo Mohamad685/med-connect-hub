@@ -17,14 +17,12 @@ class PatientRegistrationService
     public function handleRegistration($data)
     {
         try {
-            // Custom error messages for unique fields
             $messages = [
                 'email.unique' => 'The email has already been taken.',
                 'user_name.unique' => 'The username has already been taken.',
                 'phone_number.unique' => 'The phone number has already been registered.'
             ];
 
-            // Validation rules
             $validator = Validator::make($data, [
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6',
@@ -72,7 +70,11 @@ class PatientRegistrationService
             $this->createMedicationHistory($data, $patient->id);
             $this->createMedicalHistory($data, $patient->id);
 
-            return response()->json(['message' => 'Patient registered successfully']);
+            return response()->json([
+                'message' => 'Patient registered successfully',
+                'patient' => $patient
+                
+            ],200);
 
         } catch (ValidationException $e) {
             return response()->json([

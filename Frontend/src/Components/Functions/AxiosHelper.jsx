@@ -7,7 +7,6 @@ const axiosHelper = axios.create({
     },
 });
 
-// Adding an interceptor to append the token to each request
 axiosHelper.interceptors.request.use(
     config => {
         const token = localStorage.getItem('token');

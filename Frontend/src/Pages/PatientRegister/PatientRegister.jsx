@@ -65,7 +65,6 @@ function PatientRegister() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-
 		const formData = {
 			user_name,
 			password,
@@ -83,34 +82,41 @@ function PatientRegister() {
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
 
-        console.log("Response received:", response);
-
-        if (response.message === 'Patient registered successfully') {
-            console.log("Registration successful:", response); 
+			console.log("Registration successful:", response);
 			clearFields();
-            setFormMessage(response.message);
-			navigate('/diagnosis');
-        } else {
-            console.log("Non-200 response:", response);
-            setFormMessage("An error occurred during registration.");
-        }
-        } catch (error) {
-            console.error("Error during registration:", error);
-            const errors = error.response?.data?.errors;
-            if (errors) {
-                const errorList = (
-                    <ul>
-                        {Object.values(errors).flat().map((msg, index) => (
-                            <li key={index} style={{color:"red"}} >{msg}</li>
-                        ))}
-                    </ul>
-                );
-                setFormMessage(errorList);
-            } else {
-                setFormMessage("An error occurred during registration.");
-            }
-        }
-    };
+			setFormMessage(response.message);
+
+			const patientData = {
+				id: response.patient.id,
+				firstName: response.patient.first_name,
+				lastName: response.patient.last_name,
+				// profilePic: response.patient.profile_pic // Uncomment or remove based on your requirement
+			};
+
+			navigate("/diagnosis", { state: { patientData } });
+		} catch (error) {
+			console.error("Error during registration:", error);
+			const errors = error.response?.data?.errors;
+			if (errors) {
+				const errorList = (
+					<ul>
+						{Object.values(errors)
+							.flat()
+							.map((msg, index) => (
+								<li
+									key={index}
+									style={{ color: "red" }}>
+									{msg}
+								</li>
+							))}
+					</ul>
+				);
+				setFormMessage(errorList);
+			} else {
+				setFormMessage("An error occurred during registration.");
+			}
+		}
+	};
 	return (
 		<div className="patient-reg-page">
 			<OptionsBox
