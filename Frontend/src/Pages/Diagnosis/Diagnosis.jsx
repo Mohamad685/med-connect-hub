@@ -11,7 +11,7 @@ function Diagnosis() {
 	const location = useLocation();
 	const patientData = location.state?.patientData;
 	const patientId = patientData ? patientData.id : null;
-
+	
 	const [symptomDescription, setSymptomDescription] = useState("");
 	const [labResult, setLabResult] = useState("");
 	const [diagnosisDescription, setDiagnosisDescription] = useState("");

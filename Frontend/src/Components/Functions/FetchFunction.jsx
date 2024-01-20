@@ -27,7 +27,7 @@ const fetchHelper = {
 
 			const response = await axiosHelper.post(url, data, { headers });
 
-			if (response.status === 200) {
+			if (response.status === 200|| response.status === 201) {
 				console.log("POST Success:", response.data);
 				return response.data;
 			} else {
