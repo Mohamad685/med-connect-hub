@@ -172,6 +172,7 @@ return [
         App\Providers\PatientRegistrationServiceProvider::class,
         App\Providers\RegistrationServiceProvider::class,
         App\Providers\HealthDataProvider::class,
+        App\Providers\PatientDiagnosticServiceProvider::class,
 
 
 
