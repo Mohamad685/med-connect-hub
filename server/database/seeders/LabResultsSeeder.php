@@ -7,9 +7,7 @@ use Illuminate\Database\Seeder;
 
 class LabResultsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+   
     public function run(): void
     {
         $patients = DB::table('patients')->take(4)->get();
