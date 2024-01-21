@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GetUsersController;
 use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\InsuranceApprovalController;
 use App\Http\Controllers\PatientController;
@@ -16,11 +17,19 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::put('/doctor/{id}', [UserController::class, 'updateDoctor']);
-    Route::delete('/doctor/{id}', [UserController::class, 'deleteDoctor']);
-    Route::put('/patient/{id}', [UserController::class, 'updatePatient']);
-    Route::delete('/patient/{id}', [UserController::class, 'deletePatient']);
     Route::put('/insurance/{id}', [UserController::class, 'updateInsuranceCompany']);
+    Route::put('/patient/{id}', [UserController::class, 'updatePatient']);
+
+    Route::delete('/doctor/{id}', [UserController::class, 'deleteDoctor']);
+    Route::delete('/patient/{id}', [UserController::class, 'deletePatient']);
     Route::delete('/insurance/{id}', [UserController::class, 'deleteInsuranceCompany']);
+
+    Route::get('/admin/doctors', [GetUsersController::class,'listDoctors']);
+    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getDoctorDetails']);
+    Route::get('/admin/doctors', [GetUsersController::class,'listPatients']);
+    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getPatientDetails']);
+    Route::get('/admin/doctors', [GetUsersController::class,'listInsuranceCompanies']);
+    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getInsuranceCompanies']);
 });
 
 
