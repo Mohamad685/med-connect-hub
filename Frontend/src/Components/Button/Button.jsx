@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.css";
 
-function Button({fontSize, color, width, height,text,onClick}){
+function Button({fontSize, color, width, height,text,onClick,classNames}){
     const buttonStyle={
         color: color,
         width:width,
@@ -10,7 +10,7 @@ function Button({fontSize, color, width, height,text,onClick}){
     }
     return(
         <>
-        <button  style={buttonStyle} onClick={onClick} className={`button-style`}>{text}</button>
+        <button  style={buttonStyle} onClick={onClick} className={` button-style ${classNames}`}>{text}</button>
         </>
     )
 }

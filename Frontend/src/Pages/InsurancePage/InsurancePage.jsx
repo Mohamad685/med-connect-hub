@@ -135,11 +135,16 @@ function InsurancePage() {
 										fontSize="1.15rem"
 										onClick={() => updateStatus("Accepted", approvalId)}
 									/>
-									<button
-										className="insurance-button"
-										onClick={() => updateStatus("Rejected", approvalId)}>
-										Reject
-									</button>
+
+									<Button
+										width={"20rem"}
+										height={"2.5rem"}
+										color={"white"}
+										text="Reject"
+										fontSize="1.15rem"
+										onClick={() => updateStatus("Rejected", approvalId)}
+										classNames={'insurance-button-style'}
+									/>
 								</div>
 							</div>
 						</div>

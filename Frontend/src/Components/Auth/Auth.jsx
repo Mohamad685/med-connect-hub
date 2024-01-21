@@ -130,7 +130,7 @@ function Login({ onClose }) {
 					width={"14rem"}
 					height={"2.5rem"}
 					text={"Login"}
-					classNames={["button-style"]}
+					classNames={"button-style"}
 					onClick={handleSubmit}
 				/>
 			</div>

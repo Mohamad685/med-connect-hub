@@ -72,7 +72,10 @@
     font-weight: 700;
 }
 
-.insurance-button:hover{
+.insurance-button-style{
+    background-color: #E34242;
+}
+.insurance-button-style:hover{
     background-color: #c84747;
 }
 
