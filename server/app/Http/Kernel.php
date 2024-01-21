@@ -71,8 +71,8 @@ class Kernel extends HttpKernel
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
         'doctor' => \App\Http\Middleware\EnsureUserIsDoctor::class,
         'patient'=>\App\Http\Middleware\EnsureUserIsPatient::class,
+        'insurance'=>\App\Http\Middleware\EnsureUserIsInsurance::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
-
 
     ];
 }
