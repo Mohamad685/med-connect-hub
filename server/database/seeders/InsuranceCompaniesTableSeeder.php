@@ -16,7 +16,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
             'user_name' => 'global_insurance',
             'email' => 'info@globalinsurance.com',
             'password' => Hash::make('password'),
-            'role' => 'insurance_company'
+            'role' => 'insurance'
         ]);
 
         InsuranceCompany::create([
@@ -34,7 +34,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
             'user_name' => 'national_health',
             'email' => 'contact@nationalhealth.com',
             'password' => Hash::make('password'),
-            'role' => 'insurance_company'
+            'role' => 'insurance'
         ]);
 
         InsuranceCompany::create([
@@ -52,7 +52,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
             'user_name' => 'secure_auto',
             'email' => 'support@secureauto.com',
             'password' => Hash::make('password'),
-            'role' => 'insurance_company'
+            'role' => 'insurance'
         ]);
 
         InsuranceCompany::create([
@@ -69,7 +69,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
             'user_name' => 'home_safe',
             'email' => 'home@homesafe.com',
             'password' => Hash::make('password'),
-            'role' => 'insurance_company'
+            'role' => 'insurance'
         ]);
 
         InsuranceCompany::create([
