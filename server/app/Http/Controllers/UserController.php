@@ -26,4 +26,22 @@ class UserController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+    
+    public function updateDoctor(Request $request, $id)
+    {
+        $response = $this->registrationService->updateDoctor($request->all(), $id);
+        return response()->json($response);
+    }
+
+    public function updatePatient(Request $request, $id)
+    {
+        $response = $this->registrationService->updatePatient($request->all(), $id);
+        return response()->json($response);
+    }
+
+    public function updateInsuranceCompany(Request $request, $id)
+    {
+        $response = $this->registrationService->updateInsuranceCompany($request->all(), $id);
+        return response()->json($response);
+    }
 }
