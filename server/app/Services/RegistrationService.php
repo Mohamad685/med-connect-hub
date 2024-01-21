@@ -246,6 +246,23 @@ class RegistrationService
             return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
         }
     }
+
+    public function deleteInsuranceCompany($id)
+    {
+        try {
+            $insurance = InsuranceCompany::findOrFail($id);
+            $user = User::findOrFail($insurance->user_id);
+
+            $insurance->delete();
+            $user->delete();
+
+            return ['success' => true, 'message' => 'Insurance deleted successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Insurance not found'];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
+    }
 }
 
 
