@@ -64,57 +64,5 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
-
-
     
-    public function deleteDoctor($id)
-    {
-        try {
-            $doctor = Doctor::findOrFail($id);
-            $user = User::findOrFail($doctor->user_id);
-
-            $doctor->delete();
-            $user->delete();
-
-            return response()->json(['message' => 'Doctor deleted successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Doctor not found'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function deletePatient($id)
-    {
-        try {
-            $patient = Patient::findOrFail($id);
-            $user = User::findOrFail($patient->user_id);
-
-            $patient->delete();
-            $user->delete();
-
-            return response()->json(['message' => 'Patient deleted successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Patient not found'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function deleteInsuranceCompany($id)
-    {
-        try {
-            $insurance = InsuranceCompany::findOrFail($id);
-            $user = User::findOrFail($insurance->user_id);
-
-            $insurance->delete();
-            $user->delete();
-
-            return response()->json(['message' => 'Insurance company deleted successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Insurance company not found'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-}
+ }

@@ -182,7 +182,6 @@ class RegistrationService
             $insurance = InsuranceCompany::findOrFail($id);
             $user = User::findOrFail($insurance->user_id);
 
-            // Update user related fields
             if (isset($insuranceData['email'])) {
                 $user->email = $insuranceData['email'];
             }
@@ -194,7 +193,6 @@ class RegistrationService
             }
             $user->save();
 
-            // Update insurance company specific fields
             $insurance->name = $insuranceData['name'] ?? $insurance->name;
             $insurance->description = $insuranceData['description'] ?? $insurance->description;
             $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
