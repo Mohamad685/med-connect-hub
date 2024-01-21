@@ -144,9 +144,36 @@ class RegistrationService
         }
     }
 
-    public function updatePatient($requestData, $id)
+    public function updatePatient(array $patientData, $id)
     {
-        // Your logic for updating a patient
+        try {
+            $patient = Patient::findOrFail($id);
+            $user = User::findOrFail($patient->user_id);
+
+            if (isset($patientData['email'])) {
+                $user->email = $patientData['email'];
+            }
+            if (isset($patientData['password'])) {
+                $user->password = Hash::make($patientData['password']);
+            }
+            if (isset($patientData['user_name'])) {
+                $user->user_name = $patientData['user_name'];
+            }
+            $user->save();
+
+            $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
+            $patient->address = $patientData['address'] ?? $patient->address;
+            $patient->email = $patientData['email'] ?? $patient->email;
+            $patient->save();
+
+            return ['success' => true, 'message' => 'Patient updated successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Patient not found'];
+        } catch (ValidationException $e) {
+            return ['success' => false, 'message' => 'Validation failed', 'errors' => $e->errors()];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
     }
 
 }
