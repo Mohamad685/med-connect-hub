@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->string('phone_number')->unique()->nullable();
+            $table->bigInteger('phone_number')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('address')->nullable();
             $table->text('coverage_details')->nullable();

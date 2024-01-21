@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('last_name');
             $table->string('specialty');
             $table->integer('age');
-            $table->integer('phone_number');
+            $table->bigInteger('phone_number');
             $table->integer('license_id');
             $table->string('gender');
             $table->unsignedBigInteger('user_id');
