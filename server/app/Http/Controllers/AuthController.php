@@ -32,21 +32,25 @@ class AuthController extends Controller
         $patient_id = null;
         $first_name = null;
         $last_name = null;
+        $insurance_company_name = null;
+
         if ($user->role === 'patient') {
             $patient = $user->patient;
             if ($patient) {
                 $patient_id = $patient->id;
                 $first_name = $patient->first_name;
                 $last_name = $patient->last_name;
-            }
+            }elseif ($user->role === 'insurance') {
+                $insurance_company_name = $user->insurance_companies->name;
         }
-
+    }
         return response()->json([
             'status' => 'success',
             'user' => $user,
             'patient_id' => $patient_id,
             'first_name' => $first_name,
             'last_name' => $last_name,
+            'insurance_company_name' => $insurance_company_name,
             'authorisation' => [
                 'token' => $token,
             ]
