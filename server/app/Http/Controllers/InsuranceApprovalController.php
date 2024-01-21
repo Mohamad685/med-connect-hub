@@ -15,7 +15,10 @@ class InsuranceApprovalController extends Controller
 
     public function updateStatus(Request $request, $approvalId)
     {
-        $status = $request->input('status');
+        $validated = $request->validate([
+            'status' => 'required|string|in:Accepted,Rejected',
+        ]);
+        $status = $validated['status'];
         $approval = $this->approvalService->updateApprovalStatus($approvalId, $status);
 
         return response()->json($approval);

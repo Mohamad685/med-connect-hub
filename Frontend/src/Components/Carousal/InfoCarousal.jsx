@@ -40,7 +40,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="/public/pics/diabetes.jpg"
+						src="/pics/diabetes.jpg"
 						alt="diabetes pic"
 					/>
 				</SwiperSlide>
@@ -57,7 +57,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="/public/pics/DNA.png"
+						src="/pics/DNA.png"
 						alt="DNA pic"
 					/>
 				</SwiperSlide>
@@ -75,7 +75,7 @@ function Carousel() {
 						</p>
 					</span>
 					<img
-						src="/public/pics/mask.png"
+						src="/pics/mask.png"
 						alt="mask pic"
 					/>
 				</SwiperSlide>
