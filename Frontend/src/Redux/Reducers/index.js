@@ -1,8 +1,16 @@
-import { combineReducers } from 'redux';
-import diagnosisReducer from './DiagnosisReducers';
+import { createSlice } from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({
-  diagnosis: diagnosisReducer,
+const diagnosisSlice = createSlice({
+  name: 'diagnosis',
+  initialState: {
+    diagnosisData: {},
+  },
+  reducers: {
+    setDiagnosisData: (state, action) => {
+      state.diagnosisData = action.payload;
+    },
+  },
 });
 
-export default rootReducer;
+export const { setDiagnosisData } = diagnosisSlice.actions;
+export default diagnosisSlice.reducer;
