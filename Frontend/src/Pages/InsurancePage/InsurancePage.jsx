@@ -19,7 +19,7 @@ function InsurancePage() {
 	useEffect(() => {
 		const storedInsuranceCompanyName = localStorage.getItem("insuranceCompanyName");
 		if (storedInsuranceCompanyName) {
-			setInsuranceCompanyName(storedInsuranceCompanyName);
+			setInsuranceName(storedInsuranceCompanyName);
 		}
 	}, []);
 

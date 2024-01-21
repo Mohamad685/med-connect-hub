@@ -60,7 +60,7 @@ function Login({ onClose }) {
 					const patientId = response.patient_id;
 					const firstName = response.first_name; 
 					const lastName = response.last_name; 
-					const insuranceCompanyName = response.insuranceCompanyName;
+					const insuranceCompanyName = response.insurance_company_name;
 
 
 					if (patientId) {

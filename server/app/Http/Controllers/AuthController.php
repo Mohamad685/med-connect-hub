@@ -36,14 +36,13 @@ class AuthController extends Controller
 
         if ($user->role === 'patient') {
             $patient = $user->patient;
-            if ($patient) {
                 $patient_id = $patient->id;
                 $first_name = $patient->first_name;
                 $last_name = $patient->last_name;
-            }elseif ($user->role === 'insurance') {
-                $insurance_company_name = $user->insurance_companies->name;
         }
-    }
+        if ($user->role === 'insurance') {
+                $insurance_company_name = $user->insuranceCompany->name;
+        }
         return response()->json([
             'status' => 'success',
             'user' => $user,
