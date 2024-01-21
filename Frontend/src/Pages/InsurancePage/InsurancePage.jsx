@@ -11,12 +11,23 @@ function InsurancePage() {
 	const [diagnoses, setDiagnoses] = useState([]);
 	const [prescriptions, setPrescriptions] = useState([]);
 	const [symptoms, setSymptoms] = useState([]);
+	const [insuranceName, setInsuranceName] = useState('');
+
 	const approvalId = "1";
-	const patientId='1';
+	const patientId = "1";
+
+	useEffect(() => {
+		const storedInsuranceCompanyName = localStorage.getItem("insuranceCompanyName");
+		if (storedInsuranceCompanyName) {
+			setInsuranceCompanyName(storedInsuranceCompanyName);
+		}
+	}, []);
+
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+
 				const labResultsResponse = await fetchHelper.get(
 					`/patient/${patientId}/lab-results`
 				);
@@ -42,10 +53,10 @@ function InsurancePage() {
 		};
 
 		fetchData();
+		
 	}, [patientId]);
 
 	const updateStatus = async (status, approvalId) => {
-
 		const url = `/insurance-request/${approvalId}/update-status`;
 		const data = { status: status };
 		try {
@@ -62,53 +73,53 @@ function InsurancePage() {
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 				<div className="insurance-reg-form">
-					<p className="insurance-reg-title">Patient Full name</p>
+					<p className="insurance-reg-title">{insuranceName}</p>
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
 							<div className="address-input-div">
-                                {labResults.map((result, index) => (
-                                    <PreviewBox
-                                        key={index}
-                                        title={`Lab Results`}
-                                        text={result.result}
-                                        width={"56rem"}
-                                        height={"8rem"}
-                                        textPosition={"text-top"}
-                                    />
-                                ))}
+								{labResults.map((result, index) => (
+									<PreviewBox
+										key={index}
+										title={`Lab Results`}
+										text={result.result}
+										width={"56rem"}
+										height={"8rem"}
+										textPosition={"text-top"}
+									/>
+								))}
 
-                                {diagnoses.map((diagnosis, index) => (
-                                    <PreviewBox
-                                        key={index}
-                                        title={`Diagnosiss`}
-                                        text={diagnosis.diagnosis_description}
-                                        width={"56rem"}
-                                        height={"8rem"}
-                                        textPosition={"text-top"}
-                                    />
-                                ))}
+								{diagnoses.map((diagnosis, index) => (
+									<PreviewBox
+										key={index}
+										title={`Diagnosiss`}
+										text={diagnosis.diagnosis_description}
+										width={"56rem"}
+										height={"8rem"}
+										textPosition={"text-top"}
+									/>
+								))}
 
-                                {symptoms.map((symptom, index) => (
-                                    <PreviewBox
-                                        key={index}
-                                        title={`Symptoms`}
-                                        text={symptom.symptom_description}
-                                        width={"56rem"}
-                                        height={"8rem"}
-                                        textPosition={"text-top"}
-                                    />
-                                ))}
+								{symptoms.map((symptom, index) => (
+									<PreviewBox
+										key={index}
+										title={`Symptoms`}
+										text={symptom.symptom_description}
+										width={"56rem"}
+										height={"8rem"}
+										textPosition={"text-top"}
+									/>
+								))}
 
-                                {prescriptions.map((prescription, index) => (
-                                    <PreviewBox
-                                        key={index}
-                                        title={`Prescriptions`}
-                                        text={prescription.medication_description} 
-                                        width={"56rem"}
-                                        height={"8rem"}
-                                        textPosition={"text-top"}
-                                    />
-                                ))}
+								{prescriptions.map((prescription, index) => (
+									<PreviewBox
+										key={index}
+										title={`Prescriptions`}
+										text={prescription.medication_description}
+										width={"56rem"}
+										height={"8rem"}
+										textPosition={"text-top"}
+									/>
+								))}
 								<div className="insurance-button-div">
 									<Button
 										width={"20rem"}

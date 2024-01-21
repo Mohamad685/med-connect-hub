@@ -60,11 +60,17 @@ function Login({ onClose }) {
 					const patientId = response.patient_id;
 					const firstName = response.first_name; 
 					const lastName = response.last_name; 
+					const insuranceCompanyName = response.insuranceCompanyName;
+
 
 					if (patientId) {
 						localStorage.setItem("patientId", patientId.toString());
 						localStorage.setItem("firstName", firstName);
 						localStorage.setItem("lastName", lastName);
+					}
+
+					if (insuranceCompanyName) {
+						localStorage.setItem("insuranceCompanyName", insuranceCompanyName);
 					}
 
 					const userRole = response.user.role;
