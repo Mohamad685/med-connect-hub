@@ -6,10 +6,13 @@ import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 function InsurancePage() {
+	
 	const updateStatus = async (status, approvalId) => {
-		const url = `/insurance-request/${approvalId}/update-status`;
-		const data = { status: status };
+		console.log('hello')
 
+
+		const url = `/insurance-request/${approvalId}/update-status`;
+		const data = { status: status };	
 		try {
 			const response = await fetchHelper.post(url, data);
 			console.log("Status updated successfully", response);
@@ -17,15 +20,15 @@ function InsurancePage() {
 			console.error("Failed to update status", error);
 		}
 	};
-
-	const approvalId = 1;
+	
+	const approvalId = '1';
 
 	return (
 		<>
 			<div className="insurance-reg-page">
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
-				<form className="insurance-reg-form">
+				<div className="insurance-reg-form">
 					<p className="insurance-reg-title">insurance Full Name</p>
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
@@ -60,7 +63,7 @@ function InsurancePage() {
 										width={"20rem"}
 										height={"2.5rem"}
 										color={"white"}
-										text={"Accept"}
+										text="Accept"
 										fontSize="1.15rem"
 										onClick={() => updateStatus("Accepted", approvalId)}
 									/>
@@ -73,7 +76,7 @@ function InsurancePage() {
 							</div>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</>
 	);
