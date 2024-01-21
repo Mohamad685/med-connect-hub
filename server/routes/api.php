@@ -26,10 +26,10 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
 
     Route::get('/admin/doctors', [GetUsersController::class,'listDoctors']);
     Route::get('/admin/doctor/{id}', [GetUsersController::class,'getDoctorDetails']);
-    Route::get('/admin/doctors', [GetUsersController::class,'listPatients']);
-    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getPatientDetails']);
-    Route::get('/admin/doctors', [GetUsersController::class,'listInsuranceCompanies']);
-    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getInsuranceCompanies']);
+    Route::get('/admin/patients', [GetUsersController::class,'listPatients']);
+    Route::get('/admin/patient/{id}', [GetUsersController::class,'getPatientDetails']);
+    Route::get('/admin/insurance', [GetUsersController::class,'listInsuranceCompanies']);
+    Route::get('/admin/insurance/{id}', [GetUsersController::class,'getInsuranceCompanyDetails']);
 });
 
 
