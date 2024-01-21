@@ -176,6 +176,43 @@ class RegistrationService
         }
     }
 
+    public function updateInsuranceCompany(array $insuranceData, $id)
+    {
+        try {
+            $insurance = InsuranceCompany::findOrFail($id);
+            $user = User::findOrFail($insurance->user_id);
+
+            // Update user related fields
+            if (isset($insuranceData['email'])) {
+                $user->email = $insuranceData['email'];
+            }
+            if (isset($insuranceData['password'])) {
+                $user->password = Hash::make($insuranceData['password']);
+            }
+            if (isset($insuranceData['user_name'])) {
+                $user->user_name = $insuranceData['user_name'];
+            }
+            $user->save();
+
+            // Update insurance company specific fields
+            $insurance->name = $insuranceData['name'] ?? $insurance->name;
+            $insurance->description = $insuranceData['description'] ?? $insurance->description;
+            $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
+            $insurance->address = $insuranceData['address'] ?? $insurance->address;
+            $insurance->coverage_details = $insuranceData['coverage_details'] ?? $insurance->coverage_details;
+            $insurance->email = $insuranceData['email'] ?? $insurance->email;
+            $insurance->save();
+
+            return ['success' => true, 'message' => 'Insurance company updated successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Insurance company not found'];
+        } catch (ValidationException $e) {
+            return ['success' => false, 'message' => 'Validation failed', 'errors' => $e->errors()];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
+    }
+
 }
 
 
