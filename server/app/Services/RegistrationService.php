@@ -229,6 +229,23 @@ class RegistrationService
             return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
         }
     }
+
+    public function deletePatient($id)
+    {
+        try {
+            $patient = Patient::findOrFail($id);
+            $user = User::findOrFail($patient->user_id);
+
+            $patient->delete();
+            $user->delete();
+
+            return ['success' => true, 'message' => 'Patient deleted successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Patient not found'];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
+    }
 }
 
 
