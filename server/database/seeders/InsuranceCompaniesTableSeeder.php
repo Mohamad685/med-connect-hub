@@ -22,7 +22,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
         InsuranceCompany::create([
             'name' => 'Global Insurance',
             'description' => 'Providing comprehensive coverage worldwide.',
-            'phone_number' => '800-123-4567',
+            'phone_number' => '8001234567',
             'email' => 'info@globalinsurance.com',
             'address' => '123 Global Ave, New York, NY',
             'coverage_details' => 'Full coverage including international travel.',
@@ -40,7 +40,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
         InsuranceCompany::create([
             'name' => 'National Health',
             'description' => 'Focused on health and wellness coverage.',
-            'phone_number' => '800-987-6543',
+            'phone_number' => '8009876543',
             'email' => 'contact@nationalhealth.com',
             'address' => '456 Health St, Los Angeles, CA',
             'coverage_details' => 'Extensive health and wellness plans.',
@@ -58,7 +58,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
         InsuranceCompany::create([
             'name' => 'Secure Auto',
             'description' => 'Auto insurance for every driver.',
-            'phone_number' => '555-321-0987',
+            'phone_number' => '5553210987',
             'email' => 'support@secureauto.com',
             'address' => '789 Drive Lane, Houston, TX',
             'coverage_details' => 'Auto insurance plans for individuals and families.',
@@ -75,7 +75,7 @@ class InsuranceCompaniesTableSeeder extends Seeder
         InsuranceCompany::create([
             'name' => 'Home Safe',
             'description' => 'Protecting your home and property.',
-            'phone_number' => '555-654-3210',
+            'phone_number' => '5556543210',
             'email' => 'home@homesafe.com',
             'address' => '321 Stay Lane, Chicago, IL',
             'coverage_details' => 'Comprehensive home insurance for homeowners and renters.',

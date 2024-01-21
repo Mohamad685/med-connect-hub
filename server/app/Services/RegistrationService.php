@@ -131,7 +131,6 @@ class RegistrationService
             $doctor->age = $doctorData['age'] ?? $doctor->age;
             $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
             $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
-            $doctor->email = $doctorData['email'] ?? $doctor->email;
             $doctor->save();
 
             return ['success' => true, 'message' => 'Doctor updated successfully!'];
@@ -163,7 +162,6 @@ class RegistrationService
 
             $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
             $patient->address = $patientData['address'] ?? $patient->address;
-            $patient->email = $patientData['email'] ?? $patient->email;
             $patient->save();
 
             return ['success' => true, 'message' => 'Patient updated successfully!'];
@@ -198,7 +196,6 @@ class RegistrationService
             $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
             $insurance->address = $insuranceData['address'] ?? $insurance->address;
             $insurance->coverage_details = $insuranceData['coverage_details'] ?? $insurance->coverage_details;
-            $insurance->email = $insuranceData['email'] ?? $insurance->email;
             $insurance->save();
 
             return ['success' => true, 'message' => 'Insurance company updated successfully!'];
