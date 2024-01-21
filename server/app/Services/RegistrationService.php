@@ -213,6 +213,22 @@ class RegistrationService
         }
     }
 
+    public function deleteDoctor($id)
+    {
+        try {
+            $doctor = Doctor::findOrFail($id);
+            $user = User::findOrFail($doctor->user_id);
+
+            $doctor->delete();
+            $user->delete();
+
+            return ['success' => true, 'message' => 'Doctor deleted successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Doctor not found'];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
+    }
 }
 
 

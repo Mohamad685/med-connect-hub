@@ -56,7 +56,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -67,53 +66,7 @@ class AuthController extends Controller
     }
 
 
-    public function updateDoctor(Request $request, $id)
-    {
-        try {
-
-            $doctorData = $request->validate([
-                'email' => 'sometimes|nullable|email',
-                'password' => 'sometimes|nullable|string|min:6',
-                'user_name' => 'sometimes|nullable|string',
-                'specialty' => 'sometimes|nullable|string',
-                'age' => 'sometimes|nullable|integer',
-                'phone_number' => 'sometimes|nullable|integer',
-                'license_id' => 'sometimes|nullable|integer'
-            ]);
-
-            $doctor = Doctor::findOrFail($id);
-            $user = User::findOrFail($doctor->user_id);
-
-            if (isset($doctorData['email'])) {
-                $user->email = $doctorData['email'];
-            }
-            if (isset($doctorData['password'])) {
-                $user->password = Hash::make($doctorData['password']);
-            }
-            if (isset($doctorData['user_name'])) {
-                $user->user_name = $doctorData['user_name'];
-            }
-            $user->save();
-
-            $doctor->specialty = $doctorData['specialty'] ?? $doctor->specialty;
-            $doctor->age = $doctorData['age'] ?? $doctor->age;
-            $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
-            $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
-            $doctor->email = $doctorData['email'] ?? $doctor->email;
-
-            $doctor->save();
-
-            return response()->json(['message' => 'Doctor updated successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Doctor not found'], 404);
-        } catch (ValidationException $e) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-
-
+    
     public function deleteDoctor($id)
     {
         try {
@@ -131,51 +84,6 @@ class AuthController extends Controller
         }
     }
 
-
-
-    public function updatePatient(Request $request, $id)
-    {
-        try {
-
-            $patientData = $request->validate([
-                'email' => 'sometimes|nullable|email',
-                'password' => 'sometimes|nullable|string|min:6',
-                'user_name' => 'sometimes|nullable|string',
-                'address' => 'sometimes|nullable|string|max:5000',
-                'phone_number' => 'sometimes|nullable|integer',
-            ]);
-
-            $patient = Patient::findOrFail($id);
-            $user = User::findOrFail($patient->user_id);
-
-            if (isset($patientData['email'])) {
-                $user->email = $patientData['email'];
-            }
-            if (isset($patientData['password'])) {
-                $user->password = Hash::make($patientData['password']);
-            }
-            if (isset($patientData['user_name'])) {
-                $user->user_name = $patientData['user_name'];
-            }
-            $user->save();
-
-            $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
-            $patient->address = $patientData['address'] ?? $patient->address;
-            $patient->email = $patientData['email'] ?? $patient->email;
-
-            $patient->save();
-
-            return response()->json(['message' => 'patient updated successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'patient not found'], 404);
-        } catch (ValidationException $e) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-
-
     public function deletePatient($id)
     {
         try {
@@ -192,56 +100,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
         }
     }
-
-
-    // Update Insurance Company Details
-    public function updateInsuranceCompany(Request $request, $id)
-    {
-        try {
-
-            $insuranceData = $request->validate([
-                'name' => 'sometimes|nullable|string',
-                'description' => 'sometimes|string',
-                'email' => 'sometimes|nullable|email',
-                'password' => 'sometimes|nullable|string|min:6',
-                'user_name' => 'sometimes|nullable|string',
-                'address' => 'sometimes|nullable|string|max:5000',
-                'phone_number' => 'sometimes|nullable|integer',
-                'coverage_details' => 'sometimes|string'
-            ]);
-
-            $insurance = InsuranceCompany::findOrFail($id);
-            $user = User::findOrFail($insurance->user_id);
-
-            if (isset($insuranceData['email'])) {
-                $user->email = $insuranceData['email'];
-            }
-            if (isset($insuranceData['password'])) {
-                $user->password = Hash::make($insuranceData['password']);
-            }
-            if (isset($insuranceData['user_name'])) {
-                $user->user_name = $insuranceData['user_name'];
-            }
-            $user->save();
-
-            $insurance->phone_number = $insuranceData['phone_number'] ?? $insurance->phone_number;
-            $insurance->address = $insuranceData['address'] ?? $insurance->address;
-            $insurance->description = $insuranceData['description'] ?? $insurance->description;
-            $insurance->coverage_details = $insuranceData['coverage_details'] ?? $insurance->coverage_details;
-            $insurance->email = $insuranceData['email'] ?? $insurance->email;
-
-            $insurance->save();
-
-            return response()->json(['message' => 'insurance updated successfully!']);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'insurance not found'], 404);
-        } catch (ValidationException $e) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $e->errors()], 422);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An unexpected error occurred', 'error' => $e->getMessage()], 500);
-        }
-    }
-
 
     public function deleteInsuranceCompany($id)
     {
