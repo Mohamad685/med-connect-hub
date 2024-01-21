@@ -7,6 +7,8 @@ import TextArea from "../../Components/TextArea/TextArea";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 import { useDispatch } from "react-redux";
+import { setDiagnosisData } from "../../Redux/Actions/DiagnosisActions";
+
 
 function Diagnosis() {
 	const dispatch=useDispatch();
