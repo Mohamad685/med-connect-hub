@@ -26,7 +26,7 @@ class UserController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
-    
+
     public function updateDoctor(Request $request, $id)
     {
         $response = $this->registrationService->updateDoctor($request->all(), $id);
@@ -44,4 +44,24 @@ class UserController extends Controller
         $response = $this->registrationService->updateInsuranceCompany($request->all(), $id);
         return response()->json($response);
     }
+
+    
+    public function deleteDoctor($id)
+    {
+        $response = $this->registrationService->deleteDoctor($id);
+        return response()->json($response);
+    }
+
+    public function deletePatient($id)
+    {
+        $response = $this->registrationService->deletePatient($id);
+        return response()->json($response);
+    }
+
+    public function deleteInsuranceCompany($id)
+    {
+        $response = $this->registrationService->deleteInsuranceCompany($id);
+        return response()->json($response);
+    }
 }
+
