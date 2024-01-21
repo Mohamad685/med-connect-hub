@@ -60,8 +60,14 @@ function InsurancePage() {
 		const url = `/insurance-request/${approvalId}/update-status`;
 		const data = { status: status };
 		try {
+			
 			const response = await fetchHelper.post(url, data);
 			console.log("Status updated successfully", response);
+			setDiagnoses([]);
+			setLabResults([]);
+			setPrescriptions([]);
+			setSymptoms([]);
+
 		} catch (error) {
 			console.error("Failed to update status", error);
 		}
