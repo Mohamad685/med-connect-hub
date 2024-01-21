@@ -6,9 +6,13 @@ import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import TextArea from "../../Components/TextArea/TextArea";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
+import { useDispatch } from "react-redux";
 
 function Diagnosis() {
+	const dispatch=useDispatch();
 	const location = useLocation();
+	const [message, setMessage] = useState('');
+
 	const patientData = location.state?.patientData;
 
 	//Extract data passed from patient registration
@@ -65,6 +69,9 @@ function Diagnosis() {
 				console.error("Error during data submission:", error);
 			}
 		}
+		dispatch(setDiagnosisData(formData));
+		setMessage('Form submitted successfully!');
+
 	};
 	return (
 		<div className="patient-page">
@@ -130,6 +137,8 @@ function Diagnosis() {
 							text={"Submit"}
 							onClick={handleSubmit}
 						/>
+						{message && <p>{message}</p>}
+
 					</div>
 				</div>
 			</div>
