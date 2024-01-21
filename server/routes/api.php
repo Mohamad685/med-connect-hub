@@ -41,4 +41,9 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
 
 Route::group(['middleware'=>['jwt.verify','insurance']], function(){
     Route::post('/insurance-request/{request}/update-status', [InsuranceApprovalController::class, 'updateStatus']);
+    Route::get('/patient/{patientId}/lab-results', [PatientController::class, 'getPatientLabResults']);
+Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
+Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
+Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
+
 });

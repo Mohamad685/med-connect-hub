@@ -29,7 +29,7 @@ function InsurancePage() {
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 				<div className="insurance-reg-form">
-					<p className="insurance-reg-title">insurance Full Name</p>
+					<p className="insurance-reg-title">Patient Full name</p>
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
 							<div className="address-input-div">
