@@ -6,8 +6,10 @@ use App\Models\Doctor;
 use App\Models\InsuranceCompany;
 use App\Models\Patient;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class RegistrationService 
 {
@@ -106,6 +108,47 @@ class RegistrationService
         }
         return response()->json(['message' => 'User registered successfully.']);
     }
+
+    
+    public function updateDoctor(array $doctorData, $id)
+    {
+        try {
+            $doctor = Doctor::findOrFail($id);
+            $user = User::findOrFail($doctor->user_id);
+
+            if (isset($doctorData['email'])) {
+                $user->email = $doctorData['email'];
+            }
+            if (isset($doctorData['password'])) {
+                $user->password = Hash::make($doctorData['password']);
+            }
+            if (isset($doctorData['user_name'])) {
+                $user->user_name = $doctorData['user_name'];
+            }
+            $user->save();
+
+            $doctor->specialty = $doctorData['specialty'] ?? $doctor->specialty;
+            $doctor->age = $doctorData['age'] ?? $doctor->age;
+            $doctor->phone_number = $doctorData['phone_number'] ?? $doctor->phone_number;
+            $doctor->license_id = $doctorData['license_id'] ?? $doctor->license_id;
+            $doctor->email = $doctorData['email'] ?? $doctor->email;
+            $doctor->save();
+
+            return ['success' => true, 'message' => 'Doctor updated successfully!'];
+        } catch (ModelNotFoundException $e) {
+            return ['success' => false, 'message' => 'Doctor not found'];
+        } catch (ValidationException $e) {
+            return ['success' => false, 'message' => 'Validation failed', 'errors' => $e->errors()];
+        } catch (\Exception $e) {
+            return ['success' => false, 'message' => 'An unexpected error occurred', 'error' => $e->getMessage()];
+        }
+    }
+
+    public function updatePatient($requestData, $id)
+    {
+        // Your logic for updating a patient
+    }
+
 }
 
 
