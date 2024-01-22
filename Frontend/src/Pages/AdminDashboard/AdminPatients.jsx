@@ -25,19 +25,19 @@ const AdminPatients = () => {
 
 		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/i.test(newPatient.password)) {
 			errors.password =
-				"Password must contain letters and numbers and be at least 8 characters long";
+				"Must contains letters and numbers and be at least 8 characters long";
 		}
 
 		if (newPatient.user_name.length < 4) {
-			errors.user_name = "Username must be at least 4 characters long";
+			errors.user_name = "Must be at least 4 characters long";
 		}
 
 		if (!/^\d{4}-\d{2}-\d{2}$/.test(newPatient.date_of_birth)) {
-			errors.date_of_birth = "Date of birth must be in YYYY-MM-DD format";
+			errors.date_of_birth = "Must be in YYYY-MM-DD format";
 		}
 
 		if (newPatient.phone_number.length < 3) {
-			errors.phone_number = "Phone number must be at least 10 digits long";
+			errors.phone_number = "Must be at least 10 digits long";
 		}
 
 		setValidationErrors(errors);

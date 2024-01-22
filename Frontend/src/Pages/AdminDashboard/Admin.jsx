@@ -21,6 +21,8 @@ import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
 // import AdminDoctors from "./AdminDoctors";
+// import AdminUserss from "./AdminAddition";
+
 
 const drawerWidth = 240;
 
@@ -58,6 +60,7 @@ const Admin = () => {
 							["Patients", "adminPatients"],
 							["Doctors", "adminDoctors"],
 							["Insurance Companies", "/insurance"],
+							["Add Users", "adminUsers"],
 						].map((item, index) => (
 							<ListItem
 								button
@@ -91,6 +94,10 @@ const Admin = () => {
 					{/* <Route
 						path="adminDoctors"
 						element={<AdminDoctors />}
+					/> */}
+					{/* <Route
+						path="adminUsers"
+						element={<AdminUsers />}
 					/> */}
 
 				</Routes>
