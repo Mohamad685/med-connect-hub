@@ -39,7 +39,7 @@ class DoctorsTableSeeder extends Seeder
 
         Doctor::create([
             'user_id' => $user2->id,
-            'first_name' => 'Jane',
+            'first_name' => 'John',
             'last_name' => 'Smith',
             'specialty' => 'Neurology',
             'license_id' => '456',
@@ -57,7 +57,7 @@ class DoctorsTableSeeder extends Seeder
 
         Doctor::create([
             'user_id' => $user3->id,
-            'first_name' => 'Alice',
+            'first_name' => 'John',
             'last_name' => 'Johnson',
             'specialty' => 'Pediatrics',
             'license_id' => '789',

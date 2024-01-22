@@ -12,9 +12,9 @@ class GetUsersService
         return Doctor::all();
     }
 
-    public function getDoctorById($id)
+    public function getDoctorsByFullName($firstName, $lastName)
     {
-        return Doctor::with('user')->findOrFail($id);
+        return Doctor::where('first_name', 'like', "%{$firstName}%")->where('last_name', 'like', "%{$lastName}%")->get();
     }
 
     public function getAllPatients()
@@ -22,9 +22,9 @@ class GetUsersService
         return Patient::all();
     }
 
-    public function getPatientById($id)
+    public function getPatientsByFullName($firstName, $lastName)
     {
-        return Patient::with(['user', 'insuranceCompany'])->findOrFail($id);
+        return Patient::with(['user', 'insuranceCompany'])->where('first_name', 'like', "%{$firstName}%")->where('last_name', 'like', "%{$lastName}%")->get();
     }
 
     public function getAllInsuranceCompanies()

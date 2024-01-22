@@ -25,9 +25,9 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::delete('/insurance/{id}', [UserController::class, 'deleteInsuranceCompany']);
 
     Route::get('/admin/doctors', [GetUsersController::class,'listDoctors']);
-    Route::get('/admin/doctor/{id}', [GetUsersController::class,'getDoctorDetails']);
+    Route::get('/admin/specific-doctor', [GetUsersController::class,'findDoctorsByFullName']);
     Route::get('/admin/patients', [GetUsersController::class,'listPatients']);
-    Route::get('/admin/patient/{id}', [GetUsersController::class,'getPatientDetails']);
+    Route::get('/admin/specific-patient', [GetUsersController::class,'findPatientsByFullName']);
     Route::get('/admin/insurance', [GetUsersController::class,'listInsuranceCompanies']);
     Route::get('/admin/insurance/{id}', [GetUsersController::class,'getInsuranceCompanyDetails']);
 });

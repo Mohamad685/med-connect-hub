@@ -21,14 +21,12 @@ class GetUsersController extends Controller
         return response()->json($doctors);
     }
 
-    public function getDoctorDetails($id)
+    public function findDoctorsByFullName(Request $request)
     {
-        try {
-            $doctor = $this->getUsersService->getDoctorById($id);
-            return response()->json($doctor);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Doctor not found'], 404);
-        }
+        $firstName = $request->input('first_name');
+        $lastName = $request->input('last_name');
+        $doctors = $this->getUsersService->getDoctorsByFullName($firstName, $lastName);
+        return response()->json($doctors);
     }
 
     public function listPatients()
@@ -37,14 +35,12 @@ class GetUsersController extends Controller
         return response()->json($patients);
     }
 
-    public function getPatientDetails($id)
+    public function findPatientsByFullName(Request $request)
     {
-        try {
-            $patient = $this->getUsersService->getPatientById($id);
-            return response()->json($patient);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'Patient not found'], 404);
-        }
+        $firstName = $request->input('first_name');
+        $lastName = $request->input('last_name');
+        $patients = $this->getUsersService->getPatientsByFullName($firstName, $lastName);
+        return response()->json($patients);
     }
 
     public function listInsuranceCompanies()
