@@ -9,9 +9,18 @@ function NavBar() {
 	const [authenticated, setAuthenticated] = useState(false);
 	const navigate = useNavigate();
 
+	
+    const isAuthenticated = localStorage.getItem("token");
+	const username = `${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}`;
 	const toggleLogin = () => {
-		setShowLogin(!showLogin);
-	};
+        
+		if (isAuthenticated) {
+            localStorage.clear();
+            navigate("/"); 
+        } else {
+            setShowLogin(!showLogin);
+        }
+    };
 
 	
 	const scrollTo = (id) => {
@@ -68,7 +77,8 @@ function NavBar() {
 					<li
 						className="navbar-option"
 						onClick={toggleLogin}>
-						Login
+						{isAuthenticated ? username : 'Login'}
+
 					</li>
 				</ul>
 			</div>
