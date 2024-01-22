@@ -21,7 +21,7 @@ import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
 // import AdminDoctors from "./AdminDoctors";
-// import AdminUserss from "./AdminAddition";
+import AdminUserss from "./AdminAddition";
 
 
 const drawerWidth = 240;
@@ -95,10 +95,10 @@ const Admin = () => {
 						path="adminDoctors"
 						element={<AdminDoctors />}
 					/> */}
-					{/* <Route
+					<Route
 						path="adminUsers"
-						element={<AdminUsers />}
-					/> */}
+						element={<AdminUserss />}
+					/>
 
 				</Routes>
 			</Box>
