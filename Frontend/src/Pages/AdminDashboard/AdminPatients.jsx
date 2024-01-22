@@ -74,7 +74,7 @@ const AdminPatients = () => {
 
 	const handleRemovePatient = async (id) => {
 		try {
-			await fetchHelper.delete(`/admin/patients/${id}`);
+			await fetchHelper.delete(`/patient/${id}`);
 			setPatients((prev) => prev.filter((patient) => patient.id !== id));
 		} catch (error) {
 			console.error("Failed to remove patient:", error);
