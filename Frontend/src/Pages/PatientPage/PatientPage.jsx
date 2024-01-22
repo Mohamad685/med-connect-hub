@@ -123,19 +123,19 @@ function PatientPreview() {
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
-							title={"Symptoms:"}
+							title={"Symptoms"}
 							text={formatSymptom(symptoms)}
 						/>
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
-							title={"Diagnosis:"}
+							title={"Diagnosis"}
 							text={formatDiagnosis(diagnosis)}
 						/>
 						<PreviewBox
 							width={"48rem"}
 							height={"auto"}
-							title={"Prescription:"}
+							title={"Prescription"}
 							text={formatPrescription(prescriptions)}
 						/>
 					</div>

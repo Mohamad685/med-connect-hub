@@ -1,10 +1,25 @@
-import React from 'react';
-import { Box, CssBaseline, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Inbox as InboxIcon, Mail as MailIcon } from '@mui/icons-material';
-import { Link, Routes, Route } from 'react-router-dom';
+import React from "react";
+import {
+	Box,
+	CssBaseline,
+	AppBar,
+	Toolbar,
+	Typography,
+	Drawer,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+} from "@mui/material";
+import {
+	Person as PersonIcon,
+	BusinessCenter as BusinessCenterIcon,
+	HealthAndSafety as HealthAndSafetyIcon,
+} from "@mui/icons-material";
+
+import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
-// Import other components as needed
 
 const drawerWidth = 240;
 
@@ -19,7 +34,8 @@ const Admin = () => {
 					<Typography
 						variant="h6"
 						noWrap
-						component="div">
+						component="div"
+						sx={{ color: "white" }}>
 						Admin Dashboard
 					</Typography>
 				</Toolbar>
@@ -38,7 +54,7 @@ const Admin = () => {
 				<Box sx={{ overflow: "auto" }}>
 					<List>
 						{[
-							["Patients", "/patients"],
+							["Patients", "/AdminPatients"],
 							["Doctors", "/doctors"],
 							["Insurance Companies", "/insurance"],
 						].map((item, index) => (
@@ -48,7 +64,13 @@ const Admin = () => {
 								component={Link}
 								to={item[1]}>
 								<ListItemIcon>
-									{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+									{item[0] === "Insurance Companies" ? (
+										<BusinessCenterIcon />
+									) : item[0] === "Doctors" ? (
+										<HealthAndSafetyIcon />
+									) : (
+										<PersonIcon />
+									)}
 								</ListItemIcon>
 								<ListItemText primary={item[0]} />
 							</ListItem>
@@ -62,10 +84,9 @@ const Admin = () => {
 				<Toolbar />
 				<Routes>
 					<Route
-						path="/admin/patients"
+						path="/admin/AdminPatients"
 						element={<AdminPatients />}
 					/>
-					{/* Define other admin sub-routes here */}
 				</Routes>
 			</Box>
 		</Box>

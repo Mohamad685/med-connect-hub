@@ -109,7 +109,7 @@ function Login({ onClose }) {
 					type="email"
 					width={"25rem"}
 					length={"2.5rem"}
-					placeholder={"Enter your email:"}
+					placeholder={"Enter your email"}
 					value={email}
 					onChange={handleEmailChange}
 				/>
@@ -119,7 +119,7 @@ function Login({ onClose }) {
 					type="password"
 					width={"25rem"}
 					length={"2.5rem"}
-					placeholder={"Enter your password:"}
+					placeholder={"Enter your password"}
 					value={password}
 					onChange={handlePasswordChange}
 				/>
