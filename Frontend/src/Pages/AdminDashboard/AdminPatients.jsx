@@ -5,10 +5,6 @@ import {
 	TextField,
 	Typography,
 	Divider,
-	FormControl,
-	InputLabel,
-	Select,
-	MenuItem,
 } from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
