@@ -20,7 +20,7 @@ import {
 import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
-// import AdminDoctors from "./AdminDoctors";
+import AdminDoctors from "./AdminDoctor";
 import AdminUserss from "./AdminAddition";
 import AdminInsurance from "./AdminInsurance";
 
@@ -92,10 +92,10 @@ const Admin = () => {
 						path="adminPatients"
 						element={<AdminPatients />}
 					/>
-					{/* <Route
+					<Route
 						path="adminDoctors"
 						element={<AdminDoctors />}
-					/> */}
+					/>
 					<Route
 						path="adminUsers"
 						element={<AdminUserss />}
