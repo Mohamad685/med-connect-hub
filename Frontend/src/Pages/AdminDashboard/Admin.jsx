@@ -87,6 +87,7 @@ const Admin = () => {
 						path="adminPatients"
 						element={<AdminPatients />}
 					/>
+					
 				</Routes>
 			</Box>
 		</Box>
