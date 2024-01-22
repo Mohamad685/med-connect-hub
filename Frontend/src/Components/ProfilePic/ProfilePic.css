@@ -17,8 +17,3 @@
 	border-radius: 5px;
 }
 
-.profile-pic-form{
-	display: flex;
-	flex-direction: column;
-	gap: 0.8rem;
-}
