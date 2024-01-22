@@ -5,21 +5,47 @@ const AdminPatients = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [patients, setPatients] = useState([]);
 	const [newPatient, setNewPatient] = useState({
-		name: "",
+		first_name: "",
+		last_name: "",
+		address: "",
 		age: "",
-		condition: "",
+		date_of_birth: "",
+		gender: "",
+		phone_number: "",
 	});
 	const [editingPatient, setEditingPatient] = useState({
 		id: null,
-		name: "",
+		first_name: "",
+		last_name: "",
+		address: "",
 		age: "",
-		condition: "",
+		date_of_birth: "",
+		gender: "",
+		phone_number: "",
 	});
 
 	useEffect(() => {
 		const fetchedPatients = [
-			{ id: 1, name: "John Doe", age: 30, condition: "Flu" },
-			{ id: 2, name: "Jane Smith", age: 25, condition: "Cold" },
+			{
+				id: 1,
+				first_name: "John",
+				last_name: "Doe",
+				address: "123 Main St",
+				age: 30,
+				date_of_birth: "1990-01-01",
+				gender: "Male",
+				phone_number: "555-1234",
+			},
+			{
+				id: 2,
+				first_name: "Jane",
+				last_name: "Smith",
+				address: "456 Elm St",
+				age: 25,
+				date_of_birth: "1995-02-02",
+				gender: "Female",
+				phone_number: "555-5678",
+			},
 		];
 		setPatients(fetchedPatients);
 	}, []);
@@ -27,7 +53,15 @@ const AdminPatients = () => {
 	const handleAddPatient = () => {
 		const newId = patients.length + 1;
 		setPatients([...patients, { ...newPatient, id: newId }]);
-		setNewPatient({ name: "", age: "", condition: "" });
+		setNewPatient({
+			first_name: "",
+			last_name: "",
+			address: "",
+			age: "",
+			date_of_birth: "",
+			gender: "",
+			phone_number: "",
+		});
 	};
 
 	const handleRemovePatient = (id) => {
@@ -37,12 +71,19 @@ const AdminPatients = () => {
 	const handleUpdatePatient = () => {
 		setPatients(
 			patients.map((patient) =>
-				patient.id === editingPatient.id
-					? { ...patient, ...editingPatient }
-					: patient
+				patient.id === editingPatient.id ? { ...editingPatient } : patient
 			)
 		);
-		setEditingPatient({ id: null, name: "", age: "", condition: "" });
+		setEditingPatient({
+			id: null,
+			first_name: "",
+			last_name: "",
+			address: "",
+			age: "",
+			date_of_birth: "",
+			gender: "",
+			phone_number: "",
+		});
 	};
 
 	const startEditing = (patient) => {
@@ -56,7 +97,7 @@ const AdminPatients = () => {
 				sx={{ mb: 2 }}>
 				Patients
 			</Typography>
-			{/* Search input field */}
+
 			<Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
 				<TextField
 					label="Search by Name"
@@ -66,10 +107,12 @@ const AdminPatients = () => {
 					sx={{ mb: 2, width: "50%" }}
 				/>
 			</Box>
-			{/* Filtered display of patients based on search query */}
+
 			{patients
 				.filter((patient) =>
-					patient.name.toLowerCase().includes(searchQuery.toLowerCase())
+					`${patient.first_name} ${patient.last_name}`
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase())
 				)
 				.map((patient, index) => (
 					<React.Fragment key={patient.id}>
@@ -80,7 +123,14 @@ const AdminPatients = () => {
 								alignItems: "center",
 								mb: 2,
 							}}>
-							<Typography>{`Name: ${patient.name}, Age: ${patient.age}, Condition: ${patient.condition}`}</Typography>
+							<Box>
+								<Typography>{`Name: ${patient.first_name} ${patient.last_name}`}</Typography>
+								<Typography>{`Address: ${patient.address}`}</Typography>
+								<Typography>{`Age: ${patient.age}`}</Typography>
+								<Typography>{`DOB: ${patient.date_of_birth}`}</Typography>
+								<Typography>{`Gender: ${patient.gender}`}</Typography>
+								<Typography>{`Phone: ${patient.phone_number}`}</Typography>
+							</Box>
 							<Box>
 								<Button
 									onClick={() => startEditing(patient)}
@@ -94,6 +144,7 @@ const AdminPatients = () => {
 									}}>
 									Edit
 								</Button>
+
 								<Button
 									onClick={() => handleRemovePatient(patient.id)}
 									sx={{
@@ -113,15 +164,43 @@ const AdminPatients = () => {
 						)}
 					</React.Fragment>
 				))}
+			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
+
 			{editingPatient.id && (
-				<Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+				<Box
+					sx={{
+						display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent:"space-evenly",
+                        "& > *": { m: 1 },
+					}}>
 					<TextField
-						label="Name"
-						value={editingPatient.name}
+						label="First Name"
+						value={editingPatient.first_name}
 						onChange={(e) =>
-							setEditingPatient({ ...editingPatient, name: e.target.value })
+							setEditingPatient({
+								...editingPatient,
+								first_name: e.target.value,
+							})
 						}
-						sx={{ mx: 1 }}
+					/>
+					<TextField
+						label="Last Name"
+						value={editingPatient.last_name}
+						onChange={(e) =>
+							setEditingPatient({
+								...editingPatient,
+								last_name: e.target.value,
+							})
+						}
+					/>
+					<TextField
+						label="Address"
+						value={editingPatient.address}
+						onChange={(e) =>
+							setEditingPatient({ ...editingPatient, address: e.target.value })
+						}
 					/>
 					<TextField
 						label="Age"
@@ -129,30 +208,43 @@ const AdminPatients = () => {
 						onChange={(e) =>
 							setEditingPatient({ ...editingPatient, age: e.target.value })
 						}
-						sx={{ mx: 1 }}
 					/>
 					<TextField
-						label="Condition"
-						value={editingPatient.condition}
+						label="Date of Birth"
+						value={editingPatient.date_of_birth}
 						onChange={(e) =>
 							setEditingPatient({
 								...editingPatient,
-								condition: e.target.value,
+								date_of_birth: e.target.value,
 							})
 						}
-						sx={{ mx: 1 }}
+					/>
+					<TextField
+						label="Gender"
+						value={editingPatient.gender}
+						onChange={(e) =>
+							setEditingPatient({ ...editingPatient, gender: e.target.value })
+						}
+					/>
+					<TextField
+						label="Phone Number"
+						value={editingPatient.phone_number}
+						onChange={(e) =>
+							setEditingPatient({
+								...editingPatient,
+								phone_number: e.target.value,
+							})
+						}
 					/>
 					<Button
 						onClick={handleUpdatePatient}
 						sx={{
-							backgroundColor: "#2196f3",
-							color: "white",
-							"&:hover": {
-								backgroundColor: "#1976d2",
-							},
-							mx: 1,
-						}}>
-						Update Patient
+                            backgroundColor: "#2196f3",
+                            color: "white",
+                            "&:hover": { backgroundColor: "#1976d2" },
+                            fontSize:'13px',
+                        }}>
+						Update
 					</Button>
 				</Box>
 			)}
@@ -162,15 +254,28 @@ const AdminPatients = () => {
 					display: "flex",
 					flexDirection: "row",
 					alignItems: "center",
-					"& > *": {
-						mx: 1,
-					},
+                    justifyContent:"space-evenly",
+					"& > *": { m: 1 },
 				}}>
 				<TextField
-					label="Name"
-					value={newPatient.name}
+					label="First Name"
+					value={newPatient.first_name}
 					onChange={(e) =>
-						setNewPatient({ ...newPatient, name: e.target.value })
+						setNewPatient({ ...newPatient, first_name: e.target.value })
+					}
+				/>
+				<TextField
+					label="Last Name"
+					value={newPatient.last_name}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, last_name: e.target.value })
+					}
+				/>
+				<TextField
+					label="Address"
+					value={newPatient.address}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, address: e.target.value })
 					}
 				/>
 				<TextField
@@ -181,10 +286,24 @@ const AdminPatients = () => {
 					}
 				/>
 				<TextField
-					label="Condition"
-					value={newPatient.condition}
+					label="Date of Birth"
+					value={newPatient.date_of_birth}
 					onChange={(e) =>
-						setNewPatient({ ...newPatient, condition: e.target.value })
+						setNewPatient({ ...newPatient, date_of_birth: e.target.value })
+					}
+				/>
+				<TextField
+					label="Gender"
+					value={newPatient.gender}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, gender: e.target.value })
+					}
+				/>
+				<TextField
+					label="Phone Number"
+					value={newPatient.phone_number}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, phone_number: e.target.value })
 					}
 				/>
 				<Button
@@ -192,12 +311,9 @@ const AdminPatients = () => {
 					sx={{
 						backgroundColor: "#2196f3",
 						color: "white",
-						"&:hover": {
-							backgroundColor: "#1976d2",
-						},
-						mx: 1,
+						"&:hover": { backgroundColor: "#1976d2" },
 					}}>
-					Add Patient
+					Add
 				</Button>
 			</Box>
 		</Box>
