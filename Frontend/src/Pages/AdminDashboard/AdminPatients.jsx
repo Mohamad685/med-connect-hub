@@ -12,6 +12,9 @@ const AdminPatients = () => {
 		date_of_birth: "",
 		gender: "",
 		phone_number: "",
+		email: "",
+		password: "",
+		user_name: "",
 	});
 	const [editingPatient, setEditingPatient] = useState({
 		id: null,
@@ -25,28 +28,33 @@ const AdminPatients = () => {
 
 	useEffect(() => {
 		const fetchPatients = async () => {
-            try {
-              const data = await fetchHelper.get('/admin/patients');
-              setPatients(data);
-            } catch (error) {
-              console.error("Failed to fetch patients:", error);
-            }
-          };
-        
-          fetchPatients();
-        }, []);
+			try {
+				const data = await fetchHelper.get("/admin/patients");
+				setPatients(data);
+			} catch (error) {
+				console.error("Failed to fetch patients:", error);
+			}
+		};
 
-	const handleAddPatient = () => {
-		const newId = patients.length + 1;
-		setPatients([...patients, { ...newPatient, id: newId }]);
-		setNewPatient({
-			first_name: "",
-			last_name: "",
-			address: "",
-			date_of_birth: "",
-			gender: "",
-			phone_number: "",
-		});
+		fetchPatients();
+	}, []);
+
+	const handleAddPatient = async () => {
+		try {
+			const data = await fetchHelper.post("/register", newPatient);
+			setPatients((prev) => [...prev, data.patient]);
+			setNewPatient({
+				first_name: "",
+				last_name: "",
+				address: "",
+				age: "",
+				date_of_birth: "",
+				gender: "",
+				phone_number: "",
+			});
+		} catch (error) {
+			console.error("Failed to add patient:", error);
+		}
 	};
 
 	const handleRemovePatient = (id) => {
@@ -153,10 +161,10 @@ const AdminPatients = () => {
 				<Box
 					sx={{
 						display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent:"space-evenly",
-                        gap:'10px'
+						flexDirection: "row",
+						alignItems: "center",
+						justifyContent: "space-evenly",
+						gap: "10px",
 					}}>
 					<TextField
 						label="First Name"
@@ -185,7 +193,7 @@ const AdminPatients = () => {
 							setEditingPatient({ ...editingPatient, address: e.target.value })
 						}
 					/>
-					
+
 					<TextField
 						label="Date of Birth"
 						value={editingPatient.date_of_birth}
@@ -216,11 +224,11 @@ const AdminPatients = () => {
 					<Button
 						onClick={handleUpdatePatient}
 						sx={{
-                            backgroundColor: "#2196f3",
-                            color: "white",
-                            "&:hover": { backgroundColor: "#1976d2" },
-                            fontSize:'11px',
-                        }}>
+							backgroundColor: "#2196f3",
+							color: "white",
+							"&:hover": { backgroundColor: "#1976d2" },
+							fontSize: "11px",
+						}}>
 						Update
 					</Button>
 				</Box>
@@ -231,9 +239,31 @@ const AdminPatients = () => {
 					display: "flex",
 					flexDirection: "row",
 					alignItems: "center",
-                    justifyContent:"space-evenly",
-                    gap:'10px'
+					justifyContent: "space-evenly",
+					gap: "10px",
 				}}>
+				<TextField
+					label="Email"
+					value={newPatient.email}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, email: e.target.value })
+					}
+				/>
+				<TextField
+					label="Password"
+					type="password"
+					value={newPatient.password}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, password: e.target.value })
+					}
+				/>
+				<TextField
+					label="User Name"
+					value={newPatient.user_name}
+					onChange={(e) =>
+						setNewPatient({ ...newPatient, user_name: e.target.value })
+					}
+				/>
 				<TextField
 					label="First Name"
 					value={newPatient.first_name}
