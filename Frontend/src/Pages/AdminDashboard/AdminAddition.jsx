@@ -32,10 +32,6 @@ const AdminUsers = () => {
 			errors.user_name = "Must be at least 4 characters long";
 		}
 
-		if (!/^\d{4}-\d{2}-\d{2}$/.test(newUser.age)) {
-			errors.age = "Must be in YYYY-MM-DD format";
-		}
-
 		if (newUser.phone_number.length < 3) {
 			errors.phone_number = "Must be at least 10 digits long";
 		}
@@ -156,7 +152,7 @@ const AdminUsers = () => {
 					onChange={(e) => setNewUser({ ...newUser, address: e.target.value })}
 				/>
 				<TextField
-					label="Date of Birth"
+					label="Age"
 					value={newUser.age}
 					onChange={(e) => setNewUser({ ...newUser, age: e.target.value })}
 					error={!!validationErrors.age}

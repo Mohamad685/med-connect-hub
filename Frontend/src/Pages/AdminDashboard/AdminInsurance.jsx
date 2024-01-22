@@ -7,13 +7,13 @@ const AdminInsurance = () => {
 	const [insurance, setInsurance] = useState([]);
 
 	const [editingInsurance, setEditingInsurance] = useState({
-		id: null,
-		first_name: "",
-		last_name: "",
-		address: "",
-		age: "",
-		gender: "",
+		user_id: "null",
+		name: "",
+		description: "",
 		phone_number: "",
+		email: "",
+		address: "",
+		coverage_details: "",
 	});
 
 	useEffect(() => {
@@ -40,9 +40,9 @@ const AdminInsurance = () => {
 
 	const handleUpdateInsurance = async () => {
 		try {
-			const updatedPatient = await fetchHelper.put(
-				`/insurance/${editingPatient.id}`,
-				editingPatient
+			const updatedInsurance = await fetchHelper.put(
+				`/insurance/${editingInsurance.id}`,
+				editingInsurance
 			);
 			setInsurance((prevInsurance) =>
 				prevInsurance.map((insurance) =>
@@ -53,13 +53,13 @@ const AdminInsurance = () => {
 			);
 
 			setEditingInsurance({
-				id: null,
-				first_name: "",
-				last_name: "",
-				address: "",
-				age: "",
-				gender: "",
+				user_id: "null",
+				name: "",
+				description: "",
 				phone_number: "",
+				email: "",
+				address: "",
+				coverage_details: "",
 			});
 		} catch (error) {}
 	};
@@ -87,7 +87,7 @@ const AdminInsurance = () => {
 
 			{insurance
 				.filter((insurance) =>
-					`${insurance.first_name} ${insurance.last_name}`
+					`${insurance.name}`
 						.toLowerCase()
 						.includes(searchQuery.toLowerCase())
 				)
@@ -101,11 +101,13 @@ const AdminInsurance = () => {
 								mb: 2,
 							}}>
 							<Box>
-								<Typography>{`Name: ${insurance.first_name} ${insurance.last_name}`}</Typography>
+								<Typography>{`Name: ${insurance.name}`}</Typography>
 								<Typography>{`Address: ${insurance.address}`}</Typography>
-								<Typography>{`Age: ${insurance.age}`}</Typography>
-								<Typography>{`Gender: ${insurance.gender}`}</Typography>
+								<Typography>{`description: ${insurance.description}`}</Typography>
+								<Typography>{`Coverage_details: ${insurance.coverage_details}`}</Typography>
 								<Typography>{`Phone: ${insurance.phone_number}`}</Typography>
+                                <Typography>{`Email: ${insurance.email}`}</Typography>
+
 							</Box>
 							<Box>
 								<Button
@@ -173,7 +175,10 @@ const AdminInsurance = () => {
 						label="Address"
 						value={editingInsurance.address}
 						onChange={(e) =>
-							setEditingInsurance({ ...editingInsurance, address: e.target.value })
+							setEditingInsurance({
+								...editingInsurance,
+								address: e.target.value,
+							})
 						}
 					/>
 
@@ -191,7 +196,10 @@ const AdminInsurance = () => {
 						label="Gender"
 						value={editingInsurance.gender}
 						onChange={(e) =>
-							setEditingInsurance({ ...editingInsurance, gender: e.target.value })
+							setEditingInsurance({
+								...editingInsurance,
+								gender: e.target.value,
+							})
 						}
 					/>
 					<TextField
