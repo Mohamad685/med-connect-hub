@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, TextField, Typography, Divider } from "@mui/material";
+import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminPatients = () => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -8,7 +9,6 @@ const AdminPatients = () => {
 		first_name: "",
 		last_name: "",
 		address: "",
-		age: "",
 		date_of_birth: "",
 		gender: "",
 		phone_number: "",
@@ -18,37 +18,23 @@ const AdminPatients = () => {
 		first_name: "",
 		last_name: "",
 		address: "",
-		age: "",
 		date_of_birth: "",
 		gender: "",
 		phone_number: "",
 	});
 
 	useEffect(() => {
-		const fetchedPatients = [
-			{
-				id: 1,
-				first_name: "John",
-				last_name: "Doe",
-				address: "123 Main St",
-				age: 30,
-				date_of_birth: "1990-01-01",
-				gender: "Male",
-				phone_number: "555-1234",
-			},
-			{
-				id: 2,
-				first_name: "Jane",
-				last_name: "Smith",
-				address: "456 Elm St",
-				age: 25,
-				date_of_birth: "1995-02-02",
-				gender: "Female",
-				phone_number: "555-5678",
-			},
-		];
-		setPatients(fetchedPatients);
-	}, []);
+		const fetchPatients = async () => {
+            try {
+              const data = await fetchHelper.get('/admin/patients');
+              setPatients(data);
+            } catch (error) {
+              console.error("Failed to fetch patients:", error);
+            }
+          };
+        
+          fetchPatients();
+        }, []);
 
 	const handleAddPatient = () => {
 		const newId = patients.length + 1;
@@ -57,7 +43,6 @@ const AdminPatients = () => {
 			first_name: "",
 			last_name: "",
 			address: "",
-			age: "",
 			date_of_birth: "",
 			gender: "",
 			phone_number: "",
@@ -79,7 +64,6 @@ const AdminPatients = () => {
 			first_name: "",
 			last_name: "",
 			address: "",
-			age: "",
 			date_of_birth: "",
 			gender: "",
 			phone_number: "",
@@ -126,7 +110,6 @@ const AdminPatients = () => {
 							<Box>
 								<Typography>{`Name: ${patient.first_name} ${patient.last_name}`}</Typography>
 								<Typography>{`Address: ${patient.address}`}</Typography>
-								<Typography>{`Age: ${patient.age}`}</Typography>
 								<Typography>{`DOB: ${patient.date_of_birth}`}</Typography>
 								<Typography>{`Gender: ${patient.gender}`}</Typography>
 								<Typography>{`Phone: ${patient.phone_number}`}</Typography>
@@ -202,13 +185,7 @@ const AdminPatients = () => {
 							setEditingPatient({ ...editingPatient, address: e.target.value })
 						}
 					/>
-					<TextField
-						label="Age"
-						value={editingPatient.age}
-						onChange={(e) =>
-							setEditingPatient({ ...editingPatient, age: e.target.value })
-						}
-					/>
+					
 					<TextField
 						label="Date of Birth"
 						value={editingPatient.date_of_birth}
@@ -276,13 +253,6 @@ const AdminPatients = () => {
 					value={newPatient.address}
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, address: e.target.value })
-					}
-				/>
-				<TextField
-					label="Age"
-					value={newPatient.age}
-					onChange={(e) =>
-						setNewPatient({ ...newPatient, age: e.target.value })
 					}
 				/>
 				<TextField
