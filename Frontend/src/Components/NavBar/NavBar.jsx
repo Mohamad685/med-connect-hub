@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import Login from "../Auth/Auth";
+import fetchHelper from "../Functions/FetchFunction";
 
 function NavBar() {
 	const [showLogin, setShowLogin] = useState(false);
@@ -12,10 +13,21 @@ function NavBar() {
 	
     const isAuthenticated = localStorage.getItem("token");
 	const username = `${localStorage.getItem("firstName")}${localStorage.getItem("lastName")}`;
+	const logout = async () => {
+		try {
+			await fetchHelper.post('/logout');
+			localStorage.clear();
+			setAuthenticated(false);
+			navigate('/');
+		} catch (error) {
+			console.error('Logout failed:', error);
+		}
+	};
+	
 	const toggleLogin = () => {
         
 		if (isAuthenticated) {
-            localStorage.clear();
+            logout();
             navigate("/"); 
         } else {
             setShowLogin(!showLogin);
