@@ -81,21 +81,30 @@ const AdminPatients = () => {
 		}
 	};
 
-	const handleUpdatePatient = () => {
-		setPatients(
-			patients.map((patient) =>
-				patient.id === editingPatient.id ? { ...editingPatient } : patient
-			)
-		);
-		setEditingPatient({
-			id: null,
-			first_name: "",
-			last_name: "",
-			address: "",
-			date_of_birth: "",
-			gender: "",
-			phone_number: "",
-		});
+	const handleUpdatePatient = async () => {
+		try {
+			const updatedPatient = await fetchHelper.put(
+				`/patient/${editingPatient.id}`,
+				editingPatient
+			);
+			setPatients((prevPatients) =>
+				prevPatients.map((patient) =>
+					patient.id === editingPatient.id
+						? { ...patient, ...updatedPatient }
+						: patient
+				)
+			);
+
+			setEditingPatient({
+				id: null,
+				first_name: "",
+				last_name: "",
+				address: "",
+				date_of_birth: "",
+				gender: "",
+				phone_number: "",
+			});
+		} catch (error) {}
 	};
 
 	const startEditing = (patient) => {
@@ -127,7 +136,7 @@ const AdminPatients = () => {
 						.includes(searchQuery.toLowerCase())
 				)
 				.map((patient, index) => (
-					<React.Fragment key={patient.id}>
+					<React.Fragment key={index}>
 						<Box
 							sx={{
 								display: "flex",
@@ -257,9 +266,10 @@ const AdminPatients = () => {
 			<Box
 				sx={{
 					display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr)) minmax(200px, 1fr)",
+					gridTemplateColumns:
+						"repeat(auto-fit, minmax(200px, 1fr)) minmax(200px, 1fr)",
 					alignItems: "baseline",
-                    justifyItems:'start',
+					justifyItems: "start",
 					gap: "8px",
 				}}>
 				<TextField
@@ -349,7 +359,7 @@ const AdminPatients = () => {
 				<Button
 					onClick={handleAddPatient}
 					sx={{
-                        gridColumn:"span 2",
+						gridColumn: "span 2",
 						backgroundColor: "#2196f3",
 						color: "white",
 						"&:hover": { backgroundColor: "#1976d2" },
