@@ -156,7 +156,7 @@ const AdminPatients = () => {
                         flexDirection: "row",
                         alignItems: "center",
                         justifyContent:"space-evenly",
-                        "& > *": { m: 1 },
+                        gap:'10px'
 					}}>
 					<TextField
 						label="First Name"
@@ -219,7 +219,7 @@ const AdminPatients = () => {
                             backgroundColor: "#2196f3",
                             color: "white",
                             "&:hover": { backgroundColor: "#1976d2" },
-                            fontSize:'13px',
+                            fontSize:'11px',
                         }}>
 						Update
 					</Button>
@@ -232,7 +232,7 @@ const AdminPatients = () => {
 					flexDirection: "row",
 					alignItems: "center",
                     justifyContent:"space-evenly",
-					"& > *": { m: 1 },
+                    gap:'10px'
 				}}>
 				<TextField
 					label="First Name"

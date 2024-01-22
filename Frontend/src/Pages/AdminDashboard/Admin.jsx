@@ -20,7 +20,7 @@ import {
 import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
-import AdminDoctors from "./AdminDoctors";
+// import AdminDoctors from "./AdminDoctors";
 
 const drawerWidth = 240;
 
@@ -88,10 +88,10 @@ const Admin = () => {
 						path="adminPatients"
 						element={<AdminPatients />}
 					/>
-					<Route
+					{/* <Route
 						path="adminDoctors"
 						element={<AdminDoctors />}
-					/>
+					/> */}
 
 				</Routes>
 			</Box>
