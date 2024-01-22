@@ -14,9 +14,36 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminPatients = () => {
 	const roles = ["patient", "doctor", "insurance"];
-
+	const [validationErrors, setValidationErrors] = useState({});
 	const [searchQuery, setSearchQuery] = useState("");
 	const [patients, setPatients] = useState([]);
+	const validate = () => {
+		const errors = {};
+		if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(newPatient.email)) {
+			errors.email = "Invalid email format";
+		}
+
+		if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/i.test(newPatient.password)) {
+			errors.password =
+				"Password must contain letters and numbers and be at least 8 characters long";
+		}
+
+		if (newPatient.user_name.length < 4) {
+			errors.user_name = "Username must be at least 4 characters long";
+		}
+
+		if (!/^\d{4}-\d{2}-\d{2}$/.test(newPatient.date_of_birth)) {
+			errors.date_of_birth = "Date of birth must be in YYYY-MM-DD format";
+		}
+
+		if (newPatient.phone_number.length < 3) {
+			errors.phone_number = "Phone number must be at least 10 digits long";
+		}
+
+		setValidationErrors(errors);
+		return Object.keys(errors).length === 0;
+	};
+
 	const [newPatient, setNewPatient] = useState({
 		first_name: "",
 		last_name: "",
@@ -54,6 +81,11 @@ const AdminPatients = () => {
 
 	const handleAddPatient = async (e) => {
 		e.preventDefault();
+		if (!validate()) {
+			console.error("Validation failed:", validationErrors);
+			return;
+		}
+
 		try {
 			const data = await fetchHelper.post("/register", newPatient);
 			setPatients((prev) => [...prev, data.patient]);
@@ -67,6 +99,7 @@ const AdminPatients = () => {
 				phone_number: "",
 				role: "",
 			});
+			setValidationErrors({});
 		} catch (error) {
 			console.error("Failed to add patient:", error);
 		}
@@ -125,7 +158,6 @@ const AdminPatients = () => {
 					variant="outlined"
 					value={searchQuery}
 					onChange={(e) => setSearchQuery(e.target.value)}
-					sx={{ mb: 2, width: "50%" }}
 				/>
 			</Box>
 
@@ -283,6 +315,8 @@ const AdminPatients = () => {
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, email: e.target.value })
 					}
+					error={!!validationErrors.email}
+					helperText={validationErrors.email}
 				/>
 				<TextField
 					label="Password"
@@ -290,7 +324,10 @@ const AdminPatients = () => {
 					value={newPatient.password}
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, password: e.target.value })
+						
 					}
+					error={!!validationErrors.password}
+					helperText={validationErrors.password}
 				/>
 				<TextField
 					label="User Name"
@@ -298,6 +335,8 @@ const AdminPatients = () => {
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, user_name: e.target.value })
 					}
+					error={!!validationErrors.user_name}
+					helperText={validationErrors.user_name}
 				/>
 				<TextField
 					label="First Name"
@@ -326,6 +365,8 @@ const AdminPatients = () => {
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, date_of_birth: e.target.value })
 					}
+					error={!!validationErrors.date_of_birth}
+					helperText={validationErrors.date_of_birth}
 				/>
 				<TextField
 					label="Gender"
@@ -340,6 +381,8 @@ const AdminPatients = () => {
 					onChange={(e) =>
 						setNewPatient({ ...newPatient, phone_number: e.target.value })
 					}
+					error={!!validationErrors.phone_number}
+					helperText={validationErrors.phone_number}
 				/>
 				<FormControl>
 					<InputLabel id="role-select-label">Role</InputLabel>
