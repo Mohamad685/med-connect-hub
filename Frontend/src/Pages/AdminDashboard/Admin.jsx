@@ -20,6 +20,7 @@ import {
 import { Link, Routes, Route } from "react-router-dom";
 
 import AdminPatients from "./AdminPatients";
+import AdminDoctors from "./AdminDoctors";
 
 const drawerWidth = 240;
 
@@ -55,7 +56,7 @@ const Admin = () => {
 					<List>
 						{[
 							["Patients", "adminPatients"],
-							["Doctors", "/doctors"],
+							["Doctors", "adminDoctors"],
 							["Insurance Companies", "/insurance"],
 						].map((item, index) => (
 							<ListItem
@@ -87,7 +88,11 @@ const Admin = () => {
 						path="adminPatients"
 						element={<AdminPatients />}
 					/>
-					
+					<Route
+						path="adminDoctors"
+						element={<AdminDoctors />}
+					/>
+
 				</Routes>
 			</Box>
 		</Box>
