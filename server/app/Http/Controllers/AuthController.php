@@ -36,12 +36,12 @@ class AuthController extends Controller
 
         if ($user->role === 'patient') {
             $patient = $user->patient;
-                $patient_id = $patient->id;
-                $first_name = $patient->first_name;
-                $last_name = $patient->last_name;
+            $patient_id = $patient->id;
+            $first_name = $patient->first_name;
+            $last_name = $patient->last_name;
         }
         if ($user->role === 'insurance') {
-                $insurance_company_name = $user->insuranceCompany->name;
+            $insurance_company_name = $user->insuranceCompany->name;
         }
         return response()->json([
             'status' => 'success',
@@ -64,4 +64,13 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
- }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('api')->logout();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully logged out.'
+        ]);
+    }
+}
