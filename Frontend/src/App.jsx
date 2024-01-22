@@ -19,7 +19,7 @@ function AppWrapper() {
 
 function App() {
     const location = useLocation();
-    const isAdminRoute = location.pathname === "/admin";
+    const isAdminRoute = location.pathname.startsWith("/admin");
 
     return (
         <>

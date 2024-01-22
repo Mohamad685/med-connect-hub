@@ -54,7 +54,7 @@ const Admin = () => {
 				<Box sx={{ overflow: "auto" }}>
 					<List>
 						{[
-							["Patients", "/AdminPatients"],
+							["Patients", "adminPatients"],
 							["Doctors", "/doctors"],
 							["Insurance Companies", "/insurance"],
 						].map((item, index) => (
@@ -84,7 +84,7 @@ const Admin = () => {
 				<Toolbar />
 				<Routes>
 					<Route
-						path="/admin/AdminPatients"
+						path="adminPatients"
 						element={<AdminPatients />}
 					/>
 				</Routes>
