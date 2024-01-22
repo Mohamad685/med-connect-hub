@@ -263,6 +263,11 @@ const AdminPatients = () => {
 				</Box>
 			)}
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
+			<Typography
+				variant="h5"
+				sx={{ mb: 2 }}>
+				Add Patients:
+			</Typography>
 			<Box
 				sx={{
 					display: "grid",
