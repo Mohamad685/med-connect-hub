@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, TextField, Typography, Divider } from "@mui/material";
+import {
+	Box,
+	Button,
+	TextField,
+	Typography,
+	Divider,
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem,
+} from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminPatients = () => {
+	const roles = ["patient", "doctor", "insurance"];
+
 	const [searchQuery, setSearchQuery] = useState("");
 	const [patients, setPatients] = useState([]);
 	const [newPatient, setNewPatient] = useState({
@@ -15,6 +27,7 @@ const AdminPatients = () => {
 		email: "",
 		password: "",
 		user_name: "",
+		role: "",
 	});
 	const [editingPatient, setEditingPatient] = useState({
 		id: null,
@@ -39,8 +52,9 @@ const AdminPatients = () => {
 		fetchPatients();
 	}, []);
 
-	const handleAddPatient = async () => {
-		try {
+	const handleAddPatient = async (e) => {
+        e.preventDefault();		
+        try {
 			const data = await fetchHelper.post("/register", newPatient);
 			setPatients((prev) => [...prev, data.patient]);
 			setNewPatient({
@@ -51,16 +65,22 @@ const AdminPatients = () => {
 				date_of_birth: "",
 				gender: "",
 				phone_number: "",
+                role:"",
 			});
 		} catch (error) {
 			console.error("Failed to add patient:", error);
 		}
 	};
 
-	const handleRemovePatient = (id) => {
-		setPatients(patients.filter((patient) => patient.id !== id));
-	};
-
+	const handleRemovePatient = async (id) => {
+        try {
+          await fetchHelper.delete(`/admin/patients/${id}`);
+          setPatients(prev => prev.filter(patient => patient.id !== id));
+        } catch (error) {
+          console.error("Failed to remove patient:", error);
+        }
+      };
+      
 	const handleUpdatePatient = () => {
 		setPatients(
 			patients.map((patient) =>
@@ -118,7 +138,7 @@ const AdminPatients = () => {
 							<Box>
 								<Typography>{`Name: ${patient.first_name} ${patient.last_name}`}</Typography>
 								<Typography>{`Address: ${patient.address}`}</Typography>
-								<Typography>{`DOB: ${patient.date_of_birth}`}</Typography>
+								<Typography>{`Date Of Birth: ${patient.date_of_birth}`}</Typography>
 								<Typography>{`Gender: ${patient.gender}`}</Typography>
 								<Typography>{`Phone: ${patient.phone_number}`}</Typography>
 							</Box>
@@ -240,7 +260,7 @@ const AdminPatients = () => {
 					flexDirection: "row",
 					alignItems: "center",
 					justifyContent: "space-evenly",
-					gap: "10px",
+					gap: "8px",
 				}}>
 				<TextField
 					label="Email"
@@ -306,6 +326,26 @@ const AdminPatients = () => {
 						setNewPatient({ ...newPatient, phone_number: e.target.value })
 					}
 				/>
+				<FormControl>
+					<InputLabel id="role-select-label">Role</InputLabel>
+					<Select
+						labelId="role-select-label"
+						id="role-select"
+						value={newPatient.role}
+						label="Role"
+						onChange={(e) =>
+							setNewPatient({ ...newPatient, role: e.target.value })
+						}
+						sx={{ width: "4rem" }}>
+						{roles.map((role) => (
+							<MenuItem
+								key={role}
+								value={role}>
+								{role}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
 				<Button
 					onClick={handleAddPatient}
 					sx={{

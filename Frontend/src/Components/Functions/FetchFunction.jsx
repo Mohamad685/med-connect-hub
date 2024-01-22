@@ -58,6 +58,22 @@ const fetchHelper = {
 			throw error;
 		}
 	},
+
+	delete: async (url, data = {}) => {
+		try {
+			const response = await axiosHelper.delete(url, { data });
+	
+			if (response.status === 200 || response.status === 204) {
+				console.log("DELETE Success:", response.data);
+				return response.data;
+			} else {
+				throw new Error(`Server responded with status code: ${response.status}`);
+			}
+		} catch (error) {
+			console.error("DELETE API call error: ", error);
+			throw error;
+		}
+	}
 };
 
 export default fetchHelper;
