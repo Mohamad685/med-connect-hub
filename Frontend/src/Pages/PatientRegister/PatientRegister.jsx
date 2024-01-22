@@ -16,7 +16,7 @@ function PatientRegister() {
 	const [email, setEmail] = useState("");
 	const [phone_number, setPhoneNumber] = useState("");
 	const [gender, setGender] = useState("");
-	const [date_of_birth, setBirthdate] = useState("");
+	const [age, setAge] = useState("");
 	const [address, setAddress] = useState("");
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
@@ -37,7 +37,7 @@ function PatientRegister() {
 		setEmail("");
 		setPhoneNumber("");
 		setGender("");
-		setBirthdate("");
+		setAge("");
 		setAddress("");
 		setMedicalHistory("");
 		setMedicationHistory("");
@@ -57,7 +57,7 @@ function PatientRegister() {
 		formData.append("email", email);
 		formData.append("phone_number", phone_number);
 		formData.append("gender", gender);
-		formData.append("date_of_birth", date_of_birth);
+		formData.append("age", age);
 		formData.append("address", address);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
@@ -186,12 +186,12 @@ function PatientRegister() {
 							/>
 
 							<InputForm
-								type="date"
-								value={date_of_birth}
-								onChange={(e) => setBirthdate(e.target.value)}
+								type="number"
+								value={age}
+								onChange={(e) => setAge(e.target.value)}
 								width={"23rem"}
 								length={"2rem"}
-								placeholder={"Date Of Birth"}
+								placeholder={"Age"}
 							/>
 						</div>
 						<div className="address-input-div">

@@ -17,7 +17,7 @@ const AdminPatients = () => {
 		first_name: "",
 		last_name: "",
 		address: "",
-		date_of_birth: "",
+		age: "",
 		gender: "",
 		phone_number: "",
 	});
@@ -63,7 +63,7 @@ const AdminPatients = () => {
 				first_name: "",
 				last_name: "",
 				address: "",
-				date_of_birth: "",
+				age: "",
 				gender: "",
 				phone_number: "",
 			});
@@ -109,7 +109,7 @@ const AdminPatients = () => {
 							<Box>
 								<Typography>{`Name: ${patient.first_name} ${patient.last_name}`}</Typography>
 								<Typography>{`Address: ${patient.address}`}</Typography>
-								<Typography>{`Date Of Birth: ${patient.date_of_birth}`}</Typography>
+								<Typography>{`Age: ${patient.age}`}</Typography>
 								<Typography>{`Gender: ${patient.gender}`}</Typography>
 								<Typography>{`Phone: ${patient.phone_number}`}</Typography>
 							</Box>
@@ -151,10 +151,8 @@ const AdminPatients = () => {
 			{editingPatient.id && (
 				<Box
 					sx={{
-						display: "flex",
-						flexDirection: "row",
-						alignItems: "center",
-						justifyContent: "space-evenly",
+						display: "grid",
+						
 						gap: "10px",
 					}}>
 					<TextField
@@ -186,12 +184,12 @@ const AdminPatients = () => {
 					/>
 
 					<TextField
-						label="Date of Birth"
-						value={editingPatient.date_of_birth}
+						label="Age"
+						value={editingPatient.age}
 						onChange={(e) =>
 							setEditingPatient({
 								...editingPatient,
-								date_of_birth: e.target.value,
+								age: e.target.value,
 							})
 						}
 					/>

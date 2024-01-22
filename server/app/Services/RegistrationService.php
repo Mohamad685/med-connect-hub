@@ -66,7 +66,7 @@ class RegistrationService
                     'first_name' => 'required|string',
                     'last_name' => 'required|string',
                     'address' => 'required|string',
-                    'date_of_birth' => 'required|date',
+                    'age' => 'required|integer',
                     'phone_number' => 'required|integer|unique:patients',
                     'gender' => 'required|string'
                 ])->validate();
@@ -76,7 +76,7 @@ class RegistrationService
                 $patient->first_name = $patientData['first_name'];
                 $patient->last_name = $patientData['last_name'];
                 $patient->address = $patientData['address'];
-                $patient->date_of_birth = $patientData['date_of_birth'];
+                $patient->age = $patientData['age'];
                 $patient->gender = $patientData['gender'];
                 $patient->phone_number = $patientData['phone_number'];
                 $patient->save();

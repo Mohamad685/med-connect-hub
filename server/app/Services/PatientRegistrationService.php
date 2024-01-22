@@ -17,6 +17,7 @@ class PatientRegistrationService
     public function handleRegistration($data)
     {
         try {
+            
             $messages = [
                 'email.unique' => 'The email has already been taken.',
                 'user_name.unique' => 'The username has already been taken.',
@@ -31,7 +32,7 @@ class PatientRegistrationService
                 'first_name' => 'required|string',
                 'last_name' => 'required|string',
                 'address' => 'required|string',
-                'date_of_birth' => 'required|date',
+                'age' => 'required|integer',
                 'phone_number' => 'required|integer|unique:patients',
                 'gender' => 'required|string'
             ], $messages);
@@ -62,7 +63,7 @@ class PatientRegistrationService
             $patient->first_name = $validatedData['first_name'];
             $patient->last_name = $validatedData['last_name'];
             $patient->address = $validatedData['address'];
-            $patient->date_of_birth = $validatedData['date_of_birth'];
+            $patient->age = $validatedData['age'];
             $patient->gender = $validatedData['gender'];
             $patient->phone_number = $validatedData['phone_number'];
             $patient->save();
