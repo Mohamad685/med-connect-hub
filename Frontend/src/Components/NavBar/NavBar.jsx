@@ -12,7 +12,7 @@ function NavBar() {
 
 	
     const isAuthenticated = localStorage.getItem("token");
-	const username = `${localStorage.getItem("firstName")}${localStorage.getItem("lastName")}`;
+	const username = `${localStorage.getItem("userName")}`;
 	const logout = async () => {
 		try {
 			await fetchHelper.post('/logout');

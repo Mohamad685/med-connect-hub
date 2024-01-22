@@ -57,43 +57,40 @@ function Login({ onClose }) {
 				if (token) {
 					localStorage.setItem("token", token);
 
-					const patientId = response.patient_id;
-					const firstName = response.first_name; 
-					const lastName = response.last_name; 
+					const firstName = response.first_name;
+					const lastName = response.last_name;
+					const userName = response.user.user_name;
 					const insuranceCompanyName = response.insurance_company_name;
-					
-					if (patientId) {
-						localStorage.setItem("patientId", patientId.toString());
-						localStorage.setItem("firstName", firstName);
-						localStorage.setItem("lastName", lastName);
-					}
-
-					if (insuranceCompanyName) {
-						localStorage.setItem("insuranceCompanyName", insuranceCompanyName);
-					}
 
 					const userRole = response.user.role;
 					if (userRole === "admin") {
 						navigate("/admin");
 					} else if (userRole === "doctor") {
+						localStorage.setItem("userName", userName);
 						navigate("/patient-registration");
 					} else if (userRole === "patient") {
+						localStorage.setItem("firstName", firstName);
+						localStorage.setItem("lastName", lastName);
+						localStorage.setItem("userName", userName);
 						navigate("/patient-file");
 					} else if (userRole === "insurance") {
+						localStorage.setItem("insuranceCompanyName", insuranceCompanyName);
 						navigate("/insurance-page");
 					} else {
 						console.log("Unknown user role:", userRole);
 					}
+					setEmail("");
+					setPassword("");
+					handleClose();
 				} else {
 					console.log("Token not found in the response");
 				}
 			} catch (error) {
 				console.error(error);
+				setEmailError("Invalid email or password.");
+				setPasswordError("Invalid email or password.");
 			}
 		}
-		setEmail("");
-		setPassword("");
-		handleClose();
 	};
 
 	return (
