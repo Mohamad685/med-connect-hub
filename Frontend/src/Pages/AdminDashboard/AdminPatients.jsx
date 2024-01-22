@@ -53,8 +53,8 @@ const AdminPatients = () => {
 	}, []);
 
 	const handleAddPatient = async (e) => {
-        e.preventDefault();		
-        try {
+		e.preventDefault();
+		try {
 			const data = await fetchHelper.post("/register", newPatient);
 			setPatients((prev) => [...prev, data.patient]);
 			setNewPatient({
@@ -65,7 +65,7 @@ const AdminPatients = () => {
 				date_of_birth: "",
 				gender: "",
 				phone_number: "",
-                role:"",
+				role: "",
 			});
 		} catch (error) {
 			console.error("Failed to add patient:", error);
@@ -73,14 +73,14 @@ const AdminPatients = () => {
 	};
 
 	const handleRemovePatient = async (id) => {
-        try {
-          await fetchHelper.delete(`/admin/patients/${id}`);
-          setPatients(prev => prev.filter(patient => patient.id !== id));
-        } catch (error) {
-          console.error("Failed to remove patient:", error);
-        }
-      };
-      
+		try {
+			await fetchHelper.delete(`/admin/patients/${id}`);
+			setPatients((prev) => prev.filter((patient) => patient.id !== id));
+		} catch (error) {
+			console.error("Failed to remove patient:", error);
+		}
+	};
+
 	const handleUpdatePatient = () => {
 		setPatients(
 			patients.map((patient) =>
@@ -256,10 +256,10 @@ const AdminPatients = () => {
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 			<Box
 				sx={{
-					display: "flex",
-					flexDirection: "row",
-					alignItems: "center",
-					justifyContent: "space-evenly",
+					display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr)) minmax(200px, 1fr)",
+					alignItems: "baseline",
+                    justifyItems:'start',
 					gap: "8px",
 				}}>
 				<TextField
@@ -336,7 +336,7 @@ const AdminPatients = () => {
 						onChange={(e) =>
 							setNewPatient({ ...newPatient, role: e.target.value })
 						}
-						sx={{ width: "4rem" }}>
+						sx={{ width: "8rem" }}>
 						{roles.map((role) => (
 							<MenuItem
 								key={role}
@@ -349,9 +349,11 @@ const AdminPatients = () => {
 				<Button
 					onClick={handleAddPatient}
 					sx={{
+                        gridColumn:"span 2",
 						backgroundColor: "#2196f3",
 						color: "white",
 						"&:hover": { backgroundColor: "#1976d2" },
+						width: "12rem",
 					}}>
 					Add
 				</Button>
