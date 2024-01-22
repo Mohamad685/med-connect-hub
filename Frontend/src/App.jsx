@@ -31,7 +31,7 @@ function App() {
                     <Route path="/diagnosis" element={<Diagnosis />} />
                     <Route path="/patient-file" element={<Patientpreview />} />
                     <Route path="/insurance-page" element={<InsurancePage />} />
-                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin/*" element={<Admin />} />
                 </Routes>
             </div>
             {!isAdminRoute && <Footer />}
