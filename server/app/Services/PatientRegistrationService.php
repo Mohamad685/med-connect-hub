@@ -9,6 +9,7 @@ use App\Models\MedicationHistory;
 use App\Models\MedicalHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -54,8 +55,10 @@ class PatientRegistrationService
 
             if (isset($data['profile_pic']) && $data['profile_pic']->isValid()) {
                 $path = $data['profile_pic']->store('profile_pictures', 'public');
-                $user->profile_picture = $path;
+                $user->profile_picture = $path;                
+                $imageUrl = asset('storage/' . $path);
             }
+            
             $user->save();
 
             $patient = new Patient;
@@ -73,8 +76,8 @@ class PatientRegistrationService
 
             return response()->json([
                 'message' => 'Patient registered successfully',
-                'patient' => $patient
-                
+                'patient' => $patient,
+                'profile_picture_url' => $imageUrl ?? null 
             ],200);
 
         } catch (ValidationException $e) {

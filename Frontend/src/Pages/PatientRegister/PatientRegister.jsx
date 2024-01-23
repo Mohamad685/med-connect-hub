@@ -78,10 +78,10 @@ function PatientRegister() {
 				id: response.patient.id,
 				firstName: response.patient.first_name,
 				lastName: response.patient.last_name,
-				profilePic: response.patient.profile_pic
+				profilePic: response.profile_pic_url
 			};
 
-			navigate("/diagnosis", { state: { patientData,description,medication_description } });
+			navigate("/diagnosis", { state: { patientData: { ...patientData, profilePic: response.profile_picture_url }, description, medication_description } });
 		} catch (error) {
 			console.error("Error during registration:", error);
 			const errors = error.response?.data?.errors;
