@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
-import "./InsurancePage.css";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
-function PatientInsurancePage() {
+function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
 	const [diagnoses, setDiagnoses] = useState([]);
 	const [prescriptions, setPrescriptions] = useState([]);
@@ -143,4 +142,4 @@ function PatientInsurancePage() {
 	);
 }
 
-export default PatientInsurancePage;
+export default PatientInsurance;

@@ -8,6 +8,7 @@ import Diagnosis from "./Pages/Diagnosis/Diagnosis";
 import Patientpreview from "./Pages/PatientPage/PatientPage";
 import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 import Admin from "./Pages/AdminDashboard/Admin";
+import PatientInsurance from './Pages/PatientInsurance/PatientInsurance';
 
 function AppWrapper() {
     return (
@@ -31,6 +32,8 @@ function App() {
                     <Route path="/diagnosis" element={<Diagnosis />} />
                     <Route path="/patient-file" element={<Patientpreview />} />
                     <Route path="/insurance-page" element={<InsurancePage />} />
+                    <Route path="/patient-insurance-page:/patientId" element={<PatientInsurance />} />
+
                     <Route path="/admin/*" element={<Admin />} />
                 </Routes>
             </div>
