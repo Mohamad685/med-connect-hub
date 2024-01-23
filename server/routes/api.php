@@ -5,6 +5,7 @@ use App\Http\Controllers\GetUsersController;
 use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\InsuranceApprovalController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientInsuranceController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\UserController;
 
@@ -55,5 +56,6 @@ Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
+    Route::post('/allPatients', [PatientInsuranceController::class, 'relatedPatients']);
 
 });

@@ -15,7 +15,8 @@ class Patient extends Model
         'address',
         'age',
         'gender',
-        'phone_number'
+        'phone_number',
+        'insurance_company_id'
     ];
 
     // public function user()

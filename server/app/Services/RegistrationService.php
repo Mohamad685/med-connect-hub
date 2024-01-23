@@ -68,7 +68,9 @@ class RegistrationService
                     'address' => 'required|string',
                     'age' => 'required|integer',
                     'phone_number' => 'required|integer|unique:patients',
-                    'gender' => 'required|string'
+                    'gender' => 'required|string',
+                    'insurance_company_id' => 'required|integer|exists:insurance_companies,id'
+
                 ])->validate();
 
                 $patient = new Patient;
@@ -79,6 +81,8 @@ class RegistrationService
                 $patient->age = $patientData['age'];
                 $patient->gender = $patientData['gender'];
                 $patient->phone_number = $patientData['phone_number'];
+                $patient->insurance_company_id = $patientData['insurance_company_id'];
+
                 $patient->save();
 
                 break;
@@ -162,6 +166,7 @@ class RegistrationService
 
             $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
             $patient->address = $patientData['address'] ?? $patient->address;
+            $patient->insurance_company_id =$patientData['insurance_company_id']?? $patient->insurance_company_id;
             $patient->save();
 
             return ['success' => true, 'message' => 'Patient updated successfully!'];
