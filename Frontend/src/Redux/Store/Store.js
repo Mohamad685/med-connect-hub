@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '../Reducers/index';
+import InsurancePageReducer from '../Reducers/InsurancePageReducers';
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    insurancePageData:InsurancePageReducer,
+  }
 });
 
 export default store;
