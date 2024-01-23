@@ -35,7 +35,10 @@ class PatientRegistrationService
                 'address' => 'required|string',
                 'age' => 'required|integer',
                 'phone_number' => 'required|integer|unique:patients',
-                'gender' => 'required|string'
+                'gender' => 'required|string',
+                'insurance_company_id' => 'required|integer|exists:insurance_companies,id'
+
+
             ], $messages);
 
             if ($validator->fails()) {
@@ -69,6 +72,8 @@ class PatientRegistrationService
             $patient->age = $validatedData['age'];
             $patient->gender = $validatedData['gender'];
             $patient->phone_number = $validatedData['phone_number'];
+            $patient->insurance_company_id = $validatedData['insurance_company_id'];
+
             $patient->save();
 
             $this->createMedicationHistory($data, $patient->id);
