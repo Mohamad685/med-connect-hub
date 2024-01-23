@@ -6,10 +6,8 @@ import "./InsurancePage.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
-import { useSelector } from 'react-redux';
 
 function InsurancePage() {
-	const diagnosisData = useSelector(state => state.diagnosis.diagnosisData);
 
 	const [labResults, setLabResults] = useState([]);
 	const [diagnoses, setDiagnoses] = useState([]);

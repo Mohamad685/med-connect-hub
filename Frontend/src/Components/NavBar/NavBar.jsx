@@ -13,14 +13,17 @@ function NavBar() {
 	
     const isAuthenticated = localStorage.getItem("token");
 	const username = `${localStorage.getItem("userName")}`;
+	
 	const logout = async () => {
 		try {
 			await fetchHelper.post('/logout');
+		
+		} catch (error) {
+			console.error('Logout failed:', error);
+		}finally{
 			localStorage.clear();
 			setAuthenticated(false);
 			navigate('/');
-		} catch (error) {
-			console.error('Logout failed:', error);
 		}
 	};
 	

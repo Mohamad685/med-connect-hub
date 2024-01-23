@@ -22,4 +22,4 @@ const insurancePageReducer = (state = initialState, action) => {
 };
 
 
-export default diagnosisReducer;
+export default insurancePageReducer;
