@@ -24,27 +24,31 @@ function PatientInsurance() {
 			try {
 
 				const patientData = await fetchHelper.get(`/insurance/${patientId}`);
-                setPatient(patientData);
+				if (patientData) {
+					setPatient(patientData);
+				} else {
+					setPatient(null);
+				}				
 
 				const labResultsResponse = await fetchHelper.get(
 					`/patient/${patientId}/lab-results`
 				);
-				setLabResults(labResultsResponse);
+				setLabResults(labResultsResponse.length ? labResultsResponse : null);
 
 				const diagnosesResponse = await fetchHelper.get(
 					`/patient/${patientId}/diagnosis`
 				);
-				setDiagnoses(diagnosesResponse);
+				setDiagnoses(diagnosesResponse.length?diagnosesResponse: null);
 
 				const prescriptionsResponse = await fetchHelper.get(
 					`/patient/${patientId}/prescriptions`
 				);
-				setPrescriptions(prescriptionsResponse);
+				setPrescriptions(prescriptionsResponse.length ? prescriptionsResponse: null);
 
 				const symptomsResponse = await fetchHelper.get(
 					`/patient/${patientId}/symptoms`
 				);
-				setSymptoms(symptomsResponse);
+				setSymptoms(symptomsResponse.length ? symptomsResponse: null);
 			} catch (error) {
 				console.error("Failed to fetch patient data", error);
 			}
@@ -59,10 +63,11 @@ function PatientInsurance() {
 		try {
 			const response = await fetchHelper.post(url, data);
 			console.log("Status updated successfully", response);
-			setDiagnoses([]);
-			setLabResults([]);
-			setPrescriptions([]);
-			setSymptoms([]);
+			setPatient(null);
+			setDiagnoses(null);
+			setLabResults(null);
+			setPrescriptions(null);
+			setSymptoms(null);
 		} catch (error) {
 			console.error("Failed to update status", error);
 		}
