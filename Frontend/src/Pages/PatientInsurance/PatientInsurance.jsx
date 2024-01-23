@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
 import fetchHelper from "../../Components/Functions/FetchFunction";
+import { useParams } from "react-router-dom";
+import Button from '../../Components/Button/Button';
+import PreviewBox from '../../Components/PreviewBox/PreviewBox';
+
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
@@ -9,8 +13,7 @@ function PatientInsurance() {
 	const [symptoms, setSymptoms] = useState([]);
 	const [insuranceName, setInsuranceName] = useState("");
 	const [patients, setPatients] = useState([]);
-
-	// const approvalId = "1";
+    const { patientId } = useParams();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -40,8 +43,7 @@ function PatientInsurance() {
 			}
 		};
 
-		fetchData();
-
+        if (patientId) fetchData();
 	}, [patientId]);
 
 	const updateStatus = async (status, approvalId) => {
