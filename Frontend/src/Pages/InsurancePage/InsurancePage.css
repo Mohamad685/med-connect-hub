@@ -79,3 +79,25 @@
     background-color: #c84747;
 }
 
+.patient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.patient-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.patient-profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.patient-info {
+    display: flex;
+    flex-direction: column;
+}

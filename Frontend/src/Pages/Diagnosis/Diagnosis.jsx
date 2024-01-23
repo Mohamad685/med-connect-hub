@@ -6,7 +6,6 @@ import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import TextArea from "../../Components/TextArea/TextArea";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
-import { useDispatch } from "react-redux";
 
 function Diagnosis() {
 	const location = useLocation();
@@ -71,7 +70,6 @@ function Diagnosis() {
 				console.error("Error during data submission:", error);
 			}
 		}
-		dispatch(setDiagnosisData(formData));
 		setMessage("Form submitted successfully!");
 	};
 	return (

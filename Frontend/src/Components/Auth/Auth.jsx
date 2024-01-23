@@ -60,7 +60,7 @@ function Login({ onClose }) {
 					const firstName = response.first_name;
 					const lastName = response.last_name;
 					const userName = response.user.user_name
-
+					const insuranceName=response.insurance_company_name
 					const userRole = response.user.role;
 					if (userRole === "admin") {
 						navigate("/admin");
@@ -78,6 +78,8 @@ function Login({ onClose }) {
 					} else if (userRole === "insurance") {
 						
 						localStorage.setItem("userName", userName);
+						localStorage.setItem("insuranceName", insuranceName);
+
 						navigate("/insurance-page");
 					} else {
 						console.log("Unknown user role:", userRole);

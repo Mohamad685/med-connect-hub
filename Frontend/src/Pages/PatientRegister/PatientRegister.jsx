@@ -25,6 +25,8 @@ function PatientRegister() {
 	const [emailError, setEmailError] = useState("");
 	const [phoneNumberError, setPhoneNumberError] = useState("");
 	const [formMessage, setFormMessage] = useState("");
+	const [insurance_company_id, setInsuranceCompanyId] = useState("");
+
 
 
 	const navigate = useNavigate();
@@ -42,6 +44,7 @@ function PatientRegister() {
 		setMedicalHistory("");
 		setMedicationHistory("");
 		setProfilePic("null");
+		setInsuranceCompanyId('');
 	};
 	const handleProfilePicSelect = (file) => {
         setProfilePic(file);
@@ -60,6 +63,7 @@ function PatientRegister() {
 		formData.append("gender", gender);
 		formData.append("age", age);
 		formData.append("address", address);
+		formData.append("insurance_company_id", insurance_company_id);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
 		
@@ -176,7 +180,15 @@ function PatientRegister() {
 								placeholder={"Phone Number"}
 							/>
 							{phoneNumberError && <p className="error">{phoneNumberError}</p>}
-
+							
+							<InputForm
+								type="number"
+								value={insurance_company_id}
+								onChange={(e) => setInsuranceCompanyId(e.target.value)}
+								width={"23rem"}
+								length={"2rem"}
+								placeholder={"Insurance Company no."}
+							/>
 							<InputForm
 								type="text"
 								value={gender}
