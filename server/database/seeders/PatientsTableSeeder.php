@@ -26,7 +26,8 @@ class PatientsTableSeeder extends Seeder
             'gender' => 'male',
             'age' => '25',
             'phone_number' => '012345678911',
-            'address' => 'Beirut'
+            'address' => 'Beirut',
+            'insurance_company_id'=>'2'
         ]);
 
         $user2 = User::create([
@@ -43,7 +44,9 @@ class PatientsTableSeeder extends Seeder
             'gender' => 'female',
             'age' => '25',
             'phone_number' => '0987654321',
-            'address' => 'Tripoli'
+            'address' => 'Tripoli',
+            'insurance_company_id'=>'1'
+
         ]);
 
         $user3 = User::create([
@@ -60,7 +63,8 @@ class PatientsTableSeeder extends Seeder
             'gender' => 'male',
             'age' => '25',      
             'phone_number' => '0234567890',
-            'address' => 'Sidon'
+            'address' => 'Sidon',
+            'insurance_company_id'=>'3'
         ]);
 
         $user4 = User::create([
@@ -77,7 +81,8 @@ class PatientsTableSeeder extends Seeder
             'gender' => 'female',
             'age' => '25',      
             'phone_number' => '0345678901',
-            'address' => 'Jounieh'
+            'address' => 'Jounieh',
+            'insurance_company_id'=>'2'
         ]);
 
     }
