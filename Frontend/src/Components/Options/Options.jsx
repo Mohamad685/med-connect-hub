@@ -8,6 +8,9 @@ function OptionsBox({ margin }) {
 	const optionStyle = {
 		margin: margin,
 	};
+
+	const pattern = /^\/patient-insurance-page\/\d+$/;
+
 	return (
 		<div
 			style={optionStyle}
@@ -19,6 +22,7 @@ function OptionsBox({ margin }) {
 					<Link to="/patients-list">Patients List</Link>
 				</>
 			)}
+            {pattern.test(location.pathname) && <Link to='/insurance-page'>Patients</Link>}
 			<Link to="/live-chat">Live Chat</Link>
 			<Link to="/send-email">Send Email</Link>
 			<Link to="/notifications">Notifications</Link>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import OptionsBox from "../../Components/Options/Options";
 import "./InsurancePage.css";
 import fetchHelper from "../../Components/Functions/FetchFunction";
@@ -21,7 +20,7 @@ function InsurancePage() {
 
 		const fetchPatients = async () => {
 			try {
-				const response = await fetchHelper.get("/insurance/allPatients", {
+				const response = await fetchHelper.get('/insurance/allPatients', {
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
@@ -35,21 +34,6 @@ function InsurancePage() {
 
 		fetchPatients();
 	}, []);
-
-	const updateStatus = async (status, approvalId) => {
-		const url = `/insurance-request/${approvalId}/update-status`;
-		const data = { status: status };
-		try {
-			const response = await fetchHelper.post(url, data);
-			console.log("Status updated successfully", response);
-			setDiagnoses([]);
-			setLabResults([]);
-			setPrescriptions([]);
-			setSymptoms([]);
-		} catch (error) {
-			console.error("Failed to update status", error);
-		}
-	};
 
 	return (
 		<>
