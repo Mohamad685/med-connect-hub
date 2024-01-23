@@ -41,6 +41,7 @@ function PatientRegister() {
 		setAddress("");
 		setMedicalHistory("");
 		setMedicationHistory("");
+		setProfilePic("null");
 	};
 	const handleProfilePicSelect = (file) => {
         setProfilePic(file);
