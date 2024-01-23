@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Services\GetUsersService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -57,4 +58,18 @@ class GetUsersController extends Controller
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Insurance company not found'], 404);
         }
-    }}
+    }
+
+    public function getPatientById(Request $request, $patientId)
+    {
+        $patient = Patient::with(['user', 'insuranceCompany'])->where('id', $patientId)->first();
+
+        if (!$patient) {
+            return response()->json(['message' => 'Patient not found'], 404);
+        }
+
+        return response()->json($patient);
+    }
+
+
+}

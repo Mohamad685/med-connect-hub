@@ -14,10 +14,17 @@ function PatientInsurance() {
 	const [insuranceName, setInsuranceName] = useState("");
 	const [patients, setPatients] = useState([]);
     const { patientId } = useParams();
+	const [patientName, setPatientName] = useState("");
+	const [patient, setPatient] = useState({});
+
+    const patientFullName = `${patient.first_name || ''} ${patient.last_name || ''}`.trim();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+
+				const patientData = await fetchHelper.get(`/insurance/${patientId}`);
+                setPatient(patientData);
 
 				const labResultsResponse = await fetchHelper.get(
 					`/patient/${patientId}/lab-results`
@@ -67,7 +74,7 @@ function PatientInsurance() {
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 				<div className="insurance-reg-form">
-					<p className="insurance-reg-title">{insuranceName}</p>
+                    <p className="insurance-reg-title">{patientFullName ? `${patientFullName}'s Insurance` : 'Patient Insurance'}</p>
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
 							<div className="address-input-div">
