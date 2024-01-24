@@ -16,16 +16,17 @@ class FirebaseServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('firebase', function ($app) {
-            $serviceAccount = ServiceAccount::fromJsonFile(config('firebase.credentials'));
-            $firebase = (new Factory())
-                ->withServiceAccount($serviceAccount)
-                ->create();
+            $factory = (new Factory());
 
-            return $firebase;
+            if (file_exists($serviceAccountPath = config('firebase.credentials'))) {
+                $factory = $factory->withServiceAccount($serviceAccountPath);
+            }
+
+            return $factory;
+
         });
     }
 
-  
     public function boot()
     {
         //
