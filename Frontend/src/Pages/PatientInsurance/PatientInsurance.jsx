@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 import { useParams } from "react-router-dom";
-import Button from '../../Components/Button/Button';
-import PreviewBox from '../../Components/PreviewBox/PreviewBox';
-
+import Button from "../../Components/Button/Button";
+import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
@@ -13,22 +12,23 @@ function PatientInsurance() {
 	const [symptoms, setSymptoms] = useState([]);
 	const [insuranceName, setInsuranceName] = useState("");
 	const [patients, setPatients] = useState([]);
-    const { patientId } = useParams();
+	const { patientId } = useParams();
 	const [patientName, setPatientName] = useState("");
 	const [patient, setPatient] = useState({});
 
-    const patientFullName = `${patient.first_name || ''} ${patient.last_name || ''}`.trim();
+	const patientFullName = `${patient.first_name || ""} ${
+		patient.last_name || ""
+	}`.trim();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-
 				const patientData = await fetchHelper.get(`/insurance/${patientId}`);
 				if (patientData) {
 					setPatient(patientData);
 				} else {
 					setPatient(null);
-				}				
+				}
 
 				const labResultsResponse = await fetchHelper.get(
 					`/patient/${patientId}/lab-results`
@@ -38,23 +38,25 @@ function PatientInsurance() {
 				const diagnosesResponse = await fetchHelper.get(
 					`/patient/${patientId}/diagnosis`
 				);
-				setDiagnoses(diagnosesResponse.length?diagnosesResponse: null);
+				setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
 
 				const prescriptionsResponse = await fetchHelper.get(
 					`/patient/${patientId}/prescriptions`
 				);
-				setPrescriptions(prescriptionsResponse.length ? prescriptionsResponse: null);
+				setPrescriptions(
+					prescriptionsResponse.length ? prescriptionsResponse : null
+				);
 
 				const symptomsResponse = await fetchHelper.get(
 					`/patient/${patientId}/symptoms`
 				);
-				setSymptoms(symptomsResponse.length ? symptomsResponse: null);
+				setSymptoms(symptomsResponse.length ? symptomsResponse : null);
 			} catch (error) {
 				console.error("Failed to fetch patient data", error);
 			}
 		};
 
-        if (patientId) fetchData();
+		if (patientId) fetchData();
 	}, [patientId]);
 
 	const updateStatus = async (status, approvalId) => {
@@ -79,7 +81,11 @@ function PatientInsurance() {
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 				<div className="insurance-reg-form">
-                    <p className="insurance-reg-title">{patientFullName ? `${patientFullName}'s Insurance` : 'Patient Insurance'}</p>
+					<p className="insurance-reg-title">
+						{patientFullName
+							? `${patientFullName}'s Insurance`
+							: "Patient Insurance"}
+					</p>
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
 							<div className="address-input-div">
@@ -94,22 +100,22 @@ function PatientInsurance() {
 									/>
 								))}
 
-								{diagnoses.map((diagnosis, index) => (
+								{symptoms.map((symptom, index) => (
 									<PreviewBox
 										key={index}
-										title={`Diagnosiss`}
-										text={diagnosis.diagnosis_description}
+										title={`Symptoms`}
+										text={symptom.symptom_description}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}
 									/>
 								))}
 
-								{symptoms.map((symptom, index) => (
+								{diagnoses.map((diagnosis, index) => (
 									<PreviewBox
 										key={index}
-										title={`Symptoms`}
-										text={symptom.symptom_description}
+										title={`Diagnoses`}
+										text={diagnosis.diagnosis_description}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}
@@ -143,13 +149,12 @@ function PatientInsurance() {
 										text="Reject"
 										fontSize="1.15rem"
 										onClick={() => updateStatus("Rejected", approvalId)}
-										classNames={'insurance-button-style'}
+										classNames={"insurance-button-style"}
 									/>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</>

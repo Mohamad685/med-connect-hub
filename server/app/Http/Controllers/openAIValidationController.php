@@ -6,13 +6,12 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use OpenAI\Laravel\Facades\OpenAI;
 
 class openAIValidationController extends Controller
 {
     public function validateDiagnosis($id)
     {
-        $apiKey = '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';
+        $apiKey = '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';
         $baseUrl = 'https://api.openai.com';
         $patient = Patient::with(['labResults', 'symptoms', 'diagnosis', 'prescriptions'])->find($id);
         if (!$patient) {
