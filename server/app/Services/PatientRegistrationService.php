@@ -75,6 +75,9 @@ class PatientRegistrationService
             $patient->insurance_company_id = $validatedData['insurance_company_id'];
 
             $patient->save();
+            $userId = Auth::id();
+            $doctor = Doctor::where('user_id', $userId)->firstOrFail(); 
+            $doctor->patients()->attach($patient->id);
 
             $this->createMedicationHistory($data, $patient->id);
             $this->createMedicalHistory($data, $patient->id);
