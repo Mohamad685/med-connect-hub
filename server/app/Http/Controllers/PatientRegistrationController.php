@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PatientRegistrationService;
-use Illuminate\Support\Facades\Log;
 
 class PatientRegistrationController extends Controller
 {
@@ -22,8 +21,6 @@ class PatientRegistrationController extends Controller
 
             return $response;
         } catch (\Exception $e) {
-            Log::error('Registration Error: ' . $e->getMessage());
-
             return response()->json(['error' => 'Registration failed.'], 500);
         }
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class openAIValidationController extends Controller
 {
@@ -50,14 +49,9 @@ class openAIValidationController extends Controller
                 $result = $response->json();
                 return response()->json($result);
             } else {
-                Log::error('OpenAI Request Failed', [
-                    'status' => $response->status(),
-                    'body' => $response->body(),
-                ]);
                 return response()->json(['error' => 'Failed to get a response from OpenAI'], 500);
             }
         } catch (\Exception $e) {
-            Log::error("Error processing OpenAI request: " . $e->getMessage());
             return response()->json(['error' => 'An error occurred processing the OpenAI request'], 500);
         }
     }

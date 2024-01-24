@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Kreait\Firebase\Factory;
+use Kreait\Firebase\Firestore;
 use Kreait\Firebase\ServiceAccount;
 
 class FirebaseServiceProvider extends ServiceProvider
@@ -24,6 +25,10 @@ class FirebaseServiceProvider extends ServiceProvider
 
             return $factory;
 
+        });
+        $this->app->singleton(Firestore::class, function ($app) {
+            $factory = $app->make(Factory::class); 
+            return $factory->createFirestore();
         });
     }
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use Illuminate\Http\Request;
+use Kreait\Firebase\Firestore;
+
 
 class ChatController extends Controller
-{
+{   
     public function storeMessage(Request $request)
     {
         $message = Chat::create([
@@ -22,21 +24,19 @@ class ChatController extends Controller
     protected function pushMessageToFirebase($message)
     {
         try {
-            $firebase = app('firebase');
-            $database = $firebase->createDatabase();
+            $firestore = app(Firestore::class);
+            $database = $firestore->database();
 
-            $newPost = $database
-                ->getReference('chats')
-                ->push([
-                    'sender_id' => $message->sender_id,
-                    'receiver_id' => $message->receiver_id,
-                    'message' => $message->message,
-                    'created_at' => $message->created_at->toDateTimeString(),
-                ]);
+            $chatsCollection = $database->collection('chats');
+            $newDocument = $chatsCollection->add([
+                'sender_id' => $message->sender_id,
+                'receiver_id' => $message->receiver_id,
+                'message' => $message->message,
+                'created_at' => $message->created_at->toDateTimeString(),
+            ]);
 
-            return $newPost->getKey();
-        } catch (\Throwable$e) {
-            \Log::error("Firebase push failed: " . $e->getMessage());
+            return $newDocument->id();
+        } catch (\Throwable $e) {
         }
 
     }
