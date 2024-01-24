@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('address')->nullable();
             $table->text('coverage_details')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

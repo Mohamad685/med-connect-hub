@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('license_id');
             $table->string('gender');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
 
         });
