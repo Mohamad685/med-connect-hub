@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\GetUsersController;
 use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\InsuranceApprovalController;
@@ -39,6 +40,8 @@ Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
 Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
     Route::post('/diagnosis', [HealthDataController::class, 'handleCompositeRequest']);
+    Route::post('/doctor/chat', [ChatController::class, 'storeMessage']);
+
 });
 
 
@@ -49,6 +52,8 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
     Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
+    Route::post('/patient/chat', [ChatController::class, 'storeMessage']);
+
 });
 
 Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
