@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GetUsersController;
 use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\InsuranceApprovalController;
+use App\Http\Controllers\openAIValidationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientInsuranceController;
 use App\Http\Controllers\PatientRegistrationController;
@@ -59,5 +60,7 @@ Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::get('/insurance/{patientId}', [GetUsersController::class, 'getPatientById']);
 
     Route::get('/insurance-companies/{id}/patients', [PatientInsuranceController::class, 'relatedPatients']);
+    Route::post('/validate-diagnosis/{id}', [openAIValidationController::class, 'validateDiagnosis']);
 
 });
+
