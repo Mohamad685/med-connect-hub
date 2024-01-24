@@ -5,35 +5,41 @@ import "./InsurancePage.css";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 function InsurancePage() {
+	const [insuranceId, setInsuranceId] = useState("");
 	const [insuranceName, setInsuranceName] = useState("");
 	const [patients, setPatients] = useState([]);
 	const navigate = useNavigate();
 	const handlePatientClick = (patientId) => {
-		navigate(`/patient-insurance/${patientId}`);
+		navigate(`/patient-insurance-page/${patientId}`);
 	};
 
 	useEffect(() => {
-		const storedInsuranceCompanyName = localStorage.getItem("insuranceName");
-		if (storedInsuranceCompanyName) {
-			setInsuranceName(storedInsuranceCompanyName);
-		}
+		const storedInsuranceId = localStorage.getItem("InsuranceId");
 
-		const fetchPatients = async () => {
-			try {
-				const response = await fetchHelper.get('/insurance/allPatients', {
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("token")}`,
-					},
-				});
-				setPatients(response);
-			} catch (error) {
-				console.error("Failed to fetch patient data", error);
-				setPatients([]);
-			}
-		};
+		console.log(localStorage)
+		console.log(storedInsuranceId)
+        const storedInsuranceCompanyName = localStorage.getItem("insuranceName");
 
-		fetchPatients();
-	}, []);
+        if (storedInsuranceId) {
+            setInsuranceId(storedInsuranceId);
+        }
+        if (storedInsuranceCompanyName) {
+            setInsuranceName(storedInsuranceCompanyName);
+        }
+
+        const fetchPatients = async () => {
+            if (!insuranceId) return; 
+            try {
+                const response = await fetchHelper.get(`/insurance-companies/${insuranceId}/patients`);
+                setPatients(response);
+            } catch (error) {
+                console.error("Failed to fetch patient data", error);
+                setPatients([]);
+            }
+        };
+
+        fetchPatients();
+    }, [insuranceId]);
 
 	return (
 		<>

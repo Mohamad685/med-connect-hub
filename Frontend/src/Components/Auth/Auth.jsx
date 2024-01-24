@@ -59,27 +59,25 @@ function Login({ onClose }) {
 
 					const firstName = response.first_name;
 					const lastName = response.last_name;
-					const userName = response.user.user_name
-					const insuranceName=response.insurance_company_name
+					const userName = response.user.user_name;
+					const insuranceName = response.insurance_company_name;
+					const insuranceId = response.user.insurance_company.id;
+
 					const userRole = response.user.role;
 					if (userRole === "admin") {
 						navigate("/admin");
 					} else if (userRole === "doctor") {
-						
-						;
 						localStorage.setItem("userName", userName);
 						navigate("/patient-registration");
 					} else if (userRole === "patient") {
-						
 						localStorage.setItem("firstName", firstName);
 						localStorage.setItem("lastName", lastName);
 						localStorage.setItem("userName", userName);
 						navigate("/patient-file");
 					} else if (userRole === "insurance") {
-						
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("insuranceName", insuranceName);
-
+						localStorage.setItem("InsuranceId", insuranceId);
 						navigate("/insurance-page");
 					} else {
 						console.log("Unknown user role:", userRole);
