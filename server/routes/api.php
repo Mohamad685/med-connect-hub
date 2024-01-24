@@ -56,8 +56,8 @@ Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
-    Route::get('/insurance/{id}', [GetUsersController::class, 'getPatientById']);
+    Route::get('/insurance/{patientId}', [GetUsersController::class, 'getPatientById']);
 
-    Route::get('/insurance/allPatients', [PatientInsuranceController::class, 'relatedPatients']);
+    Route::get('/insurance-companies/{id}/patients', [PatientInsuranceController::class, 'relatedPatients']);
 
 });

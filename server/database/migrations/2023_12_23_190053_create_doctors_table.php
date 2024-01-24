@@ -16,8 +16,7 @@ return new class extends Migration {
             $table->bigInteger('phone_number');
             $table->string('license_id');
             $table->string('gender');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });
