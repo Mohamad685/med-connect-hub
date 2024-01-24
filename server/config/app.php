@@ -174,6 +174,8 @@ return [
         App\Providers\HealthDataProvider::class,
         App\Providers\PatientDiagnosticServiceProvider::class,
         App\Providers\GetUsersServiceProvider::class,
+        App\Providers\FirebaseServiceProvider::class,
+
 
 
 
