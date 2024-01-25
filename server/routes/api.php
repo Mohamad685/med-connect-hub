@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DoctorPatientsController;
 use App\Http\Controllers\DoctorPatientSearchController;
 use App\Http\Controllers\GetUsersController;
 use App\Http\Controllers\HealthDataController;
@@ -44,6 +45,8 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/diagnosis', [HealthDataController::class, 'handleCompositeRequest']);
     Route::post('/doctor/chat', [ChatController::class, 'storeMessage']);
     Route::get('/search-patients', [DoctorPatientSearchController::class, 'searchPatient']);
+    Route::get('/doctors/{doctorId}/patients', [DoctorPatientsController::class, 'doctorPatients']);
+
 
 });
 
