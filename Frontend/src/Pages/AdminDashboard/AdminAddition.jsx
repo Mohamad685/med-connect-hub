@@ -56,7 +56,7 @@ const AdminUsers = () => {
 		company_name: "",
 		description: "",
 		coverage_details: "",
-		insurance_id:"",
+		insurance_company_id:"",
 	});
 
 	const handleAddUser = async (e) => {
@@ -68,12 +68,11 @@ const AdminUsers = () => {
 
 		try {
 			const data = await fetchHelper.post("/register", newUser);
-			setUsers((prev) => [...prev, response.data]);
+			setUsers((prev) => [...prev, data]);
 			setNewUser({
 				first_name: "",
 				last_name: "",
 				address: "",
-				age: "",
 				age: "",
 				gender: "",
 				phone_number: "",
@@ -86,7 +85,7 @@ const AdminUsers = () => {
 				company_name: "",
 				description: "",
 				coverage_details: "",
-				insurance_id:"",
+				insurance_company_id:"",
 
 			});
 			setValidationErrors({});
@@ -174,6 +173,13 @@ const AdminUsers = () => {
 					}
 					error={!!validationErrors.phone_number}
 					helperText={validationErrors.phone_number}
+				/>
+				<TextField
+					label="Insurance ID"
+					value={newUser.insurance_company_id}
+					onChange={(e) =>
+						setNewUser({ ...newUser, insurance_company_id: e.target.value })
+					}
 				/>
 				<FormControl>
 					<InputLabel id="role-select-label">Role</InputLabel>
