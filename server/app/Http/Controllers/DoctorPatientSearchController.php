@@ -17,7 +17,7 @@ class DoctorPatientSearchController extends Controller
     public function searchPatient(Request $request)
 {
     $doctorId = Auth::user()->doctor->id; 
-    $searchTerm = $request->input('name'); 
+    $searchTerm = $request->query('name'); 
 
     $patients = $this->doctorPatientSearchService->doctorSearch($doctorId, $searchTerm);
 
