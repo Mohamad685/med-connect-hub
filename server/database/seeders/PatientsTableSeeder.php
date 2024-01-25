@@ -87,4 +87,6 @@ class PatientsTableSeeder extends Seeder
 
     }
 
+   
+
 }
