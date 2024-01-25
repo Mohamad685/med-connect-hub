@@ -112,7 +112,6 @@ const AdminDoctors = () => {
 								<Typography>{`Name: ${doctor.first_name} ${doctor.last_name}`}</Typography>
                                 <Typography>{`specialty: ${doctor.specialty}`}</Typography>
 								<Typography>{`Phone: ${doctor.phone_number}`}</Typography>
-                                <Typography>{`Address: ${doctor.address}`}</Typography>
 								<Typography>{`Age: ${doctor.age}`}</Typography>
 								<Typography>{`Gender: ${doctor.gender}`}</Typography>
 								<Typography>{`License: ${doctor.license_id}`}</Typography>

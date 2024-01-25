@@ -43,7 +43,7 @@ class AuthController extends Controller
                 ]
             ]);
         }
-        if ($user->role === 'insurance') {
+        elseif ($user->role === 'insurance') {
             $insurance_company_name = $user->insuranceCompany->name;
             return response()->json([
                 'status' => 'success',
@@ -54,7 +54,7 @@ class AuthController extends Controller
                 ]
             ]);
         }
-        if ($user->role === 'doctor') {
+        elseif ($user->role === 'doctor') {
             $doctor = $user->doctor;
             $doctor_id = $doctor->id;
             $first_name = $doctor->first_name;
@@ -70,12 +70,13 @@ class AuthController extends Controller
                     'token' => $token,
                 ]
             ]);
-        } else {
+        } elseif ($user->role === 'admin')  {
             return response()->json([
-                'status' => 'undefined',
-                'authorisation' => [
-                    'token' => $token,
-                ]
+                    'status' => 'success',
+                    'user' => $user,
+                    'authorisation' => [
+                        'token' => $token,
+                    ]
             ]);
 
         }

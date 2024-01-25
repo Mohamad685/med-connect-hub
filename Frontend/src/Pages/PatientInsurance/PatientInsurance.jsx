@@ -100,7 +100,7 @@ function PatientInsurance() {
 				<div className="validation-result-sec">
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 				<PreviewBox
-					title={`Validation Result`}
+					title={`AI Response`}
 					text={validationResult || "No Response"}
 					width={"13rem"}
 					height={"15rem"}
