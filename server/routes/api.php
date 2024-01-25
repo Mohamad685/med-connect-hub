@@ -15,11 +15,10 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::post('/save-token',[SaveFcMTokenController::class, 'saveFcmToken']);
 
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout',[AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => ['jwt.verify', 'admin']], function () {
     Route::post('/register', [UserController::class, 'register']);
@@ -44,28 +43,30 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/register-patient', [PatientRegistrationController::class, 'registerPatient']);
     Route::post('/diagnosis', [HealthDataController::class, 'handleCompositeRequest']);
     Route::post('/doctor/chat', [ChatController::class, 'storeMessage']);
-    Route::get('/search-patients',[DoctorPatientSearchController::class,'searchPatient']);
+    Route::get('/search-patients', [DoctorPatientSearchController::class, 'searchPatient']);
 
 });
 
 
 Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/{patientId}/lab-results', [PatientController::class, 'getPatientLabResults']);
-    // Route::get('/patient/{patientId}/medical-history', [PatientController::class, 'getMedicalHistory']);
-    // Route::get('/patient/{patientId}/medication-history', [PatientController::class, 'getMedicationHistory']);
     Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
     Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
-    Route::post('/patient/chat', [ChatController::class, 'storeMessage']);
+    // Route::post('/save-token', [SaveFcMTokenController::class, 'saveFcmToken']);
+
+    // Route::get('/patient/{patientId}/medical-history', [PatientController::class, 'getMedicalHistory']);
+    // Route::get('/patient/{patientId}/medication-history', [PatientController::class, 'getMedicationHistory']);
+    // Route::post('/patient/chat', [ChatController::class, 'storeMessage']);
 
 });
 
 Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::post('/insurance-request/{request}/update-status', [InsuranceApprovalController::class, 'updateStatus']);
-    Route::get('/patient/{patientId}/lab-results', [PatientController::class, 'getPatientLabResults']);
-    Route::get('/patient/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
-    Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
-    Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
+    Route::get('/insurance/{patientId}/lab-results', [PatientController::class, 'getPatientLabResults']);
+    Route::get('/insurance/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
+    Route::get('/insurance/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
+    Route::get('/insurance/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
     Route::get('/insurance/{patientId}', [GetUsersController::class, 'getPatientById']);
 
     Route::get('/insurance-companies/{id}/patients', [PatientInsuranceController::class, 'relatedPatients']);

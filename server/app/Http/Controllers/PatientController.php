@@ -29,7 +29,12 @@ class PatientController extends Controller
 
     public function getPatientLabResults($patientId)
     {
+        \Log::info("Fetching lab results for patient ID: {$patientId}");
+
         $labResults = $this->labResultService->getLabResults($patientId);
+        if (empty($labResults)) {
+            \Log::info("No lab results found for patient ID: {$patientId}");
+        }
         return response()->json($labResults);
     }
 
