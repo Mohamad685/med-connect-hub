@@ -16,16 +16,28 @@ function OptionsBox({ margin }) {
 			style={optionStyle}
 			className="options-box">
 			{(location.pathname === "/patient-registration" ||
-				location.pathname === "/diagnosis" || location.pathname === "/patients-doctor" ) && (
+				location.pathname === "/diagnosis" ||
+				location.pathname === "/patients-doctor") && (
 				<>
-					<Link to='/patient-registration'>Create Patient Profile</Link>
+					<Link to="/patient-registration">Create Patient Profile</Link>
 					<Link to="/patients-doctor">Patients List</Link>
 				</>
 			)}
-            {pattern.test(location.pathname) && <Link to='/insurance-page'>Patients</Link>}
-			<Link to="/live-chat">Live Chat</Link>
+
+			{pattern.test(location.pathname) && (
+				<Link to="/insurance-page">Patients</Link>
+			)}
+
+			{(location.pathname === "/patient-registration" ||
+				location.pathname === "/patient-file" ||
+				location.pathname === "/diagnosis" ||
+				location.pathname === "/patients-doctor") && (
+				<>
+					<Link to="/notifications">Notifications</Link>
+					<Link to="/live-chat">Live Chat</Link>
+				</>
+			)}
 			<Link to="/send-email">Send Email</Link>
-			<Link to="/notifications">Notifications</Link>
 		</div>
 	);
 }

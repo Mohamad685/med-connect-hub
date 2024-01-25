@@ -5,8 +5,8 @@ import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 import fetchHelper from "../Functions/FetchFunction";
-import { requestNotificationPermissionAndRetrieveToken } from "../../Firebase/NotificantionManager";
-import sendTokenToServer from "../../Firebase/Notifications/SendTokenServer";
+// import { requestNotificationPermissionAndRetrieveToken } from "../../Firebase/NotificantionManager";
+// import sendTokenToServer from "../../Firebase/Notifications/SendTokenServer";
 
 function Login({ onClose }) {
 	const [email, setEmail] = useState("");

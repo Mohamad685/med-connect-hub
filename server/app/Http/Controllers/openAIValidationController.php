@@ -46,8 +46,11 @@ class openAIValidationController extends Controller
                     ]);
 
             if ($response->successful()) {
-                $result = $response->json();
-                return response()->json($result);
+                $result = $response->json();               
+                $textResponse = $result['choices'][0]['text'];
+
+                return response()->json(['text' => $textResponse]);
+
             } else {
                 return response()->json(['error' => 'Failed to get a response from OpenAI'], 500);
             }
