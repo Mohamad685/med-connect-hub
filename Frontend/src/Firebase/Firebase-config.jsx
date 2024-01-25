@@ -1,23 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getMessaging, getToken } from "firebase/messaging";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-const messaging = getMessaging();
-getToken(messaging, {vapidKey: "BN8h0qLxpg6hYB0kiZSzpLrjQPsfpTinxuhw653tMMNt90Np9im2rEzzit0BBykTnaCvdSW9D6UEI3juJmfmRIw"}).then((currentToken) => {
-    if (currentToken) {
-      // Send the token to your server and update the UI if necessary
-      // ...
-    } else {
-      // Show permission request UI
-      console.log('No registration token available. Request permission to generate one.');
-      // ...
-    }
-  }).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-    // ...
-  });
-
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBghEmngkBtymkrytVN6UDDZIWRwt7GPME",
   authDomain: "med-hub-d036e.firebaseapp.com",
