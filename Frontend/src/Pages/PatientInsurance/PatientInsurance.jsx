@@ -26,7 +26,7 @@ function PatientInsurance() {
 					`/validate-diagnosis/${patientId}`
 				);
 				if (validationResponse) {
-					setValidationResult(validationResponse.result);
+					setValidationResult(validationResponse.text);
 				} else {
 					setValidationResult("No Response");
 				}
