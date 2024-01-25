@@ -10,24 +10,29 @@ function DoctorPatients() {
 	const navigate = useNavigate();
 	
     const handlePatientClick = (patientId) => {
-		navigate(`/patient-insurance-page/${patientId}`);
+		navigate(`/diagnosis`);
 	};
+	
 
 	useEffect(() => {
-		const storedDoctorId = localStorage.getItem("DoctorId"); // Ensure this is set somewhere in your app
-        const storedDoctorName = localStorage.getItem("DoctorName"); // Optionally, if you want to display the doctor's name
-
-        if (storedDoctorId) {
+		const storedDoctorId = localStorage.getItem("doctorId"); 
+		const firstName = localStorage.getItem("firstName");
+        const lastName = localStorage.getItem("lastName");
+        const fullName = `${firstName} ${lastName}`;
+        console.log(storedDoctorId)
+		console.log(doctorId)
+		if (storedDoctorId) {
             setDoctorId(storedDoctorId);
         }
-        if (storedDoctorName) {
-            setDoctorName(storedDoctorName);
+		if (firstName && lastName) {
+            setDoctorName(fullName);
         }
 
+
         const fetchPatients = async () => {
-            if (!doctorId) return; // Wait until doctorId is fetched
+            if (!doctorId) return; 
             try {
-                const response = await fetchHelper.get(`/doctors/${doctorId}/patients`); // Adjust the endpoint as per your API
+                const response = await fetchHelper.get(`/doctors/${doctorId}/patients`);
                 setPatients(response);
             } catch (error) {
                 console.error("Failed to fetch patient data", error);
@@ -38,12 +43,13 @@ function DoctorPatients() {
         fetchPatients();
     }, [doctorId]);
 
+
 	return (
 		<>
 			<div className="insurance-reg-page">
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 				<div className="insurance-reg-form">
-					<p className="insurance-reg-title">Patients List</p>
+					<p className="insurance-reg-title">{doctorName ? `${doctorName}'s Patients List` : "Patients List"}</p>
 					<div className="patient-list">
 						{patients.map((patient, index) => (
 							<div

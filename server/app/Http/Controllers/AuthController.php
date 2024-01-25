@@ -32,21 +32,54 @@ class AuthController extends Controller
             $patient_id = $patient->id;
             $first_name = $patient->first_name;
             $last_name = $patient->last_name;
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'patient_id' => $patient_id,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'authorisation' => [
+                    'token' => $token,
+                ]
+            ]);
         }
         if ($user->role === 'insurance') {
+
             $insurance_company_name = $user->insuranceCompany->name;
+            return response()->json([
+                'status' => 'success',
+                'insurance_company_name' => $insurance_company_name,
+                'authorisation' => [
+                    'token' => $token,
+                ]
+            ]);
         }
-        return response()->json([
-            'status' => 'success',
-            'user' => $user,
-            'patient_id' => $patient_id,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'insurance_company_name' => $insurance_company_name,
-            'authorisation' => [
-                'token' => $token,
-            ]
-        ]);
+        if ($user->role === 'doctor') {
+            $doctor = $user->doctor;
+            $doctor_id = $doctor->id;
+            $first_name = $doctor->first_name;
+            $last_name = $doctor->last_name;
+            return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'doctor_id' => $doctor_id,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'insurance_company_name' => $insurance_company_name,
+                'authorisation' => [
+                    'token' => $token,
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'undefined',
+                'authorisation' => [
+                    'token' => $token,
+                ]
+            ]);
+
+        }
+
     }
 
     protected function respondWithToken($token)

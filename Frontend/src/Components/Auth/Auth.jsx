@@ -64,23 +64,34 @@ function Login({ onClose }) {
 					// if (fcmToken) {
 					//     sendTokenToServer(fcmToken);
 					// }
-
+					const firstName = response.first_name;
+					const lastName = response.last_name;
 					const userRole = response.user.role;
+
 					if (userRole === "admin") {
 						navigate("/admin");
+					
 					} else if (userRole === "doctor") {
+						
+						const doctorId = response.doctor_id;
+						localStorage.setItem("doctorId", doctorId);
 						localStorage.setItem("userName", userName);
+						localStorage.setItem("firstName", firstName);
+						localStorage.setItem("lastName", lastName);
+					console.log(doctorId)
 						navigate("/patients-doctor");
+					
 					} else if (userRole === "patient") {
-						const firstName = response.first_name;
-						const lastName = response.last_name;
+						
 						const patientId = response.patient_id;
 						localStorage.setItem("firstName", firstName);
 						localStorage.setItem("lastName", lastName);
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("patientId", patientId);
 						navigate("/patient-file");
+					
 					} else if (userRole === "insurance") {
+						
 						const insuranceId = response.user.insurance_company.id;
 						const insuranceName = response.insurance_company_name;
 						localStorage.setItem("userName", userName);
