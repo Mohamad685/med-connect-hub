@@ -56,6 +56,7 @@ const AdminUsers = () => {
 		company_name: "",
 		description: "",
 		coverage_details: "",
+		insurance_id:"",
 	});
 
 	const handleAddUser = async (e) => {
@@ -85,6 +86,8 @@ const AdminUsers = () => {
 				company_name: "",
 				description: "",
 				coverage_details: "",
+				insurance_id:"",
+
 			});
 			setValidationErrors({});
 		} catch (error) {

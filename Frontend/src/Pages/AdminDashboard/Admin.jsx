@@ -10,6 +10,7 @@ import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
+	Button,
 } from "@mui/material";
 import {
 	Person as PersonIcon,
@@ -17,17 +18,22 @@ import {
 	HealthAndSafety as HealthAndSafetyIcon,
 } from "@mui/icons-material";
 
-import { Link, Routes, Route } from "react-router-dom";
-
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import AdminPatients from "./AdminPatients";
 import AdminDoctors from "./AdminDoctor";
 import AdminUserss from "./AdminAddition";
 import AdminInsurance from "./AdminInsurance";
 
-
 const drawerWidth = 240;
 
 const Admin = () => {
+	
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		localStorage.removeItem("token");
+		navigate("/");
+	};
+
 	return (
 		<Box sx={{ display: "flex" }}>
 			<CssBaseline />
@@ -39,9 +45,14 @@ const Admin = () => {
 						variant="h6"
 						noWrap
 						component="div"
-						sx={{ color: "white" }}>
+						sx={{ flexGrow: 1, color: "white" }}>
 						Admin Dashboard
 					</Typography>
+					<Button
+						sx={{ color: "white" }}
+						onClick={handleLogout}>
+						Logout
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -104,7 +115,6 @@ const Admin = () => {
 						path="adminInsurance"
 						element={<AdminInsurance />}
 					/>
-
 				</Routes>
 			</Box>
 		</Box>
