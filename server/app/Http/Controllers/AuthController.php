@@ -44,11 +44,11 @@ class AuthController extends Controller
             ]);
         }
         if ($user->role === 'insurance') {
-
             $insurance_company_name = $user->insuranceCompany->name;
             return response()->json([
                 'status' => 'success',
                 'insurance_company_name' => $insurance_company_name,
+                'user' => $user,
                 'authorisation' => [
                     'token' => $token,
                 ]

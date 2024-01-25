@@ -4,21 +4,40 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 import { useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
+import './PatientInsurance.css';
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
 	const [diagnoses, setDiagnoses] = useState([]);
 	const [prescriptions, setPrescriptions] = useState([]);
 	const [symptoms, setSymptoms] = useState([]);
-	const [insuranceName, setInsuranceName] = useState("");
-	const [patients, setPatients] = useState([]);
 	const { patientId } = useParams();
-	const [patientName, setPatientName] = useState("");
 	const [patient, setPatient] = useState({});
+	const [validationResult, setValidationResult] = useState("");
 
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
 	}`.trim();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const validationResponse = await fetchHelper.get(
+					`/validate-diagnosis/${patientId}`
+				);
+				if (validationResponse) {
+					setValidationResult(validationResponse.result);
+				} else {
+					setValidationResult("No Response");
+				}
+			} catch (error) {
+				console.error("Failed to fetch validation result", error);
+				setValidationResult("No Response");
+			}
+		};
+
+		if (patientId) fetchData();
+	}, [patientId]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -78,8 +97,16 @@ function PatientInsurance() {
 	return (
 		<>
 			<div className="insurance-reg-page">
+				<div className="validation-result-sec">
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
-
+				<PreviewBox
+					title={`Validation Result`}
+					text={validationResult || "No Response"}
+					width={"13rem"}
+					height={"15rem"}
+					textPosition={"text-top"}
+					/>
+				</div>
 				<div className="insurance-reg-form">
 					<p className="insurance-reg-title">
 						{patientFullName

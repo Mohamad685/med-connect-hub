@@ -23,7 +23,6 @@ function Diagnosis() {
 	const medicalHistory = location.state?.description;
 	const medicationHistory = location.state?.medication_description;
 	const { profilePic } = location.state?.patientData || {};
-	console.log(profilePic);
 
 	const [symptomError, setSymptomError] = useState(false);
 	const [labResultError, setLabResultError] = useState(false);
