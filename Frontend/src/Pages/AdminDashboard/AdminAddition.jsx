@@ -9,6 +9,7 @@ import {
 	Divider,
 	Select,
 	MenuItem,
+	Input,
 } from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
@@ -16,6 +17,7 @@ const AdminUsers = () => {
 	const roles = ["patient", "doctor", "insurance"];
 	const [validationErrors, setValidationErrors] = useState({});
 	const [users, setUsers] = useState([]);
+	const [previewPic, setPreviewPic] = useState(null);
 
 	const validate = () => {
 		const errors = {};
@@ -56,9 +58,21 @@ const AdminUsers = () => {
 		company_name: "",
 		description: "",
 		coverage_details: "",
-		insurance_company_id:"",
+		insurance_company_id: "",
+		profile_pic: null,
 	});
 
+	const handleFileChange = (e) => {
+		if (e.target?.files && e.target?.files.length > 0) {
+			const file = e.target.files[0];
+			setNewUser({ ...newUser, profile_pic: file });
+
+			const fileUrl = URL.createObjectURL(file);
+			setPreviewPic(fileUrl);
+		} else {
+			setPreviewPic(null);
+		}
+	};
 	const handleAddUser = async (e) => {
 		e.preventDefault();
 		if (!validate()) {
@@ -85,8 +99,8 @@ const AdminUsers = () => {
 				company_name: "",
 				description: "",
 				coverage_details: "",
-				insurance_company_id:"",
-
+				insurance_company_id: "",
+				profile_pic: null,
 			});
 			setValidationErrors({});
 		} catch (error) {
@@ -101,6 +115,27 @@ const AdminUsers = () => {
 				sx={{ mb: 2 }}>
 				Add Users:
 			</Typography>
+			<FormControl
+					fullWidth
+					margin="normal">
+						
+						{previewPic && (
+					<Box  sx={{ mb: 2, mt: 2 }}>
+						<img
+							src={previewPic}
+							alt="Profile Preview"
+							style={{ borderRadius: '5px', maxWidth: "200px", maxHeight: "200px" }}
+						/>
+					</Box>
+				)}
+					<Input
+						id="profile-pic-upload"
+						type="file"
+						inputProps={{ accept: "image/*" }}
+						onChange={handleFileChange}
+						sx={{ mt: 2 }}
+					/>
+				</FormControl>
 			<Box
 				sx={{
 					display: "grid",
@@ -110,6 +145,7 @@ const AdminUsers = () => {
 					justifyItems: "start",
 					gap: "8px",
 				}}>
+				
 				<TextField
 					label="Email"
 					value={newUser.email}
@@ -181,6 +217,7 @@ const AdminUsers = () => {
 						setNewUser({ ...newUser, insurance_company_id: e.target.value })
 					}
 				/>
+				
 				<FormControl>
 					<InputLabel id="role-select-label">Role</InputLabel>
 					<Select
@@ -199,6 +236,7 @@ const AdminUsers = () => {
 						))}
 					</Select>
 				</FormControl>
+				
 
 				{newUser.role === "doctor" && (
 					<Box sx={{ gridColumn: "1 / -1" }}>
