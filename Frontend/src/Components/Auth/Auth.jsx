@@ -5,6 +5,7 @@ import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 import fetchHelper from "../Functions/FetchFunction";
+import { requestNotificationPermissionAndRetrieveToken } from "../../Firebase/NotificantionManager";
 
 function Login({ onClose }) {
 	const [email, setEmail] = useState("");
@@ -56,6 +57,12 @@ function Login({ onClose }) {
 				const token = response.authorisation && response.authorisation.token;
 				if (token) {
 					localStorage.setItem("token", token);
+
+
+					const fcmToken = await requestNotificationPermissionAndRetrieveToken();
+                    if (fcmToken) {
+                        sendTokenToServer(fcmToken);
+                    }
 
 					const firstName = response.first_name;
 					const lastName = response.last_name;
