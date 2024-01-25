@@ -12,6 +12,7 @@ function PatientPreview() {
 	const [prescriptions, setPrescriptions] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [profilePicUrl, setProfilePicUrl] = useState("");
 
 	useEffect(() => {
 		const fName = localStorage.getItem("firstName");
@@ -117,7 +118,7 @@ function PatientPreview() {
 					{firstName} {lastName}
 				</p>
 				<div className="patient-preview-section1">
-					<ProfilePic />
+					pic
 					<div className="patient-preview-boxes">
 						<PreviewBox
 							width={"48rem"}

@@ -31,24 +31,24 @@ function PatientInsurance() {
 				}
 
 				const labResultsResponse = await fetchHelper.get(
-					`/patient/${patientId}/lab-results`
+					`/insurance/${patientId}/lab-results`
 				);
 				setLabResults(labResultsResponse.length ? labResultsResponse : null);
 
 				const diagnosesResponse = await fetchHelper.get(
-					`/patient/${patientId}/diagnosis`
+					`/insurance/${patientId}/diagnosis`
 				);
 				setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
 
 				const prescriptionsResponse = await fetchHelper.get(
-					`/patient/${patientId}/prescriptions`
+					`/insurance/${patientId}/prescriptions`
 				);
 				setPrescriptions(
 					prescriptionsResponse.length ? prescriptionsResponse : null
 				);
 
 				const symptomsResponse = await fetchHelper.get(
-					`/patient/${patientId}/symptoms`
+					`/insurance/${patientId}/symptoms`
 				);
 				setSymptoms(symptomsResponse.length ? symptomsResponse : null);
 			} catch (error) {

@@ -4,32 +4,30 @@ import OptionsBox from "../../Components/Options/Options";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 function DoctorPatients() {
-	const [insuranceId, setInsuranceId] = useState("");
-	const [insuranceName, setInsuranceName] = useState("");
-	const [patients, setPatients] = useState([]);
+	const [doctorId, setDoctorId] = useState(""); 
+    const [doctorName, setDoctorName] = useState("");	
+    const [patients, setPatients] = useState([]);
 	const navigate = useNavigate();
-	const handlePatientClick = (patientId) => {
+	
+    const handlePatientClick = (patientId) => {
 		navigate(`/patient-insurance-page/${patientId}`);
 	};
 
 	useEffect(() => {
-		const storedInsuranceId = localStorage.getItem("InsuranceId");
+		const storedDoctorId = localStorage.getItem("DoctorId"); // Ensure this is set somewhere in your app
+        const storedDoctorName = localStorage.getItem("DoctorName"); // Optionally, if you want to display the doctor's name
 
-		console.log(localStorage)
-		console.log(storedInsuranceId)
-        const storedInsuranceCompanyName = localStorage.getItem("insuranceName");
-
-        if (storedInsuranceId) {
-            setInsuranceId(storedInsuranceId);
+        if (storedDoctorId) {
+            setDoctorId(storedDoctorId);
         }
-        if (storedInsuranceCompanyName) {
-            setInsuranceName(storedInsuranceCompanyName);
+        if (storedDoctorName) {
+            setDoctorName(storedDoctorName);
         }
 
         const fetchPatients = async () => {
-            if (!insuranceId) return; 
+            if (!doctorId) return; // Wait until doctorId is fetched
             try {
-                const response = await fetchHelper.get(`/insurance-companies/${insuranceId}/patients`);
+                const response = await fetchHelper.get(`/doctors/${doctorId}/patients`); // Adjust the endpoint as per your API
                 setPatients(response);
             } catch (error) {
                 console.error("Failed to fetch patient data", error);
@@ -38,14 +36,14 @@ function DoctorPatients() {
         };
 
         fetchPatients();
-    }, [insuranceId]);
+    }, [doctorId]);
 
 	return (
 		<>
 			<div className="insurance-reg-page">
 				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 				<div className="insurance-reg-form">
-					<p className="insurance-reg-title">{insuranceName}</p>
+					<p className="insurance-reg-title">Patients List</p>
 					<div className="patient-list">
 						{patients.map((patient, index) => (
 							<div
