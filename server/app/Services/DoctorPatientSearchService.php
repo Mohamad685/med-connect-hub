@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Collection;
 
-class DoctorPatientSearch
+class DoctorPatientSearchService
 {
     public function doctorSearch(int $id, string $searchTerm): Collection
     {
