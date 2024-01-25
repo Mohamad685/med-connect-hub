@@ -4,7 +4,7 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminInsurance = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [insurance, setInsurance] = useState([]);
+	const [insurances, setInsurance] = useState([]);
 
 	const [editingInsurance, setEditingInsurance] = useState({
 		user_id: "null",
@@ -85,7 +85,7 @@ const AdminInsurance = () => {
 				/>
 			</Box>
 
-			{insurance
+			{insurances
 				.filter((insurance) =>
 					`${insurance.name}`
 						.toLowerCase()
@@ -137,7 +137,7 @@ const AdminInsurance = () => {
 								</Button>
 							</Box>
 						</Box>
-						{index < insurance.length - 1 && (
+						{index < insurances.length - 1 && (
 							<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 						)}
 					</React.Fragment>
