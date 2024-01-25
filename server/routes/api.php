@@ -10,10 +10,12 @@ use App\Http\Controllers\openAIValidationController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientInsuranceController;
 use App\Http\Controllers\PatientRegistrationController;
+use App\Http\Controllers\SaveFcMTokenController;
 use App\Http\Controllers\UserController;
 
 
 
+Route::post('/save-token',[SaveFcMTokenController::class, 'saveFcmToken']);
 
 
 Route::post('/login', [AuthController::class, 'login']);
