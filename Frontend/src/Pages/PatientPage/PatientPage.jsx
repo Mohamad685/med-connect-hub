@@ -10,15 +10,18 @@ function PatientPreview() {
 	const [symptoms, setSymptoms] = useState("");
 	const [diagnosis, setDiagnosis] = useState("");
 	const [prescriptions, setPrescriptions] = useState("");
-	const [firstName, setFirstName] = useState(""); 
-    const [lastName, setLastName] = useState("");  
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 
 	useEffect(() => {
-        const fName = localStorage.getItem('firstName');
-        const lName = localStorage.getItem('lastName');
+		const fName = localStorage.getItem("firstName");
+		const lName = localStorage.getItem("lastName");
 		const patientId = localStorage.getItem("patientId");
 		setFirstName(fName);
-        setLastName(lName);
+		setLastName(lName);
+		console.log("LOcal Storage:", localStorage);
+		console.log(`Token: ${localStorage.getItem("token")}`);
+		console.log(`Patient ID: ${patientId}`);
 
 		const fetchData = async () => {
 			try {
@@ -110,7 +113,9 @@ function PatientPreview() {
 			<OptionsBox margin={"8rem 2rem 2rem 2rem"} />
 
 			<div className="patient-data-form">
-				<p className="patient-name">{firstName} {lastName}</p>
+				<p className="patient-name">
+					{firstName} {lastName}
+				</p>
 				<div className="patient-preview-section1">
 					<ProfilePic />
 					<div className="patient-preview-boxes">

@@ -54,35 +54,35 @@ function Login({ onClose }) {
 					password,
 				});
 				console.log(response);
+				const userName = response.user.user_name;
 
 				const token = response.authorisation && response.authorisation.token;
 				if (token) {
 					localStorage.setItem("token", token);
 
-
-					const fcmToken = await requestNotificationPermissionAndRetrieveToken();
-                    if (fcmToken) {
-                        sendTokenToServer(fcmToken);
-                    }
-
-					const firstName = response.first_name;
-					const lastName = response.last_name;
-					const userName = response.user.user_name;
-					const insuranceName = response.insurance_company_name;
+					// const fcmToken = await requestNotificationPermissionAndRetrieveToken();
+					// if (fcmToken) {
+					//     sendTokenToServer(fcmToken);
+					// }
 
 					const userRole = response.user.role;
 					if (userRole === "admin") {
 						navigate("/admin");
 					} else if (userRole === "doctor") {
 						localStorage.setItem("userName", userName);
-						navigate("/patient-registration");
+						navigate("/patients-doctor");
 					} else if (userRole === "patient") {
+						const firstName = response.first_name;
+						const lastName = response.last_name;
+						const patientId = response.patient_id;
 						localStorage.setItem("firstName", firstName);
 						localStorage.setItem("lastName", lastName);
 						localStorage.setItem("userName", userName);
+						localStorage.setItem("patientId", patientId);
 						navigate("/patient-file");
 					} else if (userRole === "insurance") {
 						const insuranceId = response.user.insurance_company.id;
+						const insuranceName = response.insurance_company_name;
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("insuranceName", insuranceName);
 						localStorage.setItem("InsuranceId", insuranceId);

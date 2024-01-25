@@ -16,10 +16,10 @@ function OptionsBox({ margin }) {
 			style={optionStyle}
 			className="options-box">
 			{(location.pathname === "/patient-registration" ||
-				location.pathname === "/diagnosis") && (
+				location.pathname === "/diagnosis" || location.pathname === "/patients-doctor" ) && (
 				<>
 					<Link to='/patient-registration'>Create Patient Profile</Link>
-					<Link to="/patients-list">Patients List</Link>
+					<Link to="/patients-doctor">Patients List</Link>
 				</>
 			)}
             {pattern.test(location.pathname) && <Link to='/insurance-page'>Patients</Link>}

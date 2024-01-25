@@ -9,6 +9,7 @@ import Patientpreview from "./Pages/PatientPage/PatientPage";
 import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 import Admin from "./Pages/AdminDashboard/Admin";
 import PatientInsurance from './Pages/PatientInsurance/PatientInsurance';
+import DoctorPatients from './Pages/DoctorPatients/DoctorPatients';
 
 function AppWrapper() {
     return (
@@ -28,6 +29,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/patients-doctor" element={<DoctorPatients />} />
                     <Route path="/patient-registration" element={<PatientRegister />} />
                     <Route path="/diagnosis" element={<Diagnosis />} />
                     <Route path="/patient-file" element={<Patientpreview />} />

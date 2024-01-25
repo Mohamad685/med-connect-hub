@@ -2,10 +2,10 @@ import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const sendTokenToServer = async (fcmToken) => {
     try {
-        const url = '/api/save-fcm-token'; // Adjust this URL to your actual API endpoint
+        const url = '/save-token'; 
         const data = { fcm_token: fcmToken };
         const headers = {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Assuming the token is stored in localStorage
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
         };
 
         const response = await fetchHelper.post(url, data, headers);

@@ -3,7 +3,10 @@ import axiosHelper from "./AxiosHelper";
 const fetchHelper = {
 	get: async (url, params = {}) => {
 		try {
-			const response = await axiosHelper.get(url, { params });
+			const response = await axiosHelper.get(url, {
+				headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+				params,
+			});
 
 			if (response.status === 200) {
 				console.log("GET Success:", response.data);
@@ -27,7 +30,7 @@ const fetchHelper = {
 
 			const response = await axiosHelper.post(url, data, { headers });
 
-			if (response.status === 200|| response.status === 201) {
+			if (response.status === 200 || response.status === 201) {
 				console.log("POST Success:", response.data);
 				return response.data;
 			} else {
@@ -62,18 +65,20 @@ const fetchHelper = {
 	delete: async (url, data = {}) => {
 		try {
 			const response = await axiosHelper.delete(url, { data });
-	
+
 			if (response.status === 200 || response.status === 204) {
 				console.log("DELETE Success:", response.data);
 				return response.data;
 			} else {
-				throw new Error(`Server responded with status code: ${response.status}`);
+				throw new Error(
+					`Server responded with status code: ${response.status}`
+				);
 			}
 		} catch (error) {
 			console.error("DELETE API call error: ", error);
 			throw error;
 		}
-	}
+	},
 };
 
 export default fetchHelper;

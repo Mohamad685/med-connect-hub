@@ -1,11 +1,8 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getMessaging, getToken } from "firebase/messaging";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
   apiKey: "AIzaSyBghEmngkBtymkrytVN6UDDZIWRwt7GPME",
   authDomain: "med-hub-d036e.firebaseapp.com",
@@ -13,9 +10,14 @@ const firebaseConfig = {
   storageBucket: "med-hub-d036e.appspot.com",
   messagingSenderId: "872400202730",
   appId: "1:872400202730:web:56d5d89504c11f8ab12093",
-  measurementId: "G-0B5LVMTMDM"
-};
+  measurementId: "G-0B5LVMTMDM"};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+
+// Initialize Firebase Cloud Messaging and get a reference to the service
+const messaging = getMessaging(app);
+
+export {messaging, getToken};
+
