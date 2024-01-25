@@ -61,7 +61,6 @@ function Login({ onClose }) {
 					const lastName = response.last_name;
 					const userName = response.user.user_name;
 					const insuranceName = response.insurance_company_name;
-					const insuranceId = response.user.insurance_company.id;
 
 					const userRole = response.user.role;
 					if (userRole === "admin") {
@@ -75,6 +74,7 @@ function Login({ onClose }) {
 						localStorage.setItem("userName", userName);
 						navigate("/patient-file");
 					} else if (userRole === "insurance") {
+						const insuranceId = response.user.insurance_company.id;
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("insuranceName", insuranceName);
 						localStorage.setItem("InsuranceId", insuranceId);
