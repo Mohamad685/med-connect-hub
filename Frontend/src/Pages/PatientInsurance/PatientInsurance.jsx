@@ -22,7 +22,7 @@ function PatientInsurance() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const validationResponse = await fetchHelper.get(
+				const validationResponse = await fetchHelper.post(
 					`/validate-diagnosis/${patientId}`
 				);
 				if (validationResponse) {

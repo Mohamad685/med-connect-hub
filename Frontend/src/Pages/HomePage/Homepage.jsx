@@ -3,10 +3,12 @@ import "./HomePage.css";
 import Carousel from "../../Components/Carousal/InfoCarousal";
 import { Link } from "react-router-dom";
 
-function HomePage() { 
+function HomePage() {
 	return (
 		<>
-			<div className="home-page" id="home">
+			<div
+				className="home-page"
+				id="home">
 				<div className="hero-section">
 					<img
 						src="/pics/hero.png"
@@ -14,7 +16,9 @@ function HomePage() {
 						className="hero-pic"
 					/>
 				</div>
-				<span className="title-start" id='about-us'>
+				<span
+					className="title-start"
+					id="about-us">
 					What We <span className="title-start title-end">Do</span>
 				</span>
 				<span className="mission-text">
@@ -30,24 +34,34 @@ function HomePage() {
 					analytics and AI-driven insights to personalize healthcare experiences
 					and optimize treatment outcomes for each individual.
 				</span>
-				<hr className="custom-line"/>
+				<hr className="custom-line" />
 
-				<span className="title-start title-end" id="services">
+				<span
+					className="title-start title-end"
+					id="services">
 					Our <span className="title-start">Services</span>
 				</span>
 				<div className="services-pics">
-					<img
-						src="/pics/patient.png"
-						alt="patient"
-					/>
-					<img
-						src="/pics/doctor.png"
-						alt="doctor"
-					/>
-					<img
-						src="/pics/insurance.png"
-						alt="insurance"
-					/>
+					<Link to="/patient-file">
+						{" "}
+						<img
+							src="/pics/patient.png"
+							alt="patient"
+						/>
+					</Link>
+					<Link to="/patients-doctor">
+						<img
+							src="/pics/doctor.png"
+							alt="doctor"
+						/>
+					</Link>
+					<Link to="/insurance-page">
+						<img
+							src="/pics/insurance.png"
+							alt="insurance"
+						/>
+					</Link>
+
 					<p>
 						Patients gain instant access to healthcare professionals and
 						insurance management, along with personalized care, secure
@@ -67,7 +81,7 @@ function HomePage() {
 						inquiries.
 					</p>
 				</div>
-				<hr className="custom-line"/>
+				<hr className="custom-line" />
 
 				<div className="all-options">
 					<div className="option">
