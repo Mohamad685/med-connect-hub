@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import InputForm from "../Input/Input";
@@ -67,6 +66,7 @@ function Login({ onClose }) {
 					const firstName = response.first_name;
 					const lastName = response.last_name;
 					const userRole = response.user.role;
+					const userId=response.user.id;
 
 					if (userRole === "admin") {
 						navigate("/admin");
@@ -78,6 +78,9 @@ function Login({ onClose }) {
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("firstName", firstName);
 						localStorage.setItem("lastName", lastName);
+						localStorage.setItem("userRole",userRole);
+						localStorage.setItem("userId",userId);
+
 					console.log(doctorId)
 						navigate("/patients-doctor");
 					
@@ -88,6 +91,8 @@ function Login({ onClose }) {
 						localStorage.setItem("lastName", lastName);
 						localStorage.setItem("userName", userName);
 						localStorage.setItem("patientId", patientId);
+						localStorage.setItem("userRole",userRole);
+						localStorage.setItem("userId",userId);
 						navigate("/patient-file");
 					
 					} else if (userRole === "insurance") {

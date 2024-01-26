@@ -8,9 +8,7 @@ function OptionsBox({ margin }) {
 	const optionStyle = {
 		margin: margin,
 	};
-
 	const pattern = /^\/patient-insurance-page\/\d+$/;
-
 	return (
 		<div
 			style={optionStyle}
@@ -34,7 +32,11 @@ function OptionsBox({ margin }) {
 				location.pathname === "/patients-doctor") && (
 				<>
 					<Link to="/notifications">Notifications</Link>
-					<Link to="/live-chat">Live Chat</Link>
+					<Link
+						Link
+						to="/live-chat">
+						Live Chat
+					</Link>
 				</>
 			)}
 			<Link to="/send-email">Send Email</Link>
