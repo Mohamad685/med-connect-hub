@@ -37,8 +37,13 @@ class GetUsersService
         return InsuranceCompany::findOrFail($id);
     }
 
-    public function getPatientById($patientId)
+    public function getInsurancePatientById($patientId)
 {
     return Patient::with(['user', 'insuranceCompany'])->where('id', $patientId)->first();
+}
+
+public function getDoctorPatientById($patientId)
+{
+    return Patient::with(['user', 'doctors'])->where('id', $patientId)->first();
 }
 }

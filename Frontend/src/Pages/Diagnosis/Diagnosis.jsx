@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import OptionsBox from "../../Components/Options/Options";
 import "./Diagnosis.css";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
@@ -12,19 +12,9 @@ function Diagnosis() {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState("");
 	const [responseDetails, setResponseDetails] = useState(null);
-
-	const patientData = location.state?.patientData;
-
-	//Extract data passed from patient registration
-	const patientId = patientData ? patientData.id : null;
-	const patientFirstName = patientData
-		? patientData.firstName
-		: "" || "No User";
-	const patientLastName = patientData ? patientData.lastName : "";
-	const medicalHistory = location.state?.description;
-	const medicationHistory = location.state?.medication_description;
+	const { patientId } = useParams();
+	const [patient, setPatient] = useState({});
 	const { profilePic } = location.state?.patientData || {};
-
 	const [symptomError, setSymptomError] = useState(false);
 	const [labResultError, setLabResultError] = useState(false);
 	const [diagnosisError, setDiagnosisError] = useState(false);
@@ -33,6 +23,27 @@ function Diagnosis() {
 	const [labResult, setLabResult] = useState("");
 	const [diagnosisDescription, setDiagnosisDescription] = useState("");
 	const [prescription, setPrescription] = useState("");
+
+	const patientFullName = `${patient.first_name || ""} ${
+		patient.last_name || ""
+	}`.trim();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const patientData = await fetchHelper.get(`/doctor/${patientId}`);
+				if (patientData) {
+					setPatient(patientData);
+				} else {
+					setPatient(null);
+				}
+			} catch (error) {
+				console.error("Failed to fetch patient data", error);
+			}
+		};
+
+		if (patientId) fetchData();
+	}, [patientId]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -79,7 +90,9 @@ function Diagnosis() {
 			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 			<div className="diagnosis-data-form">
-				<p className="patient-name">{`${patientFirstName} ${patientLastName}`}</p>
+				<p className="patient-name">{patientFullName
+							? `${patientFullName}`
+							: "Patient Doctor"}</p>
 				<div className="patient-preview-section1">
 					<div className="pic-box">
 						{profilePic ? (

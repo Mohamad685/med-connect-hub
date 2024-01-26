@@ -60,14 +60,15 @@ class GetUsersController extends Controller
         }
     }
 
-    public function getPatientById(Request $request, $patientId)
+    public function getInsurancePatientById($patientId)
     {
-        $patient = Patient::with(['user', 'insuranceCompany'])->where('id', $patientId)->first();
+        $patient = $this->getUsersService->getInsurancePatientById($patientId);
+        return response()->json($patient);
+    }
 
-        if (!$patient) {
-            return response()->json(['message' => 'Patient not found'], 404);
-        }
-
+    public function getDoctorPatientById($patientId)
+    {
+        $patient = $this->getUsersService->getDoctorPatientById($patientId);
         return response()->json($patient);
     }
 

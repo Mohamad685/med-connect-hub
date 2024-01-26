@@ -27,7 +27,7 @@ function DoctorPatients() {
 	};
 
 	const handlePatientClick = (patientId) => {
-		navigate(`/diagnosis`);
+		navigate(`/diagnosis/${patientId}`);
 	};
 
 	useEffect(() => {

@@ -46,6 +46,8 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::post('/doctor/chat', [ChatController::class, 'storeMessage']);
     Route::get('/search-patients', [DoctorPatientSearchController::class, 'searchPatient']);
     Route::get('/doctors/{doctorId}/patients', [DoctorPatientsController::class, 'doctorPatients']);
+    Route::get('/doctor/{patientId}', [GetUsersController::class, 'getDoctorPatientById']);
+
 
 
 });
@@ -66,7 +68,7 @@ Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::get('/insurance/{patientId}/diagnosis', [PatientController::class, 'getPatientDiagnosis']);
     Route::get('/insurance/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     Route::get('/insurance/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
-    Route::get('/insurance/{patientId}', [GetUsersController::class, 'getPatientById']);
+    Route::get('/insurance/{patientId}', [GetUsersController::class, 'getInsurancePatientById']);
     Route::get('/insurance-companies/{id}/patients', [PatientInsuranceController::class, 'relatedPatients']);
     Route::post('/validate-diagnosis/{id}', [openAIValidationController::class, 'validateDiagnosis']);
 
