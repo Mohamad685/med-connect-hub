@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import db from '../../../../../Firebase/Firebase-config'; 
+import { ref, push } from 'firebase/database';
+import db from '../../../../../Firebase/Firebase-config'; // Adjust the path as necessary
 
 export default function MessageForm({ userId: propUserId, userRole: propUserRole }) {
   const [message, setMessage] = useState('');
@@ -20,22 +20,21 @@ export default function MessageForm({ userId: propUserId, userRole: propUserRole
 
     const newMessage = {
       text: message,
-      timestamp: serverTimestamp(),
+      timestamp: Date.now(), // Use client-side timestamp
       userId,
       userRole,
     };
 
-
     try {
-      await addDoc(collection(db, "messages"), newMessage);
-      setMessage(""); 
+      await push(ref(db, "messages"), newMessage);
+      setMessage("");
     } catch (error) {
       console.error("Error sending message: ", error);
     }
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     handleSendMessage();
   };
 

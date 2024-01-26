@@ -1,7 +1,5 @@
-import db from "../../../../../Firebase/Firebase-config"; // Adjust the import path as necessary
+import db from "../../../../../Firebase/Firebase-config"; 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
-// Function to send a message
 import { getDatabase, ref, push } from 'firebase/database';
 
 const handleSendMessage = async () => {
@@ -16,7 +14,7 @@ const handleSendMessage = async () => {
     try {
       await push(messagesRef, {
         text: message,
-        timestamp: Date.now(), // Realtime Database doesn't have serverTimestamp, use Date.now()
+        timestamp: Date.now(), 
         userId,
         userRole,
       });
@@ -27,11 +25,9 @@ const handleSendMessage = async () => {
 };
 
 
-// Function to listen for new messages
 export const listenForMessages = (chatRoomId, setMessages) => {
-	const messagesRef = ref(database, `messages/${userType}/${userId}`);
+	const messagesRef = ref(database, `messages/${userRole}/${userId}`);
 
-	// Listen for new messages
 	onValue(messagesRef, (snapshot) => {
 		const messagesSnapshot = snapshot.val();
 		const messages = messagesSnapshot ? Object.values(messagesSnapshot) : [];
