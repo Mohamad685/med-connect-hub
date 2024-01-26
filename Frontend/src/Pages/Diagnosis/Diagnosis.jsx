@@ -11,6 +11,7 @@ function Diagnosis() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [message, setMessage] = useState("");
+	const [responseDetails, setResponseDetails] = useState(null);
 
 	const patientData = location.state?.patientData;
 
@@ -61,15 +62,17 @@ function Diagnosis() {
 		) {
 			try {
 				const response = await fetchHelper.post("/diagnosis", formData);
+				const data = await response.json();
 				console.log("Data submitted successfully:", response);
+				setMessage("Form submitted successfully!");
+				setResponseDetails(data);
 				navigate("/patient-registration");
-				
-
 			} catch (error) {
 				console.error("Error during data submission:", error);
 			}
+		}else {
+			setMessage("Please fill in all required fields.");
 		}
-		setMessage("Form submitted successfully!");
 	};
 	return (
 		<div className="patient-page">
@@ -91,18 +94,32 @@ function Diagnosis() {
 					</div>
 
 					<div className="patient-preview-boxes">
-						<PreviewBox
-							width={"60rem"}
-							height={"auto"}
-							title={"Medical History"}
-							text={medicalHistory || "No medical history available"}
-						/>
-						<PreviewBox
-							width={"60rem"}
-							height={"auto"}
-							title={"Medication History"}
-							text={medicationHistory || "No medical history available"}
-						/>
+    {responseDetails && responseDetails.medicalHistories ? (
+        <PreviewBox
+            width={"60rem"}
+            height={"auto"}
+            title={"Medical History"}
+            text={JSON.stringify(responseDetails.medicalHistories)}
+        />
+    ) : (
+        <div className="no-history-message">
+            <p>No medical history available. <a href="/create-medical-history">Create a new file</a>.</p>
+        </div>
+    )}
+
+    {/* Check for medicationHistories and render accordingly */}
+    {responseDetails && responseDetails.medicationHistories ? (
+        <PreviewBox
+            width={"60rem"}
+            height={"auto"}
+            title={"Medication History"}
+            text={JSON.stringify(responseDetails.medicationHistories)}
+        />
+    ) : (
+        <div className="no-history-message">
+            <p>No medication history available. <a href="/create-medication-history">Create a new file</a>.</p>
+        </div>
+    )}
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}

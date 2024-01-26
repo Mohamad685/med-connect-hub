@@ -1,6 +1,7 @@
 import React from "react";
 import "./HomePage.css";
 import Carousel from "../../Components/Carousal/InfoCarousal";
+import { Link } from "react-router-dom";
 
 function HomePage() { 
 	return (
