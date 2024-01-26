@@ -3,42 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Kreait\Firebase\Firestore;
+use Illuminate\Support\Facades\Auth;
 
 
 class ChatController extends Controller
 {   
-    public function storeMessage(Request $request)
+    public function sendMessage(Request $request)
     {
-        $message = Chat::create([
-            'sender_id' => $request->sender_id,
-            'receiver_id' => $request->receiver_id,
-            'message' => $request->message,
+        $request->validate([
+            'receiver_id' => 'required|integer|exists:users,id',
+            'message' => 'required|string',
         ]);
 
-        $this->pushMessageToFirebase($message);
+        $sender = Auth::user();
 
-        return response()->json($message, 201);
-    }
-    protected function pushMessageToFirebase($message)
-    {
-        try {
-            $firestore = app(Firestore::class);
-            $database = $firestore->database();
-
-            $chatsCollection = $database->collection('chats');
-            $newDocument = $chatsCollection->add([
-                'sender_id' => $message->sender_id,
-                'receiver_id' => $message->receiver_id,
-                'message' => $message->message,
-                'created_at' => $message->created_at->toDateTimeString(),
-            ]);
-
-            return $newDocument->id();
-        } catch (\Throwable $e) {
+        if (!in_array($sender->role, ['patient', 'doctor'])) {
+            return response()->json(['message' => 'Unauthorized - Sender does not have the required role'], 403);
         }
 
+        $receiver = User::findOrFail($request->receiver_id);
+        
+        if (!in_array($receiver->role, ['patient', 'doctor'])) {
+            return response()->json(['message' => 'Unauthorized - Receiver does not have the required role'], 403);
+        }
+
+        $chat = new Chat();
+        $chat->sender_id = $sender->id;
+        $chat->receiver_id = $request->receiver_id;
+        $chat->message = $request->message;
+        $chat->save();
+
+        return response()->json(['message' => 'Message sent successfully', 'chat' => $chat], 201);
     }
 
 }

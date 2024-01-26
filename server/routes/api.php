@@ -60,8 +60,7 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
 
     // Route::get('/patient/{patientId}/medical-history', [PatientController::class, 'getMedicalHistory']);
     // Route::get('/patient/{patientId}/medication-history', [PatientController::class, 'getMedicationHistory']);
-    // Route::post('/patient/chat', [ChatController::class, 'storeMessage']);
-
+    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 });
 
 Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
