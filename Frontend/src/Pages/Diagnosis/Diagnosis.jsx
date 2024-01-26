@@ -103,11 +103,10 @@ function Diagnosis() {
         />
     ) : (
         <div className="no-history-message">
-            <p>No medical history available. <a href="/create-medical-history">Create a new file</a>.</p>
+            <p>No medical history available. <a href="/patient-registration">Create a new file</a>.</p>
         </div>
     )}
 
-    {/* Check for medicationHistories and render accordingly */}
     {responseDetails && responseDetails.medicationHistories ? (
         <PreviewBox
             width={"60rem"}
@@ -117,7 +116,7 @@ function Diagnosis() {
         />
     ) : (
         <div className="no-history-message">
-            <p>No medication history available. <a href="/create-medication-history">Create a new file</a>.</p>
+            <p>No medication history available. <a href="/patient-registration">Create a new file</a>.</p>
         </div>
     )}
 						<TextArea

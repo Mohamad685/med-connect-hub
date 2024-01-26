@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
 import fetchHelper from "../../Components/Functions/FetchFunction";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import './PatientInsurance.css';
@@ -14,6 +14,8 @@ function PatientInsurance() {
 	const { patientId } = useParams();
 	const [patient, setPatient] = useState({});
 	const [validationResult, setValidationResult] = useState("");
+	const [approvalId, setApprovalId] = useState(null);
+	const navigate = useNavigate();
 
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
@@ -45,6 +47,7 @@ function PatientInsurance() {
 				const patientData = await fetchHelper.get(`/insurance/${patientId}`);
 				if (patientData) {
 					setPatient(patientData);
+					setApprovalId(patientData.approvalId);
 				} else {
 					setPatient(null);
 				}
@@ -84,11 +87,13 @@ function PatientInsurance() {
 		try {
 			const response = await fetchHelper.post(url, data);
 			console.log("Status updated successfully", response);
+			navigate("/insurance-page");
 			setPatient(null);
 			setDiagnoses(null);
 			setLabResults(null);
 			setPrescriptions(null);
 			setSymptoms(null);
+			
 		} catch (error) {
 			console.error("Failed to update status", error);
 		}

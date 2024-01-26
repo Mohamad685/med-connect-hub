@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\PatientDiagnosisService;
 use App\Services\PatientLabResultsService;
+use App\Services\PatientMedicalHistoriesService;
+use App\Services\PatientMedicationHistoriesService;
 use App\Services\PatientPrescriptionsService;
 use App\Services\PatientSymptomsService;
 use Illuminate\Support\ServiceProvider;
@@ -26,6 +28,7 @@ class PatientDiagnosticServiceProvider extends ServiceProvider
         $this->app->bind(PatientSymptomsService::class, function ($app) {
             return new PatientSymptomsService();
         });
+        
     }
 
     public function boot(): void

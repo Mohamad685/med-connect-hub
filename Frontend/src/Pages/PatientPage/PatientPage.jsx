@@ -118,7 +118,6 @@ function PatientPreview() {
 					{firstName} {lastName}
 				</p>
 				<div className="patient-preview-section1">
-					pic
 					<div className="patient-preview-boxes">
 						<PreviewBox
 							width={"48rem"}

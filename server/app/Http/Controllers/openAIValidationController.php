@@ -10,7 +10,7 @@ class openAIValidationController extends Controller
 {
     public function validateDiagnosis($id)
     {
-        $apiKey = 'services.openai.secret_key';
+        $apiKey = env('OPENAI_SECRET_KEY');
         $baseUrl = 'https://api.openai.com';
         $patient = Patient::with(['labResults', 'symptoms', 'diagnosis', 'prescriptions'])->find($id);
         if (!$patient) {

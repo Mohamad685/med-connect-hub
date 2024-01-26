@@ -33,7 +33,6 @@ function OptionsBox({ margin }) {
 				<>
 					<Link to="/notifications">Notifications</Link>
 					<Link
-						Link
 						to="/live-chat">
 						Live Chat
 					</Link>

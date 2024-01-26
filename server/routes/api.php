@@ -57,9 +57,6 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     // Route::post('/save-token', [SaveFcMTokenController::class, 'saveFcmToken']);
-
-    // Route::get('/patient/{patientId}/medical-history', [PatientController::class, 'getMedicalHistory']);
-    // Route::get('/patient/{patientId}/medication-history', [PatientController::class, 'getMedicationHistory']);
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 });
 
@@ -70,7 +67,6 @@ Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::get('/insurance/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     Route::get('/insurance/{patientId}/symptoms', [PatientController::class, 'getPatientSymptoms']);
     Route::get('/insurance/{patientId}', [GetUsersController::class, 'getPatientById']);
-
     Route::get('/insurance-companies/{id}/patients', [PatientInsuranceController::class, 'relatedPatients']);
     Route::post('/validate-diagnosis/{id}', [openAIValidationController::class, 'validateDiagnosis']);
 

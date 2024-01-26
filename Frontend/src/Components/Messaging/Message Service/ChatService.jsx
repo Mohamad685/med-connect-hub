@@ -2,7 +2,7 @@ import db from "../../../../../Firebase/Firebase-config";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getDatabase, ref, push } from 'firebase/database';
 
-const handleSendMessage = async () => {
+export default handleSendMessage = async () => {
     if (!message.trim() || !userId) {
       console.error("Cannot send message: message is empty or userId is undefined.");
       return;
