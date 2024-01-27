@@ -9,6 +9,7 @@ use App\Http\Controllers\HealthDataController;
 use App\Http\Controllers\InsuranceApprovalController;
 use App\Http\Controllers\openAIValidationController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientHistoriesController;
 use App\Http\Controllers\PatientInsuranceController;
 use App\Http\Controllers\PatientRegistrationController;
 use App\Http\Controllers\SaveFcMTokenController;
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::get('/search-patients', [DoctorPatientSearchController::class, 'searchPatient']);
     Route::get('/doctors/{doctorId}/patients', [DoctorPatientsController::class, 'doctorPatients']);
     Route::get('/doctor/{patientId}', [GetUsersController::class, 'getDoctorPatientById']);
+    Route::get('/patient-histories', [PatientHistoriesController::class, 'fetchHistories']);
+
 
 
 
