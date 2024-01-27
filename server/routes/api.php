@@ -62,6 +62,11 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 });
 
+Route::group(['middleware' => ['jwt.verify', 'doctor.patient']], function () {
+    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+    Route::get('/chat/messages/{sender_id}/{receiver_id}', [ChatController::class, 'fetchMessagesBetweenUsers']);
+});
+
 Route::group(['middleware' => ['jwt.verify', 'insurance']], function () {
     Route::post('/insurance-request/{request}/update-status', [InsuranceApprovalController::class, 'updateStatus']);
     Route::get('/insurance/{patientId}/lab-results', [PatientController::class, 'getPatientLabResults']);
