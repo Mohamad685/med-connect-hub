@@ -11,3 +11,12 @@
 	margin-left: 0.5rem;
     margin-top: -1.5rem;
 }
+
+.patient-page{
+	display: flex;
+	flex-direction: row;
+}
+
+.pic-box-preview{
+	cursor:default;
+}

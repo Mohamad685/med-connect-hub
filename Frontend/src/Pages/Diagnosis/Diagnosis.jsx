@@ -41,7 +41,7 @@ function Diagnosis() {
 				} else {
 					setPatient(null);
 				}
-
+				console.log(patientData);
 				const patientHistoriesResponse = await fetchHelper.get(
 					`/patient-histories?patient_id=${patientId}`
 				);
@@ -112,24 +112,25 @@ function Diagnosis() {
 			} catch (error) {
 				console.error("Error during data submission:", error);
 			}
-		} else {
-			setMessage("Please fill in all required fields.");
 		}
 	};
 	return (
 		<div className="patient-page">
-			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
+			<div>
+				{" "}
+				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
+			</div>
 
 			<div className="diagnosis-data-form">
 				<p className="patient-name">
 					{patientFullName ? `${patientFullName}` : "Patient Doctor"}
 				</p>
 				<div className="patient-preview-section1">
-					<div className="pic-box">
-						{profilePic ? (
+					<div className="pic-box pic-box-preview">
+						{patient.user && patient.user.profile_picture ? (
 							<img
-								src={profilePic}
-								alt="Profile"
+								src={patient.user.profile_picture}
+								alt={`${patient.first_name} ${patient.last_name}`}
 								className="profile-pic"
 							/>
 						) : (
@@ -141,8 +142,8 @@ function Diagnosis() {
 						{responseDetails.medicalHistories.map((history, index) => (
 							<PreviewBox
 								key={index}
-								height="auto" 
-								width="100%"
+								height="auto"
+								width="48rem"
 								title={"Medical Histories"}
 								text={`${history.description} ${history.dateHumanized}`}
 							/>
@@ -152,15 +153,15 @@ function Diagnosis() {
 							<PreviewBox
 								key={index}
 								height="auto"
-								width="100%"
+								width="48rem"
 								title={"Medication Histories"}
 								text={`${history.medication_description} ${history.dateHumanized}`} // Assuming you want to show the date here
 							/>
 						))}
 
 						<TextArea
-							width={"60rem"}
-							length={"18rem"}
+							width={"48rem"}
+							length={"8rem"}
 							placeholder={"Symptoms"}
 							value={symptomDescription}
 							onChange={(e) => setSymptomDescription(e.target.value)}
@@ -170,8 +171,8 @@ function Diagnosis() {
 						)}
 
 						<TextArea
-							width={"60rem"}
-							length={"18rem"}
+							width={"48rem"}
+							length={"8rem"}
 							placeholder={"Lab Results"}
 							value={labResult}
 							onChange={(e) => setLabResult(e.target.value)}
@@ -181,8 +182,8 @@ function Diagnosis() {
 						)}
 
 						<TextArea
-							width={"60rem"}
-							length={"18rem"}
+							width={"48rem"}
+							length={"8rem"}
 							placeholder={"Diagnosis"}
 							value={diagnosisDescription}
 							onChange={(e) => setDiagnosisDescription(e.target.value)}
@@ -192,8 +193,8 @@ function Diagnosis() {
 						)}
 
 						<TextArea
-							width={"60rem"}
-							length={"18rem"}
+							width={"48rem"}
+							length={"8rem"}
 							placeholder={"Prescriptions"}
 							value={prescription}
 							onChange={(e) => setPrescription(e.target.value)}
@@ -203,7 +204,7 @@ function Diagnosis() {
 						)}
 
 						<Button
-							width={"14rem"}
+							width={"8rem"}
 							height={"3rem"}
 							color={"white"}
 							fontSize="1.15rem"

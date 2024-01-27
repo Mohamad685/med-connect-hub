@@ -8,13 +8,20 @@ function OptionsBox({ margin }) {
 	const optionStyle = {
 		margin: margin,
 	};
-	const pattern = /^\/patient-insurance-page\/\d+$/;
+	const isDiagnosisRoute = () => {
+		const diagnosisPattern = /^\/diagnosis\/\d+$/;
+		return diagnosisPattern.test(location.pathname);
+	};
+	const isPatientInsurancePage = () => {
+		const insurancePattern = /^\/patient-insurance-page\/\d+$/;
+		return insurancePattern.test(location.pathname);
+	};
 	return (
 		<div
 			style={optionStyle}
 			className="options-box">
 			{(location.pathname === "/patient-registration" ||
-				location.pathname === "/diagnosis" ||
+				isDiagnosisRoute() ||
 				location.pathname === "/patients-doctor") && (
 				<>
 					<Link to="/patient-registration">Create Patient Profile</Link>
@@ -22,20 +29,15 @@ function OptionsBox({ margin }) {
 				</>
 			)}
 
-			{pattern.test(location.pathname) && (
-				<Link to="/insurance-page">Patients</Link>
-			)}
+			{isPatientInsurancePage() && <Link to="/insurance-page">Patients</Link>}
 
 			{(location.pathname === "/patient-registration" ||
 				location.pathname === "/patient-file" ||
-				location.pathname === "/diagnosis" ||
+				isDiagnosisRoute() ||
 				location.pathname === "/patients-doctor") && (
 				<>
 					<Link to="/notifications">Notifications</Link>
-					<Link
-						to="/live-chat">
-						Live Chat
-					</Link>
+					<Link to="/live-chat">Live Chat</Link>
 				</>
 			)}
 			<Link to="/send-email">Send Email</Link>
