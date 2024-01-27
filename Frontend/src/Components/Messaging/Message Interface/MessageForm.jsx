@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { ref, push } from 'firebase/database';
-import db from '../../../../../Firebase/Firebase-config'; // Adjust the path as necessary
+import db from '../../../../../Firebase/Firebase-config'; 
+import "../../Messaging/MessageStyles.css";
 
-export default function MessageForm({ userId: propUserId, userRole: propUserRole }) {
+
+export default function MessageForm() {
   const [message, setMessage] = useState('');
-  const [userId, setUserId] = useState(propUserId || localStorage.getItem("userId"));
-  const [userRole, setUserRole] = useState(propUserRole || localStorage.getItem("userRole"));
+  const [userId, setUserId] = useState('');
+  const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
-    if (propUserId) setUserId(propUserId);
-    if (propUserRole) setUserRole(propUserRole);
-  }, [propUserId, propUserRole]);
+    const storedUserId = localStorage.getItem("userId");
+    const storedUserRole = localStorage.getItem("userRole");
+
+    setUserId(storedUserId);
+    setUserRole(storedUserRole);
+  }, []);
 
   const handleSendMessage = async () => {
     if (!message.trim() || !userId) {
@@ -20,7 +25,7 @@ export default function MessageForm({ userId: propUserId, userRole: propUserRole
 
     const newMessage = {
       text: message,
-      timestamp: Date.now(), // Use client-side timestamp
+      timestamp: Date.now(),
       userId,
       userRole,
     };

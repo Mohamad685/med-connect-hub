@@ -1,5 +1,3 @@
-import db from "../../../../../Firebase/Firebase-config"; 
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getDatabase, ref, push } from 'firebase/database';
 
 export default handleSendMessage = async () => {

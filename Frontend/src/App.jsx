@@ -68,7 +68,7 @@ function App() {
 					/>
 				</Routes>
 			</div>
-			{!isAdminRoute && !liveChat && <Footer />}
+			{/* {!isAdminRoute && !liveChat && <Footer />} */}
 		</>
 	);
 }

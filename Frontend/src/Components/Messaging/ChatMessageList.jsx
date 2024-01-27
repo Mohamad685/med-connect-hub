@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue, query, orderByChild } from 'firebase/database';
+import "../../Messaging/MessageStyles.css";
 
-const ChatMessageList = () => {
+
+export const ChatMessageList = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+import "../../Messaging/MessageStyles.css";
+
 export default function ChatMessage({ message, isSender, timestamp }) {
     const messageClass = isSender ? "message sender" : "message receiver";
     return (
