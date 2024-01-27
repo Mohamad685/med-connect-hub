@@ -50,9 +50,6 @@ Route::group(['middleware' => ['jwt.verify', 'doctor']], function () {
     Route::get('/doctor/{patientId}', [GetUsersController::class, 'getDoctorPatientById']);
     Route::get('/patient-histories', [PatientHistoriesController::class, 'fetchHistories']);
 
-
-
-
 });
 
 
