@@ -60,6 +60,8 @@ Route::group(['middleware' => ['jwt.verify', 'patient']], function () {
     Route::get('/patient/{patientId}/prescriptions', [PatientController::class, 'getPatientPrescriptions']);
     // Route::post('/save-token', [SaveFcMTokenController::class, 'saveFcmToken']);
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+    Route::get('/patient/doctors', [GetUsersController::class, 'listDoctors']);
+
 });
 
 Route::group(['middleware' => ['jwt.verify', 'doctor.patient']], function () {

@@ -9,8 +9,23 @@ class GetUsersService
 {
     public function getAllDoctors()
     {
-        return Doctor::all();
+        $doctors = Doctor::with(['user'])->get();
+
+        $formattedDoctors = $doctors->map(function ($doctor) {
+            return [
+                'id' => $doctor->id,
+                'role' => $doctor->user->role,
+                'user_id' => $doctor->user->id,
+                'first_name' => $doctor->first_name,
+                'last_name' => $doctor->last_name,
+                'specialty' => $doctor->specialty
+
+            ];
+        });
+
+        return $formattedDoctors;
     }
+
 
     public function getDoctorsByFullName($firstName, $lastName)
     {
@@ -38,12 +53,12 @@ class GetUsersService
     }
 
     public function getInsurancePatientById($patientId)
-{
-    return Patient::with(['user', 'insuranceCompany'])->where('id', $patientId)->first();
-}
+    {
+        return Patient::with(['user', 'insuranceCompany'])->where('id', $patientId)->first();
+    }
 
-public function getDoctorPatientById($patientId)
-{
-    return Patient::with(['user', 'doctors'])->where('id', $patientId)->first();
-}
+    public function getDoctorPatientById($patientId)
+    {
+        return Patient::with(['user', 'doctors'])->where('id', $patientId)->first();
+    }
 }
