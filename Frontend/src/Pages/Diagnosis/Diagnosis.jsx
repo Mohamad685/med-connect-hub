@@ -6,12 +6,12 @@ import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import TextArea from "../../Components/TextArea/TextArea";
 import Button from "../../Components/Button/Button";
 import fetchHelper from "../../Components/Functions/FetchFunction";
+import { format, parseISO } from "date-fns";
 
 function Diagnosis() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [message, setMessage] = useState("");
-	const [responseDetails, setResponseDetails] = useState(null);
 	const { patientId } = useParams();
 	const [patient, setPatient] = useState({});
 	const { profilePic } = location.state?.patientData || {};
@@ -23,6 +23,10 @@ function Diagnosis() {
 	const [labResult, setLabResult] = useState("");
 	const [diagnosisDescription, setDiagnosisDescription] = useState("");
 	const [prescription, setPrescription] = useState("");
+	const [responseDetails, setResponseDetails] = useState({
+		medicalHistories: [],
+		medicationHistories: [],
+	});
 
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
@@ -36,6 +40,35 @@ function Diagnosis() {
 					setPatient(patientData);
 				} else {
 					setPatient(null);
+				}
+
+				const patientHistoriesResponse = await fetchHelper.get(
+					`/patient-histories?patient_id=${patientId}`
+				);
+				if (patientHistoriesResponse) {
+					const processedMedicalHistories =
+						patientHistoriesResponse.medicalHistories.map((history) => ({
+							description: history.description,
+							dateHumanized: `On: ${format(
+								parseISO(history.created_at),
+								"dd-MMMM-yyyy"
+							)}`,
+						}));
+
+					const processedMedicationHistories =
+						patientHistoriesResponse.medicationHistories.map((history) => ({
+							medication_description: history.medication_description,
+							dateHumanized: `On: ${format(
+								parseISO(history.created_at),
+								"dd-MMMM-yyyy"
+							)}`,
+						}));
+
+					setResponseDetails({
+						medicalHistories: processedMedicalHistories,
+						medicationHistories: processedMedicationHistories,
+					});
+					console.log(patientHistoriesResponse);
 				}
 			} catch (error) {
 				console.error("Failed to fetch patient data", error);
@@ -73,15 +106,13 @@ function Diagnosis() {
 		) {
 			try {
 				const response = await fetchHelper.post("/diagnosis", formData);
-				const data = await response.json();
 				console.log("Data submitted successfully:", response);
 				setMessage("Form submitted successfully!");
-				setResponseDetails(data);
 				navigate("/patient-registration");
 			} catch (error) {
 				console.error("Error during data submission:", error);
 			}
-		}else {
+		} else {
 			setMessage("Please fill in all required fields.");
 		}
 	};
@@ -90,9 +121,9 @@ function Diagnosis() {
 			<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
 
 			<div className="diagnosis-data-form">
-				<p className="patient-name">{patientFullName
-							? `${patientFullName}`
-							: "Patient Doctor"}</p>
+				<p className="patient-name">
+					{patientFullName ? `${patientFullName}` : "Patient Doctor"}
+				</p>
 				<div className="patient-preview-section1">
 					<div className="pic-box">
 						{profilePic ? (
@@ -107,31 +138,26 @@ function Diagnosis() {
 					</div>
 
 					<div className="patient-preview-boxes">
-    {responseDetails && responseDetails.medicalHistories ? (
-        <PreviewBox
-            width={"60rem"}
-            height={"auto"}
-            title={"Medical History"}
-            text={JSON.stringify(responseDetails.medicalHistories)}
-        />
-    ) : (
-        <div className="no-history-message">
-            <p>No medical history available. <a href="/patient-registration">Create a new file</a>.</p>
-        </div>
-    )}
+						{responseDetails.medicalHistories.map((history, index) => (
+							<PreviewBox
+								key={index}
+								height="auto" 
+								width="100%"
+								title={"Medical Histories"}
+								text={`${history.description} ${history.dateHumanized}`}
+							/>
+						))}
 
-    {responseDetails && responseDetails.medicationHistories ? (
-        <PreviewBox
-            width={"60rem"}
-            height={"auto"}
-            title={"Medication History"}
-            text={JSON.stringify(responseDetails.medicationHistories)}
-        />
-    ) : (
-        <div className="no-history-message">
-            <p>No medication history available. <a href="/patient-registration">Create a new file</a>.</p>
-        </div>
-    )}
+						{responseDetails.medicationHistories.map((history, index) => (
+							<PreviewBox
+								key={index}
+								height="auto"
+								width="100%"
+								title={"Medication Histories"}
+								text={`${history.medication_description} ${history.dateHumanized}`} // Assuming you want to show the date here
+							/>
+						))}
+
 						<TextArea
 							width={"60rem"}
 							length={"18rem"}
