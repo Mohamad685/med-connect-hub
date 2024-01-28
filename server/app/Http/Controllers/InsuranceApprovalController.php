@@ -6,22 +6,26 @@ use Illuminate\Http\Request;
 
 class InsuranceApprovalController extends Controller
 {
-    protected $approvalService;
+    protected $insuranceApprovalService;
 
-    public function __construct(InsuranceApprovalService $approvalService)
+    public function __construct(InsuranceApprovalService $insuranceApprovalService)
     {
-        $this->approvalService = $approvalService;
+        $this->insuranceApprovalService = $insuranceApprovalService;
     }
 
     public function updateStatus(Request $request, $approvalId)
     {
+        \Log::info('Update status request received', ['approvalId' => $approvalId, 'request' => $request->all()]);
+
         $validated = $request->validate([
-            'status' => 'required|string|in:Accepted,Rejected',
+            'status' => 'required|in:Accepted,Rejected',
         ]);
+
         $status = $validated['status'];
-        $approval = $this->approvalService->updateApprovalStatus($approvalId, $status);
+        $approval = $this->insuranceApprovalService->updateApprovalStatus($approvalId, $status);
+        
+        \Log::info('Approval status updated', ['approval' => $approval]);
 
-        return response()->json($approval);
+        return response()->json(['message' => 'Insurance approval status updated', 'approval' => $approval]);
     }
-
 }
