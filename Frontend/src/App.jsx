@@ -26,7 +26,7 @@ function App() {
 	const liveChat = location.pathname.startsWith("/live-chat");
 	return (
 		<>
-			{!isAdminRoute && <NavBar />}
+			{/* {!isAdminRoute && <NavBar />}
 			<div>
 				<Routes>
 					<Route
@@ -68,7 +68,9 @@ function App() {
 				</Routes>
 			</div>
 			
-			{!isAdminRoute && !liveChat && <Footer />}
+			{!isAdminRoute && !liveChat && <Footer />} */}
+
+			<Chat/>
 		</>
 	);
 }

@@ -96,6 +96,8 @@ function PatientInsurance() {
 			setSymptoms(null);
 		} catch (error) {
 			console.error("Failed to update status", error);
+			navigate("/insurance-page");
+
 		}
 	};
 
