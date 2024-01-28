@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, TextField, Typography, Divider } from "@mui/material";
+import { Box, Button, TextField, Typography, Divider, Modal } from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminInsurance = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [insurances, setInsurance] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [editingInsurance, setEditingInsurance] = useState({
 		user_id: "null",
@@ -66,6 +67,11 @@ const AdminInsurance = () => {
 
 	const startEditing = (insurance) => {
 		setEditingInsurance(insurance);
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -76,7 +82,7 @@ const AdminInsurance = () => {
 				Insurance
 			</Typography>
 
-			<Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+			<Box sx={{ display: "flex", justifyContent: "end", mb: 2 }}>
 				<TextField
 					label="Search by Name"
 					variant="outlined"
@@ -87,9 +93,7 @@ const AdminInsurance = () => {
 
 			{insurances
 				.filter((insurance) =>
-					`${insurance.name}`
-						.toLowerCase()
-						.includes(searchQuery.toLowerCase())
+					`${insurance.name}`.toLowerCase().includes(searchQuery.toLowerCase())
 				)
 				.map((insurance, index) => (
 					<React.Fragment key={index}>
@@ -106,8 +110,7 @@ const AdminInsurance = () => {
 								<Typography>{`description: ${insurance.description}`}</Typography>
 								<Typography>{`Coverage_details: ${insurance.coverage_details}`}</Typography>
 								<Typography>{`Phone: ${insurance.phone_number}`}</Typography>
-                                <Typography>{`Email: ${insurance.email}`}</Typography>
-
+								<Typography>{`Email: ${insurance.email}`}</Typography>
 							</Box>
 							<Box>
 								<Button
@@ -144,11 +147,22 @@ const AdminInsurance = () => {
 				))}
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 
-			{editingInsurance.id && (
+			<Modal
+				open={isModalOpen}
+				onClose={handleCloseModal}
+				aria-labelledby="edit-insurance-modal"
+				aria-describedby="modal-modal-description">
 				<Box
 					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: 400,
+						bgcolor: "background.paper",
+						boxShadow: 24,
+						p: 4,
 						display: "grid",
-
 						gap: "10px",
 					}}>
 					<TextField
@@ -223,8 +237,7 @@ const AdminInsurance = () => {
 						Update
 					</Button>
 				</Box>
-			)}
-			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
+			</Modal>
 		</Box>
 	);
 };

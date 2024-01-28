@@ -46,7 +46,7 @@ const Admin = () => {
 						noWrap
 						component="div"
 						sx={{ flexGrow: 1, color: "white" }}>
-						Admin Dashboard
+						Hello Admin
 					</Typography>
 					<Button
 						sx={{ color: "white" }}

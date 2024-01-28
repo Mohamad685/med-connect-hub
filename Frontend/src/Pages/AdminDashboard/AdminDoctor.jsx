@@ -5,22 +5,24 @@ import {
 	TextField,
 	Typography,
 	Divider,
+	Modal,
 } from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminDoctors = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [doctors, setDoctors] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [editingDoctor, setEditingDoctor] = useState({
-        user_id:null,
-        first_name:"",
-        last_name:"",
-        specialty:"",
-        age:"",
-        phone_number:"",
-        license_id:"",
-        gender:"",
+		user_id: null,
+		first_name: "",
+		last_name: "",
+		specialty: "",
+		age: "",
+		phone_number: "",
+		license_id: "",
+		gender: "",
 	});
 
 	useEffect(() => {
@@ -60,20 +62,25 @@ const AdminDoctors = () => {
 			);
 
 			setEditingDoctor({
-				user_id:null,
-        first_name:"",
-        last_name:"",
-        specialty:"",
-        age:"",
-        phone_number:"",
-        license_id:"",
-        gender:"",
+				user_id: null,
+				first_name: "",
+				last_name: "",
+				specialty: "",
+				age: "",
+				phone_number: "",
+				license_id: "",
+				gender: "",
 			});
 		} catch (error) {}
 	};
 
 	const startEditing = (doctor) => {
 		setEditingDoctor(doctor);
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -84,7 +91,7 @@ const AdminDoctors = () => {
 				Doctors
 			</Typography>
 
-			<Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+			<Box sx={{ display: "flex", justifyContent: "end", mb: 2 }}>
 				<TextField
 					label="Search by Name"
 					variant="outlined"
@@ -110,7 +117,7 @@ const AdminDoctors = () => {
 							}}>
 							<Box>
 								<Typography>{`Name: ${doctor.first_name} ${doctor.last_name}`}</Typography>
-                                <Typography>{`specialty: ${doctor.specialty}`}</Typography>
+								<Typography>{`specialty: ${doctor.specialty}`}</Typography>
 								<Typography>{`Phone: ${doctor.phone_number}`}</Typography>
 								<Typography>{`Age: ${doctor.age}`}</Typography>
 								<Typography>{`Gender: ${doctor.gender}`}</Typography>
@@ -151,31 +158,36 @@ const AdminDoctors = () => {
 				))}
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 
-			{editingDoctor.id && (
+			<Modal
+				open={isModalOpen}
+				onClose={handleCloseModal}
+				aria-labelledby="edit-doctor-modal"
+				aria-describedby="modal-modal-description">
 				<Box
 					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: 400,
+						bgcolor: "background.paper",
+						boxShadow: 24,
+						p: 4,
 						display: "grid",
-						
 						gap: "10px",
 					}}>
 					<TextField
 						label="First Name"
 						value={editingDoctor.first_name}
 						onChange={(e) =>
-							setEditingDoctor({
-								...editingDoctor,
-								first_name: e.target.value,
-							})
+							setEditingDoctor({ ...editingDoctor, first_name: e.target.value })
 						}
 					/>
 					<TextField
 						label="Last Name"
 						value={editingDoctor.last_name}
 						onChange={(e) =>
-							setEditingDoctor({
-								...editingDoctor,
-								last_name: e.target.value,
-							})
+							setEditingDoctor({ ...editingDoctor, last_name: e.target.value })
 						}
 					/>
 					<TextField
@@ -185,15 +197,11 @@ const AdminDoctors = () => {
 							setEditingDoctor({ ...editingDoctor, address: e.target.value })
 						}
 					/>
-
 					<TextField
 						label="Age"
 						value={editingDoctor.age}
 						onChange={(e) =>
-							setEditingDoctor({
-								...editingDoctor,
-								age: e.target.value,
-							})
+							setEditingDoctor({ ...editingDoctor, age: e.target.value })
 						}
 					/>
 					<TextField
@@ -224,8 +232,7 @@ const AdminDoctors = () => {
 						Update
 					</Button>
 				</Box>
-			)}
-			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
+			</Modal>
 		</Box>
 	);
 };

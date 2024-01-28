@@ -5,12 +5,16 @@ import {
 	TextField,
 	Typography,
 	Divider,
+	Modal,
+
 } from "@mui/material";
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminPatients = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [patients, setPatients] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 
 	const [editingPatient, setEditingPatient] = useState({
 		id: null,
@@ -71,7 +75,11 @@ const AdminPatients = () => {
 	};
 
 	const startEditing = (patient) => {
-		setEditingPatient(patient);
+        setEditingPatient(patient);
+        setIsModalOpen(true); 
+	}
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
 	};
 
 	return (
@@ -82,7 +90,7 @@ const AdminPatients = () => {
 				Patients
 			</Typography>
 
-			<Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+			<Box sx={{ display: "flex", justifyContent: "end", mb: 2 }}>
 				<TextField
 					label="Search by Name"
 					variant="outlined"
@@ -148,11 +156,23 @@ const AdminPatients = () => {
 				))}
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 
-			{editingPatient.id && (
-				<Box
+			<Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                aria-labelledby="edit-patient-modal"
+                aria-describedby="modal-modal-description"
+            >				
+			<Box
 					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						width: 400,
+						bgcolor: "background.paper",
+						boxShadow: 24,
+						p: 4,
 						display: "grid",
-						
 						gap: "10px",
 					}}>
 					<TextField
@@ -221,7 +241,7 @@ const AdminPatients = () => {
 						Update
 					</Button>
 				</Box>
-			)}
+			</Modal>
 			<Divider sx={{ borderColor: "#41597b", my: 2 }} />
 		</Box>
 	);
