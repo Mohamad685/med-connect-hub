@@ -72,3 +72,12 @@
         font-size: 11px;
     }
 }
+
+.dropdown-menu {
+    position: absolute;
+    right: 0.5rem;
+    background-color:transparent;
+    border-radius: 5px;
+    padding: 10px;
+	background-color:white ;
+}

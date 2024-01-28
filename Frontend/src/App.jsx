@@ -10,8 +10,7 @@ import InsurancePage from "./Pages/InsurancePage/InsurancePage";
 import Admin from "./Pages/AdminDashboard/Admin";
 import PatientInsurance from "./Pages/PatientInsurance/PatientInsurance";
 import DoctorPatients from "./Pages/DoctorPatients/DoctorPatients";
-import ChatApp from "./Components/Messaging/Message Interface/ChatInterface";
-import ChatInterface from "./Components/Messaging/Message Interface/ChatInterface";
+import Chat from "./Components/LiveChat/Chat";
 
 function AppWrapper() {
 	return (
@@ -48,7 +47,7 @@ function App() {
 					/>
 					<Route
 						path="/live-chat"
-						element={<ChatInterface />}
+						element={<Chat/>}
 					/>
 					<Route
 						path="/patient-file"
@@ -68,7 +67,8 @@ function App() {
 					/>
 				</Routes>
 			</div>
-			{/* {!isAdminRoute && !liveChat && <Footer />} */}
+			
+			{!isAdminRoute && !liveChat && <Footer />}
 		</>
 	);
 }

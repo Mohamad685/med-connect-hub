@@ -55,21 +55,21 @@ function PatientPreview() {
 
 	function formatDate(isoString) {
 		const date = new Date(isoString);
-		return date.toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit",
-			hour12: true,
-		});
+		return date
+			.toLocaleDateString("en-GB", {
+				day: "2-digit",
+				month: "2-digit",
+				year: "numeric",
+			})
+			.replace(/\//g, "-");
 	}
 
 	function formatLabResults(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
 				<li key={index}>
-					{item.result}, In: {formatDate(item.created_at)}
+					{item.result} <span style={{ marginRight: "30rem" }}></span>
+					{formatDate(item.created_at)}
 				</li>
 			));
 		}
@@ -80,7 +80,9 @@ function PatientPreview() {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
 				<li key={index}>
-					{item.diagnosis_description}, In: {formatDate(item.created_at)}
+					{item.diagnosis_description}{" "}
+					<span style={{ marginRight: "30rem" }}></span>
+					{formatDate(item.created_at)}
 				</li>
 			));
 		}
@@ -91,7 +93,9 @@ function PatientPreview() {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
 				<li key={index}>
-					{item.medication_description}, In: {formatDate(item.created_at)}
+					{item.medication_description}{" "}
+					<span style={{ marginRight: "30rem" }}></span>
+					{formatDate(item.created_at)}
 				</li>
 			));
 		}
@@ -102,7 +106,9 @@ function PatientPreview() {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
 				<li key={index}>
-					{item.symptom_description}, In: {formatDate(item.created_at)}
+					{item.symptom_description}{" "}
+					<span style={{ marginRight: "30rem" }}></span>
+					{formatDate(item.created_at)}
 				</li>
 			));
 		}

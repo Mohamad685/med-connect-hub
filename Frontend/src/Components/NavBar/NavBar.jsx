@@ -8,6 +8,8 @@ import fetchHelper from "../Functions/FetchFunction";
 function NavBar() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
+	const [showDropdown, setShowDropdown] = useState(false); // New state for dropdown
+
 	const navigate = useNavigate();
 
 	
@@ -26,7 +28,10 @@ function NavBar() {
 			navigate('/');
 		}
 	};
-	
+	const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+
 	const toggleLogin = () => {
         
 		if (isAuthenticated) {
@@ -89,12 +94,14 @@ function NavBar() {
 						onClick={() => scrollTo("Contact")}>
 						Contact Us
 					</li>
-					<li
-						className="navbar-option"
-						onClick={toggleLogin}>
-						{isAuthenticated ? username : 'Login'}
-
-					</li>
+					<li className="navbar-option" onClick={isAuthenticated ? toggleDropdown : toggleLogin}>
+                    {isAuthenticated ? username : 'Login'}
+                    {showDropdown && (
+                        <div className="dropdown-menu">
+                            <p onClick={logout}>Logout</p>
+                        </div>
+                    )}
+                </li>
 				</ul>
 			</div>
 			{showLogin &&

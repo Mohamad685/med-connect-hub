@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDazaPi2lgPM_pcHEaRe_uuz2JgAk1cxX4",
   authDomain: "med-hub-new.firebaseapp.com",
@@ -8,11 +10,13 @@ const firebaseConfig = {
   projectId: "med-hub-new",
   storageBucket: "med-hub-new.appspot.com",
   messagingSenderId: "630261503793",
-  appId: "1:630261503793:web:2e7bb974d729d9347a8210"
+  appId: "1:630261503793:web:3a1724ab08aa5a927a8210"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const db = getDatabase(app);
+const firestore = getFirestore(app);
+const auth = getAuth(app);
 
-export default db;
+export { firestore, auth };
