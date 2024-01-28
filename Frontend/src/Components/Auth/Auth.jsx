@@ -4,8 +4,8 @@ import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 import fetchHelper from "../Functions/FetchFunction";
-// import { requestNotificationPermissionAndRetrieveToken } from "../../Firebase/NotificantionManager";
-// import sendTokenToServer from "../../Firebase/Notifications/SendTokenServer";
+import { requestNotificationPermissionAndRetrieveToken} from '../../Firebase/Notifications/NotificantionManager';
+import sendTokenToServer from "../../Firebase/Notifications/SendTokenServer";
 
 function Login({ onClose }) {
 	const [email, setEmail] = useState("");
@@ -59,15 +59,22 @@ function Login({ onClose }) {
 				if (token) {
 					localStorage.setItem("token", token);
 
-					// const fcmToken = await requestNotificationPermissionAndRetrieveToken();
-					// if (fcmToken) {
-					//     sendTokenToServer(fcmToken);
-					// }
+					
 					const firstName = response.first_name;
 					const lastName = response.last_name;
 					const userRole = response.user.role;
 					const userId=response.user.id;
 
+					if (userRole === "doctor" || userRole === "patient") {
+						try {
+							const fcmToken = await requestNotificationPermissionAndRetrieveToken();
+							if (fcmToken) {
+								await sendTokenToServer(fcmToken);
+							}
+						} catch (error) {
+							console.error("Error handling FCM token:", error);
+						}
+					}
 					if (userRole === "admin") {
 						navigate("/admin");
 					

@@ -1,4 +1,5 @@
-import { messaging, getToken } from "./Firebase-config"; 
+import { messaging } from './FirbaseNotifications-config';
+import { getToken } from 'firebase/messaging';
 
 export const requestNotificationPermissionAndRetrieveToken = async () => {
     if (!messaging) {
@@ -13,10 +14,32 @@ export const requestNotificationPermissionAndRetrieveToken = async () => {
             return;
         }
 
-        const fcm_token = await getToken(messaging, { vapidKey: "BN8h0qLxpg6hYB0kiZSzpLrjQPsfpTinxuhw653tMMNt90Np9im2rEzzit0BBykTnaCvdSW9D6UEI3juJmfmRIw" });
-        console.log("FCM Token:", fcm_token);
-        return fcm_token;
+        const fcmToken = await getToken(messaging, { vapidKey: "YOUR_VAPID_KEY" });
+        console.log("FCM Token:", fcmToken);
+
+        if (fcmToken) {
+            await sendTokenToServer(fcmToken);
+        }
+
+        return fcmToken;
     } catch (err) {
         console.error("Error during notification permission request:", err);
+    }
+};
+
+const sendTokenToServer = async (token) => {
+    try {
+        const response = await fetch('/save-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ fcmToken: token }),
+        });
+
+        const data = await response.json();
+        console.log('Token sent to server:', data);
+    } catch (error) {
+        console.error('Error sending token to server:', error);
     }
 };

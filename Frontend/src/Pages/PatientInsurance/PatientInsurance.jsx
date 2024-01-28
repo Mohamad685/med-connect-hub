@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import OptionsBox from "../../Components/Options/Options";
 import fetchHelper from "../../Components/Functions/FetchFunction";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
-import './PatientInsurance.css';
+import "./PatientInsurance.css";
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
@@ -83,9 +83,10 @@ function PatientInsurance() {
 
 	const updateStatus = async (status, approvalId) => {
 		const url = `/insurance-request/${approvalId}/update-status`;
-		const data = { status: status };
 		try {
+			const data = { status: status };
 			const response = await fetchHelper.post(url, data);
+
 			console.log("Status updated successfully", response);
 			navigate("/insurance-page");
 			setPatient(null);
@@ -93,7 +94,6 @@ function PatientInsurance() {
 			setLabResults(null);
 			setPrescriptions(null);
 			setSymptoms(null);
-			
 		} catch (error) {
 			console.error("Failed to update status", error);
 		}
@@ -103,13 +103,13 @@ function PatientInsurance() {
 		<>
 			<div className="insurance-reg-page">
 				<div className="validation-result-sec">
-				<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
-				<PreviewBox
-					title={`AI Response`}
-					text={validationResult || "No Response"}
-					width={"13rem"}
-					height={"15rem"}
-					textPosition={"text-top"}
+					<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
+					<PreviewBox
+						title={`AI Response`}
+						text={validationResult || "No Response"}
+						width={"13rem"}
+						height={"15rem"}
+						textPosition={"text-top"}
 					/>
 				</div>
 				<div className="insurance-reg-form">

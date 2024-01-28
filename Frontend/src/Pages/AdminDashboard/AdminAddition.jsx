@@ -14,7 +14,7 @@ import {
 import fetchHelper from "../../Components/Functions/FetchFunction";
 
 const AdminUsers = () => {
-	const roles = ["patient", "doctor", "insurance"];
+	const roles = [ "doctor", "insurance"];
 	const [validationErrors, setValidationErrors] = useState({});
 	const [users, setUsers] = useState([]);
 	const [previewPic, setPreviewPic] = useState(null);
@@ -268,7 +268,6 @@ const AdminUsers = () => {
 						/>
 					</Box>
 				)}
-				{newUser.role === "patient" && <></>}
 				{newUser.role === "insurance" && (
 					<Box sx={{ gridColumn: "1 / -1" }}>
 						<Divider sx={{ borderColor: "#41597b", my: 2 }} />
