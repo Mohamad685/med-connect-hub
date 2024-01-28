@@ -15,7 +15,6 @@ class InsuranceApprovalController extends Controller
 
     public function updateStatus(Request $request, $approvalId)
     {
-        \Log::info('Update status request received', ['approvalId' => $approvalId, 'request' => $request->all()]);
 
         $validated = $request->validate([
             'status' => 'required|in:Accepted,Rejected',
@@ -24,8 +23,6 @@ class InsuranceApprovalController extends Controller
         $status = $validated['status'];
         $approval = $this->insuranceApprovalService->updateApprovalStatus($approvalId, $status);
         
-        \Log::info('Approval status updated', ['approval' => $approval]);
-
         return response()->json(['message' => 'Insurance approval status updated', 'approval' => $approval]);
     }
 }

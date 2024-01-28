@@ -17,4 +17,9 @@ public function patient()
 public function doctor()
 {
     return $this->belongsTo(Doctor::class, 'doctor_id');
-}}
+}
+public function insuranceApprovals()
+    {
+        return $this->hasMany(InsuranceApproval::class, 'medication_histories_id');
+    }
+}

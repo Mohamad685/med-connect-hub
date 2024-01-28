@@ -31,4 +31,8 @@ class InsuranceCompany extends Model
 {
     return $this->belongsTo(User::class, 'user_id');
 }
+public function insuranceApprovals()
+    {
+        return $this->hasMany(InsuranceApproval::class, 'insurance_company_id');
+    }
 }

@@ -17,4 +17,8 @@ class MedicalHistory extends Model
     {
         return $this->belongsTo(Doctor::class, 'doctor_id');
     }
+    public function insuranceApprovals()
+    {
+        return $this->hasMany(InsuranceApproval::class, 'medical_histories_id');
+    }
 }
