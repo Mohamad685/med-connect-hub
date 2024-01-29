@@ -5,6 +5,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import "./PatientInsurance.css";
+import OpenAIApi from 'openai';
+
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
@@ -15,71 +17,65 @@ function PatientInsurance() {
 	const [patient, setPatient] = useState({});
 	const [validationResult, setValidationResult] = useState("");
 	const [approvalId, setApprovalId] = useState(null);
+	const [chatHistory, setChatHistory] = useState([]);
+
 	const navigate = useNavigate();
 
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
 	}`.trim();
 
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			const validationResponse = await fetchHelper.post(
+	// 				`/validate-diagnosis/${patientId}`
+	// 			);
+	// 			if (validationResponse) {
+	// 				setValidationResult(validationResponse.text);
+	// 			} else {
+	// 				setValidationResult("No Response");
+	// 			}
+	// 		} catch (error) {
+	// 			console.error("Failed to fetch validation result", error);
+	// 			setValidationResult("No Response");
+	// 		}
+	// 	};
+
+	// 	if (patientId) fetchData();
+	// }, [patientId]);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			try {
-				const validationResponse = await fetchHelper.post(
-					`/validate-diagnosis/${patientId}`
-				);
-				if (validationResponse) {
-					setValidationResult(validationResponse.text);
-				} else {
-					setValidationResult("No Response");
-				}
-			} catch (error) {
-				console.error("Failed to fetch validation result", error);
-				setValidationResult("No Response");
+		  try {
+			if (patientId) {
+			  const [patientData, labResultsResponse, diagnosesResponse, prescriptionsResponse, symptomsResponse] = await Promise.all([
+				fetchHelper.get(`/insurance/${patientId}`),
+				fetchHelper.get(`/insurance/${patientId}/lab-results`),
+				fetchHelper.get(`/insurance/${patientId}/diagnosis`),
+				fetchHelper.get(`/insurance/${patientId}/prescriptions`),
+				fetchHelper.get(`/insurance/${patientId}/symptoms`),
+			  ]);
+	  
+			  if (patientData) {
+				setPatient(patientData);
+				setApprovalId(patientData.approvalId);
+			  } else {
+				setPatient(null);
+			  }
+			  setLabResults(labResultsResponse.length ? labResultsResponse : null);
+			  setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
+			  setPrescriptions(prescriptionsResponse.length ? prescriptionsResponse : null);
+			  setSymptoms(symptomsResponse.length ? symptomsResponse : null);
 			}
+		  } catch (error) {
+			console.error("Failed to fetch patient data", error);
+		  }
 		};
-
+	  
 		if (patientId) fetchData();
-	}, [patientId]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const patientData = await fetchHelper.get(`/insurance/${patientId}`);
-				if (patientData) {
-					setPatient(patientData);
-					setApprovalId(patientData.approvalId);
-				} else {
-					setPatient(null);
-				}
-
-				const labResultsResponse = await fetchHelper.get(
-					`/insurance/${patientId}/lab-results`
-				);
-				setLabResults(labResultsResponse.length ? labResultsResponse : null);
-
-				const diagnosesResponse = await fetchHelper.get(
-					`/insurance/${patientId}/diagnosis`
-				);
-				setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
-
-				const prescriptionsResponse = await fetchHelper.get(
-					`/insurance/${patientId}/prescriptions`
-				);
-				setPrescriptions(
-					prescriptionsResponse.length ? prescriptionsResponse : null
-				);
-
-				const symptomsResponse = await fetchHelper.get(
-					`/insurance/${patientId}/symptoms`
-				);
-				setSymptoms(symptomsResponse.length ? symptomsResponse : null);
-			} catch (error) {
-				console.error("Failed to fetch patient data", error);
-			}
-		};
-
-		if (patientId) fetchData();
-	}, [patientId]);
+	  }, [patientId]);
+	  
 
 	const updateStatus = async (status, approvalId) => {
 		const url = `/insurance-request/${approvalId}/update-status`;
@@ -101,6 +97,54 @@ function PatientInsurance() {
 		}
 	};
 
+	const createPrompt = () => {
+		const labResultsText = labResults.map(result => result.result).join(", ");
+		const symptomsText = symptoms.map(symptom => symptom.symptom_description).join(", ");
+		const diagnosesText = diagnoses.map(diagnosis => diagnosis.diagnosis_description).join(", ");
+		const prescriptionsText = prescriptions.map(prescription => prescription.medication_description).join(", ");
+	
+		return `Given the lab results: ${labResultsText}, and symptoms: ${symptomsText}, is the diagnosis: ${diagnosesText}, and the prescriptions: ${prescriptionsText} correct? Answer by Yes or No with small and brief justification`;
+	};
+	
+    useEffect(() => {
+		const callOpenAI = async () => {
+			if (labResults.length && symptoms.length && diagnoses.length && prescriptions.length) {
+				const prompt = createPrompt(); 
+	
+				try {
+					console.log("OpenAI API Key:", import.meta.env.VITE_OPENAI_API_KEY);
+					const openai = new OpenAIApi({
+						apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+						dangerouslyAllowBrowser: true // Add this line for frontend testing
+
+					});
+	
+					const response = await openai.chat.completions.create({
+						model: "gpt-4",
+						messages: [{ role: "assistant", content: prompt }],
+						max_tokens: 300,
+						temperature: 0.2
+					});
+					console.log("OpenAI Response:", response);
+
+	
+					if (response && response.choices && response.choices.length > 0 && response.choices[0].message && response.choices[0].message.content) {
+						const aiResponse = response.choices[0].message.content;
+						setValidationResult(aiResponse);
+					} else {
+						console.error("Invalid or unexpected response structure from OpenAI", response);
+						setValidationResult("Invalid or unexpected response structure from OpenAI");
+					}
+				} catch (error) {
+					console.error("Error in getting response from OpenAI", error);
+					setValidationResult("Failed to get AI response");
+				}
+			}
+		};
+	
+		callOpenAI();
+	}, [labResults, symptoms, diagnoses, prescriptions]); // Dependency array
+	
 	return (
 		<>
 			<div className="insurance-reg-page">
@@ -110,7 +154,7 @@ function PatientInsurance() {
 						title={`AI Response`}
 						text={validationResult || "No Response"}
 						width={"13rem"}
-						height={"15rem"}
+						height={"auto"}
 						textPosition={"text-top"}
 					/>
 				</div>

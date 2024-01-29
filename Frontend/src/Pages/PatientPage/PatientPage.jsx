@@ -67,10 +67,10 @@ function PatientPreview() {
 	function formatLabResults(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>
-					{item.result} <span style={{ marginRight: "30rem" }}></span>
-					{formatDate(item.created_at)}
-				</li>
+				<li className="info" key={index}>
+						<div>{item.result}{" "}</div>
+						<span>{formatDate(item.created_at)}</span>
+					</li>
 			));
 		}
 		return <li>No lab results available</li>;
@@ -79,11 +79,10 @@ function PatientPreview() {
 	function formatDiagnosis(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>
-					{item.diagnosis_description}{" "}
-					<span style={{ marginRight: "30rem" }}></span>
-					{formatDate(item.created_at)}
-				</li>
+				<li className="info" key={index}>
+						<div>{item.diagnosis_description}{" "}</div>
+						<span>{formatDate(item.created_at)}</span>
+					</li>
 			));
 		}
 		return <li>No Diagnosis available</li>;
@@ -92,11 +91,10 @@ function PatientPreview() {
 	function formatPrescription(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>
-					{item.medication_description}{" "}
-					<span style={{ marginRight: "30rem" }}></span>
-					{formatDate(item.created_at)}
-				</li>
+				<li className="info" key={index}>
+						<div>{item.medication_description}{" "}</div>
+						<span>{formatDate(item.created_at)}</span>
+					</li>
 			));
 		}
 		return <li>No Prescriptions available</li>;
@@ -105,11 +103,10 @@ function PatientPreview() {
 	function formatSymptom(data) {
 		if (Array.isArray(data)) {
 			return data.map((item, index) => (
-				<li key={index}>
-					{item.symptom_description}{" "}
-					<span style={{ marginRight: "30rem" }}></span>
-					{formatDate(item.created_at)}
-				</li>
+					<li className="info" key={index}>
+						<div>{item.symptom_description}{" "}</div>
+						<span>{formatDate(item.created_at)}</span>
+					</li>
 			));
 		}
 		return <li>No Symptoms Found</li>;
@@ -123,33 +120,32 @@ function PatientPreview() {
 				<p className="patient-name">
 					{firstName} {lastName}
 				</p>
-				<div className="patient-preview-section1">
-					<div className="patient-preview-boxes">
-						<PreviewBox
-							width={"48rem"}
-							height={"auto"}
-							title={"Lab Results:"}
-							text={formatLabResults(labResults)}
-						/>
-						<PreviewBox
-							width={"48rem"}
-							height={"auto"}
-							title={"Symptoms"}
-							text={formatSymptom(symptoms)}
-						/>
-						<PreviewBox
-							width={"48rem"}
-							height={"auto"}
-							title={"Diagnosis"}
-							text={formatDiagnosis(diagnosis)}
-						/>
-						<PreviewBox
-							width={"48rem"}
-							height={"auto"}
-							title={"Prescription"}
-							text={formatPrescription(prescriptions)}
-						/>
-					</div>
+				<div className="patient-preview-boxes">
+					<PreviewBox
+						width={"53rem"}
+						height={"auto"}
+						title={"Lab Results:"}
+						text={formatLabResults(labResults)}
+					/>
+					<PreviewBox
+						width={"53rem"}
+						height={"auto"}
+						title={"Symptoms"}
+						text={formatSymptom(symptoms)}
+					/>
+					<PreviewBox
+						width={"53rem"}
+						height={"auto"}
+						title={"Diagnosis"}
+						text={formatDiagnosis(diagnosis)}
+					/>
+
+					<PreviewBox
+						width={"53rem"}
+						height={"auto"}
+						title={"Prescription"}
+						text={formatPrescription(prescriptions)}
+					/>
 				</div>
 			</div>
 		</div>

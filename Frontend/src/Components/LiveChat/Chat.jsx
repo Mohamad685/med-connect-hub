@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DoctorList from './DoctorsList';
+
 import { initializeApp } from "firebase/app";
 import {
 	getFirestore,
@@ -17,6 +19,7 @@ import {
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import "./Chat.css";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDazaPi2lgPM_pcHEaRe_uuz2JgAk1cxX4",
@@ -70,7 +73,7 @@ function ChatRoom({ auth }) {
 
 	return (
 		<>
-			<div>
+			<div className="chat-messages">
 				{messages &&
 					messages.map((msg) => (
 						<ChatMessage
@@ -82,10 +85,15 @@ function ChatRoom({ auth }) {
 			</div>
 			<form onSubmit={sendMessage}>
 				<input
+					className="input-field"
 					value={formValue}
 					onChange={(e) => setFormValue(e.target.value)}
 				/>
-				<button type="submit">Submit</button>
+				<button
+					className="send-button"
+					type="submit">
+					Submit
+				</button>
 			</form>
 		</>
 	);
@@ -110,13 +118,25 @@ function ChatMessage({ message, auth }) {
 
 const Chat = () => {
 	const [user] = useAuthState(auth);
+	const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+	const handleSelectDoctor = (doctorId) => {
+        setSelectedDoctor(doctorId);
+    };
+
 
 	return (
-		<div>
-			{user ? <ChatRoom auth={auth} /> : <SignIn auth={auth} />}
-			<SignOut auth={auth} />
-		</div>
-	);
+		<div className="chat-system">
+            {user ? (
+                <>
+                    <DoctorList onSelectDoctor={handleSelectDoctor} />
+                    {selectedDoctor && <ChatRoom auth={auth} doctorId={selectedDoctor} />}
+                </>
+            ) : (
+                <SignIn auth={auth} />
+            )}
+        </div>
+    );
 };
 
 export default Chat;
