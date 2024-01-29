@@ -11,6 +11,8 @@ class openAIValidationController extends Controller
     public function validateDiagnosis($id)
     {
         $apiKey = env('OPENAI_SECRET_KEY');
+        \Log::info("API Key present: " . ($apiKey ? 'Yes' : 'No'));
+
         $baseUrl = 'https://api.openai.com';
         $patient = Patient::with(['labResults', 'symptoms', 'diagnosis', 'prescriptions'])->find($id);
         if (!$patient) {
@@ -39,11 +41,22 @@ class openAIValidationController extends Controller
         try {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $apiKey,
+
             ])->post("$baseUrl/v1/completions", [
                         'model' => 'gpt-3.5-turbo-instruct',
                         'prompt' => $prompt,
-                        'max_tokens' => 3000,
+                        'max_tokens' => 2000,
+                        
                     ]);
+                    \Log::info("Request to OpenAI", [
+                        'headers' => ['Authorization' => 'Bearer ' . $apiKey],
+                        'body' => [
+                            'model' => 'gpt-3.5-turbo-instruct',
+                            'prompt' => $prompt,
+                            'max_tokens' => 2000
+                        ]
+                        ]);
+                    
 
             if ($response->successful()) {
                 $result = $response->json();               
@@ -55,6 +68,9 @@ class openAIValidationController extends Controller
                 return response()->json(['error' => 'Failed to get a response from OpenAI'], 500);
             }
         } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+
+
             return response()->json(['error' => 'An error occurred processing the OpenAI request'], 500);
         }
     }

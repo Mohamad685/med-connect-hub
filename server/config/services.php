@@ -32,7 +32,7 @@ return [
     ],
 
     'openai' => [
-        'api_key' => env('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'),
+        'api_key' => env('services.openai.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'),
     ],
 
 ];
