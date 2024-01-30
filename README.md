@@ -83,10 +83,13 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 | [![Admin](./readme/Screenshots/admin.png)](https://www.youtube.com/watch?v=frrJjd08q7c) |
 
-### For Videos:
+### Doctor Video:
 |[![Doctor 2](./readme/Screenshots/doctor2.png)](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)
+
+### Insurance Video:
 [![Insurance Page ](./readme/Screenshots/insurance.png)](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
 
+### Patient Video:
 [![patient](./readme/Screenshots/patient.png)(https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p)]|
 
 
