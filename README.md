@@ -55,7 +55,7 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 
 ### Mockups
-| Home screen  | Doctor Page 1 | Doctor Page 2 | Doctor Page 2 |Patient Page |Insurance Page |Admin Page 2 |Admin Page 2 |
+
 | ![Landing](./readme/mockups/Home%20Page.jpg) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.jpg) | ![Doctor2](./readme/mockups/Doctor%202%20Page.jpg) |![Patient Page](./readme/mockups/Patient%20Page.jpg) |![Insurance Page](./readme/mockups/Insurance%20Page.jpg) |![Admin](./readme/mockups/Admin%20Page.jpg) |
 
 <br><br>
@@ -75,7 +75,11 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Websites Screens (Web)
 
-| ![Landing gif](./readme/Screenshots/home%20(2).gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient (watch video)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p) |![Doctor](./readme/Screenshots/Doctor1.png) |![Doctor 2](./readme/Screenshots/doctor2.png) |![Doctor 2](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)| ![Insurance Page](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
+| ![Landing gif](./readme/Screenshots/home%20(2).gif)| ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png)|
+![Landing 2](./readme/Screenshots/services.png) | ![Landing](./readme/Screenshots/Characteristics.png) |
+![patient (watch video)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p) |![Doctor](./readme/Screenshots/Doctor1.png) 
+|![Doctor 2](./readme/Screenshots/doctor2.png) |![Doctor 2](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)|
+![Insurance Page](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
 
 ### Admin Screens (Web)
 
