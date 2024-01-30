@@ -126,17 +126,17 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
 
-* Common Password Unit Test: Is to prevent the user from creating  a  password is to common and very usabale.
+- Common Password Unit Test: Is to prevent the user from creating  a  password is to common and very usabale.
 
 | ![Common Password Test](./readme/Unit%20Tests/common%20-pass%20test.png)
 
-* User cannot login more than 5 times within a minute test, this test ensures that the user cannot have 5 unsuccessful logins in a min.
+- User cannot login more than 5 times within a minute test, this test ensures that the user cannot have 5 unsuccessful logins in a min.
 | ![5 unsuccessful logins](./readme/Unit%20Tests/unsuccessful-logins.png)
 
-* Successful login test resets the login attempt , where the successfull login will remove the unsuccessful  attempts.
+- Successful login test resets the login attempt , where the successfull login will remove the unsuccessful  attempts.
 | ![successful logins](./readme/Unit%20Tests/successful-resets%20unsucsseful.png)
 
-*Successful login test to assure a user successful login.
+- Successful login test to assure a user successful login.
 | ![successful logins](./readme/Unit%20Tests/successfull-login.png)
 
 <br><br>
