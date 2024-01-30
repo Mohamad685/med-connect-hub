@@ -26,10 +26,14 @@ function PatientRegister() {
 	const [phoneNumberError, setPhoneNumberError] = useState("");
 	const [formMessage, setFormMessage] = useState("");
 	const [insurance_company_id, setInsuranceCompanyId] = useState("");
-
-
+	const [passwordError, setPasswordError] = useState("");
 
 	const navigate = useNavigate();
+
+	// const handlePasswordChange = (e) => {
+	// 	setpassword(e.target.value);
+	// 	validatePassword(e.target.value);
+	// };
 
 	const clearFields = () => {
 		setUsername("");
@@ -44,11 +48,48 @@ function PatientRegister() {
 		setMedicalHistory("");
 		setMedicationHistory("");
 		setProfilePic("null");
-		setInsuranceCompanyId('');
+		setInsuranceCompanyId("");
 	};
+
+	const commonPasswords = [
+		"123456",
+		"password",
+		"12345678",
+		"qwerty",
+		"12345",
+		"123456789",
+		"letmein",
+		"1234567",
+		"football",
+		"iloveyou",
+		"admin",
+		"welcome",
+		"monkey",
+		"login",
+		"abc123",
+		"starwars",
+		"123123",
+		"dragon",
+		"passw0rd",
+		"master",
+	];
+
+	const handlePasswordChange = (e) => {
+		const newPassword = e.target.value;
+		setpassword(newPassword);
+
+		if (commonPasswords.includes(newPassword)) {
+			setPasswordError(
+				"The password is common. Please choose a strong password."
+			);
+		} else {
+			setPasswordError("");
+		}
+	};
+
 	const handleProfilePicSelect = (file) => {
-        setProfilePic(file);
-    };
+		setProfilePic(file);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -66,7 +107,14 @@ function PatientRegister() {
 		formData.append("insurance_company_id", insurance_company_id);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
-		
+
+		if (commonPasswords.includes(password)) {
+			setPasswordError(
+				"The chosen password is too common. Please choose a different password."
+			);
+			return;
+		}
+
 		if (profile_pic) {
 			formData.append("profile_pic", profile_pic);
 		}
@@ -82,10 +130,19 @@ function PatientRegister() {
 				id: response.patient.id,
 				firstName: response.patient.first_name,
 				lastName: response.patient.last_name,
-				profilePic: response.profile_pic_url
+				profilePic: response.profile_pic_url,
 			};
 
-			navigate(`/diagnosis/${patientId}`, { state: { patientData: { ...patientData, profilePic: response.profile_picture_url }, description, medication_description } });
+			navigate(`/diagnosis/${patientId}`, {
+				state: {
+					patientData: {
+						...patientData,
+						profilePic: response.profile_picture_url,
+					},
+					description,
+					medication_description,
+				},
+			});
 		} catch (error) {
 			console.error("Error during registration:", error);
 			const errors = error.response?.data?.errors;
@@ -119,7 +176,7 @@ function PatientRegister() {
 			<div className="patient-reg-form">
 				<p className="patient-reg-title">Create Patient Profile</p>
 				<div className="patient-reg-section1">
-					<ProfilePic onFileSelect={handleProfilePicSelect}/>
+					<ProfilePic onFileSelect={handleProfilePicSelect} />
 					<div className="patient-form-input">
 						{formMessage && <p className="error">{formMessage}</p>}
 
@@ -142,6 +199,7 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Password"}
 							/>
+							{passwordError && <p className="error">{passwordError}</p>}
 
 							<InputForm
 								type="text"
@@ -180,7 +238,7 @@ function PatientRegister() {
 								placeholder={"Phone Number"}
 							/>
 							{phoneNumberError && <p className="error">{phoneNumberError}</p>}
-							
+
 							<InputForm
 								type="number"
 								value={insurance_company_id}

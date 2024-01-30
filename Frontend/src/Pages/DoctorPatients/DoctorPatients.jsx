@@ -16,6 +16,11 @@ function DoctorPatients() {
 
 	const navigate = useNavigate();
 
+	const createImageUrl = (filePath) => {
+		const filename = filePath.split("\\").pop();
+		return `http://localhost:8000/storage/profile_pictures/${filename}`;
+	};
+
 	const handleSearch = (e) => {
 		const query = e.target.value;
 		setSearchQuery(query);
@@ -26,8 +31,10 @@ function DoctorPatients() {
 		}
 	};
 
-	const handlePatientClick = (patientId) => {
-		navigate(`/diagnosis/${patientId}`);
+	const handlePatientClick = (patientId, profilePic) => {
+		navigate(`/diagnosis/${patientId}`, {
+			state: { patientData: { profilePic } },
+		});
 	};
 
 	useEffect(() => {
@@ -35,8 +42,7 @@ function DoctorPatients() {
 		const firstName = localStorage.getItem("firstName");
 		const lastName = localStorage.getItem("lastName");
 		const fullName = `${firstName} ${lastName}`;
-		console.log(storedDoctorId);
-		console.log(doctorId);
+
 		if (storedDoctorId) {
 			setDoctorId(storedDoctorId);
 		}
@@ -67,12 +73,12 @@ function DoctorPatients() {
 		<>
 			<div className="insurance-reg-page">
 				<div className="options-search">
-					<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
+					<OptionsBox margin={"1rem 2rem 2rem 2rem"} />
 					<InputForm
 						type="text"
-						placeholder="Search patients by name"
+						placeholder="Search by name"
 						value={searchQuery}
-						onChange={handleSearch}
+						onChange={handleSearch}  
 					/>
 				</div>
 
@@ -85,23 +91,21 @@ function DoctorPatients() {
 							? patients.map((patient, index) => (
 									<div
 										key={index}
-										className="patient-preview">
+										className="patient-card"
+										onClick={() => handlePatientClick(patient.id)}>
 										<img
-											src={patient.profile_pic}
+											src={createImageUrl(patient.profile_pic)}
 											alt="Profile"
 											className="patient-profile-pic"
 										/>
-										<div
-											onClick={() => handlePatientClick(patient.id)}
-											className="patient-info">
+										<div className="patient-info">
 											<p>
-												<strong>Name:</strong> {patient.first_name}{" "}
-												{patient.last_name}
+												{patient.first_name} {patient.last_name}
 											</p>
-											<p>
+											<p className="patient-detail">
 												<strong>Age:</strong> {patient.age}
 											</p>
-											<p>
+											<p className="patient-detail">
 												<strong>Phone:</strong> {patient.phone_number}
 											</p>
 										</div>

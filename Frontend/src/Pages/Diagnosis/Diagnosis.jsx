@@ -14,7 +14,7 @@ function Diagnosis() {
 	const [message, setMessage] = useState("");
 	const { patientId } = useParams();
 	const [patient, setPatient] = useState({});
-	const { profilePic } = location.state?.patientData || {};
+	const { patientData } = location.state || {};
 	const [symptomError, setSymptomError] = useState(false);
 	const [labResultError, setLabResultError] = useState(false);
 	const [diagnosisError, setDiagnosisError] = useState(false);
@@ -31,7 +31,11 @@ function Diagnosis() {
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
 	}`.trim();
-
+	
+	const createImageUrl = (filePath) => {
+		const filename = filePath.split("\\").pop();
+		return `http://localhost:8000/storage/profile_pictures/${filename}`;
+	};
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -49,18 +53,18 @@ function Diagnosis() {
 					const processedMedicalHistories =
 						patientHistoriesResponse.medicalHistories.map((history) => ({
 							description: history.description,
-							dateHumanized: `On: ${format(
+							dateHumanized: `${format(
 								parseISO(history.created_at),
-								"dd-MMMM-yyyy"
+								"dd-MM-yyyy"
 							)}`,
 						}));
 
 					const processedMedicationHistories =
 						patientHistoriesResponse.medicationHistories.map((history) => ({
 							medication_description: history.medication_description,
-							dateHumanized: `On: ${format(
+							dateHumanized: `${format(
 								parseISO(history.created_at),
-								"dd-MMMM-yyyy"
+								"dd-MM-yyyy"
 							)}`,
 						}));
 
@@ -113,7 +117,10 @@ function Diagnosis() {
 				console.error("Error during data submission:", error);
 			}
 		}
+
+		
 	};
+
 	return (
 		<div className="patient-page">
 			<div>
@@ -129,7 +136,7 @@ function Diagnosis() {
 					<div className="pic-box pic-box-preview">
 						{patient.user && patient.user.profile_picture ? (
 							<img
-								src={patient.user.profile_picture}
+								src={createImageUrl(patient.user.profile_picture)}
 								alt={`${patient.first_name} ${patient.last_name}`}
 								className="profile-pic"
 							/>
@@ -145,7 +152,12 @@ function Diagnosis() {
 								height="auto"
 								width="48rem"
 								title={"Medical Histories"}
-								text={`${history.description} ${history.dateHumanized}`}
+								text={
+									<div className="info">
+										<span>{history.description}</span>{" "}
+										<span>{history.dateHumanized}</span>
+									</div>
+								}
 							/>
 						))}
 
@@ -155,7 +167,12 @@ function Diagnosis() {
 								height="auto"
 								width="48rem"
 								title={"Medication Histories"}
-								text={`${history.medication_description} ${history.dateHumanized}`} // Assuming you want to show the date here
+								text={
+									<div className="info">
+										<span>{history.medication_description}</span>{" "}
+										<span>{history.dateHumanized}</span>
+									</div>
+								}
 							/>
 						))}
 

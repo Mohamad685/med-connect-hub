@@ -5,8 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import PreviewBox from "../../Components/PreviewBox/PreviewBox";
 import "./PatientInsurance.css";
-import OpenAIApi from 'openai';
-
+import OpenAIApi from "openai";
 
 function PatientInsurance() {
 	const [labResults, setLabResults] = useState([]);
@@ -20,6 +19,11 @@ function PatientInsurance() {
 	const [chatHistory, setChatHistory] = useState([]);
 
 	const navigate = useNavigate();
+
+	const formatDate = (dateString) => {
+		const options = { day: "numeric", month: "numeric", year: "numeric" };
+		return new Date(dateString).toLocaleDateString(undefined, options);
+	};
 
 	const patientFullName = `${patient.first_name || ""} ${
 		patient.last_name || ""
@@ -47,35 +51,42 @@ function PatientInsurance() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-		  try {
-			if (patientId) {
-			  const [patientData, labResultsResponse, diagnosesResponse, prescriptionsResponse, symptomsResponse] = await Promise.all([
-				fetchHelper.get(`/insurance/${patientId}`),
-				fetchHelper.get(`/insurance/${patientId}/lab-results`),
-				fetchHelper.get(`/insurance/${patientId}/diagnosis`),
-				fetchHelper.get(`/insurance/${patientId}/prescriptions`),
-				fetchHelper.get(`/insurance/${patientId}/symptoms`),
-			  ]);
-	  
-			  if (patientData) {
-				setPatient(patientData);
-				setApprovalId(patientData.approvalId);
-			  } else {
-				setPatient(null);
-			  }
-			  setLabResults(labResultsResponse.length ? labResultsResponse : null);
-			  setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
-			  setPrescriptions(prescriptionsResponse.length ? prescriptionsResponse : null);
-			  setSymptoms(symptomsResponse.length ? symptomsResponse : null);
+			try {
+				if (patientId) {
+					const [
+						patientData,
+						labResultsResponse,
+						diagnosesResponse,
+						prescriptionsResponse,
+						symptomsResponse,
+					] = await Promise.all([
+						fetchHelper.get(`/insurance/${patientId}`),
+						fetchHelper.get(`/insurance/${patientId}/lab-results`),
+						fetchHelper.get(`/insurance/${patientId}/diagnosis`),
+						fetchHelper.get(`/insurance/${patientId}/prescriptions`),
+						fetchHelper.get(`/insurance/${patientId}/symptoms`),
+					]);
+
+					if (patientData) {
+						setPatient(patientData);
+						setApprovalId(patientData.approvalId);
+					} else {
+						setPatient(null);
+					}
+					setLabResults(labResultsResponse.length ? labResultsResponse : null);
+					setDiagnoses(diagnosesResponse.length ? diagnosesResponse : null);
+					setPrescriptions(
+						prescriptionsResponse.length ? prescriptionsResponse : null
+					);
+					setSymptoms(symptomsResponse.length ? symptomsResponse : null);
+				}
+			} catch (error) {
+				console.error("Failed to fetch patient data", error);
 			}
-		  } catch (error) {
-			console.error("Failed to fetch patient data", error);
-		  }
 		};
-	  
+
 		if (patientId) fetchData();
-	  }, [patientId]);
-	  
+	}, [patientId]);
 
 	const updateStatus = async (status, approvalId) => {
 		const url = `/insurance-request/${approvalId}/update-status`;
@@ -93,47 +104,65 @@ function PatientInsurance() {
 		} catch (error) {
 			console.error("Failed to update status", error);
 			navigate("/insurance-page");
-
 		}
 	};
 
 	const createPrompt = () => {
-		const labResultsText = labResults.map(result => result.result).join(", ");
-		const symptomsText = symptoms.map(symptom => symptom.symptom_description).join(", ");
-		const diagnosesText = diagnoses.map(diagnosis => diagnosis.diagnosis_description).join(", ");
-		const prescriptionsText = prescriptions.map(prescription => prescription.medication_description).join(", ");
-	
+		const labResultsText = labResults.map((result) => result.result).join(", ");
+		const symptomsText = symptoms
+			.map((symptom) => symptom.symptom_description)
+			.join(", ");
+		const diagnosesText = diagnoses
+			.map((diagnosis) => diagnosis.diagnosis_description)
+			.join(", ");
+		const prescriptionsText = prescriptions
+			.map((prescription) => prescription.medication_description)
+			.join(", ");
+
 		return `Given the lab results: ${labResultsText}, and symptoms: ${symptomsText}, is the diagnosis: ${diagnosesText}, and the prescriptions: ${prescriptionsText} correct? Answer by Yes or No with small and brief justification`;
 	};
-	
-    useEffect(() => {
+
+	useEffect(() => {
 		const callOpenAI = async () => {
-			if (labResults.length && symptoms.length && diagnoses.length && prescriptions.length) {
-				const prompt = createPrompt(); 
-	
+			if (
+				labResults.length &&
+				symptoms.length &&
+				diagnoses.length &&
+				prescriptions.length
+			) {
+				const prompt = createPrompt();
+
 				try {
-					console.log("OpenAI API Key:", import.meta.env.VITE_OPENAI_API_KEY);
 					const openai = new OpenAIApi({
 						apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-						dangerouslyAllowBrowser: true // Add this line for frontend testing
-
+						dangerouslyAllowBrowser: true,
 					});
-	
+
 					const response = await openai.chat.completions.create({
 						model: "gpt-4",
 						messages: [{ role: "assistant", content: prompt }],
 						max_tokens: 300,
-						temperature: 0.2
+						temperature: 0.2,
 					});
 					console.log("OpenAI Response:", response);
 
-	
-					if (response && response.choices && response.choices.length > 0 && response.choices[0].message && response.choices[0].message.content) {
+					if (
+						response &&
+						response.choices &&
+						response.choices.length > 0 &&
+						response.choices[0].message &&
+						response.choices[0].message.content
+					) {
 						const aiResponse = response.choices[0].message.content;
 						setValidationResult(aiResponse);
 					} else {
-						console.error("Invalid or unexpected response structure from OpenAI", response);
-						setValidationResult("Invalid or unexpected response structure from OpenAI");
+						console.error(
+							"Invalid or unexpected response structure from OpenAI",
+							response
+						);
+						setValidationResult(
+							"Invalid or unexpected response structure from OpenAI"
+						);
 					}
 				} catch (error) {
 					console.error("Error in getting response from OpenAI", error);
@@ -141,10 +170,10 @@ function PatientInsurance() {
 				}
 			}
 		};
-	
+
 		callOpenAI();
-	}, [labResults, symptoms, diagnoses, prescriptions]); // Dependency array
-	
+	}, [labResults, symptoms, diagnoses, prescriptions]);
+
 	return (
 		<>
 			<div className="insurance-reg-page">
@@ -171,7 +200,12 @@ function PatientInsurance() {
 									<PreviewBox
 										key={index}
 										title={`Lab Results`}
-										text={result.result}
+										text={
+											<div className="info">
+												<span>{result.result}</span>
+												<span>{formatDate(result.created_at)}</span>
+											</div>
+										}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}
@@ -182,7 +216,16 @@ function PatientInsurance() {
 									<PreviewBox
 										key={index}
 										title={`Symptoms`}
-										text={symptom.symptom_description}
+										text={
+											<div className="info">
+												<span className="symptom-description">
+													{symptom.symptom_description}
+												</span>
+												<span className="symptom-date">
+													{formatDate(symptom.created_at)}
+												</span>
+											</div>
+										}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}
@@ -193,7 +236,12 @@ function PatientInsurance() {
 									<PreviewBox
 										key={index}
 										title={`Diagnoses`}
-										text={diagnosis.diagnosis_description}
+										text={
+											<div className="info">
+												<span>{diagnosis.diagnosis_description}</span>
+												<span>{formatDate(diagnosis.created_at)}</span>
+											</div>
+										}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}
@@ -204,7 +252,12 @@ function PatientInsurance() {
 									<PreviewBox
 										key={index}
 										title={`Prescriptions`}
-										text={prescription.medication_description}
+										text={
+											<div className="info">
+												<span>{prescription.medication_description}</span>
+												<span>{formatDate(prescription.created_at)}</span>
+											</div>
+										}
 										width={"56rem"}
 										height={"8rem"}
 										textPosition={"text-top"}

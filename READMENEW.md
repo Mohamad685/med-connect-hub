@@ -64,7 +64,7 @@ As an insurance company I can give acceptance and rejection according to it for 
 - Insert ER Diagram here
 
 | ER Diagram  |
-| ![ER Diagram](./readme/mockups/Home%20Page.png) |
+| ![ER Diagram](./readme/ER%20Diagram/med-hub.png) |
 
 <br><br>
 
