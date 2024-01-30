@@ -21,7 +21,6 @@ function NavBar() {
 			await fetchHelper.post('/logout');
 		
 		} catch (error) {
-			console.error('Logout failed:', error);
 		}finally{
 			localStorage.clear();
 			setAuthenticated(false);

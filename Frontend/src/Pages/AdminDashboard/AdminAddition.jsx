@@ -76,7 +76,6 @@ const AdminUsers = () => {
 	const handleAddUser = async (e) => {
 		e.preventDefault();
 		if (!validate()) {
-			console.error("Validation failed:", validationErrors);
 			return;
 		}
 
@@ -104,7 +103,6 @@ const AdminUsers = () => {
 			});
 			setValidationErrors({});
 		} catch (error) {
-			console.error("Failed to add User:", error);
 		}
 	};
 

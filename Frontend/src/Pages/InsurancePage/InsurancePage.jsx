@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import OptionsBox from "../../Components/Options/Options";
 import "./InsurancePage.css";
 import fetchHelper from "../../Components/Functions/FetchFunction";
-import InputForm from "../../Components/Input/Input";
 import Fuse from "fuse.js";
 
 
@@ -52,7 +50,6 @@ function InsurancePage() {
 				const fuse = new Fuse(response, options);
 				setPatientSearch(fuse);
 			} catch (error) {
-				console.error("Failed to fetch patient data", error);
 				setPatients([]);
 			}
 		};
@@ -74,8 +71,7 @@ function InsurancePage() {
 	return (
 		<>
 			<div className="insurance-reg-page">
-					<OptionsBox margin={"7rem 2rem 2rem 2rem"} />
-				<div className="insurance-reg-form">
+				<div className="insurance-reg-form-1">
 					<p className="insurance-reg-title">{insuranceName}</p>
 					<div className="patient-list">
 						{searchQuery === ""

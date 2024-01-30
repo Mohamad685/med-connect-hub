@@ -20,9 +20,6 @@ function PatientPreview() {
 		const patientId = localStorage.getItem("patientId");
 		setFirstName(fName);
 		setLastName(lName);
-		console.log("LOcal Storage:", localStorage);
-		console.log(`Token: ${localStorage.getItem("token")}`);
-		console.log(`Patient ID: ${patientId}`);
 
 		const fetchData = async () => {
 			try {
@@ -46,7 +43,6 @@ function PatientPreview() {
 				);
 				setPrescriptions(prescriptionsData);
 			} catch (error) {
-				console.error("Error fetching data:", error);
 			}
 		};
 

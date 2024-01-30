@@ -45,7 +45,6 @@ function Diagnosis() {
 				} else {
 					setPatient(null);
 				}
-				console.log(patientData);
 				const patientHistoriesResponse = await fetchHelper.get(
 					`/patient-histories?patient_id=${patientId}`
 				);
@@ -72,10 +71,8 @@ function Diagnosis() {
 						medicalHistories: processedMedicalHistories,
 						medicationHistories: processedMedicationHistories,
 					});
-					console.log(patientHistoriesResponse);
 				}
 			} catch (error) {
-				console.error("Failed to fetch patient data", error);
 			}
 		};
 
@@ -110,11 +107,10 @@ function Diagnosis() {
 		) {
 			try {
 				const response = await fetchHelper.post("/diagnosis", formData);
-				console.log("Data submitted successfully:", response);
 				setMessage("Form submitted successfully!");
 				navigate("/patients-doctor");
 			} catch (error) {
-				console.error("Error during data submission:", error);
+
 			}
 		}
 

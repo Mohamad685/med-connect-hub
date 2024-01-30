@@ -39,7 +39,6 @@ function OptionsBox({ margin }) {
 					<Link to="/live-chat">Live Chat</Link>
 				</>
 			)}
-			<Link to="/send-email">Send Email</Link>
 		</div>
 	);
 }

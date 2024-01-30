@@ -143,7 +143,6 @@ function PatientRegister() {
 		try {
 			const response = await fetchHelper.post("/register-patient", formData);
 
-			console.log("Registration successful:", response);
 			clearFields();
 			setFormMessage(response.message);
 
@@ -165,7 +164,6 @@ function PatientRegister() {
 				},
 			});
 		} catch (error) {
-			console.error("Error during registration:", error);
 			const errors = error.response?.data?.errors;
 			if (errors) {
 				const errorList = (

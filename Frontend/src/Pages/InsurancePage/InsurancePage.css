@@ -3,7 +3,7 @@
 	width: 98.7vw;
 	display: flex;
 	flex-direction: row;
-    padding-bottom: 2rem;
+	padding-bottom: 2rem;
 	margin: auto;
 }
 
@@ -21,84 +21,89 @@
 .insurance-reg-form {
 	display: flex;
 	flex-direction: column;
-    gap: 2rem;
-    
+	gap: 2rem;
+}
+
+.insurance-reg-form-1 {
+	margin-left: 11rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 .insurance-reg-input {
 	display: grid;
-	grid-template-columns: repeat(2,1fr);
-    grid-template-rows:repeat(4,1fr); 
-    margin-left: 2rem;
-    grid-column-gap: 1.5rem ;
-    grid-row-gap: 1.25rem;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	margin-left: 2rem;
+	grid-column-gap: 1.5rem;
+	grid-row-gap: 1.25rem;
 }
 
-.insurance-reg-section1{
-    display: flex;
-    flex-direction: row;
+.insurance-reg-section1 {
+	display: flex;
+	flex-direction: row;
 }
 
-.insurance-form-input{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.insurance-form-input {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
 }
 
-.address-input-div{
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.address-input-div {
+	margin-left: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
-.insurance-button-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 6rem;
-
+.insurance-button-div {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 6rem;
 }
 
-.insurance-button{
-    background-color: #E34242;
-    width: 20rem;
-    height: 2.5rem;
-    font-size: 1.15rem;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 700;
+.insurance-button {
+	background-color: #e34242;
+	width: 20rem;
+	height: 2.5rem;
+	font-size: 1.15rem;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 700;
 }
 
-.insurance-button-style{
-    background-color: #E34242;
+.insurance-button-style {
+	background-color: #e34242;
 }
-.insurance-button-style:hover{
-    background-color: #c84747;
+.insurance-button-style:hover {
+	background-color: #c84747;
 }
 
 .patient-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .patient-preview {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .patient-profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
 
 .patient-info {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
 }

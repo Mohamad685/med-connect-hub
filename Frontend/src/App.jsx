@@ -70,7 +70,6 @@ function App() {
 			
 			{!isAdminRoute && !liveChat && <Footer />}
 
-			{/* <Chat/> */}
 		</>
 	);
 }

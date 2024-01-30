@@ -23,7 +23,6 @@ const AdminInsurance = () => {
 				const data = await fetchHelper.get("/admin/insurance");
 				setInsurance(data);
 			} catch (error) {
-				console.error("Failed to fetch Insurance:", error);
 			}
 		};
 
@@ -35,7 +34,6 @@ const AdminInsurance = () => {
 			await fetchHelper.delete(`/insurance/${id}`);
 			setInsurance((prev) => prev.filter((insurance) => insurance.id !== id));
 		} catch (error) {
-			console.error("Failed to remove insurance:", error);
 		}
 	};
 

@@ -1,73 +1,88 @@
-.chat-container {
-width: 35rem ;
+/* Container for the chat system */
+.chat-system {
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Chat container */
+  .chat-container {
+    width: 35rem;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     height: 25rem;
     margin-top: 7rem;
-}
-
-.chat-message {
+  }
+  
+  /* Chat messages */
+  .chat-message {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-}
-
-.message {
+  }
+  
+  .message {
     padding: 10px;
     border-radius: 20px;
     margin: 5px 0;
     max-width: 70%;
     word-break: break-word;
-}
-
-.sent {
+  }
+  
+  .sent {
     align-self: flex-end;
-    background-color: #DCF8C6;
-}
-
-.received {
+    background-color: #dcf8c6;
+  }
+  
+  .received {
     align-self: flex-start;
-    background-color: #ECECEC;
-}
-
-.message p {
+    background-color: #ececec;
+  }
+  
+  .message p {
     margin: 0;
     padding: 0;
-}
-
-.message img {
+  }
+  
+  .message img {
     max-height: 40px;
     border-radius: 50%;
-}
-
-form {
+  }
+  
+  /* Form for sending messages */
+  form {
     display: flex;
     margin-top: 20px;
-}
-
-form input {
+  }
+  
+  form input {
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 20px;
     margin-right: 10px;
-}
-
-form button {
+  }
+  
+  form button {
     padding: 10px 20px;
     background-color: #0b93f6;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-}
-
-form button:hover {
+  }
+  
+  form button:hover {
     background-color: #0a83d8;
-}
-
-.sign-in-button, .sign-out-button {
+  }
+  
+  /* Sign-in and Sign-out buttons */
+  .sign-in-button,
+  .sign-out-button {
     padding: 10px 20px;
     background-color: #0b93f6;
     color: white;
@@ -75,64 +90,56 @@ form button:hover {
     border-radius: 20px;
     cursor: pointer;
     margin: 10px 0;
-}
-
-.sign-in-button:hover, .sign-out-button:hover {
+  }
+  
+  .sign-in-button:hover,
+  .sign-out-button:hover {
     background-color: #0a83d8;
-}
-
-
-
-.chat-messages {
+  }
+  
+  /* Chat messages container with scroll */
+  .chat-messages {
     padding: 10px;
-    height: 300px; 
-    overflow-y:auto; 
-}
-
-
-.chat-input {
+    height: 300px;
+    overflow-y: auto;
+  }
+  
+  /* Chat input field and send button */
+  .chat-input {
     display: flex;
     margin-top: 10px;
-}
-
-.input-field {
+  }
+  
+  .input-field {
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 20px;
     margin-right: 10px;
-}
-
-.send-button {
+  }
+  
+  .send-button {
     padding: 10px 20px;
     background-color: #0b93f6;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-}
-
-.send-button:hover {
+  }
+  
+  .send-button:hover {
     background-color: #0a83d8;
-}
-
-.chat-system{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center
-
-}
-
-.clients-list{
+  }
+  
+  /* Clients list */
+  .clients-list {
     max-width: 800px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    background-color:#5677a0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #5677a0;
     height: 25rem;
     width: 15rem;
     padding: 2rem;
     margin-top: 7rem;
-   
-}
-
+  }
+  

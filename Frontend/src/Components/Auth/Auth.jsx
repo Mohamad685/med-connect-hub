@@ -4,8 +4,6 @@ import "./Auth.css";
 import InputForm from "../Input/Input";
 import Button from "../Button/Button";
 import fetchHelper from "../Functions/FetchFunction";
-import { requestNotificationPermissionAndRetrieveToken} from '../../Firebase/Notifications/NotificantionManager';
-import sendTokenToServer from "../../Firebase/Notifications/SendTokenServer";
 
 function Login({ onClose }) {
 	const [email, setEmail] = useState("");
@@ -52,7 +50,6 @@ function Login({ onClose }) {
 					email,
 					password,
 				});
-				console.log(response);
 				const userName = response.user.user_name;
 
 				const token = response.authorisation && response.authorisation.token;
@@ -65,16 +62,7 @@ function Login({ onClose }) {
 					const userRole = response.user.role;
 					const userId=response.user.id;
 
-					if (userRole === "doctor" || userRole === "patient") {
-						try {
-							const fcmToken = await requestNotificationPermissionAndRetrieveToken();
-							if (fcmToken) {
-								await sendTokenToServer(fcmToken);
-							}
-						} catch (error) {
-							console.error("Error handling FCM token:", error);
-						}
-					}
+					
 					if (userRole === "admin") {
 						navigate("/admin");
 					
@@ -88,7 +76,6 @@ function Login({ onClose }) {
 						localStorage.setItem("userRole",userRole);
 						localStorage.setItem("userId",userId);
 
-					console.log(doctorId)
 						navigate("/patients-doctor");
 					
 					} else if (userRole === "patient") {
@@ -111,16 +98,13 @@ function Login({ onClose }) {
 						localStorage.setItem("InsuranceId", insuranceId);
 						navigate("/insurance-page");
 					} else {
-						console.log("Unknown user role:", userRole);
 					}
 					setEmail("");
 					setPassword("");
 					handleClose();
 				} else {
-					console.log("Token not found in the response");
 				}
 			} catch (error) {
-				console.error(error);
 				setEmailError("Invalid email or password.");
 				setPasswordError("Invalid email or password.");
 			}

@@ -31,7 +31,6 @@ const AdminDoctors = () => {
 				const data = await fetchHelper.get("/admin/doctors");
 				setDoctors(data);
 			} catch (error) {
-				console.error("Failed to fetch Doctors:", error);
 			}
 		};
 
@@ -43,7 +42,6 @@ const AdminDoctors = () => {
 			await fetchHelper.delete(`/doctor/${id}`);
 			setDoctors((prev) => prev.filter((doctor) => doctor.id !== id));
 		} catch (error) {
-			console.error("Failed to remove doctor:", error);
 		}
 	};
 

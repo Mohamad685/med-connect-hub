@@ -61,7 +61,6 @@ function DoctorPatients() {
 				});
 				setPatientSearch(fuse);
 			} catch (error) {
-				console.error("Failed to fetch patient data", error);
 				setPatients([]);
 			}
 		};

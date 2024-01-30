@@ -69,12 +69,12 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 
 ### Websites Screens (Web)
-| ---| ---| ---|
+
 | ![Landing gif](./readme/Screenshots/home.gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) |
 | ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.gif) | ![Doctor](./readme/Screenshots/Doctor.gif) |![Doctor](./readme/Screenshots/Doctor1.png) |![insurance](./readme/Screenshots/insurance.gif) |
 
 ### Admin Screens (Web)
-| ---| ---| ---|
+
 | ![Admin](./readme/Screenshots/admin-dashboard.gif) |
 <br><br>
 
@@ -88,7 +88,7 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 - After understanding the AI's capabilities, I created this prompt to elicit the most accurate and useful responses. The AI will validate the lab results  and symptoms against the prescriptions and diagnosis to help the insurance company decide whether to accept or reject the request.
 
-| ---| ---| ---|
+
 | ![OpenAI prompt](./readme/OpenAI/OpenAI.png) |
 <br><br>
 
@@ -110,7 +110,7 @@ As an insurance company, I will notify the patients and the doctors about the re
    1. Connect to the EC2 instance using SSH.
    2. Clone the server repository from GitHub.
    3. Install the required dependencies and libraries using sudo apt-get install.
-   | ---| ---| ---|
+   
 | ![AWS Codes](./readme/OpenAI/server.png) |
    4. To run the server:
       * sudo service apache2 start.
@@ -125,6 +125,19 @@ As an insurance company, I will notify the patients and the doctors about the re
 ###  Precision in Development: Harnessing the Power of Unit Testing:
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+
+* Common Password Unit Test: Is to prevent the user from creating  a  password is to common and very usabale.
+
+| ![Common Password Test](./readme/Unit%20Tests/common%20-pass%20test.png)
+
+* User cannot login more than 5 times within a minute test, this test ensures that the user cannot have 5 unsuccessful logins in a min.
+| ![5 unsuccessful logins](./readme/Unit%20Tests/unsuccessful-logins.png)
+
+* Successful login test resets the login attempt , where the successfull login will remove the unsuccessful  attempts.
+| ![successful logins](./readme/Unit%20Tests/successful-resets%20unsucsseful.png)
+
+*Successful login test to assure a user successful login.
+| ![successful logins](./readme/Unit%20Tests/successfull-login.png)
 
 <br><br>
 

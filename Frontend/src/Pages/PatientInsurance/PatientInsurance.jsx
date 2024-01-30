@@ -81,7 +81,6 @@ function PatientInsurance() {
 					setSymptoms(symptomsResponse.length ? symptomsResponse : null);
 				}
 			} catch (error) {
-				console.error("Failed to fetch patient data", error);
 			}
 		};
 
@@ -94,7 +93,6 @@ function PatientInsurance() {
 			const data = { status: status };
 			const response = await fetchHelper.post(url, data);
 
-			console.log("Status updated successfully", response);
 			navigate("/insurance-page");
 			setPatient(null);
 			setDiagnoses(null);
@@ -102,7 +100,6 @@ function PatientInsurance() {
 			setPrescriptions(null);
 			setSymptoms(null);
 		} catch (error) {
-			console.error("Failed to update status", error);
 			navigate("/insurance-page");
 		}
 	};
@@ -159,7 +156,6 @@ function PatientInsurance() {
 						max_tokens: 300,
 						temperature: 0.2,
 					});
-					console.log("OpenAI Response:", response);
 
 					if (
 						response &&
@@ -171,16 +167,12 @@ function PatientInsurance() {
 						const aiResponse = response.choices[0].message.content;
 						setValidationResult(aiResponse);
 					} else {
-						console.error(
-							"Invalid or unexpected response structure from OpenAI",
-							response
-						);
+						
 						setValidationResult(
 							"Invalid or unexpected response structure from OpenAI"
 						);
 					}
 				} catch (error) {
-					console.error("Error in getting response from OpenAI", error);
 					setValidationResult("Failed to get AI response");
 				}
 			}
