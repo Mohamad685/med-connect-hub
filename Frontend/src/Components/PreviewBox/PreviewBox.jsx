@@ -10,7 +10,7 @@ function PreviewBox({ height, width, title, text }) {
     return (
         <div style={previewStyles} className="preview-style">
             {title && <h3>{title}</h3>}
-            {text && <p>{text}</p>}     
+            {text && <div className="scrollable-text">{text}</div>}     
         </div>
     );
 }

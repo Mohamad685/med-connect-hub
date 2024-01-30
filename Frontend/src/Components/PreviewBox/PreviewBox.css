@@ -4,3 +4,8 @@
     padding: 1rem;
     background-color: white;
 }
+
+.scrollable-text {
+    max-height: 90%;
+    overflow-y:auto; 
+}

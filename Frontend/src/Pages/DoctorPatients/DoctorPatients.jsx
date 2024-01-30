@@ -72,7 +72,7 @@ function DoctorPatients() {
 		<>
 			<div className="insurance-reg-page">
 				<div className="options-search">
-					<OptionsBox margin={"1rem 2rem 2rem 2rem"} />
+					<OptionsBox margin={"-14rem 2rem 2rem 2rem"} />
 					<InputForm
 						type="text"
 						placeholder="Search by name"

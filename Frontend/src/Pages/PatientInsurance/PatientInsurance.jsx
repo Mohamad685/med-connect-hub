@@ -124,13 +124,13 @@ function PatientInsurance() {
 			Proposed Diagnosis: ${diagnosesText}
 			Suggested Prescriptions: ${prescriptionsText}
 		  
-			\nBased on the provided lab results and observed symptoms, 
+			\n Based on the provided lab results and observed symptoms, 
 			please confirm if the proposed diagnosis and suggested prescriptions are accurate. 
-			Provide a 'Yes' or 'No' response followed by a concise and brief justification for your answer.
+			Provide a 'Yes' or 'No' response followed by a concise and short justification for your answer.
 			
-			\nHighlight any potential mismatches or confirm the suitability of the medication.
+			\n Highlight in one to two sentences any potential mismatches or confirm the suitability of the medication.
 			
-			\n Assess the risk factors involved with the current diagnosis and prescribed treatment. 
+			\n Assess the risk factors in one to two sentences involved with the current diagnosis and prescribed treatment. 
 			How might these factors influence the decision of an insurance company regarding coverage?`;
 	};
 
@@ -153,7 +153,7 @@ function PatientInsurance() {
 					const response = await openai.chat.completions.create({
 						model: "gpt-4",
 						messages: [{ role: "assistant", content: prompt }],
-						max_tokens: 300,
+						max_tokens: 1500,
 						temperature: 0.2,
 					});
 
@@ -190,7 +190,7 @@ function PatientInsurance() {
 						title={`AI Response`}
 						text={validationResult || "No Response"}
 						width={"13rem"}
-						height={"auto"}
+						height={"20rem"}
 						textPosition={"text-top"}
 					/>
 				</div>

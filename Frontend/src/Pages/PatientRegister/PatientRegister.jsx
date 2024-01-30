@@ -20,7 +20,7 @@ function PatientRegister() {
 	const [address, setAddress] = useState("");
 	const [description, setMedicalHistory] = useState("");
 	const [medication_description, setMedicationHistory] = useState("");
-	const [profile_pic, setProfilePic] = useState(null);
+	const [profile_pic, setProfilePic] = useState('null');
 	const [userNameError, setUserNameError] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [phoneNumberError, setPhoneNumberError] = useState("");
@@ -153,7 +153,7 @@ function PatientRegister() {
 				profilePic: response.profile_pic_url,
 			};
 
-			navigate(`/diagnosis/${patientId}`, {
+			navigate(`/diagnosis/${response.patient.id}`, {
 				state: {
 					patientData: {
 						...patientData,
