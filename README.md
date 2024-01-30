@@ -77,14 +77,19 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 | ![Landing gif](./readme/Screenshots/home%20(2).gif)| ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png)|
 ![Landing 2](./readme/Screenshots/services.png) | ![Landing](./readme/Screenshots/Characteristics.png) |
-![patient (watch video)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p) |
 ![Doctor](./readme/Screenshots/Doctor1.png) 
-|[![Doctor 2](./readme/Screenshots/doctor2.png)](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)
-[![Insurance Page ](./readme/Screenshots/insurance.png)](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
 
 ### Admin Screens (Web)
 
 | [![Admin](./readme/Screenshots/admin.png)](https://www.youtube.com/watch?v=frrJjd08q7c) |
+
+### For Videos:
+|[![Doctor 2](./readme/Screenshots/doctor2.png)](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)
+[![Insurance Page ](./readme/Screenshots/insurance.png)](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
+
+[![patient](./readme/Screenshots/patient.png)(https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p)]|
+
+
 <br><br>
 
 
