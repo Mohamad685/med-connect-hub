@@ -70,8 +70,7 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Websites Screens (Web)
 
-| ![Landing gif](./readme/Screenshots/home.gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) |
-| ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.mp4) | ![Doctor](./readme/Screenshots/Doctor.gif) |![Doctor](./readme/Screenshots/Doctor1.png) |![insurance](./readme/Screenshots/insurance.mp4) |
+| ![Landing gif]() | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.mp4) |![Doctor](./readme/Screenshots/Doctor1.png) |![insurance](./readme/Screenshots/insurance.mp4) |
 
 ### Admin Screens (Web)
 
