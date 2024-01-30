@@ -75,11 +75,11 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Websites Screens (Web)
 
-| ![Landing gif](./readme/Screenshots/home%20(2).gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.mp4) |![Doctor](./readme/Screenshots/Doctor1.png) |![Doctor 2](./readme/Screenshots/doctor2.png) |
+| ![Landing gif](./readme/Screenshots/home%20(2).gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient (watch video)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p) |![Doctor](./readme/Screenshots/Doctor1.png) |![Doctor 2](./readme/Screenshots/doctor2.png) |![Doctor 2](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)| ![Insurance Page](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|
 
 ### Admin Screens (Web)
 
-| ![Admin]() |
+| ![Admin](https://youtu.be/frrJjd08q7c?si=S9bC9n3XdQ61njPK) |
 <br><br>
 
 
