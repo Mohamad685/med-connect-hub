@@ -51,7 +51,6 @@ As an insurance company I can give acceptance and rejection according to it for 
 
 ### Mockups
 | Home screen  | Doctor Page 1 | Doctor Page 2 | Doctor Page 2 |Patient Page |Insurance Page |Admin Page 2 |Admin Page 2 |
-| ---| ---| ---|
 | ![Landing](./readme/mockups/Home%20Page.png) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.png) | ![Doctor2](./readme/mockups/Doctor%202%20Page.png) |![Patient Page](./readme/mockups/Patient%20Page.png) |![Insurance Page](./readme/mockups/Insurance%20Page.png) |![Insurance Page](./readme/mockups/Admin%20Page.png) |![Insurance Page](./readme/mockups/Admin%20Pop-Up%20Model.png) |
 
 <br><br>
@@ -60,11 +59,8 @@ As an insurance company I can give acceptance and rejection according to it for 
 <img src="./readme/title5.svg"/>
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
-
-- Insert ER Diagram here
-
 | ER Diagram  |
-| ![ER Diagram](./readme/mockups/Home%20Page.png) |
+| ![ER Diagram](./readme/ER%20Diagram/med-hub.png) |
 
 <br><br>
 
