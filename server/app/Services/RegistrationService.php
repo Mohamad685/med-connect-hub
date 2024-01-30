@@ -11,23 +11,55 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class RegistrationService 
+class RegistrationService
 {
 
     public function registerUser($data)
     {
+
+        $commonPasswords = [
+            'password',
+            '123456',
+            '12345678',
+            '123456789',
+            'qwerty',
+            'abc123',
+            'football',
+            '123123',
+            'monkey',
+            '1234567',
+            'letmein',
+            '111111',
+            '1234',
+            '12345',
+            '000000',
+            'password1',
+            'qwerty123',
+            'admin',
+            'welcome',
+            'iloveyou'
+        ];
+
         $validatedData = Validator::make($data, [
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => [
+                'required',
+                'min:6',
+                function ($attribute, $value, $fail) use ($commonPasswords) {
+                    if (in_array($value, $commonPasswords)) {
+                        return $fail($attribute . ' is a common password.');
+                    }
+                },
+            ],
             'role' => 'required|in:doctor,patient,insurance',
             'user_name' => 'required|string|unique:users',
             'profile_pic' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ])->validate(); 
+        ])->validate();
 
         $user = new User;
         $user->email = $validatedData['email'];
         $user->password = Hash::make($validatedData['password']);
-        $user->role = $validatedData['role']; 
+        $user->role = $validatedData['role'];
         $user->user_name = $validatedData['user_name'];
         $user->save();
 
@@ -113,7 +145,7 @@ class RegistrationService
         return response()->json(['message' => 'User registered successfully.']);
     }
 
-    
+
     public function updateDoctor(array $doctorData, $id)
     {
         try {
@@ -166,7 +198,7 @@ class RegistrationService
 
             $patient->phone_number = $patientData['phone_number'] ?? $patient->phone_number;
             $patient->address = $patientData['address'] ?? $patient->address;
-            $patient->insurance_company_id =$patientData['insurance_company_id']?? $patient->insurance_company_id;
+            $patient->insurance_company_id = $patientData['insurance_company_id'] ?? $patient->insurance_company_id;
             $patient->save();
 
             return ['success' => true, 'message' => 'Patient updated successfully!'];

@@ -2,24 +2,35 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
-
     public function login(Request $request)
     {
+        $key = 'login-attempts:' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Too many login attempts. Please try again later.',
+            ], 429);
+        }
+
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
+            RateLimiter::hit($key, 60);
             return response()->json([
                 'status' => 'error',
                 'message' => 'Unauthorized',
             ], 401);
         }
+
+        RateLimiter::clear($key);
 
         $user = Auth::user();
         $patient_id = null;
