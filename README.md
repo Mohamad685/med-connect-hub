@@ -51,7 +51,7 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Mockups
 | Home screen  | Doctor Page 1 | Doctor Page 2 | Doctor Page 2 |Patient Page |Insurance Page |Admin Page 2 |Admin Page 2 |
-| ![Landing](./readme/mockups/Home%20Page.png) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.png) | ![Doctor2](./readme/mockups/Doctor%202%20Page.png) |![Patient Page](./readme/mockups/Patient%20Page.png) |![Insurance Page](./readme/mockups/Insurance%20Page.png) |![Admin](./readme/mockups/Admin%20Page.png) |
+| ![Landing](./readme/mockups/Home%20Page.jpg) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.jpg) | ![Doctor2](./readme/mockups/Doctor%202%20Page.jpg) |![Patient Page](./readme/mockups/Patient%20Page.jpg) |![Insurance Page](./readme/mockups/Insurance%20Page.jpg) |![Admin](./readme/mockups/Admin%20Page.jpg) |
 
 <br><br>
 
