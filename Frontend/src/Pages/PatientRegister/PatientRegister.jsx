@@ -27,6 +27,20 @@ function PatientRegister() {
 	const [formMessage, setFormMessage] = useState("");
 	const [insurance_company_id, setInsuranceCompanyId] = useState("");
 	const [passwordError, setPasswordError] = useState("");
+	const [customGender, setCustomGender] = useState("");
+	const [showCustomGenderInput, setShowCustomGenderInput] = useState(false);
+
+	const handleGenderChange = (e) => {
+		const selectedGender = e.target.value;
+		setGender(selectedGender);
+
+		if (selectedGender === "Other") {
+			setShowCustomGenderInput(true);
+		} else {
+			setShowCustomGenderInput(false);
+			setCustomGender(""); // Reset custom gender if not 'Other'
+		}
+	};
 
 	const navigate = useNavigate();
 
@@ -107,6 +121,13 @@ function PatientRegister() {
 		formData.append("insurance_company_id", insurance_company_id);
 		formData.append("description", description);
 		formData.append("medication_description", medication_description);
+
+		if (gender === "Other" && customGender) {
+			formData.append("gender", customGender);
+		  } else {
+			formData.append("gender", gender);
+		  }
+
 
 		if (commonPasswords.includes(password)) {
 			setPasswordError(
@@ -247,14 +268,27 @@ function PatientRegister() {
 								length={"2rem"}
 								placeholder={"Insurance Company no."}
 							/>
-							<InputForm
-								type="text"
+							<select
 								value={gender}
-								onChange={(e) => setGender(e.target.value)}
+								onChange={handleGenderChange}
 								width={"23rem"}
-								length={"2rem"}
-								placeholder={"Gender"}
-							/>
+								length={"2rem"}>
+								<option value="">Select Gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Other">Other</option>
+							</select>
+
+							{showCustomGenderInput && (
+								<InputForm
+									type="text"
+									value={customGender}
+									onChange={(e) => setCustomGender(e.target.value)}
+									width={"23rem"}
+									length={"2rem"}
+									placeholder={"Custom Gender"}
+								/>
+							)}
 
 							<InputForm
 								type="number"
@@ -270,7 +304,7 @@ function PatientRegister() {
 								value={address}
 								onChange={(e) => setAddress(e.target.value)}
 								width={"48rem"}
-								length={"8rem"}
+								length={"4rem"}
 								textAlign={"text-top"}
 								placeholder={"Address"}
 							/>
@@ -279,7 +313,7 @@ function PatientRegister() {
 								value={description}
 								onChange={(e) => setMedicalHistory(e.target.value)}
 								width={"48rem"}
-								length={"18rem"}
+								length={"8rem"}
 								placeholder={"Medical History"}
 							/>
 
@@ -287,7 +321,7 @@ function PatientRegister() {
 								value={medication_description}
 								onChange={(e) => setMedicationHistory(e.target.value)}
 								width={"48rem"}
-								length={"18rem"}
+								length={"8rem"}
 								placeholder={"Medication History"}
 							/>
 

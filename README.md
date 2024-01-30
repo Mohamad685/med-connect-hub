@@ -23,8 +23,9 @@ As a doctor, I can reply to patients messages in live chat.
 
 - Insurance company:
 
-As an insurance company, I will control the diagnosis through AI
+As an insurance company, I will control the request through AI
 As an insurance company I can give acceptance and rejection according to it for all the 3 parties, so i can control any cheating from any party.
+As an insurance company, I will notify the patients and the doctors about the request result.
 <br><br>
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
@@ -37,7 +38,6 @@ As an insurance company I can give acceptance and rejection according to it for 
 
 - To send live chat, the websites uses the [firebase](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
   - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Noto Sans Mono"](https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
 <!-- UI UX -->
@@ -51,14 +51,13 @@ As an insurance company I can give acceptance and rejection according to it for 
 
 ### Mockups
 | Home screen  | Doctor Page 1 | Doctor Page 2 | Doctor Page 2 |Patient Page |Insurance Page |Admin Page 2 |Admin Page 2 |
-| ![Landing](./readme/mockups/Home%20Page.png) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.png) | ![Doctor2](./readme/mockups/Doctor%202%20Page.png) |![Patient Page](./readme/mockups/Patient%20Page.png) |![Insurance Page](./readme/mockups/Insurance%20Page.png) |![Insurance Page](./readme/mockups/Admin%20Page.png) |![Insurance Page](./readme/mockups/Admin%20Pop-Up%20Model.png) |
+| ![Landing](./readme/mockups/Home%20Page.png) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.png) | ![Doctor2](./readme/mockups/Doctor%202%20Page.png) |![Patient Page](./readme/mockups/Patient%20Page.png) |![Insurance Page](./readme/mockups/Insurance%20Page.png) |![Admin](./readme/mockups/Admin%20Page.png) |
 
 <br><br>
 
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
 
-###  Architecting Data Excellence: Innovative Database Design Strategies:
 | ER Diagram  |
 | ![ER Diagram](./readme/ER%20Diagram/med-hub.png) |
 
@@ -69,20 +68,14 @@ As an insurance company I can give acceptance and rejection according to it for 
 <img src="./readme/title6.svg"/>
 
 
-### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
-| ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+### Websites Screens (Web)
+| ---| ---| ---|
+| ![Landing gif](./readme/Screenshots/home.gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) |
+| ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.gif) | ![Doctor](./readme/Screenshots/Doctor.gif) |![Doctor](./readme/Screenshots/Doctor1.png) |![insurance](./readme/Screenshots/insurance.gif) |
 
 ### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-
+| ![Admin](./readme/Screenshots/admin-dashboard.gif) |
 <br><br>
 
 
@@ -93,6 +86,10 @@ As an insurance company I can give acceptance and rejection according to it for 
 
 - This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
 
+- After understanding the AI's capabilities, I created this prompt to elicit the most accurate and useful responses. The AI will validate the lab results  and symptoms against the prescriptions and diagnosis to help the insurance company decide whether to accept or reject the request.
+
+| ---| ---| ---|
+| ![OpenAI prompt](./readme/OpenAI/OpenAI.png) |
 <br><br>
 
 <!-- AWS Deployment -->
@@ -101,6 +98,24 @@ As an insurance company I can give acceptance and rejection according to it for 
 ###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
 
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+
+* Deployment of Laravel server using Amazon Web Services (AWS) Elastic Compute Cloud (EC2). AWS EC2 provides scalable and flexible virtual servers in the cloud.
+
+* Utilizing EC2 for deploying applications offers several advantages, including the ability to easily scale resources based on demand, and benefit from AWS's global infrastructure for improved performance and reliability.
+
+* EC2 instances are configurable, allowing users to choose the instance type, operating system, and storage options that best suit their application requirements. This flexibility and scalability make AWS EC2 a popular choice for hosting and running diverse workloads, including web servers, applications, and databases.
+
+* To host the server , the following steps were taken:
+   
+   1. Connect to the EC2 instance using SSH.
+   2. Clone the server repository from GitHub.
+   3. Install the required dependencies and libraries using sudo apt-get install.
+   | ---| ---| ---|
+| ![AWS Codes](./readme/OpenAI/server.png) |
+   4. To run the server:
+      * sudo service apache2 start.
+
+
 
 <br><br>
 
@@ -117,30 +132,35 @@ As an insurance company I can give acceptance and rejection according to it for 
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Med-Hub locally, follow these steps:
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+
+* Install Node.js on your computer.
+
+* Install PHP on your computer.
+
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [example](https://example.com)
+1. Get a free API Key at [openai.com](https://platform.openai.com/account/api-keys)
 2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
+   git clone [github](https://github.com/Mohamad685/med-hub.git)
+3. Install NPM packages in the frontend file.
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Install Composer in the server.
+   ```sh
+   composer install
    ```
+4. Create a .env file and add:
+   ```js
+   const VITE_OPENAI_API_KEY = 'ENTER YOUR API';
 
-Now, you should be able to run Coffee Express locally and explore its features.
+
+Now, you should be able to run Med-Hub locally and explore its features.

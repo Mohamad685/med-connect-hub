@@ -36,7 +36,6 @@ function OptionsBox({ margin }) {
 				isDiagnosisRoute() ||
 				location.pathname === "/patients-doctor") && (
 				<>
-					<Link to="/notifications">Notifications</Link>
 					<Link to="/live-chat">Live Chat</Link>
 				</>
 			)}

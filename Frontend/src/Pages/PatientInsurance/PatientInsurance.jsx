@@ -119,7 +119,22 @@ function PatientInsurance() {
 			.map((prescription) => prescription.medication_description)
 			.join(", ");
 
-		return `Given the lab results: ${labResultsText}, and symptoms: ${symptomsText}, is the diagnosis: ${diagnosesText}, and the prescriptions: ${prescriptionsText} correct? Answer by Yes or No with small and brief justification`;
+		return `
+			Assessment Confirmation:
+		
+			Lab Results: ${labResultsText}
+			Symptoms: ${symptomsText}
+			Proposed Diagnosis: ${diagnosesText}
+			Suggested Prescriptions: ${prescriptionsText}
+		  
+			\nBased on the provided lab results and observed symptoms, 
+			please confirm if the proposed diagnosis and suggested prescriptions are accurate. 
+			Provide a 'Yes' or 'No' response followed by a concise and brief justification for your answer.
+			
+			\nHighlight any potential mismatches or confirm the suitability of the medication.
+			
+			\n Assess the risk factors involved with the current diagnosis and prescribed treatment. 
+			How might these factors influence the decision of an insurance company regarding coverage?`;
 	};
 
 	useEffect(() => {

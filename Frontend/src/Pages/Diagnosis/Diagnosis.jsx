@@ -112,7 +112,7 @@ function Diagnosis() {
 				const response = await fetchHelper.post("/diagnosis", formData);
 				console.log("Data submitted successfully:", response);
 				setMessage("Form submitted successfully!");
-				navigate("/patient-registration");
+				navigate("/patients-doctor");
 			} catch (error) {
 				console.error("Error during data submission:", error);
 			}
