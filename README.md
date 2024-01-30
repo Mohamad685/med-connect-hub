@@ -8,6 +8,11 @@
 > At the heart of Med-Hub, our mission is to streamline and enhance the healthcare experience by fostering a seamless connection between doctors, patients, and insurance companies. We believe that everyone deserves access to efficient, transparent, and comprehensive healthcare services. Our website is designed to be the bridge that links these critical components of the healthcare ecosystem.
 
 ### User Stories
+- Admin Story:
+As an admin I can easily add patients , doctors and insurance companies files.
+As an admin I can update and remove  any information about any user.
+As and admin I am the only one who can register doctors and insurance companies.
+
 - Patients Story:
 
 As a patient I can easily view my medical profile and the last investigations by doctors,diagnosis,medicines details, by dates. situation. 
@@ -70,11 +75,11 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Websites Screens (Web)
 
-| ![Landing gif]() | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.mp4) |![Doctor](./readme/Screenshots/Doctor1.png) |![insurance](./readme/Screenshots/insurance.mp4) |
+| ![Landing gif](./readme/Screenshots/home%20(2).gif) | ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png) | ![Landing 2](./readme/Screenshots/services.png) || ![Landing](./readme/Screenshots/Characteristics.png) | ![patient](./readme/Screenshots/Patient.mp4) |![Doctor](./readme/Screenshots/Doctor1.png) |![Doctor 2](./readme/Screenshots/doctor2.png) |
 
 ### Admin Screens (Web)
 
-| ![Admin](./readme/Screenshots/admin-dashboard.gif) |
+| ![Admin]() |
 <br><br>
 
 
