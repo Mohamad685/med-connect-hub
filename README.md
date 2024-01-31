@@ -56,7 +56,11 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 ### Mockups
 
-| ![Landing](./readme/mockups/Home%20Page.jpg) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.jpg) | ![Doctor2](./readme/mockups/Doctor%202%20Page.jpg) |![Patient Page](./readme/mockups/Patient%20Page.jpg) |![Insurance Page](./readme/mockups/Insurance%20Page.jpg) |![Admin](./readme/mockups/Admin%20Page.jpg) |
+|Landing                                      |Doctor Page 1                                             |Doctor page 2
+|---------------------------------------------|----------------------------------------------------------|----------------------------------------------|
+|![Landing](./readme/mockups/Home%20Page.jpg) | ![Doctor page 1](./readme/mockups/Doctor%201%20Page.jpg) | ![Doctor2](./readme/mockups/Doctor%202%20Page.jpg) |
+|Patient Page                                         |Insurance Companies Page                                 |Admin Page
+|![Patient Page](./readme/mockups/Patient%20Page.jpg) |![Insurance Page](./readme/mockups/Insurance%20Page.jpg) |![Admin](./readme/mockups/Admin%20Page.jpg) |
 
 <br><br>
 
@@ -64,8 +68,9 @@ As an insurance company, I will notify the patients and the doctors about the re
 <img src="./readme/title5.svg"/>
 
 | ER Diagram  |
+-------------------------------------------------------------------------|
 | ![ER Diagram](./readme/ER%20Diagram/med-hub.png) |
-
+-----------------------------------------------------------------
 <br><br>
 
 
@@ -74,23 +79,23 @@ As an insurance company, I will notify the patients and the doctors about the re
 
 
 ### Websites Screens (Web)
+|Landing Gif                                       |Landing 2                                                               |
+|--------------------------------------------------|------------------------------------------------------------------------|        
+|![Landing gif](./readme/Screenshots/home%20(2).gif)| ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png)|
+|Landing 3                                         |Landing 4                                                               |
+|![Landing 2](./readme/Screenshots/services.png)   |![Landing](./readme/Screenshots/Characteristics.png)                    |
+|Doctor                                            |Doctor2                                                                 |
+|![Doctor](./readme/Screenshots/Doctor1.png)       |![insurance2](./readme/Screenshots/patient%20diagnosis.png)             |
+|insurance                                         |insurance2                                                              |
+|![insurance](./readme/Screenshots/insurance%201.png)|![insurance2](./readme/Screenshots/insurance%20patient.png)           |
 
-| ![Landing gif](./readme/Screenshots/home%20(2).gif)| ![Landing 1](./readme/Screenshots/Screenshot%202024-01-30%20073744.png)|
-![Landing 2](./readme/Screenshots/services.png) | ![Landing](./readme/Screenshots/Characteristics.png) |
-![Doctor](./readme/Screenshots/Doctor1.png) 
 
-### Admin Screens (Web)
-[![Admin](./readme/Screenshots/admin.png)](https://www.youtube.com/watch?v=frrJjd08q7c)
-
-### Doctor Video:
-[![Doctor 2](./readme/Screenshots/doctor2.png)](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)
-
-### Insurance Video:
-[![Insurance Page ](./readme/Screenshots/insurance.png)](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)
-
-### Patient Video:
-[![patient](./readme/Screenshots/patient.png)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p)
-
+### Videos Click To Watch:
+|Admin                                             |Doctor                                                               |
+|--------------------------------------------------|------------------------------------------------------------------------|        
+|[![Admin  ](./readme/Screenshots/admin.png)](https://www.youtube.com/watch?v=frrJjd08q7c)|[![Doctor 2](./readme/Screenshots/doctor2.png)](https://youtu.be/F2Tao30M8MQ?si=_-SPXqnESZNB5Qgf)|
+|Insurance Page                                                                                            |Patient Page
+|[![Insurance Page ](./readme/Screenshots/insurance.png)](https://youtu.be/D5Z0jP7Vruk?si=FiQbYACE1U6xiVyv)|[![patient](./readme/Screenshots/patient.png)](https://youtu.be/xPVhy0Uazz8?si=DCPYzJ3TpL7KgP8p)|
 
 <br><br>
 
@@ -186,9 +191,16 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    composer install
    ```
-4. Create a .env file and add:
+5. Create a .env file and add:
    ```js
    const VITE_OPENAI_API_KEY = 'ENTER YOUR API';
 
+6. Run React server:
+   ```sh
+   npm run dev;
+
+7. Run Laravel server:
+   ```sh
+   php artisan serve;
 
 Now, you should be able to run Med-Hub locally and explore its features.

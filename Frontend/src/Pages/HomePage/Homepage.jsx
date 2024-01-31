@@ -163,27 +163,3 @@ function HomePage() {
 
 export default HomePage;
 
-
-
-
-// import React from 'react';
-// import writeTestData from './test'; 
-// import { Margin } from '@mui/icons-material';
-
-// const TestFirebaseComponent = () => {
-//   const handleTestClick = () => {
-//     writeTestData();
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={handleTestClick} 
-//         style={{ 
-//           marginTop: '10rem', 
-//           backgroundColor: 'black', 
-//           color: 'white'}}> Press </button>
-//     </div>
-//   );
-// };
-
-// export default TestFirebaseComponent;

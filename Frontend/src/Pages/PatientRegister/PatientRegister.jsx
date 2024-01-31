@@ -29,6 +29,7 @@ function PatientRegister() {
 	const [passwordError, setPasswordError] = useState("");
 	const [customGender, setCustomGender] = useState("");
 	const [showCustomGenderInput, setShowCustomGenderInput] = useState(false);
+    const [isPasswordValid, setIsPasswordValid] = useState(true);
 
 	const handleGenderChange = (e) => {
 		const selectedGender = e.target.value;
@@ -38,17 +39,27 @@ function PatientRegister() {
 			setShowCustomGenderInput(true);
 		} else {
 			setShowCustomGenderInput(false);
-			setCustomGender(""); // Reset custom gender if not 'Other'
+			setCustomGender("");
 		}
 	};
 
 	const navigate = useNavigate();
 
-	// const handlePasswordChange = (e) => {
-	// 	setpassword(e.target.value);
-	// 	validatePassword(e.target.value);
-	// };
+	const validatePassword = (password) => {
+		if (commonPasswords.includes(password)) {
+			setPasswordError("The password is common. Please choose a strong password.");
+setIsPasswordValid(false)		} else {
+			setPasswordError("");
+			setIsPasswordValid(true);
+		}
+	};
 
+	const handlePasswordChange = (e) => {
+		const newPassword = e.target.value;
+		setpassword(newPassword);
+		validatePassword(newPassword);
+	};
+	
 	const clearFields = () => {
 		setUsername("");
 		setpassword("");
@@ -88,18 +99,7 @@ function PatientRegister() {
 		"master",
 	];
 
-	const handlePasswordChange = (e) => {
-		const newPassword = e.target.value;
-		setpassword(newPassword);
-
-		if (commonPasswords.includes(newPassword)) {
-			setPasswordError(
-				"The password is common. Please choose a strong password."
-			);
-		} else {
-			setPasswordError("");
-		}
-	};
+	
 
 	const handleProfilePicSelect = (file) => {
 		setProfilePic(file);
@@ -129,15 +129,19 @@ function PatientRegister() {
 		  }
 
 
-		if (commonPasswords.includes(password)) {
-			setPasswordError(
-				"The chosen password is too common. Please choose a different password."
-			);
-			return;
+		  if (!isPasswordValid) {
+            return;
 		}
 
-		if (profile_pic) {
+		if (profile_pic && profile_pic !== 'null') {
 			formData.append("profile_pic", profile_pic);
+		}
+
+		if (!/^\d+$/.test(phone_number)) {
+			setPhoneNumberError("Phone number must be a valid integer.");
+			return;
+		} else {
+			setPhoneNumberError("");
 		}
 
 		try {

@@ -180,7 +180,15 @@ function PatientInsurance() {
 
 		callOpenAI();
 	}, [labResults, symptoms, diagnoses, prescriptions]);
-
+	
+	const renderItems = (items, key) => {
+        return items.map((item, index) => (
+            <div key={`${key}-${index}`} className="info">
+                <span>{item[key]}</span>
+                <span>{formatDate(item.created_at)}</span>
+            </div>
+        ));
+    };
 	return (
 		<>
 			<div className="insurance-reg-page">
@@ -203,73 +211,37 @@ function PatientInsurance() {
 					<div className="insurance-reg-section1">
 						<div className="insurance-form-input">
 							<div className="address-input-div">
-								{labResults.map((result, index) => (
-									<PreviewBox
-										key={index}
-										title={`Lab Results`}
-										text={
-											<div className="info">
-												<span>{result.result}</span>
-												<span>{formatDate(result.created_at)}</span>
-											</div>
-										}
-										width={"56rem"}
-										height={"8rem"}
-										textPosition={"text-top"}
-									/>
-								))}
+							<PreviewBox
+                                    title={`Lab Results`}
+                                    text={renderItems(labResults, 'result')}
+                                    width={"56rem"}
+                                    height={"auto"}
+                                    textPosition={"text-top"}
+                                />
 
-								{symptoms.map((symptom, index) => (
-									<PreviewBox
-										key={index}
-										title={`Symptoms`}
-										text={
-											<div className="info">
-												<span className="symptom-description">
-													{symptom.symptom_description}
-												</span>
-												<span className="symptom-date">
-													{formatDate(symptom.created_at)}
-												</span>
-											</div>
-										}
-										width={"56rem"}
-										height={"8rem"}
-										textPosition={"text-top"}
-									/>
-								))}
+                                <PreviewBox
+                                    title={`Symptoms`}
+                                    text={renderItems(symptoms, 'symptom_description')}
+                                    width={"56rem"}
+                                    height={"auto"}
+                                    textPosition={"text-top"}
+                                />
 
-								{diagnoses.map((diagnosis, index) => (
-									<PreviewBox
-										key={index}
-										title={`Diagnoses`}
-										text={
-											<div className="info">
-												<span>{diagnosis.diagnosis_description}</span>
-												<span>{formatDate(diagnosis.created_at)}</span>
-											</div>
-										}
-										width={"56rem"}
-										height={"8rem"}
-										textPosition={"text-top"}
-									/>
-								))}
+                                <PreviewBox
+                                    title={`Diagnoses`}
+                                    text={renderItems(diagnoses, 'diagnosis_description')}
+                                    width={"56rem"}
+                                    height={"auto"}
+                                    textPosition={"text-top"}
+                                />
 
-								{prescriptions.map((prescription, index) => (
-									<PreviewBox
-										key={index}
-										title={`Prescriptions`}
-										text={
-											<div className="info">
-												<span>{prescription.medication_description}</span>
-												<span>{formatDate(prescription.created_at)}</span>
-											</div>
-										}
-										width={"56rem"}
-										height={"8rem"}
-										textPosition={"text-top"}
-									/>
-								))}
+                                <PreviewBox
+                                    title={`Prescriptions`}
+                                    text={renderItems(prescriptions, 'medication_description')}
+                                    width={"56rem"}
+                                    height={"auto"}
+                                    textPosition={"text-top"}
+                                />
 								<div className="insurance-button-div">
 									<Button
 										width={"20rem"}
