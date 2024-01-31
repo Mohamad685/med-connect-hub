@@ -197,10 +197,10 @@ _Below is an example of how you can instruct your audience on installing and set
 
 6. Run React server:
    ```sh
-   npm run dev;
+   npm run dev
 
 7. Run Laravel server:
    ```sh
-   php artisan serve;
+   php artisan serve
 
 Now, you should be able to run Med-Hub locally and explore its features.
