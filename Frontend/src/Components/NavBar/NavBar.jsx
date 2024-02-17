@@ -8,7 +8,7 @@ import fetchHelper from "../Functions/FetchFunction";
 function NavBar() {
 	const [showLogin, setShowLogin] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
-	const [showDropdown, setShowDropdown] = useState(false); // New state for dropdown
+	const [showDropdown, setShowDropdown] = useState(false);
 
 	const navigate = useNavigate();
 

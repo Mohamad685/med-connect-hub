@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import fetchHelper from '../Functions/FetchFunction';
+import './Chat.css';
 
 const DoctorList = ({ onSelectDoctor }) => {
     const [doctors, setDoctors] = useState([]);
-    const firestore = getFirestore();
 
     useEffect(() => {
         const fetchDoctors = async () => {
-            const doctorsCollection = collection(firestore, 'doctors');
-            const doctorSnapshot = await getDocs(doctorsCollection);
-            const doctorList = doctorSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            setDoctors(doctorList);
+            try {
+                const data = await fetchHelper.get('/patient/doctors');
+                setDoctors(data);
+                console.log(data)
+                console.log(data.id)
+            } catch (error) {
+                console.error("Failed to fetch doctors:", error);
+            }
         };
 
         fetchDoctors();
@@ -19,9 +23,10 @@ const DoctorList = ({ onSelectDoctor }) => {
     return (
         <div className="doctor-list">
             {doctors.map(doctor => (
-                <button key={doctor.id} onClick={() => onSelectDoctor(doctor.id)}>
-                    {doctor.name}
-                </button>
+                <div className='doctors-name' key={doctor.id} onClick={() => onSelectDoctor(doctor.id)}>
+                   Dr.{doctor.first_name} {doctor.last_name}<br/>
+                   {doctor.specialty}
+                </div>
             ))}
         </div>
     );

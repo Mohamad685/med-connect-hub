@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DoctorList from "./DoctorsList";
-
+import './Chat.css';
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -12,15 +12,10 @@ import {
   where,
   serverTimestamp,
 } from "firebase/firestore";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import "./Chat.css";
+
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDazaPi2lgPM_pcHEaRe_uuz2JgAk1cxX4",
@@ -34,63 +29,63 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
-const auth = getAuth(app);
 
-function SignIn() {
-  const signInWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-    }
-  };
+const patientId=localStorage.getItem('userId')
+
+
+function ChatMessage({ message, patientId }) {
+  const { text, uid } = message;
+  const messageClass = uid === patientId ? "sent" : "received";
 
   return (
-    <button onClick={signInWithGoogle} className="sign-in-button">
-      Sign in with Google
-    </button>
+    <div className={`message ${messageClass}`}>
+      <p>{text}</p>
+    </div>
   );
 }
 
-function SignOut() {
-  return auth.currentUser && <button onClick={() => signOut(auth)}>Sign Out</button>;
-}
 
-function ChatRoom({ auth, doctorId }) {
+
+function ChatRoom({ patientId, doctorId }) {
+  console.log("Values used in query:", doctorId, patientId);
   const messagesRef = collection(firestore, "messages");
   const messagesQuery = query(
     messagesRef,
     where("doctorId", "==", doctorId),
-    where("patientId", "==", auth.currentUser.uid),
+    where("uid", "==", String(patientId)),
     orderBy("createdAt"),
     limit(25)
   );
+
+  console.log("Messages Query:", messagesQuery);
+
+  
   const [messages] = useCollectionData(messagesQuery, { idField: "id" });
   const [formValue, setFormValue] = useState("");
-
   const sendMessage = async (e) => {
     e.preventDefault();
-    const { uid, photoURL } = auth.currentUser;
 
     await addDoc(messagesRef, {
       text: formValue,
       createdAt: serverTimestamp(),
-      uid,
+      uid: String(patientId),
       doctorId, 
-      photoURL,
     });
 
     setFormValue("");
   };
-
+  console.log([messages])
   return (
     <>
+    {messages ? (
       <div className="chat-messages">
-        {messages &&
-          messages.map((msg) => (
-            <ChatMessage key={msg.id} message={msg} auth={auth} />
-          ))}
+        {messages.map((msg) => (
+          <ChatMessage key={msg.id} message={msg} patientId={patientId} />
+        ))}
       </div>
+    ) : (
+      <p>Loading messages...</p>
+    )}
       <form onSubmit={sendMessage}>
         <input
           className="input-field"
@@ -105,39 +100,36 @@ function ChatRoom({ auth, doctorId }) {
   );
 }
 
-function ChatMessage({ message, auth }) {
-  const { text, uid, photoURL } = message;
-  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
-  return (
-    <div className={`message ${messageClass}`}>
-      <p>{text}</p>
-      {photoURL && <img src={photoURL} alt="User" />}
-    </div>
-  );
-}
+
+
+
+
+
 
 const Chat = () => {
-  const [user] = useAuthState(auth);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const handleSelectDoctor = (doctorId) => {
     setSelectedDoctor(doctorId);
   };
-
+  
+  console.log("Patient ID:", patientId);
   return (
     <div className="chat-system">
-      {user ? (
-        <>
-          <SignOut />
-          <DoctorList onSelectDoctor={handleSelectDoctor} />
-          {selectedDoctor && <ChatRoom auth={auth} doctorId={selectedDoctor} />}
+      {patientId && (
+        <>   
+          <div>
+            <DoctorList onSelectDoctor={handleSelectDoctor} />
+          </div>
+          <div>
+            {selectedDoctor && <ChatRoom patientId={patientId} doctorId={selectedDoctor} />}
+          </div>
         </>
-      ) : (
-        <SignIn />
       )}
     </div>
   );
+  
 };
 
 export default Chat;
